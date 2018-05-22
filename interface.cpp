@@ -12,13 +12,23 @@ int interface(int argc, char * argv[]) {
     QApplication app(argc, argv);
 
     /* CREATION ET PARAMETRAGE DE LA FENETRE */
+    int widthMax(1200);
+    int heightMax(800);
     QWidget fenetre;
-    //fenetre.setFixedSize(300, 200);
+    fenetre.setFixedSize(widthMax, heightMax);
 
-        QLabel *header = new QLabel("AUTOCELL");
-        header->setMinimumSize(500, 50);
-        header->setAlignment(Qt::AlignCenter);
+            /* MISE EN PLACE DU TITRE/HEADER + TAILLE ET POLICE */
+            QLabel *header = new QLabel("AUTOCELL");
+            int HeightMaxHeader = 100;
+            header->setFixedWidth(widthMax);
+            header->setMaximumHeight(HeightMaxHeader);
+            header->setAlignment(Qt::AlignCenter);
+            QFont bigTitle( "Arial", 30, QFont::Bold);
+            header->setFont(bigTitle);
+
+
                 QLabel *displayTitle = new QLabel("Créer Automate");
+                displayTitle->setAlignment(Qt::AlignCenter);
                     QPushButton *loadLastAutomate = new QPushButton("Charger le dernier automate");
                     QPushButton *loadOtherAutomate = new QPushButton("Charger un autre automate");
                 QHBoxLayout *loadAutomate = new QHBoxLayout;
@@ -39,6 +49,7 @@ int interface(int argc, char * argv[]) {
             QVBoxLayout *tools = new QVBoxLayout;
             tools->addWidget(toolsInfo);
             tools->addWidget(quitter);
+
         QHBoxLayout *body = new QHBoxLayout;
         body->addLayout(display);
         body->addLayout(tools);
