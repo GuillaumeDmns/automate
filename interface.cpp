@@ -17,7 +17,21 @@ int interface(int argc, char * argv[]) {
     QWidget fenetre;
     fenetre.setFixedSize(widthMax, heightMax);
 
-            /* MISE EN PLACE DU TITRE/HEADER + TAILLE ET POLICE */
+    QGridLayout *mainLayout = new QGridLayout;
+    QHBoxLayout *header = new QHBoxLayout;
+    QVBoxLayout *tools = new QVBoxLayout;
+    QGridLayout *display = new QGridLayout;
+    mainLayout->addLayout(header, 0, 0, 1, 3, Qt::AlignCenter);
+    mainLayout->addLayout(tools, 0, 3, 4, 1, Qt::AlignCenter);
+    mainLayout->addLayout(display, 1, 0, 3, 3, Qt::AlignCenter);
+
+    QLabel *titleHeader = new QLabel("AUTOCELL");
+    QFont bigTitle( "Arial", 30, QFont::Bold);
+    titleHeader->setFont(bigTitle);
+    header->addWidget(titleHeader);
+
+    /*
+            // MISE EN PLACE DU TITRE/HEADER + TAILLE ET POLICE
             QLabel *header = new QLabel("AUTOCELL");
             int HeightMaxHeader = 100;
             header->setFixedWidth(widthMax);
@@ -57,6 +71,8 @@ int interface(int argc, char * argv[]) {
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(header);
     mainLayout->addLayout(body);
+
+      */
 
     fenetre.setLayout(mainLayout);
     fenetre.setWindowTitle("AUTOCELL");
