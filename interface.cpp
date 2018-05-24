@@ -41,6 +41,7 @@ int interface(int argc, char * argv[]) {
                 generation->addItem("Remplissage aléatoire");
                 generation->addItem("Remplissage symétrique");
                 QPushButton *submit = new QPushButton("Valider");
+                submit->setMaximumWidth(100);
             QFormLayout *newAutomate = new QFormLayout;
             newAutomate->addRow("Type d'automate", typeAutomate);
             newAutomate->addRow("Hauteur", dimensionH);
