@@ -23,7 +23,7 @@ int interface(int argc, char * argv[]) {
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
 
-            QLabel *displayTitle = new QLabel("Créer automate");
+            QLabel *displayTitle = new QLabel("Créer un automate");
             displayTitle->setFont(subTitle);
             QComboBox *typeAutomate = new QComboBox;
             typeAutomate->addItem("Vie 1D");
@@ -40,15 +40,13 @@ int interface(int argc, char * argv[]) {
                 generation->addItem("Grille vide");
                 generation->addItem("Remplissage aléatoire");
                 generation->addItem("Remplissage symétrique");
-                QPushButton *submit = new QPushButton("Valider");
-                submit->setMaximumWidth(100);
             QFormLayout *newAutomate = new QFormLayout;
             newAutomate->addRow("Type d'automate", typeAutomate);
             newAutomate->addRow("Hauteur", dimensionH);
             newAutomate->addRow("Largeur", dimensionL);
             newAutomate->addRow("Règles", rules);
             newAutomate->addRow("Génération", generation);
-            newAutomate->addRow(submit);
+            QPushButton *submit = new QPushButton("Valider");
                 QPushButton *loadLastAutomate = new QPushButton("Charger le dernier automate");
                 QPushButton *loadOtherAutomate = new QPushButton("Charger un autre automate");
             QVBoxLayout *loadAutomate = new QVBoxLayout;
@@ -56,8 +54,9 @@ int interface(int argc, char * argv[]) {
             loadAutomate->addWidget(loadOtherAutomate, 1, Qt::AlignCenter);
         QGridLayout *display = new QGridLayout;
         display->addWidget(displayTitle, 0, 0, 1, 5, Qt::AlignCenter);
-        display->addLayout(loadAutomate, 1, 4, 5, 1, Qt::AlignCenter);
+        display->addLayout(loadAutomate, 1, 4, 6, 1, Qt::AlignCenter);
         display->addLayout(newAutomate, 1, 0, 5, 4, Qt::AlignCenter);
+        display->addWidget(submit, 6, 0, 1, 4, Qt::AlignCenter);
             QLabel *generalTitle = new QLabel("AUTOCELL");
             generalTitle->setFont(bigTitle);
         QHBoxLayout *header = new QHBoxLayout;
@@ -65,13 +64,13 @@ int interface(int argc, char * argv[]) {
             QPushButton *quit = new QPushButton("Quitter");
             QLabel *toolsInfo = new QLabel("Qu'est-ce qu'un automate cellulaire ?");
         QVBoxLayout *tools = new QVBoxLayout;
-        tools->addWidget(toolsInfo, 2, Qt::AlignCenter);
-        tools->addWidget(quit, 1, Qt::AlignCenter);
+        tools->addWidget(toolsInfo, 0, Qt::AlignCenter);
+        tools->addWidget(quit, 0, Qt::AlignBottom|Qt::AlignRight);
 
     QGridLayout *mainLayout = new QGridLayout;
     mainLayout->addLayout(display, 1, 0, 4, 4);
     mainLayout->addLayout(header, 0, 0, 1, 5);
-    mainLayout->addLayout(tools, 0, 4, 4, 1);
+    mainLayout->addLayout(tools, 1, 4, 4, 1);
 
     /*
             // MISE EN PLACE DU TITRE/HEADER + TAILLE ET POLICE
