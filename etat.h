@@ -98,15 +98,73 @@ private :
 
 class Etat2D : public Etat{
 public :
+
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Etat2D
+     *
+     * \param unsigned int n : valeur initiale de la dimension n
+     * \param unsigned int m : valeur initiale de la dimension m
+     * \param unsigned int** t : tableau des valeurs de la grille
+     */
     Etat2D(unsigned int n,unsigned int m,unsigned int** t);
+    
+    /*!
+     * \brief Destructeur
+     *
+     * \details Destructeur de la classe Etat2D
+     *
+     * 
+     */
     ~Etat2D();
+    
+    /*!
+     * \brief Constructeur par recopie
+     *
+     * \details Constructeur par recopie de la classe Etat2D
+     *
+     * \param Etat2D& e : objet Etat2D à recopier
+     * 
+     */
     //Etat2D(const Etat2D& e);
+    
+    /*!
+     * \brief Opérateur affectation
+     *
+     * \details Opérateur d'affectation de la classe Etat2D
+     *
+     * \param Etat2D& e : objet Etat2D à affecter
+     * 
+     */
     //Etat2D opertaor=(const Etat2D& e);
+    
+    /*!
+     * \brief Recupération de la valeur d'une case de la grille
+     *
+     * \details Renvoie la valeur de la case (n,m)
+     *
+     * \param unsigned int n : abscisse de la case sur la grille
+     * \param unsigned int m : ordonnée de la case sur la grille
+     * \return valeur[n][m]
+     */
     const unsigned int getValue(unsigned int n,unsigned int m) const {return valeur[n][m];}
+    
+    /*!
+     * \brief Affectation d'une valeur
+     *
+     * \details Affecte une valeur à la case indiquée, dans la grille
+     *
+     * \param unsigned int n : abscisse de la case sur la grille
+     * \param unsigned int m : ordonnée de la case sur la grille
+     * \param unsigned int v : valeur à affecter à la case
+     * \return 
+     */
     void setValue(unsigned int n, unsigned int m, unsigned int v) const {valeur[n][m]=v;}
+    
 private :
-    unsigned int** valeur;
-    unsigned int dimM;
+    unsigned int** valeur; /*!< Tableau des valeurs de la grille*/
+    unsigned int dimM; /*!< Deuxième dimension de la grille*/
 };
 
 
