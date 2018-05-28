@@ -32,6 +32,9 @@ public :
      * \brief Recupération de la dimension
      *
      * Renvoie la dimension n de la grille
+     *
+     * \param 
+     * \return dimN
      */
     const unsigned int getdimN() const {return dimN;}
     
