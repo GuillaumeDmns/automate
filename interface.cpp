@@ -8,6 +8,7 @@
 #include <QComboBox>
 #include <QSpinBox>
 #include <QTextEdit>
+#include <QMessageBox>
 #include "interface.h"
 
 int interface(int argc, char * argv[]) {
@@ -29,12 +30,17 @@ int interface(int argc, char * argv[]) {
             typeAutomate->addItem("Vie 1D");
             typeAutomate->addItem("Vie 2D");
             typeAutomate->addItem("Feu de forêt");
-                QSpinBox *dimensionH = new QSpinBox;
-                dimensionH->setMinimum(dimensionMin);
-                dimensionH->setMaximum(dimensionMax);
-                QSpinBox *dimensionL = new QSpinBox;
-                dimensionL->setMinimum(dimensionMin);
-                dimensionL->setMaximum(dimensionMax);
+                    QSpinBox *dimensionH = new QSpinBox;
+                    dimensionH->setMinimum(dimensionMin);
+                    dimensionH->setMaximum(dimensionMax);
+                    QLabel *timesDimensions = new QLabel("x");
+                    QSpinBox *dimensionL = new QSpinBox;
+                    dimensionL->setMinimum(dimensionMin);
+                    dimensionL->setMaximum(dimensionMax);
+                QHBoxLayout *dimensions = new QHBoxLayout;
+                dimensions->addWidget(dimensionH);
+                dimensions->addWidget(timesDimensions, 0, Qt::AlignCenter);
+                dimensions->addWidget(dimensionL);
                 QTextEdit *rules = new QTextEdit;
                 QComboBox *generation = new QComboBox;
                 generation->addItem("Grille vide");
@@ -42,8 +48,7 @@ int interface(int argc, char * argv[]) {
                 generation->addItem("Remplissage symétrique");
             QFormLayout *newAutomate = new QFormLayout;
             newAutomate->addRow("Type d'automate", typeAutomate);
-            newAutomate->addRow("Hauteur", dimensionH);
-            newAutomate->addRow("Largeur", dimensionL);
+            newAutomate->addRow("Dimensions", dimensions);
             newAutomate->addRow("Règles", rules);
             newAutomate->addRow("Génération", generation);
             QPushButton *submit = new QPushButton("Valider");
@@ -72,52 +77,13 @@ int interface(int argc, char * argv[]) {
     mainLayout->addLayout(header, 0, 0, 1, 5);
     mainLayout->addLayout(tools, 1, 4, 4, 1);
 
-    /*
-            // MISE EN PLACE DU TITRE/HEADER + TAILLE ET POLICE
-            QLabel *header = new QLabel("AUTOCELL");
-            int HeightMaxHeader = 100;
-            header->setFixedWidth(widthMax);
-            header->setMaximumHeight(HeightMaxHeader);
-            header->setAlignment(Qt::AlignCenter);
-            QFont bigTitle( "Arial", 30, QFont::Bold);
-            header->setFont(bigTitle);
-
-
-                QLabel *displayTitle = new QLabel("Créer Automate");
-                displayTitle->setAlignment(Qt::AlignCenter);
-                    QPushButton *loadLastAutomate = new QPushButton("Charger le dernier automate");
-                    QPushButton *loadOtherAutomate = new QPushButton("Charger un autre automate");
-                QHBoxLayout *loadAutomate = new QHBoxLayout;
-                loadAutomate->addWidget(loadLastAutomate);
-                loadAutomate->addWidget(loadOtherAutomate);
-                    QComboBox *typeAutomate = new QComboBox;
-                    typeAutomate->addItem("Vie 1D");
-                    typeAutomate->addItem("Vie 2D");
-                    typeAutomate->addItem("Feu de forêt");
-                QFormLayout *formAutomate = new QFormLayout;
-                formAutomate->addWidget(typeAutomate);
-            QVBoxLayout *display = new QVBoxLayout;
-            display->addWidget(displayTitle);
-            display->addLayout(loadAutomate);
-            display->addLayout(formAutomate);
-                QLabel *toolsInfo = new QLabel("Qu'est-ce qu'un automate cellulaire ?");
-                QPushButton *quitter = new QPushButton("Quitter");
-            QVBoxLayout *tools = new QVBoxLayout;
-            tools->addWidget(toolsInfo);
-            tools->addWidget(quitter);
-
-        QHBoxLayout *body = new QHBoxLayout;
-        body->addLayout(display);
-        body->addLayout(tools);
-
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    mainLayout->addWidget(header);
-    mainLayout->addLayout(body);
-
-      */
+    QObject::connect(quit, SIGNAL(clicked()), &app, SLOT(quit()));
 
     fenetre.setLayout(mainLayout);
     fenetre.setWindowTitle("AUTOCELL");
     fenetre.show();
     return app.exec();
 }
+
+
+
