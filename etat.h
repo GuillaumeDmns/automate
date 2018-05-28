@@ -1,14 +1,48 @@
+/*!
+    * \file etat.h
+    * \brief Déclaration de l'objet Etat
+    * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
+    * \version 0.1
+    *
+    * Fichier pour créer les classes et fonctions relatives à Etat
+    *
+    */
+
+
 #ifndef ETAT_H
 #define ETAT_H
 #include <iostream>
 #include <string>
 using namespace std;
 
+
+/*!
+    * \class Etat
+    * \brief classe mère pour les états
+    * 
+    * La classe gére les données relatives à la grille d'un automate
+    *
+    */
 class Etat {
 private :
-        unsigned int dimN;
+        unsigned int dimN; /*!< Dimension 1 de la grille*/
 public :
+    
+    /*!
+     * \brief Recupération de la dimension
+     *
+     * Renvoie la dimension n de la grille
+     */
     const unsigned int getdimN() const {return dimN;}
+    
+    /*!
+     * \brief Constructeur
+     *
+     * Constructeur de la classe Etat
+     *
+     * \param n : valeur initiale de la dimension n
+     *
+     */
     Etat(const unsigned int n): dimN(n){}
 };
 
