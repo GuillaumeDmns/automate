@@ -3,8 +3,9 @@
     * \brief Déclaration de l'objet Etat
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
+    * \date 28 mai 2018
     *
-    * Fichier pour créer les classes et fonctions relatives à Etat
+    * \details Fichier pour créer les classes et fonctions relatives à Etat
     *
     */
 
@@ -20,7 +21,7 @@ using namespace std;
     * \class Etat
     * \brief classe mère pour les états
     * 
-    * La classe gére les données relatives à la grille d'un automate
+    * \details La classe gére les données relatives à la grille d'un automate
     *
     */
 class Etat {
@@ -31,7 +32,7 @@ public :
     /*!
      * \brief Recupération de la dimension
      *
-     * Renvoie la dimension n de la grille
+     * \details Renvoie la dimension n de la grille
      *
      * \param 
      * \return dimN
@@ -41,9 +42,9 @@ public :
     /*!
      * \brief Constructeur
      *
-     * Constructeur de la classe Etat
+     * \details Constructeur de la classe Etat
      *
-     * \param n : valeur initiale de la dimension n
+     * \param unsigned int n : valeur initiale de la dimension n
      *
      */
     Etat(const unsigned int n): dimN(n){}
@@ -51,12 +52,48 @@ public :
 
 class Etat1D : public Etat{
 public :
+
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Etat1D
+     *
+     * \param unsigned int n : valeur initiale de la dimension n
+     * \param unsigned int* t : tableau des valeurs de la grille
+     */
     Etat1D(unsigned int n,unsigned int* t);
+    
+    /*!
+     * \brief Destructeur
+     *
+     * \details Destructeur de la classe Etat1D
+     *
+     * 
+     */
     //~Etat1D();
+    
+    /*!
+     * \brief Constructeur par recopie
+     *
+     * \details Constructeur par recopie de la classe Etat1D
+     *
+     * \param Etat1D& e : objet Etat1D à recopier
+     * 
+     */
     //Etat1D(const Etat1D& e);
+    
+    /*!
+     * \brief Opérateur affectation
+     *
+     * \details Opérateur d'affectation de la classe Etat1D
+     *
+     * \param Etat1D& e : objet Etat1D à affecter
+     * 
+     */
     //Etat1D operator=(const Etat1D& e);
+    
 private :
-    unsigned int* valeur;
+    unsigned int* valeur; /*!< Tableau des valeurs de la grille*/
 };
 
 class Etat2D : public Etat{
