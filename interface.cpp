@@ -1,3 +1,15 @@
+/*!
+    * \file interface.cpp
+    * \brief Définition des méthodes et fonctions de l'interface
+    * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
+    * \version 0.1
+    * \date 28 mai 2018
+    *
+    * \details Programme pour définir les fonctions et les méthodes relatives à l'interface graphique
+    *
+    */
+
+
 #include <QApplication>
 #include <QWidget>
 #include <QPushButton>
@@ -11,6 +23,17 @@
 #include <QMessageBox>
 #include "interface.h"
 
+
+/*!
+    * \fn int interface(int argc, char * argv[])
+    * \brief Programme d'affichage de l'interface
+    * 
+    * \param int argc :
+    * \param char* argv[] :
+    *
+    * \return app.exec() : execution de l'application de l'interface graphique
+    *
+    */
 int interface(int argc, char * argv[]) {
     QApplication app(argc, argv);
 
