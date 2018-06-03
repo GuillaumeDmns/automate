@@ -19,10 +19,10 @@ using namespace std;
 /*!
     * \fn Etat1D::Etat1D (unsigned int n,unsigned int* t=0)
     * \brief Constructeur de la classe Etat1D
-    * 
+    *
     * \param unsigned int n : dimension de la grille
     * \param unsigned int* t : tableau des valeurs (par défaut =0)
-    * \return 
+    * \return
     *
     */
 Etat1D::Etat1D (unsigned int n,unsigned int* t=0): Etat(n), valeur(new unsigned int[n]){
@@ -38,13 +38,61 @@ Etat1D::Etat1D (unsigned int n,unsigned int* t=0): Etat(n), valeur(new unsigned 
 }
 
 /*!
+     * \fn Etat1D::~Etat1D()
+     * \brief Destructeur
+     *
+     *
+     *
+     * \return
+     */
+Etat1D::~Etat1D(){
+    delete[] valeur;
+}
+
+/*!
+     * \fn Etat1D::Etat1D(const Etat1D& e)
+     * \brief Constructeur par recopie
+     *
+     *
+     *
+     * \param Etat1D& e : objet Etat1D à recopier
+     * \return
+     */
+    /*
+Etat1D::Etat1D(const Etat1D& e){
+    if (dgetdimN()!=e.getdimN())
+        throw "erreur : taille des grilles incompatible";
+    else {
+        for (unsigned int i=0;i<getdimN();i++)
+                valeur[i]=e.valeur[i];
+}
+*/
+
+/*!
+     * \fn Etat1D::operator=(const Etat1D& e)
+     * \brief Opérateur affectation
+     *
+     *
+     * \param Etat1D& e : objet Etat1D à affecter
+     * \return
+     */
+Etat1D::operator=(const Etat1D& e){
+    if (getdimN()!=e.getdimN())
+        throw "erreur : taille des grilles incompatibles";
+    else {
+    for (unsigned int i=0;i<getdimN();i++)
+                valeur[i]=e.valeur[i];
+    }
+}
+
+/*!
     * \fn Etat2D::Etat2D (unsigned int n,unsigned int m,unsigned int** t=0)
     * \brief Constructeur de la classe Etat2D
-    * 
+    *
     * \param unsigned int n : dimension N de la grille
     * \param unsigned int m : dimension M de la grille
     * \param unsigned int** t : tableau des valeurs (par défaut =0)
-    * \return 
+    * \return
     *
     */
 Etat2D::Etat2D(unsigned int n,unsigned int m,unsigned int** t=0):Etat(n),dimM(m),valeur(new unsigned int*[n]){
@@ -69,9 +117,9 @@ Etat2D::Etat2D(unsigned int n,unsigned int m,unsigned int** t=0):Etat(n),dimM(m)
 /*!
     * \fn Etat2D::~Etat2D()
     * \brief Destructeur de la classe Etat2D
-    * 
-    * 
-    * \return 
+    *
+    *
+    * \return
     *
     */
 Etat2D::~Etat2D(){
@@ -80,4 +128,33 @@ Etat2D::~Etat2D(){
             delete valeur[i];
         }
     delete[] valeur;
+}
+
+/*!
+    * \fn Etat2D::Etat2D(const Etat2D& e)
+    * \brief Constructeur par recopie de la classe Etat2D
+    *
+    * \param const Etat2D& e : objet Etat2D à recopier
+    * \return
+    *
+    */
+/*
+Etat2D::Etat2D(const Etat2D& e){
+    if (dimM!=e.dimM || getdimN()!=e.getdimN())
+        throw "erreur : tailles des grilles incompatibles";
+    else {
+        for (unsigned int i=0;i<getdimN();i++)
+            for (unsigned int j=0;j<dimM;j++)
+                valeur[i][j]=e.valeur[i][j];
+}
+*/
+
+Etat2D::operator=(const Etat2D& e){
+    if (dimM!=e.dimM || getdimN()!=e.getdimN())
+        throw "erreur : tailles des grilles incompatibles";
+    else {
+    for (unsigned int i=0;i<getdimN();i++)
+        for (unsigned int j=0;j<dimM;j++)
+                valeur[i][j]=e.valeur[i][j];
+    }
 }
