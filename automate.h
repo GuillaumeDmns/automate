@@ -40,27 +40,7 @@ public :
      * \param Etat& dest
      * \return void
      */
-    void appliquerTransition(const Etat& dep, Etat& dest) const;
-
-    /*!
-     * \brief Constructeur
-     *
-     * \details Constructeur par recopie de la classe Automate
-     *
-     * \param const Automate& a
-     * \return
-     */
-    virtual Automate(const Automate& a) =0;
-
-    /*!
-     * \brief Destructeur
-     *
-     * \details Destructeur de la classe Automate
-     *
-     * \param
-     * \return
-     */
-    virtual ~Automate() =0;
+    virtual void appliquerTransition(const Etat& dep, Etat& dest) const =0;
 };
 
 /*!
@@ -74,16 +54,16 @@ class Automate1D : public Automate {
 private :
         unsigned int dim; /*!< Dimension de l'automate*/
 public :
-
     /*!
      * \brief Constructeur
      *
      * \details Constructeur de la classe Automate1D
      *
      * \param const unsigned int dim
+     * \param const unsigned int nb
      * \return
      */
-    Automate(const unsigned int dim);
+    Automate1D(const unsigned int dim, const unsigned int nb);
 
     /*!
      * \brief Constructeur
@@ -93,7 +73,7 @@ public :
      * \param const Automate& a
      * \return
      */
-    Automate(const Automate& a);
+    Automate1D(const Automate& a);
 
     /*!
      * \brief Destructeur
@@ -103,14 +83,25 @@ public :
      * \param
      * \return
      */
-    ~Automate();
+    ~Automate1D();
+
+    /*!
+     * \brief Transition d'état
+     *
+     * \details Calcule l'état suivant d'un état donné
+     *
+     * \param const Etat& dep
+     * \param Etat& dest
+     * \return void
+     */
+    void appliquerTransition(const Etat& dep, Etat& dest) const;
 };
 
 /*!
     * \class Automate2D
     * \brief Classe mère pour les automates 2D
     *
-    * \details La classe gére les données relatives aux à un automate 2D
+    * \details La classe gére les données relatives à un automate 2D
     *
     */
 class Automate2D : public Automate {
@@ -126,9 +117,10 @@ public :
      *
      * \param const unsigned int dimM
      * \param const unsigned int dimN
+     * \param const unsigned int nb
      * \return
      */
-    Automate(const unsigned int dimM, const unsigned int dimN);
+    Automate2D(const unsigned int dimM, const unsigned int dimN, const unsigned int nb);
 
     /*!
      * \brief Constructeur
@@ -138,7 +130,7 @@ public :
      * \param const Automate& a
      * \return
      */
-    Automate(const Automate& a);
+    Automate2D(const Automate& a);
 
     /*!
      * \brief Destructeur
@@ -148,7 +140,100 @@ public :
      * \param
      * \return
      */
-    ~Automate();
+    ~Automate2D();
+
+    /*!
+     * \brief Transition d'état
+     *
+     * \details Calcule l'état suivant d'un état donné
+     *
+     * \param const Etat& dep
+     * \param Etat& dest
+     * \return void
+     */
+    void appliquerTransition(const Etat& dep, Etat& dest) const;
+};
+
+/*!
+    * \class Cell1D
+    * \brief Classe Automate Cellulaire 1D 2e
+    *
+    * \details La classe gére les données relatives à un automate cellulaire 1D à 2 états
+    *
+    */
+class Cell1D : public Automate1D {
+public :
+
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Cell1D
+     *
+     * \param const unsigned int dim
+     * \return
+     */
+    Cell1D(const unsigned int dim):Automate1D(dim,2);
+
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur par recopie de la classe Cell1D
+     *
+     * \param const Automate& a
+     * \return
+     */
+    Cell1D(const Automate& a):Automate(a);
+
+    /*!
+     * \brief Destructeur
+     *
+     * \details Destructeur de la classe Cell1D
+     *
+     * \param
+     * \return
+     */
+    ~Cell1D();
+};
+
+/*!
+    * \class JeuDeLaVie
+    * \brief Classe Jeu de la vie
+    *
+    * \details La classe gére les données relatives à un automate du jeu de la vie
+    *
+    */
+class JeuDeLaVie : Automate2D {
+public :
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe JeuDeLaVie
+     *
+     * \param const unsigned int dimM
+     * \param const unsigned int dimN
+     * \return
+     */
+    JeuDeLaVie(const unsigned int dimM, const unsigned int dimN):Automate2D(dimM,dimN,2);
+
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur par recopie de la classe JeuDeLaVie
+     *
+     * \param const Automate& a
+     * \return
+     */
+    JeuDeLaVie(const Automate& a):Automate2D(a);
+
+    /*!
+     * \brief Destructeur
+     *
+     * \details Destructeur de la classe JeuDeLaVie
+     *
+     * \param
+     * \return
+     */
+    ~JeuDeLaVie();
 };
 
 #endif // AUTOMATE_H
