@@ -172,7 +172,7 @@ public :
      * \param const unsigned int dim
      * \return
      */
-    Cell1D(const unsigned int dim):Automate1D(dim,2);
+    Cell1D(const unsigned int dim);
 
     /*!
      * \brief Constructeur
@@ -182,7 +182,7 @@ public :
      * \param const Automate& a
      * \return
      */
-    Cell1D(const Automate& a):Automate(a);
+    Cell1D(const Automate& a);
 
     /*!
      * \brief Destructeur
@@ -202,7 +202,7 @@ public :
     * \details La classe gére les données relatives à un automate du jeu de la vie
     *
     */
-class JeuDeLaVie : Automate2D {
+class JeuDeLaVie : public Automate2D {
 public :
     /*!
      * \brief Constructeur
@@ -213,7 +213,7 @@ public :
      * \param const unsigned int dimN
      * \return
      */
-    JeuDeLaVie(const unsigned int dimM, const unsigned int dimN):Automate2D(dimM,dimN,2);
+    JeuDeLaVie(const unsigned int dimM, const unsigned int dimN);
 
     /*!
      * \brief Constructeur
@@ -223,7 +223,7 @@ public :
      * \param const Automate& a
      * \return
      */
-    JeuDeLaVie(const Automate& a):Automate2D(a);
+    JeuDeLaVie(const Automate& a);
 
     /*!
      * \brief Destructeur
@@ -234,6 +234,62 @@ public :
      * \return
      */
     ~JeuDeLaVie();
+};
+
+/*!
+    * \class FabriqueAutomate
+    * \brief Classe Fabrique pour les Automates
+    *
+    * \details La classe permet l'instanciation de la bonne classe fille d'automate
+    *
+    */
+class FabriqueAutomate {
+public :
+    /*!
+     * \brief createAutomate
+     * \param const string idAutomate
+     * \param const unsigned int dim
+     * \return Automate1D&
+     */
+    inline Automate1D* createAutomate(const std::string idAutomate, const unsigned int dim) const;
+    /*!
+     * \brief createAutomate
+     * \param const string idAutomate
+     * \param const unsigned int dimM
+     * \param const unsigned int dimN
+     * \return Automate2D&
+     */
+    inline Automate2D* createAutomate(const std::string idAutomate, const unsigned int dimM, const unsigned int dimN) const;
+    /*!
+     * \brief createAutomate
+     * \param const Automate& a
+     * \return Automate&
+     */
+    inline Automate* createAutomate(const Automate& a) const;
+};
+
+/*!
+    * \class AutomateException
+    * \brief Classe d'exception pour les automates
+    *
+    * \details La classe est retournée en cas d'exception concernant un automate
+    *
+    */
+class AutomateException {
+private :
+    std::string info; /*! Information sur l'exception*/
+public :
+    /*!
+     * \brief AutomateException
+     * \param const string inf
+     * \return
+     */
+    AutomateException(const std::string inf):info(inf) {};
+    /*!
+     * \brief getInfo
+     * \return string
+     */
+    std::string getInfo() const {return info;};
 };
 
 #endif // AUTOMATE_H
