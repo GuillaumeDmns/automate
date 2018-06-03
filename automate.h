@@ -109,7 +109,6 @@ private :
         unsigned int dimM; /*!< Dimension de l'automate largeur*/
         unsigned int dimN; /*!< Dimension de l'automate hauteur*/
 public :
-
     /*!
      * \brief Constructeur
      *
@@ -183,16 +182,6 @@ public :
      * \return
      */
     Cell1D(const Automate& a);
-
-    /*!
-     * \brief Destructeur
-     *
-     * \details Destructeur de la classe Cell1D
-     *
-     * \param
-     * \return
-     */
-    ~Cell1D();
 };
 
 /*!
@@ -224,16 +213,6 @@ public :
      * \return
      */
     JeuDeLaVie(const Automate& a);
-
-    /*!
-     * \brief Destructeur
-     *
-     * \details Destructeur de la classe JeuDeLaVie
-     *
-     * \param
-     * \return
-     */
-    ~JeuDeLaVie();
 };
 
 /*!
