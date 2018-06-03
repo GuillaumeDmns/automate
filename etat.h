@@ -70,7 +70,7 @@ public :
      *
      * 
      */
-    //~Etat1D();
+    ~Etat1D();
     
     /*!
      * \brief Constructeur par recopie
@@ -90,7 +90,7 @@ public :
      * \param Etat1D& e : objet Etat1D à affecter
      * 
      */
-    //Etat1D operator=(const Etat1D& e);
+    operator=(const Etat1D& e);
     
 private :
     unsigned int* valeur; /*!< Tableau des valeurs de la grille*/
@@ -137,7 +137,7 @@ public :
      * \param Etat2D& e : objet Etat2D à affecter
      * 
      */
-    //Etat2D opertaor=(const Etat2D& e);
+    operator=(const Etat2D& e);
     
     /*!
      * \brief Recupération de la valeur d'une case de la grille
