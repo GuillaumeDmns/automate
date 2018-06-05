@@ -37,7 +37,7 @@ public :
      * \param 
      * \return dimN
      */
-    const unsigned int getdimN() const {return dimN;}
+    unsigned int getdimN() const {return dimN;}
     
     /*!
      * \brief Constructeur
@@ -90,7 +90,7 @@ public :
      * \param Etat1D& e : objet Etat1D à affecter
      * 
      */
-    operator=(const Etat1D& e);
+    Etat1D& operator=(const Etat1D& e);
     
 private :
     unsigned int* valeur; /*!< Tableau des valeurs de la grille*/
@@ -108,7 +108,7 @@ public :
      * \param unsigned int m : valeur initiale de la dimension m
      * \param unsigned int** t : tableau des valeurs de la grille
      */
-    Etat2D(unsigned int n,unsigned int m,unsigned int** t);
+    Etat2D(unsigned int n,unsigned int m, unsigned int** t);
     
     /*!
      * \brief Destructeur
@@ -137,7 +137,7 @@ public :
      * \param Etat2D& e : objet Etat2D à affecter
      * 
      */
-    operator=(const Etat2D& e);
+    Etat2D& operator=(const Etat2D& e);
     
     /*!
      * \brief Recupération de la valeur d'une case de la grille
@@ -148,7 +148,7 @@ public :
      * \param unsigned int m : ordonnée de la case sur la grille
      * \return valeur[n][m]
      */
-    const unsigned int getValue(unsigned int n,unsigned int m) const {return valeur[n][m];}
+    unsigned int getValue(unsigned int n,unsigned int m) const {return valeur[n][m];}
     
     /*!
      * \brief Affectation d'une valeur

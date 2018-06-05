@@ -76,7 +76,7 @@ Etat1D::Etat1D(const Etat1D& e){
      * \param Etat1D& e : objet Etat1D à affecter
      * \return
      */
-Etat1D::operator=(const Etat1D& e){
+Etat1D& Etat1D::operator=(const Etat1D& e){
     if (getdimN()!=e.getdimN())
         throw "erreur : taille des grilles incompatibles";
     else {
@@ -149,7 +149,7 @@ Etat2D::Etat2D(const Etat2D& e){
 }
 */
 
-Etat2D::operator=(const Etat2D& e){
+Etat2D& Etat2D::operator=(const Etat2D& e){
     if (dimM!=e.dimM || getdimN()!=e.getdimN())
         throw "erreur : tailles des grilles incompatibles";
     else {
