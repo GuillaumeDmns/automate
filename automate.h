@@ -41,6 +41,7 @@ public :
      * \return void
      */
     virtual void appliquerTransition(const Etat& dep, Etat& dest) const =0;
+    virtual unsigned int** createTabRegle() const =0;
 };
 
 /*!
@@ -95,6 +96,7 @@ public :
      * \return void
      */
     void appliquerTransition(const Etat& dep, Etat& dest) const;
+    unsigned int** createTabRegle() const;
 };
 
 /*!
@@ -151,6 +153,7 @@ public :
      * \return void
      */
     void appliquerTransition(const Etat& dep, Etat& dest) const;
+    unsigned int** createTabRegle() const;
 };
 
 /*!
