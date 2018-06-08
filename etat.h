@@ -48,6 +48,25 @@ public :
      *
      */
     Etat(const unsigned int n): dimN(n){}
+
+    /*!
+     * \brief Recupération de la valeur d'une case de la grille
+     *
+     * \details Renvoie la valeur de la case du tableau contenant les valeurs, ici virtuelle pure
+     *
+     */
+    virtual unsigned int getValue(unsigned int n) const=0;
+
+    /*!
+     * \brief Affectation d'une valeur à une case de la grille
+     *
+     * \details Affecte une valeur à la case indiquée, dans la grille, ici virtuelle pure
+     *
+     * \param unsigned int n : indice de la case dans le tableau
+     * \param unsigned int v : valeur à affecter à la case
+     * \return
+     */
+    virtual void setValue(unsigned int n, unsigned int v) const=0;
 };
 
 class Etat1D : public Etat{
@@ -91,6 +110,27 @@ public :
      * 
      */
     Etat1D& operator=(const Etat1D& e);
+
+    /*!
+     * \brief Recupération de la valeur d'une case de la grille
+     *
+     * \details Renvoie la valeur de la case (n)
+     *
+     * \param unsigned int n : indice de la case dans le tableau
+     * \return valeur[n]
+     */
+    virtual unsigned int getValue(unsigned int n) const {return valeur[n];}
+
+    /*!
+     * \brief Affectation d'une valeur
+     *
+     * \details Affecte une valeur à la case indiquée, dans la grille
+     *
+     * \param unsigned int n : indice de la case dans le tableau
+     * \param unsigned int v : valeur à affecter à la case
+     * \return
+     */
+    virtual void setValue(unsigned int n, unsigned int v) const {valeur[n]=v;}
     
 private :
     unsigned int* valeur; /*!< Tableau des valeurs de la grille*/
@@ -148,7 +188,7 @@ public :
      * \param unsigned int m : ordonnée de la case sur la grille
      * \return valeur[n][m]
      */
-    unsigned int getValue(unsigned int n,unsigned int m) const {return valeur[n][m];}
+    virtual unsigned int getValue(unsigned int n,unsigned int m) const {return valeur[n][m];}
     
     /*!
      * \brief Affectation d'une valeur
@@ -160,7 +200,7 @@ public :
      * \param unsigned int v : valeur à affecter à la case
      * \return 
      */
-    void setValue(unsigned int n, unsigned int m, unsigned int v) const {valeur[n][m]=v;}
+    virtual void setValue(unsigned int n, unsigned int m, unsigned int v) const {valeur[n][m]=v;}
     
 private :
     unsigned int** valeur; /*!< Tableau des valeurs de la grille*/
