@@ -27,10 +27,45 @@ using namespace std;
     */
 class Automate {
 private :
-        unsigned int** regle; /*!< Règles de transition*/
-        unsigned int nbEtats; /*!< Nombre d'états de l'automate*/
+    unsigned int** regle; /*!< Règles de transition*/
+    unsigned int nbEtats; /*!< Nombre d'états de l'automate*/
+    /*!
+     * \brief Remplissage des règles
+     *
+     * \details Remplissage du tableau des règles pour automate
+     *
+     * \param
+     * \return
+     */
+    virtual unsigned int** remplissageRegle(unsigned int** tab, const std::string regle) const =0;
+    /*!
+     * \brief Remplissage des règles
+     *
+     * \details Remplissage du tableau des règles pour automate
+     *
+     * \param
+     * \return
+     */
+    virtual unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) =0;
 public :
-
+    /*!
+     * \brief Accesseur regle
+     *
+     * \details Retourne l'attribut regle
+     *
+     * \param
+     * \return unsigned int**
+     */
+    unsigned int** getRegle() const {return regle;};
+    /*!
+     * \brief Accesseur nbEtats
+     *
+     * \details Retourne l'attribut nbEtats
+     *
+     * \param
+     * \return unsigned int
+     */
+    unsigned int getNbEtats() const {return nbEtats;};
     /*!
      * \brief Transition d'état
      *
@@ -40,7 +75,7 @@ public :
      * \param Etat& dest
      * \return void
      */
-    virtual void appliquerTransition(const Etat& dep, Etat& dest) const =0;
+    void appliquerTransition(const Etat& dep, Etat& dest) const;
     /*!
      * \brief creation tableau de règles
      *
@@ -58,25 +93,7 @@ public :
      * \param const unsigned int nb
      * \return
      */
-    Automate(const unsigned int nb);
-    /*!
-     * \brief Constructeur
-     *
-     * \details Constructeur par recopie de la classe Automate
-     *
-     * \param const Automate& a
-     * \return
-     */
-    Automate(const Automate& a);
-    /*!
-     * \brief Destructeur
-     *
-     * \details Destructeur de la classe Automate
-     *
-     * \param
-     * \return
-     */
-    ~Automate();
+    Automate(const unsigned int nb, unsigned int** regle);
 };
 
 /*!
@@ -97,7 +114,16 @@ private :
      * \param
      * \return
      */
-    void remplissageRegle();
+    unsigned int** remplissageRegle(unsigned int** tab, const std::string regle) const;
+    /*!
+     * \brief Remplissage des règles
+     *
+     * \details Remplissage du tableau des règles pour automate
+     *
+     * \param
+     * \return
+     */
+    unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) const;
 public :
     /*!
      * \brief Constructeur
@@ -107,7 +133,7 @@ public :
      * \param
      * \return
      */
-    Cell1D();
+    Cell1D(const std::string regle);
     /*!
      * \brief Constructeur
      *
@@ -146,7 +172,16 @@ private :
      * \param
      * \return
      */
-    void remplissageRegle();
+    unsigned int** remplissageRegle(unsigned int** tab, std::string regle) const;
+    /*!
+     * \brief Remplissage des règles
+     *
+     * \details Remplissage du tableau des règles pour automate
+     *
+     * \param
+     * \return
+     */
+    unsigned int** remplissageRegle(unsigned int** tab, unsigned int**) const;
 public :
     /*!
      * \brief Constructeur
@@ -156,7 +191,7 @@ public :
      * \param
      * \return
      */
-    JeuDeLaVie();
+    JeuDeLaVie(const std::string regle);
     /*!
      * \brief Constructeur
      *

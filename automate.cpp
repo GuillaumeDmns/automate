@@ -15,65 +15,70 @@
 #include "automate.h"
 
 using namespace std;
-/*
-Automate* FabriqueAutomate::createAutomate(const std::string idAutomate) const {
-    if(idAutomate=="Cell1D") return new Cell1D();
-    throw AutomateException("Automate 1D "+idAutomate+" Inexistant");
-}
 
-//NON FONCTIONNELLE MANQUE COMMENT RECUPERER QUELLE CLASSE FILLE EST a
-Automate* FabriqueAutomate::createAutomate(const Automate &a) const {
-    return new Automate(a);
-}
-*/
+unsigned int Cell1D::nbDim=1;
+unsigned int JeuDeLaVie::nbDim=2;
 
-/*
-//FONCTIONS SUIVANTES NON FONCTIONNELLES
-Automate1D::Automate1D(const unsigned int dim, const unsigned int nb):nbEtats(nb),dim(dim) {
+void Automate::appliquerTransition(const Etat& dep, Etat& dest) const {
 
 }
 
-Automate1D::Automate1D(const Automate& a) {
+Automate::Automate(const unsigned int nb, unsigned int** tab) :nbEtats(nb), regle(tab) {
 
 }
 
-Automate1D::~Automate1D() {
+unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const std::string regle) const{
 
 }
 
-void Automate1D::appliquerTransition(const Etat& dep, Etat& dest) const {
+unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
 
 }
 
-Automate2D::Automate2D(const unsigned int dimM, const unsigned int dimN, const unsigned int nb):nbEtats(nb),dimM(dimM),dimN(dimN) {
+Cell1D::Cell1D(const std::string regle) :Automate(2,remplissageRegle(createTabRegle(),regle)){
 
 }
 
-Automate2D::Automate2D(const Automate& a) {
+Cell1D::Cell1D(const Automate& a) :Automate(2, remplissageRegle(createTabRegle(), a.getRegle())) {
 
 }
 
-Automate2D::~Automate2D() {
+unsigned int** Cell1D::createTabRegle() const {
+    unsigned int** tab = new unsigned int* [2];
+    for(int i=0; i<2; ++i){
+        tab[i] = new unsigned int [20+1];
+    }
+    return tab;
+}
+
+unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const std::string regle) const{
 
 }
 
-void Automate2D::appliquerTransition(const Etat& dep, Etat& dest) const {
+unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
 
 }
 
-Cell1D::Cell1D(const unsigned int dim):Automate1D(dim,2) {
+JeuDeLaVie::JeuDeLaVie(const std::string regle) :Automate(2,remplissageRegle(createTabRegle(),regle)) {
 
 }
 
-Cell1D::Cell1D(const Automate& a) {
+JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(2, remplissageRegle(createTabRegle(), a.getRegle())) {
 
 }
 
-JeuDeLaVie::JeuDeLaVie(const unsigned int dimM, const unsigned int dimN):Automate2D(dimM,dimN,2){
+unsigned int** JeuDeLaVie::createTabRegle() const {
+    unsigned int** tab = new unsigned int* [2];
+    for(int i=0; i<2; ++i){
+        tab[i] = new unsigned int [800+1];
+    }
+    return tab;
+}
+
+inline Automate* FabriqueAutomate::createAutomate(const std::string idAutomate) const {
 
 }
 
-JeuDeLaVie::JeuDeLaVie(const Automate& a) {
+inline Automate* FabriqueAutomate::createAutomate(const Automate& a) const {
 
 }
-*/
