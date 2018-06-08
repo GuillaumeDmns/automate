@@ -41,119 +41,42 @@ public :
      * \return void
      */
     virtual void appliquerTransition(const Etat& dep, Etat& dest) const =0;
+    /*!
+     * \brief creation tableau de règles
+     *
+     * \details Crée un tableau de règles vide aux bonnes dimensions
+     *
+     * \param
+     * \return unsigned int**
+     */
     virtual unsigned int** createTabRegle() const =0;
-};
-
-/*!
-    * \class Automate1D
-    * \brief Classe mère pour les automates 1D
-    *
-    * \details La classe gére les données relatives à un automate 1D
-    *
-    */
-class Automate1D : public Automate {
-private :
-        unsigned int dim; /*!< Dimension de l'automate*/
-public :
     /*!
      * \brief Constructeur
      *
-     * \details Constructeur de la classe Automate1D
+     * \details Constructeur de la classe Automate
      *
-     * \param const unsigned int dim
      * \param const unsigned int nb
      * \return
      */
-    Automate1D(const unsigned int dim, const unsigned int nb);
-
+    Automate(const unsigned int nb);
     /*!
      * \brief Constructeur
      *
-     * \details Constructeur par recopie de la classe Automate1D
+     * \details Constructeur par recopie de la classe Automate
      *
      * \param const Automate& a
      * \return
      */
-    Automate1D(const Automate& a);
-
+    Automate(const Automate& a);
     /*!
      * \brief Destructeur
      *
-     * \details Destructeur de la classe Automate1D
+     * \details Destructeur de la classe Automate
      *
      * \param
      * \return
      */
     ~Automate1D();
-
-    /*!
-     * \brief Transition d'état
-     *
-     * \details Calcule l'état suivant d'un état donné
-     *
-     * \param const Etat& dep
-     * \param Etat& dest
-     * \return void
-     */
-    void appliquerTransition(const Etat& dep, Etat& dest) const;
-    unsigned int** createTabRegle() const;
-};
-
-/*!
-    * \class Automate2D
-    * \brief Classe mère pour les automates 2D
-    *
-    * \details La classe gére les données relatives à un automate 2D
-    *
-    */
-class Automate2D : public Automate {
-private :
-        unsigned int dimM; /*!< Dimension de l'automate largeur*/
-        unsigned int dimN; /*!< Dimension de l'automate hauteur*/
-public :
-    /*!
-     * \brief Constructeur
-     *
-     * \details Constructeur de la classe Automate2D
-     *
-     * \param const unsigned int dimM
-     * \param const unsigned int dimN
-     * \param const unsigned int nb
-     * \return
-     */
-    Automate2D(const unsigned int dimM, const unsigned int dimN, const unsigned int nb);
-
-    /*!
-     * \brief Constructeur
-     *
-     * \details Constructeur par recopie de la classe Automate2D
-     *
-     * \param const Automate& a
-     * \return
-     */
-    Automate2D(const Automate& a);
-
-    /*!
-     * \brief Destructeur
-     *
-     * \details Destructeur de la classe Automate1D
-     *
-     * \param
-     * \return
-     */
-    ~Automate2D();
-
-    /*!
-     * \brief Transition d'état
-     *
-     * \details Calcule l'état suivant d'un état donné
-     *
-     * \param const Etat& dep
-     * \param Etat& dest
-     * \return void
-     */
-    void appliquerTransition(const Etat& dep, Etat& dest) const;
-    unsigned int** createTabRegle() const;
 };
 
 /*!
@@ -163,19 +86,28 @@ public :
     * \details La classe gére les données relatives à un automate cellulaire 1D à 2 états
     *
     */
-class Cell1D : public Automate1D {
+class Cell1D : public Automate {
+private :
+    static unsigned int nbDim; /*! nombre de dimensions de l'automate */
+    /*!
+     * \brief Remplissage des règles
+     *
+     * \details Remplissage du tableau des règles pour automate
+     *
+     * \param
+     * \return
+     */
+    void remplissageRegle();
 public :
-
     /*!
      * \brief Constructeur
      *
      * \details Constructeur de la classe Cell1D
      *
-     * \param const unsigned int dim
+     * \param
      * \return
      */
-    Cell1D(const unsigned int dim);
-
+    Cell1D();
     /*!
      * \brief Constructeur
      *
@@ -185,37 +117,64 @@ public :
      * \return
      */
     Cell1D(const Automate& a);
+    /*!
+     * \brief creation tableau de règles
+     *
+     * \details Crée un tableau de règles vide aux bonnes dimensions
+     *
+     * \param
+     * \return unsigned int**
+     */
+    unsigned int** createTabRegle() const;
 };
 
 /*!
     * \class JeuDeLaVie
     * \brief Classe Jeu de la vie
     *
-    * \details La classe gére les données relatives à un automate du jeu de la vie
+    * \details La classe gère les données relatives à un automate Jeu de la vie
     *
     */
-class JeuDeLaVie : public Automate2D {
+class JeuDeLaVie : public Automate {
+private :
+    static unsigned int nbDim; /*! nombre de dimensions de l'automate */
+    /*!
+     * \brief Remplissage des règles
+     *
+     * \details Remplissage du tableau des règles pour automate
+     *
+     * \param
+     * \return
+     */
+    void remplissageRegle();
 public :
     /*!
      * \brief Constructeur
      *
-     * \details Constructeur de la classe JeuDeLaVie
+     * \details Constructeur de la classe Cell1D
      *
-     * \param const unsigned int dimM
-     * \param const unsigned int dimN
+     * \param
      * \return
      */
-    JeuDeLaVie(const unsigned int dimM, const unsigned int dimN);
-
+    JeuDeLaVie();
     /*!
      * \brief Constructeur
      *
-     * \details Constructeur par recopie de la classe JeuDeLaVie
+     * \details Constructeur par recopie de la classe Cell1D
      *
      * \param const Automate& a
      * \return
      */
     JeuDeLaVie(const Automate& a);
+    /*!
+     * \brief creation tableau de règles
+     *
+     * \details Crée un tableau de règles vide aux bonnes dimensions
+     *
+     * \param
+     * \return unsigned int**
+     */
+    unsigned int** createTabRegle() const;
 };
 
 /*!
@@ -233,15 +192,7 @@ public :
      * \param const unsigned int dim
      * \return Automate1D&
      */
-    inline Automate1D* createAutomate(const std::string idAutomate, const unsigned int dim) const;
-    /*!
-     * \brief createAutomate
-     * \param const string idAutomate
-     * \param const unsigned int dimM
-     * \param const unsigned int dimN
-     * \return Automate2D&
-     */
-    inline Automate2D* createAutomate(const std::string idAutomate, const unsigned int dimM, const unsigned int dimN) const;
+    inline Automate* createAutomate(const std::string idAutomate) const;
     /*!
      * \brief createAutomate
      * \param const Automate& a
