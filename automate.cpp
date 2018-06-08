@@ -8,8 +8,6 @@
     * \details Fichier pour définir les fonctions relatives à Automate non inline
     *
     */
-
-
 #include <stdio.h>
 #include <iostream>
 #include <typeinfo>
@@ -19,6 +17,8 @@ using namespace std;
 
 unsigned int Cell1D::nbDim=1;
 unsigned int JeuDeLaVie::nbDim=2;
+const unsigned int TRegleCell1D=20;
+const unsigned int TRegleJeuDeLaVie=800;
 
 void Automate::appliquerTransition(const Etat& dep, Etat& dest) const {
 
@@ -31,9 +31,13 @@ Automate::Automate(const unsigned int nb, unsigned int** tab) :nbEtats(nb), regl
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const std::string regle) const{
 
 }
-//NOT
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
-
+    for(unsigned int i=0; i<2; ++i){
+        for(unsigned int j=0; j<=TRegleCell1D; ++j){
+            tab[i][j] = regle[i][j];
+        }
+    }
+    return tab;
 }
 
 Cell1D::Cell1D(const std::string regle) :Automate(2,remplissageRegle(createTabRegle(),regle)){
@@ -47,7 +51,7 @@ Cell1D::Cell1D(const Automate& a) :Automate(2, remplissageRegle(createTabRegle()
 unsigned int** Cell1D::createTabRegle() const {
     unsigned int** tab = new unsigned int* [2];
     for(int i=0; i<2; ++i){
-        tab[i] = new unsigned int [20+1];
+        tab[i] = new unsigned int [TRegleCell1D+1];
     }
     return tab;
 }
@@ -55,9 +59,14 @@ unsigned int** Cell1D::createTabRegle() const {
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const std::string regle) const{
 
 }
-//NOT
-unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
 
+unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
+    for(unsigned int i=0; i<2; ++i){
+        for(unsigned int j=0; j<=TRegleJeuDeLaVie; ++j){
+            tab[i][j] = regle[i][j];
+        }
+    }
+    return tab;
 }
 
 JeuDeLaVie::JeuDeLaVie(const std::string regle) :Automate(2,remplissageRegle(createTabRegle(),regle)) {
@@ -71,7 +80,7 @@ JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(2, remplissageRegle(createTa
 unsigned int** JeuDeLaVie::createTabRegle() const {
     unsigned int** tab = new unsigned int* [2];
     for(int i=0; i<2; ++i){
-        tab[i] = new unsigned int [800+1];
+        tab[i] = new unsigned int [TRegleJeuDeLaVie+1];
     }
     return tab;
 }
