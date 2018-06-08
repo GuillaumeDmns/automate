@@ -15,21 +15,18 @@
 #include "automate.h"
 
 using namespace std;
-
-Automate1D* FabriqueAutomate::createAutomate(const std::string idAutomate, const unsigned int dim) const {
-    if(idAutomate=="Cell1D") return new Cell1D(dim);
+/*
+Automate* FabriqueAutomate::createAutomate(const std::string idAutomate) const {
+    if(idAutomate=="Cell1D") return new Cell1D();
     throw AutomateException("Automate 1D "+idAutomate+" Inexistant");
-}
-
-Automate2D* FabriqueAutomate::createAutomate(const std::string idAutomate, const unsigned int dimM, const unsigned int dimN) const {
-    if(idAutomate=="JeuDeLaVie") return new JeuDeLaVie(dimM,dimN);
-    throw AutomateException("Automate 2D "+idAutomate+" Inexistant");
 }
 
 //NON FONCTIONNELLE MANQUE COMMENT RECUPERER QUELLE CLASSE FILLE EST a
 Automate* FabriqueAutomate::createAutomate(const Automate &a) const {
-    return new Automate1D(a);
+    return new Automate(a);
 }
+*/
+
 /*
 //FONCTIONS SUIVANTES NON FONCTIONNELLES
 Automate1D::Automate1D(const unsigned int dim, const unsigned int nb):nbEtats(nb),dim(dim) {

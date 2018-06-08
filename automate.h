@@ -76,7 +76,7 @@ public :
      * \param
      * \return
      */
-    ~Automate1D();
+    ~Automate();
 };
 
 /*!
