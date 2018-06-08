@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <typeinfo>
 #include "automate.h"
 
 using namespace std;
@@ -26,11 +27,11 @@ void Automate::appliquerTransition(const Etat& dep, Etat& dest) const {
 Automate::Automate(const unsigned int nb, unsigned int** tab) :nbEtats(nb), regle(tab) {
 
 }
-
+//NOT
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const std::string regle) const{
 
 }
-
+//NOT
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
 
 }
@@ -50,11 +51,11 @@ unsigned int** Cell1D::createTabRegle() const {
     }
     return tab;
 }
-
+//NOT
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const std::string regle) const{
 
 }
-
+//NOT
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
 
 }
@@ -74,11 +75,16 @@ unsigned int** JeuDeLaVie::createTabRegle() const {
     }
     return tab;
 }
-
-inline Automate* FabriqueAutomate::createAutomate(const std::string idAutomate) const {
-
+/*
+Automate* FabriqueAutomate::createAutomate(const std::string idAutomate, const std::string regle) const {
+    if(idAutomate== "Cell1D") return new Cell1D(regle);
+    if(idAutomate== "JeuDeLaVie") return new JeuDeLaVie(regle);
+    throw AutomateException("Automate Inexistant");
 }
 
-inline Automate* FabriqueAutomate::createAutomate(const Automate& a) const {
-
+Automate* FabriqueAutomate::createAutomate(const Automate& a) const {
+    if(typeid(a).name()=="Cell1D") return new Cell1D(a);
+    if(typeid(a).name()=="JeuDeLaVie") return new JeuDeLaVie(a);
+    throw AutomateException("Automate Inexistant");
 }
+*/

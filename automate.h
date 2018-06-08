@@ -227,7 +227,7 @@ public :
      * \param const unsigned int dim
      * \return Automate1D&
      */
-    inline Automate* createAutomate(const std::string idAutomate) const;
+    inline Automate* createAutomate(const std::string idAutomate, const std::string regle) const;
     /*!
      * \brief createAutomate
      * \param const Automate& a
