@@ -17,9 +17,10 @@ using namespace std;
 
 unsigned int Cell1D::nbDim=1;
 unsigned int JeuDeLaVie::nbDim=2;
-const unsigned int TRegleCell1D=20;
-const unsigned int TRegleJeuDeLaVie=800;
+unsigned int Cell1D::tailleRegle=20;
+unsigned int JeuDeLaVie::tailleRegle=800;
 
+//NOT
 void Automate::appliquerTransition(const Etat& dep, Etat& dest) const {
 
 }
@@ -33,7 +34,7 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const std::string re
 }
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
     for(unsigned int i=0; i<2; ++i){
-        for(unsigned int j=0; j<=TRegleCell1D; ++j){
+        for(unsigned int j=0; j<=tailleRegle; ++j){
             tab[i][j] = regle[i][j];
         }
     }
@@ -48,10 +49,15 @@ Cell1D::Cell1D(const Automate& a) :Automate(2, remplissageRegle(createTabRegle()
 
 }
 
+Cell1D::~Cell1D() {
+    for(unsigned int i=0; i<nbEtats; ++i) delete[] regle[i];
+    delete[] regle;
+}
+
 unsigned int** Cell1D::createTabRegle() const {
     unsigned int** tab = new unsigned int* [2];
     for(int i=0; i<2; ++i){
-        tab[i] = new unsigned int [TRegleCell1D+1];
+        tab[i] = new unsigned int [tailleRegle+1];
     }
     return tab;
 }
@@ -62,7 +68,7 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const std::strin
 
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
     for(unsigned int i=0; i<2; ++i){
-        for(unsigned int j=0; j<=TRegleJeuDeLaVie; ++j){
+        for(unsigned int j=0; j<=tailleRegle; ++j){
             tab[i][j] = regle[i][j];
         }
     }
@@ -77,10 +83,15 @@ JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(2, remplissageRegle(createTa
 
 }
 
+JeuDeLaVie::~JeuDeLaVie() {
+    for(unsigned int i=0; i<nbEtats; ++i) delete[] regle[i];
+    delete[] regle;
+}
+
 unsigned int** JeuDeLaVie::createTabRegle() const {
     unsigned int** tab = new unsigned int* [2];
     for(int i=0; i<2; ++i){
-        tab[i] = new unsigned int [TRegleJeuDeLaVie+1];
+        tab[i] = new unsigned int [tailleRegle+1];
     }
     return tab;
 }

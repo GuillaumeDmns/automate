@@ -26,7 +26,7 @@ using namespace std;
     *
     */
 class Automate {
-private :
+protected :
     unsigned int** regle; /*!< Règles de transition*/
     unsigned int nbEtats; /*!< Nombre d'états de l'automate*/
     /*!
@@ -106,6 +106,7 @@ public :
 class Cell1D : public Automate {
 private :
     static unsigned int nbDim; /*! nombre de dimensions de l'automate */
+    static unsigned int tailleRegle; /*! Taille des regles */
     /*!
      * \brief Remplissage des règles
      *
@@ -144,6 +145,15 @@ public :
      */
     Cell1D(const Automate& a);
     /*!
+     * \brief Destructeur Cell1D
+     *
+     * \details Destructeur de la classe Cell1D
+     *
+     * \param
+     * \return
+     */
+    ~Cell1D();
+    /*!
      * \brief creation tableau de règles
      *
      * \details Crée un tableau de règles vide aux bonnes dimensions
@@ -164,6 +174,7 @@ public :
 class JeuDeLaVie : public Automate {
 private :
     static unsigned int nbDim; /*! nombre de dimensions de l'automate */
+    static unsigned int tailleRegle; /*! Taille des regles */
     /*!
      * \brief Remplissage des règles
      *
@@ -201,6 +212,15 @@ public :
      * \return
      */
     JeuDeLaVie(const Automate& a);
+    /*!
+     * \brief Destructeur JeuDeLaVie
+     *
+     * \details Destructeur de la classe JeuDeLaVie
+     *
+     * \param
+     * \return
+     */
+    ~JeuDeLaVie();
     /*!
      * \brief creation tableau de règles
      *
