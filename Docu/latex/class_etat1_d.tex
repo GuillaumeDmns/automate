@@ -1,0 +1,175 @@
+\hypertarget{class_etat1_d}{}\section{Etat1D Class Reference}
+\label{class_etat1_d}\index{Etat1D@{Etat1D}}
+
+
+{\ttfamily \#include $<$etat.\+h$>$}
+
+
+
+Inheritance diagram for Etat1D\+:
+% FIG 0
+
+
+Collaboration diagram for Etat1D\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_etat1_d_addea26818b2c60cff4da3b6277687c12}{Etat1D}} (unsigned int n, unsigned int $\ast$t)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_etat1_d_a71be5b5b3efb3451403184f31e63d6a2}{$\sim$\+Etat1D}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_etat1_d}{Etat1D}} \& \mbox{\hyperlink{class_etat1_d_ac972b631c8448d479a7fbb230f70f480}{operator=}} (const \mbox{\hyperlink{class_etat1_d}{Etat1D}} \&e)
+\begin{DoxyCompactList}\small\item\em Constructeur par recopie. \end{DoxyCompactList}\item 
+virtual unsigned int \mbox{\hyperlink{class_etat1_d_ace95184883c3979e8778959966698dd4}{get\+Value}} (unsigned int n) const
+\begin{DoxyCompactList}\small\item\em Recupération de la valeur d\textquotesingle{}une case de la grille. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_etat1_d_ac832c95a19cb5f21b76ca7595be2904a}{set\+Value}} (unsigned int n, unsigned int v) const
+\begin{DoxyCompactList}\small\item\em Affectation d\textquotesingle{}une valeur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_etat1_d_addea26818b2c60cff4da3b6277687c12}\label{class_etat1_d_addea26818b2c60cff4da3b6277687c12}} 
+\index{Etat1D@{Etat1D}!Etat1D@{Etat1D}}
+\index{Etat1D@{Etat1D}!Etat1D@{Etat1D}}
+\subsubsection{\texorpdfstring{Etat1\+D()}{Etat1D()}}
+{\footnotesize\ttfamily Etat1\+D\+::\+Etat1D (\begin{DoxyParamCaption}\item[{unsigned int}]{n,  }\item[{unsigned int $\ast$}]{t = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructeur. 
+
+Constructeur par recopie.
+
+Constructeur de la classe \mbox{\hyperlink{class_etat1_d}{Etat1D}}.
+
+Constructeur de la classe \mbox{\hyperlink{class_etat1_d}{Etat1D}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em unsigned} & int n \+: valeur initiale de la dimension n \\
+\hline
+{\em unsigned} & int$\ast$ t \+: tableau des valeurs de la grille\\
+\hline
+{\em unsigned} & int n \+: dimension de la grille \\
+\hline
+{\em unsigned} & int$\ast$ t \+: tableau des valeurs (par défaut =0) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em Etat1\+D\&} & e \+: objet \mbox{\hyperlink{class_etat1_d}{Etat1D}} à recopier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_etat1_d_a71be5b5b3efb3451403184f31e63d6a2}\label{class_etat1_d_a71be5b5b3efb3451403184f31e63d6a2}} 
+\index{Etat1D@{Etat1D}!````~Etat1D@{$\sim$\+Etat1D}}
+\index{````~Etat1D@{$\sim$\+Etat1D}!Etat1D@{Etat1D}}
+\subsubsection{\texorpdfstring{$\sim$\+Etat1\+D()}{~Etat1D()}}
+{\footnotesize\ttfamily Etat1\+D\+::$\sim$\+Etat1D (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur. 
+
+Destructeur de la classe \mbox{\hyperlink{class_etat1_d}{Etat1D}}
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_etat1_d_ace95184883c3979e8778959966698dd4}\label{class_etat1_d_ace95184883c3979e8778959966698dd4}} 
+\index{Etat1D@{Etat1D}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!Etat1D@{Etat1D}}
+\subsubsection{\texorpdfstring{get\+Value()}{getValue()}}
+{\footnotesize\ttfamily virtual unsigned int Etat1\+D\+::get\+Value (\begin{DoxyParamCaption}\item[{unsigned int}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Recupération de la valeur d\textquotesingle{}une case de la grille. 
+
+Renvoie la valeur de la case (n)
+
+
+\begin{DoxyParams}{Parameters}
+{\em unsigned} & int n \+: indice de la case dans le tableau \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+valeur\mbox{[}n\mbox{]} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_etat_a70460d74202413a3fe6849c4bfba7bab}{Etat}}.
+
+\mbox{\Hypertarget{class_etat1_d_ac972b631c8448d479a7fbb230f70f480}\label{class_etat1_d_ac972b631c8448d479a7fbb230f70f480}} 
+\index{Etat1D@{Etat1D}!operator=@{operator=}}
+\index{operator=@{operator=}!Etat1D@{Etat1D}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_etat1_d}{Etat1D}} \& Etat1\+D\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_etat1_d}{Etat1D}} \&}]{e }\end{DoxyParamCaption})}
+
+
+
+Constructeur par recopie. 
+
+Opérateur affectation.
+
+Constructeur par recopie de la classe \mbox{\hyperlink{class_etat1_d}{Etat1D}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Etat1\+D\&} & e \+: objet \mbox{\hyperlink{class_etat1_d}{Etat1D}} à recopier\\
+\hline
+\end{DoxyParams}
+Opérateur affectation
+
+Opérateur d\textquotesingle{}affectation de la classe \mbox{\hyperlink{class_etat1_d}{Etat1D}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Etat1\+D\&} & e \+: objet \mbox{\hyperlink{class_etat1_d}{Etat1D}} à affecter\\
+\hline
+{\em Etat1\+D\&} & e \+: objet \mbox{\hyperlink{class_etat1_d}{Etat1D}} à affecter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_etat1_d_ac832c95a19cb5f21b76ca7595be2904a}\label{class_etat1_d_ac832c95a19cb5f21b76ca7595be2904a}} 
+\index{Etat1D@{Etat1D}!set\+Value@{set\+Value}}
+\index{set\+Value@{set\+Value}!Etat1D@{Etat1D}}
+\subsubsection{\texorpdfstring{set\+Value()}{setValue()}}
+{\footnotesize\ttfamily virtual void Etat1\+D\+::set\+Value (\begin{DoxyParamCaption}\item[{unsigned int}]{n,  }\item[{unsigned int}]{v }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Affectation d\textquotesingle{}une valeur. 
+
+Affecte une valeur à la case indiquée, dans la grille
+
+
+\begin{DoxyParams}{Parameters}
+{\em unsigned} & int n \+: indice de la case dans le tableau \\
+\hline
+{\em unsigned} & int v \+: valeur à affecter à la case \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_etat_a92ad894e65a419e1cddb335664deea3e}{Etat}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{etat_8h}{etat.\+h}}\item 
+\mbox{\hyperlink{etat_8cpp}{etat.\+cpp}}\end{DoxyCompactItemize}

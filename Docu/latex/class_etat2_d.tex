@@ -1,0 +1,189 @@
+\hypertarget{class_etat2_d}{}\section{Etat2D Class Reference}
+\label{class_etat2_d}\index{Etat2D@{Etat2D}}
+
+
+{\ttfamily \#include $<$etat.\+h$>$}
+
+
+
+Inheritance diagram for Etat2D\+:
+% FIG 0
+
+
+Collaboration diagram for Etat2D\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_etat2_d_aaa6fd1c51ab31235f49de50817a8bbe5}{Etat2D}} (unsigned int n, unsigned int m, unsigned int $\ast$$\ast$t)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_etat2_d_a3eaa7f0e606a9b2f5fc634d6b571042e}{$\sim$\+Etat2D}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_etat2_d}{Etat2D}} \& \mbox{\hyperlink{class_etat2_d_a209b78aae297b6926e1c0450e19c1a89}{operator=}} (const \mbox{\hyperlink{class_etat2_d}{Etat2D}} \&e)
+\begin{DoxyCompactList}\small\item\em Constructeur par recopie. \end{DoxyCompactList}\item 
+virtual unsigned int \mbox{\hyperlink{class_etat2_d_a6efc3996c7578b7fb1de71402021c389}{get\+Value}} (unsigned int n, unsigned int m) const
+\begin{DoxyCompactList}\small\item\em Recupération de la valeur d\textquotesingle{}une case de la grille. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_etat2_d_ab19cb72ec4d46d96bd41038b84176797}{set\+Value}} (unsigned int n, unsigned int m, unsigned int v) const
+\begin{DoxyCompactList}\small\item\em Affectation d\textquotesingle{}une valeur. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_etat2_d_abcef6210d2c55b8fe4e33c9d29a1ac90}{getdimM}} () const
+\begin{DoxyCompactList}\small\item\em Recupération de la dimension M. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_etat2_d_aaa6fd1c51ab31235f49de50817a8bbe5}\label{class_etat2_d_aaa6fd1c51ab31235f49de50817a8bbe5}} 
+\index{Etat2D@{Etat2D}!Etat2D@{Etat2D}}
+\index{Etat2D@{Etat2D}!Etat2D@{Etat2D}}
+\subsubsection{\texorpdfstring{Etat2\+D()}{Etat2D()}}
+{\footnotesize\ttfamily Etat2\+D\+::\+Etat2D (\begin{DoxyParamCaption}\item[{unsigned int}]{n,  }\item[{unsigned int}]{m,  }\item[{unsigned int $\ast$$\ast$}]{t = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructeur. 
+
+Constructeur par recopie de la classe \mbox{\hyperlink{class_etat2_d}{Etat2D}}.
+
+Constructeur de la classe \mbox{\hyperlink{class_etat2_d}{Etat2D}}.
+
+Constructeur de la classe \mbox{\hyperlink{class_etat2_d}{Etat2D}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em unsigned} & int n \+: valeur initiale de la dimension n \\
+\hline
+{\em unsigned} & int m \+: valeur initiale de la dimension m \\
+\hline
+{\em unsigned} & int$\ast$$\ast$ t \+: tableau des valeurs de la grille\\
+\hline
+{\em unsigned} & int n \+: dimension N de la grille \\
+\hline
+{\em unsigned} & int m \+: dimension M de la grille \\
+\hline
+{\em unsigned} & int$\ast$$\ast$ t \+: tableau des valeurs (par défaut =0) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em const} & \mbox{\hyperlink{class_etat2_d}{Etat2D}}\& e \+: objet \mbox{\hyperlink{class_etat2_d}{Etat2D}} à recopier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_etat2_d_a3eaa7f0e606a9b2f5fc634d6b571042e}\label{class_etat2_d_a3eaa7f0e606a9b2f5fc634d6b571042e}} 
+\index{Etat2D@{Etat2D}!````~Etat2D@{$\sim$\+Etat2D}}
+\index{````~Etat2D@{$\sim$\+Etat2D}!Etat2D@{Etat2D}}
+\subsubsection{\texorpdfstring{$\sim$\+Etat2\+D()}{~Etat2D()}}
+{\footnotesize\ttfamily Etat2\+D\+::$\sim$\+Etat2D (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur. 
+
+Destructeur de la classe \mbox{\hyperlink{class_etat2_d}{Etat2D}}.
+
+Destructeur de la classe \mbox{\hyperlink{class_etat2_d}{Etat2D}}
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_etat2_d_abcef6210d2c55b8fe4e33c9d29a1ac90}\label{class_etat2_d_abcef6210d2c55b8fe4e33c9d29a1ac90}} 
+\index{Etat2D@{Etat2D}!getdimM@{getdimM}}
+\index{getdimM@{getdimM}!Etat2D@{Etat2D}}
+\subsubsection{\texorpdfstring{getdim\+M()}{getdimM()}}
+{\footnotesize\ttfamily unsigned int Etat2\+D\+::getdimM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Recupération de la dimension M. 
+
+Renvoie la dimension m de la grille
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_etat2_d_a6efc3996c7578b7fb1de71402021c389}\label{class_etat2_d_a6efc3996c7578b7fb1de71402021c389}} 
+\index{Etat2D@{Etat2D}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!Etat2D@{Etat2D}}
+\subsubsection{\texorpdfstring{get\+Value()}{getValue()}}
+{\footnotesize\ttfamily virtual unsigned int Etat2\+D\+::get\+Value (\begin{DoxyParamCaption}\item[{unsigned int}]{n,  }\item[{unsigned int}]{m }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Recupération de la valeur d\textquotesingle{}une case de la grille. 
+
+Renvoie la valeur de la case (n,m)
+
+
+\begin{DoxyParams}{Parameters}
+{\em unsigned} & int n \+: abscisse de la case sur la grille \\
+\hline
+{\em unsigned} & int m \+: ordonnée de la case sur la grille \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+valeur\mbox{[}n\mbox{]}\mbox{[}m\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_etat2_d_a209b78aae297b6926e1c0450e19c1a89}\label{class_etat2_d_a209b78aae297b6926e1c0450e19c1a89}} 
+\index{Etat2D@{Etat2D}!operator=@{operator=}}
+\index{operator=@{operator=}!Etat2D@{Etat2D}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_etat2_d}{Etat2D}} \& Etat2\+D\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_etat2_d}{Etat2D}} \&}]{e }\end{DoxyParamCaption})}
+
+
+
+Constructeur par recopie. 
+
+Constructeur par recopie de la classe \mbox{\hyperlink{class_etat2_d}{Etat2D}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Etat2\+D\&} & e \+: objet \mbox{\hyperlink{class_etat2_d}{Etat2D}} à recopier\\
+\hline
+\end{DoxyParams}
+Opérateur affectation
+
+Opérateur d\textquotesingle{}affectation de la classe \mbox{\hyperlink{class_etat2_d}{Etat2D}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Etat2\+D\&} & e \+: objet \mbox{\hyperlink{class_etat2_d}{Etat2D}} à affecter \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_etat2_d_ab19cb72ec4d46d96bd41038b84176797}\label{class_etat2_d_ab19cb72ec4d46d96bd41038b84176797}} 
+\index{Etat2D@{Etat2D}!set\+Value@{set\+Value}}
+\index{set\+Value@{set\+Value}!Etat2D@{Etat2D}}
+\subsubsection{\texorpdfstring{set\+Value()}{setValue()}}
+{\footnotesize\ttfamily virtual void Etat2\+D\+::set\+Value (\begin{DoxyParamCaption}\item[{unsigned int}]{n,  }\item[{unsigned int}]{m,  }\item[{unsigned int}]{v }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Affectation d\textquotesingle{}une valeur. 
+
+Affecte une valeur à la case indiquée, dans la grille
+
+
+\begin{DoxyParams}{Parameters}
+{\em unsigned} & int n \+: abscisse de la case sur la grille \\
+\hline
+{\em unsigned} & int m \+: ordonnée de la case sur la grille \\
+\hline
+{\em unsigned} & int v \+: valeur à affecter à la case \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{etat_8h}{etat.\+h}}\item 
+\mbox{\hyperlink{etat_8cpp}{etat.\+cpp}}\end{DoxyCompactItemize}

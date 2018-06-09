@@ -1,0 +1,28 @@
+\hypertarget{automate_8cpp}{}\section{automate.\+cpp File Reference}
+\label{automate_8cpp}\index{automate.\+cpp@{automate.\+cpp}}
+
+
+Définition des fonctions de l\textquotesingle{}objet \mbox{\hyperlink{class_automate}{Automate}}.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$typeinfo$>$}\newline
+{\ttfamily \#include \char`\"{}automate.\+h\char`\"{}}\newline
+Include dependency graph for automate.\+cpp\+:
+% FIG 0
+
+
+\subsection{Detailed Description}
+Définition des fonctions de l\textquotesingle{}objet \mbox{\hyperlink{class_automate}{Automate}}. 
+
+\begin{DoxyAuthor}{Author}
+Guillaume Damiens, Solène Houlliez, Oscar Roisin 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+02 juin 2018
+\end{DoxyDate}
+Fichier pour définir les fonctions relatives à \mbox{\hyperlink{class_automate}{Automate}} non inline 
