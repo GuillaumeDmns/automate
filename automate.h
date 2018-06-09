@@ -37,7 +37,7 @@ protected :
      * \param
      * \return
      */
-    virtual unsigned int** remplissageRegle(unsigned int** tab, const std::string regle) const =0;
+    virtual unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const =0;
     /*!
      * \brief Remplissage des règles
      *
@@ -46,7 +46,7 @@ protected :
      * \param
      * \return
      */
-    virtual unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) =0;
+    virtual unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) const =0;
 public :
     /*!
      * \brief Accesseur regle
@@ -115,7 +115,7 @@ private :
      * \param
      * \return
      */
-    unsigned int** remplissageRegle(unsigned int** tab, const std::string regle) const;
+    unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const;
     /*!
      * \brief Remplissage des règles
      *
@@ -134,7 +134,7 @@ public :
      * \param
      * \return
      */
-    Cell1D(const std::string regle);
+    Cell1D(const unsigned int regle[]);
     /*!
      * \brief Constructeur
      *
@@ -183,7 +183,7 @@ private :
      * \param
      * \return
      */
-    unsigned int** remplissageRegle(unsigned int** tab, std::string regle) const;
+    unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const;
     /*!
      * \brief Remplissage des règles
      *
@@ -202,7 +202,7 @@ public :
      * \param
      * \return
      */
-    JeuDeLaVie(const std::string regle);
+    JeuDeLaVie(const unsigned int regle[]);
     /*!
      * \brief Constructeur
      *
@@ -247,7 +247,7 @@ public :
      * \param const unsigned int dim
      * \return Automate1D&
      */
-    inline Automate* createAutomate(const std::string idAutomate, const std::string regle) const;
+    inline Automate* createAutomate(const std::string idAutomate, const unsigned int regle[] =0) const;
     /*!
      * \brief createAutomate
      * \param const Automate& a

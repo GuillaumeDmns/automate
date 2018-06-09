@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <typeinfo>
+#include "string.h"
 #include "automate.h"
 
 using namespace std;
@@ -28,9 +29,19 @@ void Automate::appliquerTransition(const Etat& dep, Etat& dest) const {
 Automate::Automate(const unsigned int nb, unsigned int** tab) :nbEtats(nb), regle(tab) {
 
 }
-//NOT
-unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const std::string regle) const{
 
+unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
+    if(regle[0]||regle[3]!=1||regle[1]>2||regle[2]>2||regle[4]>2||regle[5]>2) throw AutomateException("Regle incorrecte");
+    if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
+    for(unsigned int i=0; i<tailleRegle;++i){
+        tab[0][i]=0;
+        tab[1][i]=0;
+        if((i/10+i%10)==2) {
+            if((i/10>=regle[1])&&(i/10<=regle[2])) tab[0][i]=1;
+            if((i/10>=regle[4])&&(i/10<=regle[5])) tab[1][i]=1;
+        }
+    }
+    return tab;
 }
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
     for(unsigned int i=0; i<2; ++i){
@@ -41,7 +52,7 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle
     return tab;
 }
 
-Cell1D::Cell1D(const std::string regle) :Automate(2,remplissageRegle(createTabRegle(),regle)){
+Cell1D::Cell1D(const unsigned int regle[]) :Automate(2,remplissageRegle(createTabRegle(),regle)){
 
 }
 
@@ -62,8 +73,18 @@ unsigned int** Cell1D::createTabRegle() const {
     return tab;
 }
 //NOT
-unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const std::string regle) const{
-
+unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
+    if(regle[0]||regle[3]!=1||regle[1]>8||regle[2]>8||regle[4]>8||regle[5]>8) throw AutomateException("Regle incorrecte");
+    if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
+    for(unsigned int i=0; i<tailleRegle;++i){
+        tab[0][i]=0;
+        tab[1][i]=0;
+        if((i/10+i%10)==8) {
+            if((i/10>=regle[1])&&(i/10<=regle[2])) tab[0][i]=1;
+            if((i/10>=regle[4])&&(i/10<=regle[5])) tab[1][i]=1;
+        }
+    }
+    return tab;
 }
 
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
@@ -75,7 +96,7 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** r
     return tab;
 }
 
-JeuDeLaVie::JeuDeLaVie(const std::string regle) :Automate(2,remplissageRegle(createTabRegle(),regle)) {
+JeuDeLaVie::JeuDeLaVie(const unsigned int regle[]) :Automate(2,remplissageRegle(createTabRegle(),regle)) {
 
 }
 
@@ -95,16 +116,16 @@ unsigned int** JeuDeLaVie::createTabRegle() const {
     }
     return tab;
 }
-/*
-Automate* FabriqueAutomate::createAutomate(const std::string idAutomate, const std::string regle) const {
+
+Automate* FabriqueAutomate::createAutomate(const std::string idAutomate, const unsigned int regle[]) const {
     if(idAutomate== "Cell1D") return new Cell1D(regle);
     if(idAutomate== "JeuDeLaVie") return new JeuDeLaVie(regle);
     throw AutomateException("Automate Inexistant");
 }
 
 Automate* FabriqueAutomate::createAutomate(const Automate& a) const {
-    if(typeid(a).name()=="Cell1D") return new Cell1D(a);
-    if(typeid(a).name()=="JeuDeLaVie") return new JeuDeLaVie(a);
+    if(!strcmp(typeid(a).name(),"Cell1D")) return new Cell1D(a);
+    if(!strcmp(typeid(a).name(),"JeuDeLaVie")) return new JeuDeLaVie(a);
     throw AutomateException("Automate Inexistant");
 }
-*/
+
