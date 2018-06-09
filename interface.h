@@ -13,6 +13,12 @@
 #if !defined(INTERFACE_H)
 #define INTERFACE_H
 
+#include <QtWidgets>
+
+class MainWindow: public QWidget {
+public:
+    MainWindow();
+};
 
 int interface(int argc, char* argv[]);
 
