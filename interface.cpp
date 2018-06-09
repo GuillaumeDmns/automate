@@ -36,8 +36,7 @@
     */
 
 MainWindow::MainWindow() {
-
-
+    int dimensionMin(10), dimensionMax(100);
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
 
@@ -81,39 +80,50 @@ MainWindow::MainWindow() {
         display->addWidget(submit, 6, 0, 1, 4, Qt::AlignCenter);
             QLabel *generalTitle = new QLabel("AUTOCELL");
             generalTitle->setFont(bigTitle);
-        QHBoxLayout *header = new QHBoxLayout;
-        header->addWidget(generalTitle, 1, Qt::AlignCenter);
+        /*QHBoxLayout *header = new QHBoxLayout;
+        header->addWidget(generalTitle, 1, Qt::AlignCenter);*/
+
+
+                QMenu *menuFichier = menuBar()->addMenu("&Fichier");
+                QAction *actionQuitter = menuFichier->addAction("&Quitter");
+                actionQuitter->setShortcut(QKeySequence("Ctrl+Q"));
+
+                QMenu *menuEdition = menuBar()->addMenu("&Edition");
+                QMenu *menuAffichage = menuBar()->addMenu("&Affichage");
+
+                // Création de la barre d'outils
+                QToolBar *toolBarFichier = addToolBar("Fichier");
+                toolBarFichier->addAction(actionQuitter);
+
+
+
+        QToolBar *tools = addToolBar("Tools");
             QPushButton *quit = new QPushButton("Quitter");
             QLabel *toolsInfo = new QLabel("Qu'est-ce qu'un automate cellulaire ?");
-        QVBoxLayout *tools = new QVBoxLayout;
-        tools->addWidget(toolsInfo, 0, Qt::AlignCenter);
-        tools->addWidget(quit, 0, Qt::AlignBottom|Qt::AlignRight);
+        //QVBoxLayout *tools = new QVBoxLayout;
+        /*tools->addWidget(toolsInfo, 0, Qt::AlignCenter);
+        tools->addWidget(quit, 0, Qt::AlignBottom|Qt::AlignRight);*/
 
     QGridLayout *mainLayout = new QGridLayout;
     mainLayout->addLayout(display, 1, 0, 4, 4);
-    mainLayout->addLayout(header, 0, 0, 1, 5);
-    mainLayout->addLayout(tools, 1, 4, 4, 1);
+    //mainLayout->addLayout(header, 0, 0, 1, 5);
+    //mainLayout->addLayout(tools, 1, 4, 4, 1);
 
     QWidget *zoneCentrale = new QWidget;
-    setCentralWidget(zoneCentrale);
-    zoneCentrale->set
-
-    QObject::connect(quit, SIGNAL(clicked()), &app, SLOT(quit()));
-
+    this->setCentralWidget(zoneCentrale);
+    zoneCentrale->setLayout(mainLayout);
 }
 
 
 int interface(int argc, char * argv[]) {
     QApplication app(argc, argv);
 
-    /* CREATION ET PARAMETRAGE DE LA FENETRE */
-    int widthMax(1200), heightMax(800);
-    int dimensionMin(10), dimensionMax(100);
-
     MainWindow fenetre;
     //fenetre.setFixedSize(widthMax, heightMax);
+    //int widthMax(1200), heightMax(800);
 
 
+    //QObject::connect(quit, SIGNAL(clicked()), &app, SLOT(quit()));
     fenetre.setWindowTitle("AUTOCELL");
     fenetre.show();
     return app.exec();
