@@ -21,7 +21,7 @@ using namespace std;
     * \class Etat
     * \brief classe mère pour les états
     * 
-    * \details La classe gére les données relatives à la grille d'un automate
+    * \details La classe gère les données relatives à la grille d'un automate
     *
     */
 class Etat {
@@ -69,6 +69,14 @@ public :
     virtual void setValue(unsigned int n, unsigned int v) const=0;
 };
 
+
+/*!
+    * \class Etat1D
+    * \brief classe pour les états en 1 dimension
+    * 
+    * \details La classe gère les données relatives à la grille d'un automate en 1 dimension
+    *
+    */
 class Etat1D : public Etat{
 public :
 
@@ -136,6 +144,15 @@ private :
     unsigned int* valeur; /*!< Tableau des valeurs de la grille*/
 };
 
+
+
+/*!
+    * \class Etat2D
+    * \brief classe pour les états en 2 dimensions
+    * 
+    * \details La classe gère les données relatives à la grille d'un automate en 2 dimensions
+    *
+    */
 class Etat2D : public Etat{
 public :
 
