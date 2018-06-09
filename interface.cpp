@@ -34,16 +34,10 @@
     * \return app.exec() : execution de l'application de l'interface graphique
     *
     */
-int interface(int argc, char * argv[]) {
-    QApplication app(argc, argv);
 
-    /* CREATION ET PARAMETRAGE DE LA FENETRE */
-    int widthMax(1200), heightMax(800);
+MainWindow::MainWindow() {
+    //int widthMax(1200), heightMax(800);
     int dimensionMin(10), dimensionMax(100);
-
-    QWidget fenetre;
-    //fenetre.setFixedSize(widthMax, heightMax);
-
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
 
@@ -99,11 +93,26 @@ int interface(int argc, char * argv[]) {
     mainLayout->addLayout(display, 1, 0, 4, 4);
     mainLayout->addLayout(header, 0, 0, 1, 5);
     mainLayout->addLayout(tools, 1, 4, 4, 1);
+    setLayout(mainLayout);
+    setWindowTitle("AUTOCELL");
+    QObject::connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
+}
 
-    QObject::connect(quit, SIGNAL(clicked()), &app, SLOT(quit()));
 
-    fenetre.setLayout(mainLayout);
-    fenetre.setWindowTitle("AUTOCELL");
+int interface(int argc, char * argv[]) {
+    QApplication app(argc, argv);
+
+    /* CREATION ET PARAMETRAGE DE LA FENETRE */
+
+
+    MainWindow fenetre;
+    //fenetre.setFixedSize(widthMax, heightMax);
+
+
+
+
+
+
     fenetre.show();
     return app.exec();
 }
