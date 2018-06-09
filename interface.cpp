@@ -104,7 +104,7 @@ MainWindow::MainWindow() {
 }
 
 
-int interface(int argc, char * argv[]) {
+int _interface(int argc, char * argv[]) {
     QApplication app(argc, argv);
 
     /* CREATION ET PARAMETRAGE DE LA FENETRE */

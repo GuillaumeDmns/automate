@@ -23,7 +23,6 @@ private slots:
     void generer();
 };
 
-int interface(int argc, char* argv[]);
-
+int _interface(int argc, char* argv[]);
 
 #endif

@@ -21,6 +21,6 @@
     */
     
 int main(int argc, char * argv[]) {
-    interface(argc, argv);
+    _interface(argc, argv);
     return 0;
 }
