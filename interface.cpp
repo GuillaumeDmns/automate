@@ -21,6 +21,7 @@
 #include <QSpinBox>
 #include <QTextEdit>
 #include <QMessageBox>
+#include <QStackedLayout>
 #include "interface.h"
 
 
@@ -35,11 +36,12 @@
     *
     */
 
-void MainWindow::generer() {
-    QMessageBox::information(this, "Bravo", "Vous avez bien validé !");
+void MainWindow::createGrid() {
+
 }
 
-MainWindow::MainWindow() {
+
+MainWindow::MainWindow():QWidget() {
     //int widthMax(1200), heightMax(800);
     int dimensionMin(10), dimensionMax(100);
     QFont bigTitle("Arial", 30, QFont::Bold);
@@ -83,6 +85,8 @@ MainWindow::MainWindow() {
         display->addLayout(loadAutomate, 1, 4, 6, 1, Qt::AlignCenter);
         display->addLayout(newAutomate, 1, 0, 5, 4, Qt::AlignCenter);
         display->addWidget(submit, 6, 0, 1, 4, Qt::AlignCenter);
+        QWidget *home = new QWidget;
+        home->setLayout(display);
             QLabel *generalTitle = new QLabel("AUTOCELL");
             generalTitle->setFont(bigTitle);
         QHBoxLayout *header = new QHBoxLayout;
@@ -94,13 +98,18 @@ MainWindow::MainWindow() {
         tools->addWidget(quit, 0, Qt::AlignBottom|Qt::AlignRight);
 
     QGridLayout *mainLayout = new QGridLayout;
-    mainLayout->addLayout(display, 1, 0, 4, 4);
+
+    QStackedLayout *disp = new QStackedLayout;
+    disp->insertWidget(0, home);
+    mainLayout->addLayout(disp, 1, 0, 4, 4);
     mainLayout->addLayout(header, 0, 0, 1, 5);
     mainLayout->addLayout(tools, 1, 4, 4, 1);
     setLayout(mainLayout);
     setWindowTitle("AUTOCELL");
-    QObject::connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
-    QObject::connect(submit, SIGNAL(clicked()), qApp, SLOT(quit()));
+    connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
+    //connect(submit, SIGNAL(clicked()), disp, SLOT(generer()));
+    //connect(submit, SIGNAL(clicked()), disp, SLOT(createGrid(disp, )));
+
 }
 
 

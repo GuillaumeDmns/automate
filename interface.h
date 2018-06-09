@@ -16,11 +16,12 @@
 #include <QtWidgets>
 
 class MainWindow: public QWidget {
-    //Q_OBJECT
+    Q_OBJECT
+public slots:
+    void createGrid();
 public:
     MainWindow();
-private slots:
-    void generer();
+
 };
 
 int _interface(int argc, char* argv[]);
