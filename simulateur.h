@@ -29,20 +29,20 @@ using namespace std;
     */
 class Simulateur {
 public:
-    Simulateur(const Automate& a,unsigned int buf=2);
-    Simulateur(const Automate& a, const Etat& dep, unsigned int buf=2);
-    void reset();
-    void setEtatDepart(const Etat& e);
+    Simulateur(const string typeautomate, const string regles, const string choixdepart, const unsigned int n, const unsigned int m);
+    //Simulateur(const Automate& a, );
+    void reset(); //copie etat de depart vers courant et remet a zero
+    void setEtat(Etat& e); //on doit être dans état 0
     void next();
-    void run(unsigned int nbStep=1);
-    const Etat& dernier() const;
-    unsigned int getRangDernier() const;
+    //void run(); //run execute par interface
+    //const Etat& dernier() const;
+    //unsigned int getRangDernier() const;
     ~Simulateur();
 private:
     const Automate& automate; /*!< Automate simulé par le simulateur*/
-    const Etat* depart; /*!< Etat de départ pour la simulation*/
-    unsigned int nbMaxEtats; /*!< nombre maximum d'états stockés*/
-    Etat** etats; /*!< tableau des états générés par le simulateur*/
+    Etat& depart; /*!< Etat de départ pour la simulation*/
+    Etat& current; /*!< Etat courant de la simulation*/
+    unsigned int numEtat; /*!< rang de l'Etat current dans la simulation*/
 };
 
 
