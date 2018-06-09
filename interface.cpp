@@ -35,6 +35,10 @@
     *
     */
 
+void MainWindow::generer() {
+    QMessageBox::information(this, "Bravo", "Vous avez bien validé !");
+}
+
 MainWindow::MainWindow() {
     //int widthMax(1200), heightMax(800);
     int dimensionMin(10), dimensionMax(100);
@@ -96,6 +100,7 @@ MainWindow::MainWindow() {
     setLayout(mainLayout);
     setWindowTitle("AUTOCELL");
     QObject::connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
+    QObject::connect(submit, SIGNAL(clicked()), qApp, SLOT(quit()));
 }
 
 
