@@ -30,7 +30,7 @@ private :
 public :
     
     /*!
-     * \brief Recupération de la dimension
+     * \brief Recupération de la dimension N
      *
      * \details Renvoie la dimension n de la grille
      *
@@ -201,6 +201,16 @@ public :
      * \return 
      */
     virtual void setValue(unsigned int n, unsigned int m, unsigned int v) const {valeur[n][m]=v;}
+
+    /*!
+     * \brief Recupération de la dimension M
+     *
+     * \details Renvoie la dimension m de la grille
+     *
+     * \param
+     * \return dimM
+     */
+    unsigned int getdimM() const {return dimM;}
     
 private :
     unsigned int** valeur; /*!< Tableau des valeurs de la grille*/
