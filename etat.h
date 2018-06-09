@@ -107,7 +107,10 @@ public :
      * \param Etat1D& e : objet Etat1D à recopier
      * 
      */
-    //Etat1D(const Etat1D& e);
+    Etat1D(const Etat1D& e) : Etat(e.getdimN()){
+            for (unsigned int i=0;i<getdimN();i++)
+                    valeur[i]=e.valeur[i];
+    }
     
     /*!
      * \brief Opérateur affectation
@@ -184,7 +187,11 @@ public :
      * \param Etat2D& e : objet Etat2D à recopier
      * 
      */
-    //Etat2D(const Etat2D& e);
+    Etat2D(const Etat2D& e):Etat(e.getdimN()){
+            for (unsigned int i=0;i<getdimN();i++)
+                for (unsigned int j=0;j<dimM;j++)
+                    valeur[i][j]=e.valeur[i][j];
+    }
     
     /*!
      * \brief Opérateur affectation
