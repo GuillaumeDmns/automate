@@ -49,24 +49,6 @@ Etat1D::~Etat1D(){
     delete[] valeur;
 }
 
-/*!
-     * \fn Etat1D::Etat1D(const Etat1D& e)
-     * \brief Constructeur par recopie
-     *
-     *
-     *
-     * \param Etat1D& e : objet Etat1D à recopier
-     * \return
-     */
-    /*
-Etat1D::Etat1D(const Etat1D& e){
-    if (dgetdimN()!=e.getdimN())
-        throw "erreur : taille des grilles incompatible";
-    else {
-        for (unsigned int i=0;i<getdimN();i++)
-                valeur[i]=e.valeur[i];
-}
-*/
 
 /*!
      * \fn Etat1D::operator=(const Etat1D& e)
