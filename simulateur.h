@@ -13,12 +13,14 @@
 #ifndef SIMULATEUR_H
 #define SIMULATEUR_H
 #include <iostream>
+#include <typeinfo>
 #include <string>
 
 #include "automate.h"
 
 using namespace std;
 
+//IL FAUT QUE LE CONSTRUCTEUR PAR RECOPIE DE ETAT FONCTIONNE !!
 
 /*!
     * \class Simulateur
@@ -29,15 +31,38 @@ using namespace std;
     */
 class Simulateur {
 public:
-    Simulateur(const string typeautomate, const string regles, const string choixdepart, const unsigned int n, const unsigned int m);
+    Simulateur(const string typeautomate, const unsigned int regles[], const string choixdepart, const unsigned int n, const unsigned int m);
     //Simulateur(const Automate& a, );
-    void reset(); //copie etat de depart vers courant et remet a zero
-    void setEtat(Etat& e); //on doit être dans état 0
+    void reset() {
+        if (typeid(depart)== typeid(Etat1D))
+        {
+            //current=Etat1D(depart);
+            numEtat=0;
+        }
+        else {
+            //current=Etat2D(depart);
+            numEtat=0;
+        }
+    }
+    //copie etat de depart vers courant et remet a zero
+    void setEtat(Etat& e) {
+        if (typeid(depart) != typeid(e))
+            throw "erreur : pas meme type de grille\n";
+        else {
+            if (typeid(depart)== typeid(Etat1D))
+            {
+                //depart=Etat1D(e);
+                reset();
+            }
+            else {
+                //depart=Etat2D(e);
+                reset();
+            }
+        }
+    }
+    //on doit être dans état 0
     void next();
-    //void run(); //run execute par interface
-    //const Etat& dernier() const;
-    //unsigned int getRangDernier() const;
-    ~Simulateur();
+    ~Simulateur(); //doit appeler le destructeur de automate
 private:
     const Automate& automate; /*!< Automate simulé par le simulateur*/
     Etat& depart; /*!< Etat de départ pour la simulation*/
