@@ -19,9 +19,21 @@ class MainWindow: public QWidget {
     Q_OBJECT
 public slots:
     void createGrid();
+    void backToHome();
 public:
     MainWindow();
-
+private:
+    QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo;
+    QComboBox *typeAutomate, *generation;
+    QSpinBox *dimensionH, *dimensionL;
+    QHBoxLayout *dimensions, *header;
+    QTextEdit *rules;
+    QFormLayout *newAutomate;
+    QPushButton *submit, *submit2, *loadLastAutomate, *loadOtherAutomate, *quit;
+    QVBoxLayout *loadAutomate, *tools;
+    QGridLayout *display, *mainLayout;
+    QWidget *home;
+    QStackedLayout *disp;
 };
 
 int _interface(int argc, char* argv[]);

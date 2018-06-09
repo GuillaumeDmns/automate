@@ -37,9 +37,14 @@
     */
 
 void MainWindow::createGrid() {
+    disp->setCurrentWidget(submit2);
 
 }
 
+void MainWindow::backToHome() {
+    disp->setCurrentWidget(home);
+
+}
 
 MainWindow::MainWindow():QWidget() {
     //int widthMax(1200), heightMax(800);
@@ -47,59 +52,59 @@ MainWindow::MainWindow():QWidget() {
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
 
-            QLabel *displayTitle = new QLabel("Créer un automate");
+            displayTitle = new QLabel("Créer un automate");
             displayTitle->setFont(subTitle);
-            QComboBox *typeAutomate = new QComboBox;
+            typeAutomate = new QComboBox;
             typeAutomate->addItem("Vie 1D");
             typeAutomate->addItem("Vie 2D");
             typeAutomate->addItem("Feu de forêt");
-                    QSpinBox *dimensionH = new QSpinBox;
+                    dimensionH = new QSpinBox;
                     dimensionH->setMinimum(dimensionMin);
                     dimensionH->setMaximum(dimensionMax);
-                    QLabel *timesDimensions = new QLabel("x");
-                    QSpinBox *dimensionL = new QSpinBox;
+                    timesDimensions = new QLabel("x");
+                    dimensionL = new QSpinBox;
                     dimensionL->setMinimum(dimensionMin);
                     dimensionL->setMaximum(dimensionMax);
-                QHBoxLayout *dimensions = new QHBoxLayout;
+                dimensions = new QHBoxLayout;
                 dimensions->addWidget(dimensionH);
                 dimensions->addWidget(timesDimensions, 0, Qt::AlignCenter);
                 dimensions->addWidget(dimensionL);
-                QTextEdit *rules = new QTextEdit;
-                QComboBox *generation = new QComboBox;
+                rules = new QTextEdit;
+                generation = new QComboBox;
                 generation->addItem("Grille vide");
                 generation->addItem("Remplissage aléatoire");
                 generation->addItem("Remplissage symétrique");
-            QFormLayout *newAutomate = new QFormLayout;
+            newAutomate = new QFormLayout;
             newAutomate->addRow("Type d'automate", typeAutomate);
             newAutomate->addRow("Dimensions", dimensions);
             newAutomate->addRow("Règles", rules);
             newAutomate->addRow("Génération", generation);
-            QPushButton *submit = new QPushButton("Valider");
-                QPushButton *loadLastAutomate = new QPushButton("Charger le dernier automate");
-                QPushButton *loadOtherAutomate = new QPushButton("Charger un autre automate");
-            QVBoxLayout *loadAutomate = new QVBoxLayout;
+            submit = new QPushButton("Valider");
+                loadLastAutomate = new QPushButton("Charger le dernier automate");
+                loadOtherAutomate = new QPushButton("Charger un autre automate");
+            loadAutomate = new QVBoxLayout;
             loadAutomate->addWidget(loadLastAutomate, 1, Qt::AlignCenter);
             loadAutomate->addWidget(loadOtherAutomate, 1, Qt::AlignCenter);
-        QGridLayout *display = new QGridLayout;
+        display = new QGridLayout;
         display->addWidget(displayTitle, 0, 0, 1, 5, Qt::AlignCenter);
         display->addLayout(loadAutomate, 1, 4, 6, 1, Qt::AlignCenter);
         display->addLayout(newAutomate, 1, 0, 5, 4, Qt::AlignCenter);
         display->addWidget(submit, 6, 0, 1, 4, Qt::AlignCenter);
-        QWidget *home = new QWidget;
+        home = new QWidget;
         home->setLayout(display);
-            QLabel *generalTitle = new QLabel("AUTOCELL");
+            generalTitle = new QLabel("AUTOCELL");
             generalTitle->setFont(bigTitle);
-        QHBoxLayout *header = new QHBoxLayout;
+        header = new QHBoxLayout;
         header->addWidget(generalTitle, 1, Qt::AlignCenter);
-            QPushButton *quit = new QPushButton("Quitter");
-            QLabel *toolsInfo = new QLabel("Qu'est-ce qu'un automate cellulaire ?");
-        QVBoxLayout *tools = new QVBoxLayout;
+            quit = new QPushButton("Quitter");
+            toolsInfo = new QLabel("Qu'est-ce qu'un automate cellulaire ?");
+        tools = new QVBoxLayout;
         tools->addWidget(toolsInfo, 0, Qt::AlignCenter);
         tools->addWidget(quit, 0, Qt::AlignBottom|Qt::AlignRight);
 
-    QGridLayout *mainLayout = new QGridLayout;
+    mainLayout = new QGridLayout;
 
-    QStackedLayout *disp = new QStackedLayout;
+    disp = new QStackedLayout;
     disp->insertWidget(0, home);
     mainLayout->addLayout(disp, 1, 0, 4, 4);
     mainLayout->addLayout(header, 0, 0, 1, 5);
@@ -108,8 +113,10 @@ MainWindow::MainWindow():QWidget() {
     setWindowTitle("AUTOCELL");
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
     //connect(submit, SIGNAL(clicked()), disp, SLOT(generer()));
-    //connect(submit, SIGNAL(clicked()), disp, SLOT(createGrid(disp, )));
-
+    submit2 = new QPushButton("PRANK ! CLIQUER POUR REVENIR EN ARRIERE");
+    disp->insertWidget(1, submit2);
+    connect(submit, SIGNAL(clicked()), this, SLOT(createGrid()));
+    connect(submit2, SIGNAL(clicked()), this, SLOT(backToHome()));
 }
 
 
