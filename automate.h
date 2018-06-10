@@ -76,6 +76,15 @@ public :
      */
     virtual unsigned int getNbEtats() const =0;
     /*!
+     * \brief Accesseur nbEtats
+     *
+     * \details Retourne l'attribut nbEtats
+     *
+     * \param
+     * \return unsigned int
+     */
+    virtual unsigned int getNbDim() const =0;
+    /*!
      * \brief Calcul taille regle
      *
      * \details Retourne l'attribut nbEtats
@@ -93,7 +102,17 @@ public :
      * \param Etat& dest
      * \return void
      */
-    void appliquerTransition(const Etat& dep, Etat& dest) const;
+    void appliquerTransition(const Etat1D& dep, Etat1D& dest) const;
+    /*!
+     * \brief Transition d'état
+     *
+     * \details Calcule l'état suivant d'un état donné
+     *
+     * \param const Etat& dep
+     * \param Etat& dest
+     * \return void
+     */
+    void appliquerTransition(const Etat2D& dep, Etat2D& dest) const;
     /*!
      * \brief creation tableau de règles
      *
@@ -193,6 +212,15 @@ public :
      * \return unsigned int
      */
     unsigned int getTailleRegle() const;
+    /*!
+     * \brief Accesseur nbEtats
+     *
+     * \details Retourne l'attribut nbEtats
+     *
+     * \param
+     * \return unsigned int
+     */
+    unsigned int getNbDim() const;
 };
 
 /*!
@@ -281,6 +309,15 @@ public :
      * \return unsigned int
      */
     unsigned int getTailleRegle() const;
+    /*!
+     * \brief Accesseur nbEtats
+     *
+     * \details Retourne l'attribut nbEtats
+     *
+     * \param
+     * \return unsigned int
+     */
+    unsigned int getNbDim() const;
 };
 
 /*!

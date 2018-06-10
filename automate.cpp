@@ -21,9 +21,41 @@ unsigned int JeuDeLaVie::nbDim=2;
 unsigned int Cell1D::nbEtats=2;
 unsigned int JeuDeLaVie::nbEtats=2;
 
-//NOT
-void Automate::appliquerTransition(const Etat& dep, Etat& dest) const {
 
+void Automate::appliquerTransition(const Etat1D& dep, Etat1D& dest) const {
+    if(getNbDim()!=1) throw AutomateException("Nombre de dimensions incorrect");
+    if((dep.getdimN()!=dest.getdimN())) throw AutomateException("Etat dep et dest incompatibles");
+    unsigned int v=0;
+    unsigned int voisinage=0;
+    for(unsigned int i=0; i<dep.getdimN(); ++i){
+        voisinage=0;
+        voisinage+=10^dep.getValue((i-1)%dep.getdimN());
+        voisinage+=10^dep.getValue((i+1)%dep.getdimN());
+        if(voisinage>getTailleRegle()) throw AutomateException("Etat avec trop d'etats pour l'Automate");
+        v=regle[dep.getValue(i)][voisinage];
+        dest.setValue(i,v);
+    }
+}
+
+void Automate::appliquerTransition(const Etat2D& dep, Etat2D& dest) const {
+    if(getNbDim()!=2) throw AutomateException("Nombre de dimensions incorrect");
+    if((dep.getdimM()!=dest.getdimM())||(dep.getdimN()!=dest.getdimN())) throw AutomateException("Etat dep et dest incompatibles");
+    unsigned int v=0;
+    unsigned int voisinage=0;
+    for(unsigned int i=0; i<dep.getdimN(); ++i){
+        for(unsigned int j=0; j<dep.getdimM(); ++j){
+            voisinage=0;
+            for(int k=i-1; k<=static_cast<int>(i+1); ++k){
+                for(int l=j-1; l<=static_cast<int>(j+1); ++l){
+                    voisinage+=10^dep.getValue(k%dep.getdimN(),l%dep.getdimM());
+                }
+            }
+            voisinage-=dep.getValue(i,j);
+            if(voisinage>getTailleRegle()) throw AutomateException("Etat avec trop d'etats pour l'Automate");
+            v=regle[dep.getValue(i,j)][voisinage];
+            dest.setValue(i,j,v);
+        }
+    }
 }
 
 Automate::Automate(unsigned int** tab) :regle(tab) {
@@ -137,10 +169,18 @@ unsigned int Cell1D::getTailleRegle() const{
     return ((3^nbDim)-1)*10^(nbEtats-1);
 }
 
+unsigned int Cell1D::getNbDim() const{
+    return nbDim;
+}
+
 unsigned int JeuDeLaVie::getNbEtats() const{
     return nbEtats;
 }
 
 unsigned int JeuDeLaVie::getTailleRegle() const{
     return ((3^nbDim)-1)*10^(nbEtats-1);
+}
+
+unsigned int JeuDeLaVie::getNbDim() const{
+    return nbDim;
 }
