@@ -20,20 +20,22 @@ class MainWindow: public QWidget {
 public slots:
     void createGrid();
     void backToHome();
+    void setLoadedAutomate();
 public:
     MainWindow();
 private:
-    QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo;
     QComboBox *typeAutomate, *generation;
-    QSpinBox *dimensionH, *dimensionL;
-    QHBoxLayout *dimensions, *header;
-    QTextEdit *rules;
+    //QFileDialog *loadOtherAutomate;
     QFormLayout *newAutomate;
-    QPushButton *submit, *submit2, *loadLastAutomate, *loadOtherAutomate, *quit;
-    QVBoxLayout *loadAutomate, *tools;
     QGridLayout *display, *mainLayout;
-    QWidget *home;
+    QHBoxLayout *dimensions, *header;
+    QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo;
+    QPushButton *submit, *submit2, *loadLastAutomate, *loadOtherAutomate, *quit;
+    QSpinBox *dimensionH, *dimensionL;
     QStackedLayout *disp;
+    QTextEdit *rules;
+    QVBoxLayout *loadAutomate, *tools;
+    QWidget *home;
 };
 
 int _interface(int argc, char* argv[]);
