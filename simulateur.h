@@ -20,7 +20,8 @@
 
 using namespace std;
 
-//IL FAUT -> FINIR CONSTRUCTEUR (FAIRE FONCTIONNER AVEC CONSTRUCTEUR D AUTOMATE
+//IL FAUT
+// -> FINIR CONSTRUCTEUR (FAIRE FONCTIONNER AVEC CONSTRUCTEUR D AUTOMATE)
 // -> FAIRE LA FONCTION next()
 // -> FAIRE LE DESTRUCTEUR AVEC LE DESTRUCTEUR D AUTOMATE
 
@@ -55,15 +56,8 @@ public:
      *
      */
     void reset() {
-        if (typeid(depart)== typeid(Etat1D))
-        {
-            current=Etat1D::Etat1D(depart);
+            current=depart;
             numEtat=0;
-        }
-        else {
-            current=Etat2D::Etat2D(depart);
-            numEtat=0;
-        }
     }
 
 
@@ -79,15 +73,8 @@ public:
         if (typeid(depart) != typeid(e))
             throw "erreur : pas meme type de grille\n";
         else {
-            if (typeid(depart)== typeid(Etat1D))
-            {
-                depart=Etat1D(e);
+                depart=e;
                 reset();
-            }
-            else {
-                depart=Etat2D(e);
-                reset();
-            }
         }
     }
 

@@ -78,12 +78,12 @@ Simulateur::Simulateur(const string typeautomate, const unsigned int regles[], c
         }
     }
     if (m==0){
-        depart=Etat1D(n,tab);
-        current=Etat1D(depart);
+        Etat1D depart(n,tab);
+        Etat1D current(depart);
     }
     else {
-        depart=Etat2D(n,m,tab);
-        current=Etat2D(depart);
+        Etat2D depart(n,tab);
+        Etat2D current(depart);
     }
 }
 */

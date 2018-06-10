@@ -107,7 +107,7 @@ public :
      * \param Etat1D& e : objet Etat1D à recopier
      * 
      */
-    Etat1D(const Etat1D& e) : Etat(e.getdimN()){
+    Etat1D(Etat1D& e) : Etat(e.getdimN()){
             for (unsigned int i=0;i<getdimN();i++)
                     valeur[i]=e.valeur[i];
     }
