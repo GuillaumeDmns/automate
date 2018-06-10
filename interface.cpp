@@ -22,6 +22,10 @@
 #include <QTextEdit>
 #include <QMessageBox>
 #include <QStackedLayout>
+#include <QFileDialog>
+#include <QFile>
+#include <QTextStream>
+#include <sstream>
 #include "interface.h"
 
 
@@ -43,7 +47,41 @@ void MainWindow::createGrid() {
 
 void MainWindow::backToHome() {
     disp->setCurrentWidget(home);
+}
 
+void MainWindow::setLoadedAutomate() {
+    const QString& PathLoadAutomate = QFileDialog::getOpenFileName(this, "test", QDir::homePath(), "Texte (*.txt)");
+    //rules->setText(PathLoadAutomate);
+    QFile loadedFile(PathLoadAutomate);
+    QString text, tempText;
+    if (loadedFile.open(QIODevice::ReadOnly|QIODevice::Text)) {
+        QTextStream flux(&loadedFile);
+        unsigned int getParamAutomate = 0;
+
+        while (!flux.atEnd()) {
+            tempText = flux.readLine();
+            switch (getParamAutomate) {
+            case 0: // type d'automate
+                typeAutomate->setCurrentIndex(tempText.toInt());
+                break;
+            case 1: // hauteur
+                dimensionH->setValue(tempText.toInt());
+                break;
+            case 2: // largeur
+                dimensionL->setValue(tempText.toInt());
+                break;
+            default:
+                text += tempText + '\n';
+                break;
+            }
+            ++getParamAutomate;
+        }
+        loadedFile.close();
+        rules->setText(text);
+    }
+    else {
+        text = "Le fichier n'a pas pu être ouvert !";
+    }
 }
 
 MainWindow::MainWindow():QWidget() {
@@ -82,6 +120,7 @@ MainWindow::MainWindow():QWidget() {
             submit = new QPushButton("Valider");
                 loadLastAutomate = new QPushButton("Charger le dernier automate");
                 loadOtherAutomate = new QPushButton("Charger un autre automate");
+                //
             loadAutomate = new QVBoxLayout;
             loadAutomate->addWidget(loadLastAutomate, 1, Qt::AlignCenter);
             loadAutomate->addWidget(loadOtherAutomate, 1, Qt::AlignCenter);
@@ -112,11 +151,11 @@ MainWindow::MainWindow():QWidget() {
     setLayout(mainLayout);
     setWindowTitle("AUTOCELL");
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
-    //connect(submit, SIGNAL(clicked()), disp, SLOT(generer()));
     submit2 = new QPushButton("PRANK ! CLIQUER POUR REVENIR EN ARRIERE");
     disp->insertWidget(1, submit2);
     connect(submit, SIGNAL(clicked()), this, SLOT(createGrid()));
     connect(submit2, SIGNAL(clicked()), this, SLOT(backToHome()));
+    connect(loadOtherAutomate, SIGNAL(clicked()), this, SLOT(setLoadedAutomate()));
 }
 
 
