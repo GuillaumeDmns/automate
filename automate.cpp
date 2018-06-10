@@ -18,22 +18,22 @@ using namespace std;
 
 unsigned int Cell1D::nbDim=1;
 unsigned int JeuDeLaVie::nbDim=2;
-unsigned int Cell1D::tailleRegle=20;
-unsigned int JeuDeLaVie::tailleRegle=800;
+unsigned int Cell1D::nbEtats=2;
+unsigned int JeuDeLaVie::nbEtats=2;
 
 //NOT
 void Automate::appliquerTransition(const Etat& dep, Etat& dest) const {
 
 }
 
-Automate::Automate(const unsigned int nb, unsigned int** tab) :nbEtats(nb), regle(tab) {
+Automate::Automate(unsigned int** tab) :regle(tab) {
 
 }
 
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>2||regle[2]>2||regle[4]>2||regle[5]>2) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
-    for(unsigned int i=0; i<tailleRegle;++i){
+    for(unsigned int i=0; i<getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
         if((i/10+i%10)==2) {
@@ -44,19 +44,19 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int r
     return tab;
 }
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
-    for(unsigned int i=0; i<2; ++i){
-        for(unsigned int j=0; j<=tailleRegle; ++j){
+    for(unsigned int i=0; i<nbEtats; ++i){
+        for(unsigned int j=0; j<=getTailleRegle(); ++j){
             tab[i][j] = regle[i][j];
         }
     }
     return tab;
 }
 
-Cell1D::Cell1D(const unsigned int regle[]) :Automate(2,remplissageRegle(createTabRegle(),regle)){
+Cell1D::Cell1D(const unsigned int regle[]) :Automate(remplissageRegle(createTabRegle(),regle)){
 
 }
 
-Cell1D::Cell1D(const Automate& a) :Automate(2, remplissageRegle(createTabRegle(), a.getRegle())) {
+Cell1D::Cell1D(const Automate& a) :Automate(remplissageRegle(createTabRegle(), a.getRegle())) {
 
 }
 
@@ -66,17 +66,17 @@ Cell1D::~Cell1D() {
 }
 
 unsigned int** Cell1D::createTabRegle() const {
-    unsigned int** tab = new unsigned int* [2];
-    for(int i=0; i<2; ++i){
-        tab[i] = new unsigned int [tailleRegle+1];
+    unsigned int** tab = new unsigned int* [nbEtats];
+    for(unsigned int i=0; i<nbEtats; ++i){
+        tab[i] = new unsigned int [getTailleRegle()+1];
     }
     return tab;
 }
-//NOT
+
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>8||regle[2]>8||regle[4]>8||regle[5]>8) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
-    for(unsigned int i=0; i<tailleRegle;++i){
+    for(unsigned int i=0; i<getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
         if((i/10+i%10)==8) {
@@ -88,19 +88,19 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned i
 }
 
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
-    for(unsigned int i=0; i<2; ++i){
-        for(unsigned int j=0; j<=tailleRegle; ++j){
+    for(unsigned int i=0; i<nbEtats; ++i){
+        for(unsigned int j=0; j<=getTailleRegle(); ++j){
             tab[i][j] = regle[i][j];
         }
     }
     return tab;
 }
 
-JeuDeLaVie::JeuDeLaVie(const unsigned int regle[]) :Automate(2,remplissageRegle(createTabRegle(),regle)) {
+JeuDeLaVie::JeuDeLaVie(const unsigned int regle[]) :Automate(remplissageRegle(createTabRegle(),regle)) {
 
 }
 
-JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(2, remplissageRegle(createTabRegle(), a.getRegle())) {
+JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(remplissageRegle(createTabRegle(), a.getRegle())) {
 
 }
 
@@ -110,9 +110,9 @@ JeuDeLaVie::~JeuDeLaVie() {
 }
 
 unsigned int** JeuDeLaVie::createTabRegle() const {
-    unsigned int** tab = new unsigned int* [2];
-    for(int i=0; i<2; ++i){
-        tab[i] = new unsigned int [tailleRegle+1];
+    unsigned int** tab = new unsigned int* [nbEtats];
+    for(unsigned int i=0; i<nbEtats; ++i){
+        tab[i] = new unsigned int [getTailleRegle()+1];
     }
     return tab;
 }
@@ -129,3 +129,18 @@ Automate* FabriqueAutomate::createAutomate(const Automate& a) const {
     throw AutomateException("Automate Inexistant");
 }
 
+unsigned int Cell1D::getNbEtats() const{
+    return nbEtats;
+}
+
+unsigned int Cell1D::getTailleRegle() const{
+    return ((3^nbDim)-1)*10^(nbEtats-1);
+}
+
+unsigned int JeuDeLaVie::getNbEtats() const{
+    return nbEtats;
+}
+
+unsigned int JeuDeLaVie::getTailleRegle() const{
+    return ((3^nbDim)-1)*10^(nbEtats-1);
+}

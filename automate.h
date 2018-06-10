@@ -15,6 +15,7 @@
 #include <iostream>
 #include <string>
 #include "etat.h"
+
 using namespace std;
 
 
@@ -28,7 +29,6 @@ using namespace std;
 class Automate {
 protected :
     unsigned int** regle; /*!< Règles de transition*/
-    unsigned int nbEtats; /*!< Nombre d'états de l'automate*/
     /*!
      * \brief Remplissage des règles
      *
@@ -47,6 +47,15 @@ protected :
      * \return
      */
     virtual unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) const =0;
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Automate
+     *
+     * \param const unsigned int nb
+     * \return
+     */
+    Automate(unsigned int** regle);
 public :
     /*!
      * \brief Accesseur regle
@@ -65,7 +74,16 @@ public :
      * \param
      * \return unsigned int
      */
-    unsigned int getNbEtats() const {return nbEtats;};
+    virtual unsigned int getNbEtats() const =0;
+    /*!
+     * \brief Calcul taille regle
+     *
+     * \details Retourne l'attribut nbEtats
+     *
+     * \param
+     * \return unsigned int
+     */
+    virtual unsigned int getTailleRegle() const =0;
     /*!
      * \brief Transition d'état
      *
@@ -85,16 +103,9 @@ public :
      * \return unsigned int**
      */
     virtual unsigned int** createTabRegle() const =0;
-    /*!
-     * \brief Constructeur
-     *
-     * \details Constructeur de la classe Automate
-     *
-     * \param const unsigned int nb
-     * \return
-     */
-    Automate(const unsigned int nb, unsigned int** regle);
 };
+
+#include "simulateur.h"
 
 /*!
     * \class Cell1D
@@ -104,9 +115,10 @@ public :
     *
     */
 class Cell1D : public Automate {
+    friend class FabriqueAutomate;
 private :
     static unsigned int nbDim; /*! nombre de dimensions de l'automate */
-    static unsigned int tailleRegle; /*! Taille des regles */
+    static unsigned int nbEtats; /*!< Nombre d'états de l'automate*/
     /*!
      * \brief Remplissage des règles
      *
@@ -125,7 +137,7 @@ private :
      * \return
      */
     unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) const;
-public :
+protected :
     /*!
      * \brief Constructeur
      *
@@ -144,6 +156,7 @@ public :
      * \return
      */
     Cell1D(const Automate& a);
+public :
     /*!
      * \brief Destructeur Cell1D
      *
@@ -162,6 +175,24 @@ public :
      * \return unsigned int**
      */
     unsigned int** createTabRegle() const;
+    /*!
+     * \brief Accesseur nbEtats
+     *
+     * \details Retourne l'attribut nbEtats
+     *
+     * \param
+     * \return unsigned int
+     */
+    unsigned int getNbEtats() const;
+    /*!
+     * \brief Calcul taille regle
+     *
+     * \details Retourne l'attribut nbEtats
+     *
+     * \param
+     * \return unsigned int
+     */
+    unsigned int getTailleRegle() const;
 };
 
 /*!
@@ -172,9 +203,10 @@ public :
     *
     */
 class JeuDeLaVie : public Automate {
+    friend class FabriqueAutomate;
 private :
     static unsigned int nbDim; /*! nombre de dimensions de l'automate */
-    static unsigned int tailleRegle; /*! Taille des regles */
+    static unsigned int nbEtats; /*! Taille des regles */
     /*!
      * \brief Remplissage des règles
      *
@@ -193,7 +225,7 @@ private :
      * \return
      */
     unsigned int** remplissageRegle(unsigned int** tab, unsigned int**) const;
-public :
+protected :
     /*!
      * \brief Constructeur
      *
@@ -212,6 +244,7 @@ public :
      * \return
      */
     JeuDeLaVie(const Automate& a);
+public :
     /*!
      * \brief Destructeur JeuDeLaVie
      *
@@ -230,6 +263,24 @@ public :
      * \return unsigned int**
      */
     unsigned int** createTabRegle() const;
+    /*!
+     * \brief Accesseur nbEtats
+     *
+     * \details Retourne l'attribut nbEtats
+     *
+     * \param
+     * \return unsigned int
+     */
+    unsigned int getNbEtats() const;
+    /*!
+     * \brief Calcul taille regle
+     *
+     * \details Retourne l'attribut nbEtats
+     *
+     * \param
+     * \return unsigned int
+     */
+    unsigned int getTailleRegle() const;
 };
 
 /*!
@@ -240,7 +291,8 @@ public :
     *
     */
 class FabriqueAutomate {
-public :
+    friend class Simulateur;
+protected :
     /*!
      * \brief createAutomate
      * \param const string idAutomate
