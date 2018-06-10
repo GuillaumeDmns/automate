@@ -20,7 +20,9 @@
 
 using namespace std;
 
-//IL FAUT QUE LE CONSTRUCTEUR PAR RECOPIE DE ETAT FONCTIONNE !!
+//IL FAUT -> FINIR CONSTRUCTEUR (FAIRE FONCTIONNER AVEC CONSTRUCTEUR D AUTOMATE
+// -> FAIRE LA FONCTION next()
+// -> FAIRE LE DESTRUCTEUR AVEC LE DESTRUCTEUR D AUTOMATE
 
 /*!
     * \class Simulateur
@@ -55,11 +57,11 @@ public:
     void reset() {
         if (typeid(depart)== typeid(Etat1D))
         {
-            //current=Etat1D::Etat1D(depart);
+            current=Etat1D::Etat1D(depart);
             numEtat=0;
         }
         else {
-            //current=Etat2D::Etat2D(depart);
+            current=Etat2D::Etat2D(depart);
             numEtat=0;
         }
     }
@@ -79,11 +81,11 @@ public:
         else {
             if (typeid(depart)== typeid(Etat1D))
             {
-                //depart=Etat1D(e);
+                depart=Etat1D(e);
                 reset();
             }
             else {
-                //depart=Etat2D(e);
+                depart=Etat2D(e);
                 reset();
             }
         }
