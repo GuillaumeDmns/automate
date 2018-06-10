@@ -6,8 +6,6 @@
 #include <math.h>
 #include "automate.h"
 
-//OSCAR IL FAUT SIMULATEUR FRIEND AVEC AUTOMATEEEEE
-
 
     /*!
      * \fn Simulateur::Simulateur(const string typeautomate, const unsigned int regles[], const string choixdepart, const unsigned int n, const unsigned int m=0)
@@ -20,20 +18,20 @@
      * \param const unsigned int m : dimension m de la grille
      * \return
      */
+
 /*
-Simulateur::Simulateur(const string typeautomate, const unsigned int regles[], const string choixdepart, const unsigned int n, const unsigned int m=0) : numEtat(0) {
+Simulateur::Simulateur(const std::string typeautomate, const unsigned int regles[], const std::string choixdepart, const unsigned int n, const unsigned int m=0) : numEtat(0) {
     automate=FabriqueAutomate::createAutomate(typeautomate,regles);
     unsigned int i,j;
-    unsigned int* tab;
     if (m==0)
     {
-        tab=new unsigned int[n];
-        if (choixdepart.std::compare('aleatoire')==0){
+        unsigned int* tab=new unsigned int[n];
+        if (choixdepart.compare("aleatoire")==0){
             for (i=0;i<n;i++)
                 tab[i]=rand()%2;
         }
         else {
-            if (strcmp(choixdepart,'symetrique')==0){
+            if (choixdepart.compare("symetrique")==0){
                 for (i=0;i<(floor(n/2)+1);i++)
                     {
                         tab[i]=rand()%2;
@@ -41,7 +39,7 @@ Simulateur::Simulateur(const string typeautomate, const unsigned int regles[], c
                     }
             }
             else {
-                if (strcmp(choixdepart,'vide')==0){
+                if (choixdepart.compare("vide")==0){
                     for (i=0;i<n;i++)
                             tab[i]=0;
                 }
@@ -49,16 +47,18 @@ Simulateur::Simulateur(const string typeautomate, const unsigned int regles[], c
                     throw "erreur : choix de départ inconnu\n";
             }
         }
+        Etat1D depart(n,tab);
+        Etat1D current(depart);
     }
     else {
-        tab=new unsigned int[n][m];
-        if (strcmp(choixdepart,'aleatoire')==0){
+        unsigned int** tab=new unsigned int*[n];
+        if (choixdepart.compare("aleatoire")==0){
             for (i=0;i<n;i++)
                 for (j=0;j<m;j++)
                     tab[i][j]=rand()%2;
         }
         else {
-            if (strcmp(choixdepart,'symetrique')==0){
+            if (choixdepart.compare("symetrique")==0){
                 for (i=0;i<(floor(n/2)+1);i++)
                     for (j=0;j<m;j++)
                     {
@@ -67,22 +67,16 @@ Simulateur::Simulateur(const string typeautomate, const unsigned int regles[], c
                     }
             }
             else {
-                if (strcmp(choixdepart,'vide')==0){
+                if (choixdepart.compare("vide")==0){
                     for (i=0;i<n;i++)
                         for (j=0;j<m;j++)
                             tab[i][j]=0;
                 }
                 else
-                    throw "erreur : choix de départ inconnu\n"
+                    throw "erreur : choix de départ inconnu\n";
             }
         }
-    }
-    if (m==0){
-        Etat1D depart(n,tab);
-        Etat1D current(depart);
-    }
-    else {
-        Etat2D depart(n,tab);
+        Etat2D depart(n,m,tab);
         Etat2D current(depart);
     }
 }
