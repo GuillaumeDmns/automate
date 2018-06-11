@@ -6,8 +6,14 @@
 #include <math.h>
 #include "automate.h"
 
-//OSCAR IL FAUT SIMULATEUR FRIEND AVEC AUTOMATEEEEE
-
+/*
+void Simulateur::next(){
+    Etat& transition= new Etat(current);
+    automate.appliquerTransition(current,);
+    current=transition;
+    delete transition;
+}
+*/
 
     /*!
      * \fn Simulateur::Simulateur(const string typeautomate, const unsigned int regles[], const string choixdepart, const unsigned int n, const unsigned int m=0)

@@ -130,7 +130,7 @@ public :
      * \param unsigned int n : indice de la case dans le tableau
      * \return valeur[n]
      */
-    virtual unsigned int getValue(unsigned int n) const {return valeur[n];}
+    unsigned int getValue(unsigned int n) const {return valeur[n];}
 
     /*!
      * \brief Affectation d'une valeur
@@ -141,7 +141,7 @@ public :
      * \param unsigned int v : valeur à affecter à la case
      * \return
      */
-    virtual void setValue(unsigned int n, unsigned int v) const {valeur[n]=v;}
+    void setValue(unsigned int n, unsigned int v) const {valeur[n]=v;}
     
 private :
     unsigned int* valeur; /*!< Tableau des valeurs de la grille*/
@@ -212,7 +212,7 @@ public :
      * \param unsigned int m : ordonnée de la case sur la grille
      * \return valeur[n][m]
      */
-    virtual unsigned int getValue(unsigned int n,unsigned int m) const {return valeur[n][m];}
+    unsigned int getValue(unsigned int n,unsigned int m) const {return valeur[n][m];}
     
     /*!
      * \brief Affectation d'une valeur
@@ -224,7 +224,7 @@ public :
      * \param unsigned int v : valeur à affecter à la case
      * \return 
      */
-    virtual void setValue(unsigned int n, unsigned int m, unsigned int v) const {valeur[n][m]=v;}
+    void setValue(unsigned int n, unsigned int m, unsigned int v) const {valeur[n][m]=v;}
 
     /*!
      * \brief Recupération de la dimension M
@@ -241,5 +241,47 @@ private :
     unsigned int dimM; /*!< Deuxième dimension de la grille*/
 };
 
+/*!
+    * \class FabriqueEtat
+    * \brief Classe Fabrique pour les Etats
+    *
+    * \details La classe permet l'instanciation de la bonne classe fille d'Etat
+    *
+    */
+class FabriqueEtat {
+    friend class Simulateur;
+protected :
+    /*!
+     * \brief createEtat
+     * \param const unsigned int idEtat
+     * \param const unsigned int dimN
+     * \param const unsigned int dimN
+     * \return Etat&
+     */
+    inline Etat& createEtat(const int idEtat, const unsigned int dimN, const unsigned int dimM =0) const;
+    /*!
+     * \brief createEtat
+     * \param const Etat& e
+     * \return Etat&
+     */
+    inline Etat& createEtat(const Etat& e) const;
+};
+
+class EtatException {
+private :
+    std::string info; /*! Information sur l'exception*/
+public :
+    /*!
+     * \brief EtatException
+     * \param const string inf
+     * \return
+     */
+    EtatException(const std::string inf):info(inf) {};
+    /*!
+     * \brief getInfo
+     * \return string
+     */
+    std::string getInfo() const {return info;};
+};
 
 #endif // ETAT_H

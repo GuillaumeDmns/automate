@@ -140,3 +140,11 @@ Etat2D& Etat2D::operator=(const Etat2D& e){
                 valeur[i][j]=e.valeur[i][j];
     }
 }
+
+Etat& FabriqueEtat::createEtat(const int idEtat, const unsigned int dimN, const unsigned int dimM =0) const {
+
+}
+
+Etat& FabriqueEtat::createEtat(const Etat& e) const{
+
+}
