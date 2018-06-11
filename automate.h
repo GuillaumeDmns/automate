@@ -34,8 +34,8 @@ protected :
      *
      * \details Remplissage du tableau des règles pour automate
      *
-     * \param
-     * \return
+     * \param unsigned int** tab
+     * \param unsigned int*[] regle
      */
     virtual unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const =0;
     /*!
@@ -43,8 +43,8 @@ protected :
      *
      * \details Remplissage du tableau des règles pour automate
      *
-     * \param
-     * \return
+     * \param unsigned int** tab
+     * \param unsigned int** regle
      */
     virtual unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) const =0;
     /*!
@@ -52,8 +52,7 @@ protected :
      *
      * \details Constructeur de la classe Automate
      *
-     * \param const unsigned int nb
-     * \return
+     * \param const unsigned int** regle
      */
     Automate(unsigned int** regle);
 public :
@@ -63,7 +62,7 @@ public :
      * \details Retourne l'attribut regle
      *
      * \param
-     * \return unsigned int**
+     * \return unsigned int** regle
      */
     unsigned int** getRegle() const {return regle;};
     /*!
