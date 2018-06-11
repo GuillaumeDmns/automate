@@ -101,6 +101,16 @@ public :
      * \param Etat& dest
      * \return void
      */
+    void appliquerTransition(Etat& dep, Etat& dest);
+    /*!
+     * \brief Transition d'état
+     *
+     * \details Calcule l'état suivant d'un état donné
+     *
+     * \param const Etat& dep
+     * \param Etat& dest
+     * \return void
+     */
     void appliquerTransition(const Etat1D& dep, Etat1D& dest) const;
     /*!
      * \brief Transition d'état

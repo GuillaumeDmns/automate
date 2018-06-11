@@ -21,6 +21,18 @@ unsigned int JeuDeLaVie::nbDim=2;
 unsigned int Cell1D::nbEtats=2;
 unsigned int JeuDeLaVie::nbEtats=2;
 
+void appliquerTransition(Etat& dep, Etat& dest) {
+    if(!strcmp(typeid(dep).name(),typeid(dest).name())) throw AutomateException("Etats incompatibles");
+    if(!strcmp(typeid(dep).name(),"Etat1D")) {
+        appliquerTransition(dynamic_cast<Etat1D&>(dep),dynamic_cast<Etat1D&>(dest));
+        return;
+    }
+    if(!strcmp(typeid(dep).name(),"Etat2D")) {
+        appliquerTransition(dynamic_cast<Etat2D&>(dep),dynamic_cast<Etat2D&>(dest));
+        return;
+    }
+    throw AutomateException("Etats non existants");
+}
 
 void Automate::appliquerTransition(const Etat1D& dep, Etat1D& dest) const {
     if(getNbDim()!=1) throw AutomateException("Nombre de dimensions incorrect");
