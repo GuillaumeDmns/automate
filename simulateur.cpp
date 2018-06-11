@@ -19,7 +19,7 @@
      * \return
      */
 
-Simulateur::Simulateur(const std::string typeautomate, const unsigned int regles[], const std::string choixdepart, const unsigned int n, const unsigned int m) : numEtat(0) {
+Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::string choixdepart, unsigned int n, unsigned int m) : numEtat(0) {
     FabriqueAutomate fabAutomate;
     FabriqueEtat fabEtat;
     automate=fabAutomate.createAutomate(typeautomate,regles);
@@ -48,13 +48,14 @@ Simulateur::Simulateur(const std::string typeautomate, const unsigned int regles
                     throw "erreur : choix de départ inconnu\n";
             }
         }
-        depart = new Etat1D(n,tab);
-        current = new Etat1D(n, tab);
+        depart = fabEtat.createEtat(n, tab);
+        current = fabEtat.createEtat(n,tab);
     }
     else {
         unsigned int** tab=new unsigned int*[n];
         if (choixdepart.compare("aleatoire")==0){
             for (i=0;i<n;i++)
+                tab[i] = new unsigned int[m];
                 for (j=0;j<m;j++)
                     tab[i][j]=rand()%2;
         }
@@ -77,7 +78,11 @@ Simulateur::Simulateur(const std::string typeautomate, const unsigned int regles
                     throw "erreur : choix de départ inconnu\n";
             }
         }
-        depart = new Etat2D(n,m,tab);
-        current = new Etat2D(n,m,tab);
+        depart = fabEtat.createEtat(n,m,tab);
+        current = fabEtat.createEtat(n,m,tab);
     }
+}
+
+void Simulateur::next(){
+
 }

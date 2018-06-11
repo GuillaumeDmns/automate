@@ -149,7 +149,7 @@ unsigned int** JeuDeLaVie::createTabRegle() const {
     return tab;
 }
 
-Automate* FabriqueAutomate::createAutomate(const std::string idAutomate, const unsigned int regle[]) const {
+Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int regle[]) const {
     if(idAutomate== "Cell1D") return (new Cell1D(regle));
     if(idAutomate== "JeuDeLaVie") return (new JeuDeLaVie(regle));
     throw AutomateException("Automate Inexistant");

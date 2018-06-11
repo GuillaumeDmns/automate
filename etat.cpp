@@ -145,22 +145,20 @@ Etat2D& Etat2D::operator=(const Etat2D& e){
     return *this;
 }
 
-Etat* FabriqueEtat::createEtat(const unsigned int dimN, unsigned int* t) const {
+Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int* t) const {
     if(!dimN) throw EtatException("Incorrect Etat");
     return new Etat1D(dimN,t);
 }
 
-Etat* FabriqueEtat::createEtat(const unsigned int dimN, const unsigned int dimM, unsigned int** t) const {
+Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int dimM, unsigned int** t) const {
     if((!dimN)||(!dimM)) throw EtatException("Incorrect Etat");
     return new Etat2D(dimN, dimM, t);
 }
 
-Etat1D* FabriqueEtat::createEtat(Etat1D* e) const{
-    return new Etat1D(*e);
-}
-
-Etat2D* FabriqueEtat::createEtat(Etat2D* e) const{
-    return new Etat2D(*e);
+Etat* FabriqueEtat::createEtat(Etat* e) const{
+    if(!strcmp(typeid(*e).name(),"Etat1D")) return (new Etat1D(*dynamic_cast<Etat1D*>(e)));
+    if(!strcmp(typeid(*e).name(),"Etat2D")) return (new Etat2D(*dynamic_cast<Etat2D*>(e)));
+    throw EtatException("Etat inexistant");
 }
 /*
 void FabriqueEtat::deleteEtat(Etat* e) const{

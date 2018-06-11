@@ -335,7 +335,7 @@ protected :
      * \param const unsigned int dim
      * \return Automate1D&
      */
-    Automate* createAutomate(const std::string idAutomate, const unsigned int regle[] =0) const;
+    Automate* createAutomate(std::string idAutomate, const unsigned int regle[] =0) const;
     /*!
      * \brief createAutomate
      * \param const Automate& a
@@ -367,7 +367,7 @@ public :
      * \param const string inf
      * \return
      */
-    AutomateException(const std::string inf):info(inf) {};
+    AutomateException(std::string inf):info(inf) {};
     /*!
      * \brief getInfo
      * \return string

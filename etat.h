@@ -47,7 +47,8 @@ public :
      * \param unsigned int n : valeur initiale de la dimension n
      *
      */
-    Etat(const unsigned int n): dimN(n){}
+    Etat(unsigned int n): dimN(n){}
+    virtual void fonctionVirtuelle() =0;
 };
 
 
@@ -123,7 +124,7 @@ public :
      * \return
      */
     void setValue(unsigned int n, unsigned int v) const {valeur[n]=v;}
-    
+    void fonctionVirtuelle(){};
 private :
     unsigned int* valeur; /*!< Tableau des valeurs de la grille*/
 };
@@ -219,6 +220,7 @@ public :
      * \return dimM
      */
     unsigned int getdimM() const {return dimM;}
+    void fonctionVirtuelle(){};
 };
 
 /*!
@@ -238,7 +240,7 @@ protected :
      * \param const unsigned int dimN
      * \return Etat&
      */
-    inline Etat* createEtat(const unsigned int dimN, unsigned int* t) const;
+    Etat* createEtat(unsigned int dimN, unsigned int* t) const;
     /*!
      * \brief createEtat
      *
@@ -246,19 +248,13 @@ protected :
      * \param const unsigned int dimN
      * \return Etat&
      */
-    Etat* createEtat(const unsigned int dimN, const unsigned int dimM, unsigned int** t) const;
+    Etat* createEtat(unsigned int dimN, unsigned int dimM, unsigned int** t) const;
     /*!
      * \brief createEtat
      * \param const Etat& e
      * \return Etat&
      */
-    Etat1D* createEtat(Etat1D* e) const;
-    /*!
-     * \brief createEtat
-     * \param const Etat& e
-     * \return Etat&
-     */
-    Etat2D* createEtat(Etat2D* e) const;
+    Etat* createEtat(Etat* e) const;
     /*!
      * \brief deleteEtat
      * \param Etat* a
@@ -277,7 +273,7 @@ public :
      * \param const string inf
      * \return
      */
-    EtatException(const std::string inf):info(inf) {};
+    EtatException(std::string inf):info(inf) {};
     /*!
      * \brief getInfo
      * \return string
