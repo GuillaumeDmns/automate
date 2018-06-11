@@ -56,8 +56,8 @@ public:
      *
      */
     void reset() {
-            current=depart;
-            numEtat=0;
+            this->current=this->depart;
+            this->numEtat=0;
     }
 
 
@@ -70,11 +70,11 @@ public:
      *
      */
     void setEtat(Etat& e) {
-        if (typeid(depart) != typeid(e))
+        if (typeid(this->depart) != typeid(e))
             throw "erreur : pas meme type de grille\n";
         else {
-                depart=e;
-                reset();
+                this->depart=e;
+                this->reset();
         }
     }
 
