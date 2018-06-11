@@ -10,7 +10,7 @@
     */
     
 #include "interface.h"
-
+#include "simulateur.h"
 /*!
     * \fn int main (int argc,char * argv[])
     * \brief Entrée du programme
@@ -19,8 +19,16 @@
     * \return 0 - Arrête normal du programme
     *
     */
-    
+
 int main(int argc, char * argv[]) {
     _interface(argc, argv);
     return 0;
 }
+
+/*
+int main(){
+    FabriqueAutomate fabA;
+    unsigned int tab[6]={0,0,1,1,1,2};
+    Automate* a = FabriqueAutomate::createAutomate("Cell1D", tab);
+}
+*/

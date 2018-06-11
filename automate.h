@@ -335,14 +335,21 @@ protected :
      * \param const unsigned int dim
      * \return Automate1D&
      */
-    inline Automate& createAutomate(const std::string idAutomate, const unsigned int regle[] =0) const;
+    Automate* createAutomate(const std::string idAutomate, const unsigned int regle[] =0) const;
     /*!
      * \brief createAutomate
      * \param const Automate& a
      * \return Automate&
      */
-    inline Automate& createAutomate(const Automate& a) const;
+    Automate* createAutomate(const Automate* a) const;
+    /*!
+     * \brief deleteAutomate
+     * \param Automate& a
+     * \return void
+     */
+    //void deleteAutomate(Automate* a) const;
 };
+
 
 /*!
     * \class AutomateException

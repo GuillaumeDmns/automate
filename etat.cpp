@@ -13,6 +13,8 @@
 #include <stdio.h>
 #include <iostream>
 #include "etat.h"
+#include <typeinfo>
+#include "string.h"
 
 using namespace std;
 
@@ -65,6 +67,7 @@ Etat1D& Etat1D::operator=(const Etat1D& e){
     for (unsigned int i=0;i<getdimN();i++)
                 valeur[i]=e.valeur[i];
     }
+    return *this;
 }
 
 /*!
@@ -77,7 +80,7 @@ Etat1D& Etat1D::operator=(const Etat1D& e){
     * \return
     *
     */
-Etat2D::Etat2D(unsigned int n,unsigned int m,unsigned int** t=0):Etat(n),dimM(m),valeur(new unsigned int*[n]){
+Etat2D::Etat2D(unsigned int n,unsigned int m,unsigned int** t):Etat(n),dimM(m),valeur(new unsigned int*[n]){
     if (t){
         for (unsigned int i=0;i<(n);i++)
             {
@@ -121,7 +124,7 @@ Etat2D::~Etat2D(){
     *
     */
 /*
-Etat2D::Etat2D(const Etat2D& e){
+Etat2D::Etat2D(const Etat2D* e){
     if (dimM!=e.dimM || getdimN()!=e.getdimN())
         throw "erreur : tailles des grilles incompatibles";
     else {
@@ -139,12 +142,28 @@ Etat2D& Etat2D::operator=(const Etat2D& e){
         for (unsigned int j=0;j<dimM;j++)
                 valeur[i][j]=e.valeur[i][j];
     }
+    return *this;
 }
 
-Etat& FabriqueEtat::createEtat(const int idEtat, const unsigned int dimN, const unsigned int dimM) const {
-
+Etat* FabriqueEtat::createEtat(const unsigned int dimN, unsigned int* t) const {
+    if(!dimN) throw EtatException("Incorrect Etat");
+    return new Etat1D(dimN,t);
 }
 
-Etat& FabriqueEtat::createEtat(const Etat& e) const{
-
+Etat* FabriqueEtat::createEtat(const unsigned int dimN, const unsigned int dimM, unsigned int** t) const {
+    if((!dimN)||(!dimM)) throw EtatException("Incorrect Etat");
+    return new Etat2D(dimN, dimM, t);
 }
+
+Etat1D* FabriqueEtat::createEtat(Etat1D* e) const{
+    return new Etat1D(*e);
+}
+
+Etat2D* FabriqueEtat::createEtat(Etat2D* e) const{
+    return new Etat2D(*e);
+}
+/*
+void FabriqueEtat::deleteEtat(Etat* e) const{
+    delete e;
+}
+*/

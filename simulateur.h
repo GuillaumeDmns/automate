@@ -69,7 +69,7 @@ public:
      * \param Etat& e : état à mettre en état de départ
      *
      */
-    void setEtat(Etat& e) {
+    void setEtat(Etat* e) {
         if (typeid(this->depart) != typeid(e))
             throw "erreur : pas meme type de grille\n";
         else {
@@ -96,9 +96,9 @@ public:
     ~Simulateur(); //doit appeler le destructeur de automate
 
 private:
-    const Automate& automate; /*!< Automate simulé par le simulateur*/
-    Etat& depart; /*!< Etat de départ pour la simulation*/
-    Etat& current; /*!< Etat courant de la simulation*/
+    Automate* automate; /*!< Automate simulé par le simulateur*/
+    Etat* depart; /*!< Etat de départ pour la simulation*/
+    Etat* current; /*!< Etat courant de la simulation*/
     unsigned int numEtat; /*!< rang de l'Etat current dans la simulation*/
 };
 

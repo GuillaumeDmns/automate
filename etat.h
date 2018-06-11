@@ -25,7 +25,7 @@ using namespace std;
     *
     */
 class Etat {
-private :
+protected :
         unsigned int dimN; /*!< Dimension 1 de la grille*/
 public :
     
@@ -48,25 +48,6 @@ public :
      *
      */
     Etat(const unsigned int n): dimN(n){}
-
-    /*!
-     * \brief Recupération de la valeur d'une case de la grille
-     *
-     * \details Renvoie la valeur de la case du tableau contenant les valeurs, ici virtuelle pure
-     *
-     */
-    virtual unsigned int getValue(unsigned int n) const=0;
-
-    /*!
-     * \brief Affectation d'une valeur à une case de la grille
-     *
-     * \details Affecte une valeur à la case indiquée, dans la grille, ici virtuelle pure
-     *
-     * \param unsigned int n : indice de la case dans le tableau
-     * \param unsigned int v : valeur à affecter à la case
-     * \return
-     */
-    virtual void setValue(unsigned int n, unsigned int v) const=0;
 };
 
 
@@ -157,6 +138,9 @@ private :
     *
     */
 class Etat2D : public Etat{
+private :
+    unsigned int** valeur; /*!< Tableau des valeurs de la grille*/
+    unsigned int dimM; /*!< Deuxième dimension de la grille*/
 public :
 
     /*!
@@ -187,8 +171,8 @@ public :
      * \param Etat2D& e : objet Etat2D à recopier
      * 
      */
-    Etat2D(const Etat2D& e):Etat(e.getdimN()){
-            for (unsigned int i=0;i<getdimN();i++)
+    Etat2D(Etat2D& e):Etat(e.getdimN()), dimM(e.getdimM()), valeur(new unsigned int*[e.getdimM()]){
+            for (unsigned int i=0;i<dimN;i++)
                 for (unsigned int j=0;j<dimM;j++)
                     valeur[i][j]=e.valeur[i][j];
     }
@@ -235,10 +219,6 @@ public :
      * \return dimM
      */
     unsigned int getdimM() const {return dimM;}
-    
-private :
-    unsigned int** valeur; /*!< Tableau des valeurs de la grille*/
-    unsigned int dimM; /*!< Deuxième dimension de la grille*/
 };
 
 /*!
@@ -253,18 +233,39 @@ class FabriqueEtat {
 protected :
     /*!
      * \brief createEtat
-     * \param const unsigned int idEtat
+     *
      * \param const unsigned int dimN
      * \param const unsigned int dimN
      * \return Etat&
      */
-    inline Etat& createEtat(const int idEtat, const unsigned int dimN, const unsigned int dimM =0) const;
+    inline Etat* createEtat(const unsigned int dimN, unsigned int* t) const;
+    /*!
+     * \brief createEtat
+     *
+     * \param const unsigned int dimN
+     * \param const unsigned int dimN
+     * \return Etat&
+     */
+    Etat* createEtat(const unsigned int dimN, const unsigned int dimM, unsigned int** t) const;
     /*!
      * \brief createEtat
      * \param const Etat& e
      * \return Etat&
      */
-    inline Etat& createEtat(const Etat& e) const;
+    Etat1D* createEtat(Etat1D* e) const;
+    /*!
+     * \brief createEtat
+     * \param const Etat& e
+     * \return Etat&
+     */
+    Etat2D* createEtat(Etat2D* e) const;
+    /*!
+     * \brief deleteEtat
+     * \param Etat* a
+     * \return void
+     */
+    //void deleteEtat(Etat* e) const;
+
 };
 
 class EtatException {
