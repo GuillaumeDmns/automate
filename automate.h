@@ -23,13 +23,14 @@ using namespace std;
     * \class Automate
     * \brief Classe mère pour les automates
     *
-    * \details La classe gére les données relatives aux à un automate
+    * \details La classe gère les données relatives à un automate
     *
     */
 class Automate {
     friend class FabriqueAutomate;
 protected :
     unsigned int** regle; /*!< Règles de transition*/
+
     /*!
      * \brief Remplissage des règles
      *
@@ -39,6 +40,7 @@ protected :
      * \param unsigned int*[] regle
      */
     virtual unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const =0;
+
     /*!
      * \brief Remplissage des règles
      *
@@ -48,6 +50,7 @@ protected :
      * \param unsigned int** regle
      */
     virtual unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) const =0;
+
     /*!
      * \brief Constructeur
      *
@@ -56,6 +59,7 @@ protected :
      * \param const unsigned int** regle
      */
     Automate(unsigned int** regle);
+
 public :
     /*!
      * \brief Accesseur regle
@@ -66,6 +70,7 @@ public :
      * \return unsigned int** regle
      */
     unsigned int** getRegle() const {return regle;};
+
     /*!
      * \brief Accesseur nbEtats
      *
@@ -75,6 +80,7 @@ public :
      * \return unsigned int
      */
     virtual unsigned int getNbEtats() const =0;
+
     /*!
      * \brief Accesseur nbEtats
      *
@@ -84,6 +90,7 @@ public :
      * \return unsigned int
      */
     virtual unsigned int getNbDim() const =0;
+
     /*!
      * \brief Calcul taille regle
      *
@@ -93,26 +100,29 @@ public :
      * \return unsigned int
      */
     virtual unsigned int getTailleRegle() const =0;
+
     /*!
      * \brief Transition d'état
      *
      * \details Calcule l'état suivant d'un état donné
      *
-     * \param const Etat& dep
-     * \param Etat& dest
+     * \param const Etat1D& dep
+     * \param Etat1D& dest
      * \return void
      */
     void appliquerTransition(const Etat1D& dep, Etat1D& dest) const;
+
     /*!
      * \brief Transition d'état
      *
      * \details Calcule l'état suivant d'un état donné
      *
-     * \param const Etat& dep
-     * \param Etat& dest
+     * \param const Etat2D& dep
+     * \param Etat2D& dest
      * \return void
      */
     void appliquerTransition(const Etat2D& dep, Etat2D& dest) const;
+
     /*!
      * \brief creation tableau de règles
      *
@@ -122,6 +132,13 @@ public :
      * \return unsigned int**
      */
     virtual unsigned int** createTabRegle() const =0;
+
+    /*!
+     * \brief Destructeur d'Automate
+     *
+     * \details Détruit un objet de type Automate
+     *
+     */
     virtual ~Automate();
 };
 
@@ -131,7 +148,7 @@ public :
     * \class Cell1D
     * \brief Classe Automate Cellulaire 1D 2e
     *
-    * \details La classe gére les données relatives à un automate cellulaire 1D à 2 états
+    * \details La classe gère les données relatives à un automate cellulaire 1D à 2 états
     *
     */
 class Cell1D : public Automate {

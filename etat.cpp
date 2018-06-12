@@ -115,24 +115,6 @@ Etat2D::~Etat2D(){
     delete[] valeur;
 }
 
-/*!
-    * \fn Etat2D::Etat2D(const Etat2D& e)
-    * \brief Constructeur par recopie de la classe Etat2D
-    *
-    * \param const Etat2D& e : objet Etat2D à recopier
-    * \return
-    *
-    */
-/*
-Etat2D::Etat2D(const Etat2D* e){
-    if (dimM!=e.dimM || getdimN()!=e.getdimN())
-        throw "erreur : tailles des grilles incompatibles";
-    else {
-        for (unsigned int i=0;i<getdimN();i++)
-            for (unsigned int j=0;j<dimM;j++)
-                valeur[i][j]=e.valeur[i][j];
-}
-*/
 
 Etat2D& Etat2D::operator=(const Etat2D& e){
     if (dimM!=e.dimM || getdimN()!=e.getdimN())

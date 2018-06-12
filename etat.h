@@ -48,6 +48,8 @@ public :
      *
      */
     Etat(unsigned int n): dimN(n){}
+
+//FONCTION NON DOCUMENTEE
     virtual void fonctionVirtuelle() =0;
 };
 
@@ -124,6 +126,8 @@ public :
      * \return
      */
     void setValue(unsigned int n, unsigned int v) const {valeur[n]=v;}
+
+//FONCTION NON DOCUMENTEE
     void fonctionVirtuelle(){};
 private :
     unsigned int* valeur; /*!< Tableau des valeurs de la grille*/
@@ -220,6 +224,8 @@ public :
      * \return dimM
      */
     unsigned int getdimM() const {return dimM;}
+
+//FONCTION NON DOCUMENTEE
     void fonctionVirtuelle(){};
 };
 
@@ -235,47 +241,71 @@ class FabriqueEtat {
 protected :
     /*!
      * \brief createEtat
+     * \details Fabrique un état avec deux paramètres, en 1D
      *
-     * \param const unsigned int dimN
-     * \param const unsigned int dimN
-     * \return Etat&
+     * \param unsigned int dimN
+     * \param unsigned int* t
+     * \return Etat*
      */
     Etat* createEtat(unsigned int dimN, unsigned int* t) const;
+
     /*!
      * \brief createEtat
+     * \details Fabrique un état avec trois paramètres, en 2D
      *
-     * \param const unsigned int dimN
-     * \param const unsigned int dimN
-     * \return Etat&
+     * \param unsigned int dimN
+     * \param unsigned int dimM
+     * \param unsigned int** t
+     * \return Etat*
      */
     Etat* createEtat(unsigned int dimN, unsigned int dimM, unsigned int** t) const;
+
+
     /*!
      * \brief createEtat
+     * \details Fabrique un état par recopie d'un état existant
+     *
      * \param const Etat& e
      * \return Etat&
      */
     Etat* createEtat(Etat* e) const;
+
     /*!
      * \brief deleteEtat
-     * \param Etat* a
+     * \details Détruit un état fournit en paramètre
+     *
+     * \param Etat* e
      * \return void
      */
     void deleteEtat(Etat* e) const;
 
 };
 
+
+/*!
+    * \class EtatException
+    * \brief Classe d'Exception pour les Etats
+    *
+    * \details La classe permet de gérer les exceptions relatives aux classes Etats
+    *
+    */
 class EtatException {
 private :
-    std::string info; /*! Information sur l'exception*/
+    std::string info; /*!< Information sur l'exception*/
 public :
     /*!
      * \brief EtatException
-     * \param const string inf
+     * \details Constructeur de la classe EtatException
+     *
+     * \param string inf
      * \return
      */
     EtatException(std::string inf):info(inf) {};
+
     /*!
      * \brief getInfo
+     * \details Retourne la chaîne de caractères liée à l'exception déclenchée
+     *
      * \return string
      */
     std::string getInfo() const {return info;};

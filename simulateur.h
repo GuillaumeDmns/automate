@@ -88,7 +88,7 @@ public:
      * \details Destructeur de la classe Simulateur
      *
      */
-    ~Simulateur(); //doit appeler le destructeur de automate
+    ~Simulateur();
 
 private:
     Automate* automate; /*!< Automate simulé par le simulateur*/
