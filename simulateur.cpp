@@ -91,3 +91,12 @@ void Simulateur::next(){
     //fabEtat.deleteEtat(suivant);
 }
 */
+/*
+Simulateur::~Simulateur() {
+    FabriqueAutomate fabAutomate;
+    FabriqueEtat fabEtat;
+    fabAutomate.deleteAutomate(automate);
+    fabEtat.deleteEtat(depart);
+    fabEtat.deleteEtat(current);
+}
+*/

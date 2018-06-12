@@ -131,6 +131,7 @@ public :
      * \return unsigned int**
      */
     virtual unsigned int** createTabRegle() const =0;
+    //virtual ~Automate() =0;
 };
 
 #include "simulateur.h"
