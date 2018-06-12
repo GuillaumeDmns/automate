@@ -20,11 +20,6 @@
 
 using namespace std;
 
-//IL FAUT
-// -> FINIR CONSTRUCTEUR (FAIRE FONCTIONNER AVEC CONSTRUCTEUR D AUTOMATE)
-// -> FAIRE LA FONCTION next()
-// -> FAIRE LE DESTRUCTEUR AVEC LE DESTRUCTEUR D AUTOMATE
-
 /*!
     * \class Simulateur
     * \brief classe définissant les simulateurs
