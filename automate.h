@@ -27,6 +27,7 @@ using namespace std;
     *
     */
 class Automate {
+    friend class FabriqueAutomate;
 protected :
     unsigned int** regle; /*!< Règles de transition*/
     /*!
@@ -101,16 +102,6 @@ public :
      * \param Etat& dest
      * \return void
      */
-    void appliquerTransition(Etat& dep, Etat& dest);
-    /*!
-     * \brief Transition d'état
-     *
-     * \details Calcule l'état suivant d'un état donné
-     *
-     * \param const Etat& dep
-     * \param Etat& dest
-     * \return void
-     */
     void appliquerTransition(const Etat1D& dep, Etat1D& dest) const;
     /*!
      * \brief Transition d'état
@@ -131,7 +122,7 @@ public :
      * \return unsigned int**
      */
     virtual unsigned int** createTabRegle() const =0;
-    //virtual ~Automate() =0;
+    virtual ~Automate();
 };
 
 #include "simulateur.h"
@@ -341,6 +332,16 @@ class FabriqueAutomate {
     friend class Simulateur;
 protected :
     /*!
+     * \brief Transition d'état
+     *
+     * \details Calcule l'état suivant d'un état donné
+     *
+     * \param const Etat& dep
+     * \param Etat& dest
+     * \return void
+     */
+    void appliquerTransition(Etat& dep, Etat& dest, Automate& a) const;
+    /*!
      * \brief createAutomate
      * \param const string idAutomate
      * \param const unsigned int dim
@@ -358,7 +359,7 @@ protected :
      * \param Automate& a
      * \return void
      */
-    //void deleteAutomate(Automate* a) const;
+    void deleteAutomate(Automate* a) const;
 };
 
 

@@ -21,14 +21,14 @@ unsigned int JeuDeLaVie::nbDim=2;
 unsigned int Cell1D::nbEtats=2;
 unsigned int JeuDeLaVie::nbEtats=2;
 
-void appliquerTransition(Etat& dep, Etat& dest) {
+void FabriqueAutomate::appliquerTransition(Etat& dep, Etat& dest, Automate& a) const {
     if(!strcmp(typeid(dep).name(),typeid(dest).name())) throw AutomateException("Etats incompatibles");
     if(!strcmp(typeid(dep).name(),"Etat1D")) {
-        appliquerTransition(dynamic_cast<Etat1D&>(dep),dynamic_cast<Etat1D&>(dest));
+        a.appliquerTransition(dynamic_cast<Etat1D&>(dep),dynamic_cast<Etat1D&>(dest));
         return;
     }
     if(!strcmp(typeid(dep).name(),"Etat2D")) {
-        appliquerTransition(dynamic_cast<Etat2D&>(dep),dynamic_cast<Etat2D&>(dest));
+        a.appliquerTransition(dynamic_cast<Etat2D&>(dep),dynamic_cast<Etat2D&>(dest));
         return;
     }
     throw AutomateException("Etats non existants");
@@ -74,6 +74,8 @@ Automate::Automate(unsigned int** tab) :regle(tab) {
 
 }
 
+Automate::~Automate(){}
+
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>2||regle[2]>2||regle[4]>2||regle[5]>2) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
@@ -104,7 +106,7 @@ Cell1D::Cell1D(const Automate& a) :Automate(remplissageRegle(createTabRegle(), a
 
 }
 
-Cell1D::~Cell1D() {
+Cell1D::~Cell1D(){
     for(unsigned int i=0; i<nbEtats; ++i) delete[] regle[i];
     delete[] regle;
 }
@@ -148,7 +150,7 @@ JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(remplissageRegle(createTabRe
 
 }
 
-JeuDeLaVie::~JeuDeLaVie() {
+JeuDeLaVie::~JeuDeLaVie(){
     for(unsigned int i=0; i<nbEtats; ++i) delete[] regle[i];
     delete[] regle;
 }
@@ -172,11 +174,13 @@ Automate* FabriqueAutomate::createAutomate(const Automate* a) const {
     if(!strcmp(typeid(*a).name(),"JeuDeLaVie")) return (new JeuDeLaVie(*a));
     throw AutomateException("Automate Inexistant");
 }
-/*
+
 void FabriqueAutomate::deleteAutomate(Automate* a) const{
-    delete a;
+    if(!strcmp(typeid(*a).name(),"Cell1D")) delete dynamic_cast<Cell1D*>(a);
+    if(!strcmp(typeid(*a).name(),"JeuDeLaVie")) delete dynamic_cast<JeuDeLaVie*>(a);
+    throw AutomateException("AutomateInexistant");
 }
-*/
+
 unsigned int Cell1D::getNbEtats() const{
     return nbEtats;
 }

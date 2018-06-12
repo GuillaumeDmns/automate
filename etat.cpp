@@ -160,8 +160,10 @@ Etat* FabriqueEtat::createEtat(Etat* e) const{
     if(!strcmp(typeid(*e).name(),"Etat2D")) return (new Etat2D(*dynamic_cast<Etat2D*>(e)));
     throw EtatException("Etat inexistant");
 }
-/*
+
 void FabriqueEtat::deleteEtat(Etat* e) const{
-    delete e;
+    if(!strcmp(typeid(*e).name(),"Etat1D")) delete dynamic_cast<Etat1D*>(e);
+    if(!strcmp(typeid(*e).name(),"Etat2D")) delete dynamic_cast<Etat2D*>(e);
+    throw EtatException("Etat non existant");
 }
-*/
+

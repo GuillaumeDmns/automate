@@ -140,8 +140,8 @@ private :
     */
 class Etat2D : public Etat{
 private :
-    unsigned int** valeur; /*!< Tableau des valeurs de la grille*/
     unsigned int dimM; /*!< Deuxième dimension de la grille*/
+    unsigned int** valeur; /*!< Tableau des valeurs de la grille*/
 public :
 
     /*!
@@ -260,7 +260,7 @@ protected :
      * \param Etat* a
      * \return void
      */
-    //void deleteEtat(Etat* e) const;
+    void deleteEtat(Etat* e) const;
 
 };
 

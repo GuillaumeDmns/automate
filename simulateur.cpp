@@ -82,16 +82,17 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
         current = fabEtat.createEtat(n,m,tab);
     }
 }
-/*
+
 void Simulateur::next(){
     FabriqueEtat fabEtat;
+    FabriqueAutomate fabAutomate;
     Etat* suivant = fabEtat.createEtat(current);
-    automate->appliquerTransition(*current,*suivant);
+    fabAutomate.appliquerTransition(*current,*suivant,*automate);
     *current=*suivant;
-    //fabEtat.deleteEtat(suivant);
+    fabEtat.deleteEtat(suivant);
 }
-*/
-/*
+
+
 Simulateur::~Simulateur() {
     FabriqueAutomate fabAutomate;
     FabriqueEtat fabEtat;
@@ -99,4 +100,3 @@ Simulateur::~Simulateur() {
     fabEtat.deleteEtat(depart);
     fabEtat.deleteEtat(current);
 }
-*/
