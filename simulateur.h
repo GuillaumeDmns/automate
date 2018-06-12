@@ -41,7 +41,7 @@ public:
      * \param const unsigned int m : dimension m de la grille
      *
      */
-    Simulateur(string typeautomate, unsigned int regles[], string choixdepart, unsigned int n, unsigned int m);
+    Simulateur(string typeautomate, unsigned int regles[], string choixdepart, unsigned int n, unsigned int m =0);
 
     /*!
      * \brief Fonction reset du Simulateur
