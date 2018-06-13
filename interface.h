@@ -32,14 +32,13 @@ private:
     QHBoxLayout *dimensions, *header;
     QHeaderView *VHeader, *HHeader;
     QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo;
-    QPushButton *submit, *submit2, *loadLastAutomate, *loadOtherAutomate, *quit;
+    QPushButton *submit, *backHomeButton, *loadLastAutomate, *loadOtherAutomate, *quit;
     QSpinBox *dimensionH, *dimensionL;
     QStackedLayout *disp;
-    QTableWidget *infoTbl;
-
+    QTableWidget *grid;
     QTextEdit *rules;
-    QVBoxLayout *loadAutomate, *tools;
-    QWidget *home;
+    QVBoxLayout *loadAutomate, *tools, *bigGridLayout;
+    QWidget *home, *gridWidget;
 };
 
 int _interface(int argc, char* argv[]);

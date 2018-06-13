@@ -26,7 +26,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <sstream>
-#include <QTableView>
+#include <QTableWidget>
 #include "interface.h"
 
 
@@ -42,17 +42,39 @@
     */
 
 void MainWindow::createGrid() {
-    disp->setCurrentWidget(infoTbl);
-    infoTbl->setFixedSize(800, 800);
-    infoTbl->setColumnCount(dimensionH->value());
-    infoTbl->setRowCount(dimensionL->value());
-    VHeader = new QHeaderView(Qt::Vertical,infoTbl);
-    HHeader = new QHeaderView(Qt::Horizontal,infoTbl);
-    VHeader->hide();
-    HHeader->hide();
-    infoTbl->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    infoTbl->setHorizontalHeader(HHeader);
-    infoTbl->setVerticalHeader(VHeader);
+    unsigned int taille = 25;
+                grid = new QTableWidget(dimensionH->value(), dimensionL->value());
+            bigGridLayout = new QVBoxLayout;
+            bigGridLayout->addWidget(grid, 1, Qt::AlignCenter);
+            bigGridLayout->addWidget(backHomeButton, 1, Qt::AlignCenter);
+        gridWidget = new QWidget;
+        gridWidget->setLayout(bigGridLayout);
+    disp->insertWidget(1, gridWidget);
+    disp->setCurrentWidget(gridWidget);
+    grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    grid->horizontalHeader()->setVisible(false);
+    grid->verticalHeader()->setVisible(false);
+    grid->setFixedSize(dimensionL->value()*taille, dimensionH->value()*taille);
+    grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+
+
+    for(int row=0; row<dimensionH->value(); row++){
+        grid->setRowHeight(row ,taille);
+        for(int col=0; col<dimensionL->value(); col++){
+            grid->setColumnWidth(col,taille);
+            grid->setItem(row, col, new QTableWidgetItem(""));
+            if ((row+col)%2 == 0) {
+                grid->item(row, col)->setBackgroundColor("white");
+                grid->item(row, col)->setTextColor("white");
+            }
+            else {
+                grid->item(row, col)->setBackgroundColor("black");
+                grid->item(row, col)->setTextColor("black");
+            }
+        }
+    }
 }
 
 void MainWindow::backToHome() {
@@ -127,6 +149,7 @@ MainWindow::MainWindow():QWidget() {
             newAutomate->addRow("Règles", rules);
             newAutomate->addRow("Génération", generation);
             submit = new QPushButton("Valider");
+            backHomeButton = new QPushButton("Retour");
                 loadLastAutomate = new QPushButton("Charger le dernier automate");
                 loadOtherAutomate = new QPushButton("Charger un autre automate");
                 //
@@ -161,12 +184,10 @@ MainWindow::MainWindow():QWidget() {
     setWindowTitle("AUTOCELL");
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
 
-    infoTbl = new QTableWidget;
 
 
-    disp->insertWidget(1, infoTbl);
     connect(submit, SIGNAL(clicked()), this, SLOT(createGrid()));
-    //connect(grid, SIGNAL(clicked()), this, SLOT(backToHome()));
+    connect(backHomeButton, SIGNAL(clicked()), this, SLOT(backToHome()));
     connect(loadOtherAutomate, SIGNAL(clicked()), this, SLOT(setLoadedAutomate()));
 }
 
@@ -182,7 +203,7 @@ int _interface(int argc, char * argv[]) {
 
     MainWindow fenetre;
     int widthMax(800), heightMax(800);
-    fenetre.setFixedSize(widthMax, heightMax);
+    //fenetre.setFixedSize(widthMax, heightMax);
 
 
 
