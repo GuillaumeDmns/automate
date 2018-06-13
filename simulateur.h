@@ -48,7 +48,7 @@ public:
      *
      * \details Permet la mise en place d'un nouvel état de départ et la remise à zéro de la simulation
      *
-     *
+     * \return void
      */
     void reset() {
             this->current=this->depart;
@@ -61,7 +61,8 @@ public:
      *
      * \details Permet la mise en place d'un nouvel état de départ
      *
-     * \param Etat& e : Référence sur l'état à mettre en état de départ
+     * \param Etat* e : Pointeur sur l'état à mettre en état de départ
+     * \return void
      *
      */
     void setEtat(Etat* e) {
@@ -78,23 +79,23 @@ public:
      *
      * \details Permet le passage d'un état à son état suivant en fonction des régles de transition
      *
-     *
+     * \return void
      */
     void next();
 
     /*!
-     * \brief Fonction next du Simulateur
+     * \brief Fonction getCurrent du Simulateur
      *
-     * \details Permet le passage d'un état à son état suivant en fonction des régles de transition
+     * \details Récupère un pointeur vers l'état courant du simulateur
      *
-     *
+     * \return Etat*
      */
     Etat* getCurrent() const { return current; }
 
     /*!
-     * \brief Fonction getCurrent du Simulateur
+     * \brief Destructeur
      *
-     * \details Permet le renvoie de l'attribut privé current
+     * \details Destructeur de la classe Simulateur
      *
      */
     ~Simulateur();

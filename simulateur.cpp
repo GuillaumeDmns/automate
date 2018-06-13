@@ -22,14 +22,12 @@
      * \fn Simulateur::Simulateur(const string typeautomate, const unsigned int regles[], const string choixdepart, const unsigned int n, const unsigned int m=0)
      * \brief Constructeur de la classe Simulateur
      *
-     * \param const string typeautomate : choix du type d'automate
-     * \param const unsigned int regles[] : régles choisies pour l'automate
-     * \param const string choixdepart : choix de configuration pour l'état de départ
-     * \param const unsigned int n : dimension n de la grille
-     * \param const unsigned int m : dimension m de la grille
-     * \return
+     * \param string typeautomate : choix du type d'automate
+     * \param unsigned int regles[] : régles choisies pour l'automate
+     * \param string choixdepart : choix de configuration pour l'état de départ
+     * \param unsigned int n : dimension n de la grille
+     * \param unsigned int m : dimension m de la grille
      */
-
 Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::string choixdepart, unsigned int n, unsigned int m) : numEtat(0) {
     FabriqueAutomate fabAutomate;
     FabriqueEtat fabEtat;
@@ -94,6 +92,12 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
     }
 }
 
+    /*!
+     * \fn void Simulateur::next()
+     * \brief Permet le passage d'un état à son état suivant en fonction des régles de transition
+     *
+     * \return void
+     */
 void Simulateur::next(){
     FabriqueEtat fabEtat;
     FabriqueAutomate fabAutomate;
@@ -103,7 +107,11 @@ void Simulateur::next(){
     fabEtat.deleteEtat(suivant);
 }
 
-
+    /*!
+     * \fn Simulateur::~Simulateur()
+     * \brief Destructeur de la classe Simulateur
+     *
+     */
 Simulateur::~Simulateur() {
     FabriqueAutomate fabAutomate;
     FabriqueEtat fabEtat;
