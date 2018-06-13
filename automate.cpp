@@ -79,7 +79,7 @@ Automate::~Automate(){}
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>2||regle[2]>2||regle[4]>2||regle[5]>2) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
-    for(unsigned int i=0; i<getTailleRegle();++i){
+    for(unsigned int i=0; i<=getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
         if((i/10+i%10)==2) {
@@ -122,7 +122,7 @@ unsigned int** Cell1D::createTabRegle() const {
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>8||regle[2]>8||regle[4]>8||regle[5]>8) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
-    for(unsigned int i=0; i<getTailleRegle();++i){
+    for(unsigned int i=0; i<=getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
         if((i/10+i%10)==8) {
