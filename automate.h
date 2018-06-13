@@ -166,6 +166,7 @@ private :
      * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const;
+
     /*!
      * \brief Remplissage des règles
      *
@@ -176,6 +177,7 @@ private :
      * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) const;
+
 protected :
     /*!
      * \brief Constructeur
@@ -185,6 +187,7 @@ protected :
      * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
      */
     Cell1D(const unsigned int regle[]);
+
     /*!
      * \brief Constructeur
      *
@@ -193,6 +196,7 @@ protected :
      * \param const Automate& a : Objet Automate à recopier
      */
     Cell1D(const Automate& a);
+
 public :
     /*!
      * \brief Destructeur
@@ -253,6 +257,7 @@ class JeuDeLaVie : public Automate {
 private :
     static unsigned int nbDim; /*! Nombre de dimensions de l'automate */
     static unsigned int nbEtats; /*! Nombre d'états acceptés par l'automate */
+
     /*!
      * \brief Remplissage des règles
      *
@@ -263,6 +268,7 @@ private :
      * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const;
+
     /*!
      * \brief Remplissage des règles
      *
@@ -273,6 +279,7 @@ private :
      * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, unsigned int**) const;
+
 protected :
     /*!
      * \brief Constructeur
@@ -282,6 +289,7 @@ protected :
      * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
      */
     JeuDeLaVie(const unsigned int regle[]);
+
     /*!
      * \brief Constructeur
      *
@@ -290,6 +298,7 @@ protected :
      * \param const Automate& a : Objet Automate à recopier
      */
     JeuDeLaVie(const Automate& a);
+
 public :
     /*!
      * \brief Destructeur
@@ -308,6 +317,7 @@ public :
      * \return unsigned int**
      */
     unsigned int** createTabRegle() const;
+
     /*!
      * \brief Accesseur du nombre d'Etats
      *
@@ -316,6 +326,7 @@ public :
      * \return unsigned int
      */
     unsigned int getNbEtats() const;
+
     /*!
      * \brief Calcul la taille du tableau de régles
      *
@@ -324,6 +335,7 @@ public :
      * \return unsigned int
      */
     unsigned int getTailleRegle() const;
+
     /*!
      * \brief Accesseur du nombre de dimensions
      *
@@ -356,6 +368,7 @@ protected :
      * \return void
      */
     void appliquerTransition(Etat& dep, Etat& dest, Automate& a) const;
+
     /*!
      * \brief Création d'un Automate
      *
@@ -367,6 +380,8 @@ protected :
      * \return Automate*
      */
     Automate* createAutomate(std::string idAutomate, const unsigned int regle[] =0) const;
+
+
     /*!
      * \brief Création d'un Automate
      *
@@ -377,6 +392,7 @@ protected :
      * \return Automate*
      */
     Automate* createAutomate(const Automate* a) const;
+
     /*!
      * \brief Destruction d'un automate
      *

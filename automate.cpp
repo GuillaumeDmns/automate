@@ -16,11 +16,22 @@
 
 using namespace std;
 
+//DOCUMENTATION POUR INITIALISATION DES ATTRIBUTS STATIC ????
+
 unsigned int Cell1D::nbDim=1;
 unsigned int JeuDeLaVie::nbDim=2;
 unsigned int Cell1D::nbEtats=2;
 unsigned int JeuDeLaVie::nbEtats=2;
 
+    /*!
+     * \fn void FabriqueAutomate::appliquerTransition(Etat& dep, Etat& dest, Automate& a) const
+     * \brief Calcule l'état suivant d'un état donné
+     *
+     * \param Etat& dep : Référence sur l'état de départ sur lequel appliquer la transition
+     * \param Etat& dest : Référence vers l'état résultant de la transition
+     * \param Automate& a : Référence sur l'automate possédant les régles pour la transition
+     * \return void
+     */
 void FabriqueAutomate::appliquerTransition(Etat& dep, Etat& dest, Automate& a) const {
     if(!strcmp(typeid(dep).name(),typeid(dest).name())) throw AutomateException("Etats incompatibles");
     if(!strcmp(typeid(dep).name(),"Etat1D")) {
@@ -34,6 +45,16 @@ void FabriqueAutomate::appliquerTransition(Etat& dep, Etat& dest, Automate& a) c
     throw AutomateException("Etats non existants");
 }
 
+
+    /*!
+     * \fn void Automate::appliquerTransition(const Etat1D& dep, Etat1D& dest) const
+     * \brief Calcule l'état suivant d'un état donné
+     *
+     * \param Etat1D& dep : Référence sur l'état en 1D de départ sur lequel appliquer la transition
+     * \param Etat1D& dest : Référence vers l'état en 1D résultant de la transition
+     *
+     * \return void
+     */
 void Automate::appliquerTransition(const Etat1D& dep, Etat1D& dest) const {
     if(getNbDim()!=1) throw AutomateException("Nombre de dimensions incorrect");
     if((dep.getdimN()!=dest.getdimN())) throw AutomateException("Etat dep et dest incompatibles");
@@ -49,6 +70,16 @@ void Automate::appliquerTransition(const Etat1D& dep, Etat1D& dest) const {
     }
 }
 
+
+    /*!
+     * \fn void Automate::appliquerTransition(const Etat2D& dep, Etat2D& dest) const
+     * \brief Calcule l'état suivant d'un état donné
+     *
+     * \param Etat2D& dep : Référence sur l'état en 2D de départ sur lequel appliquer la transition
+     * \param Etat2D& dest : Référence vers l'état en 2D résultant de la transition
+     *
+     * \return void
+     */
 void Automate::appliquerTransition(const Etat2D& dep, Etat2D& dest) const {
     if(getNbDim()!=2) throw AutomateException("Nombre de dimensions incorrect");
     if((dep.getdimM()!=dest.getdimM())||(dep.getdimN()!=dest.getdimN())) throw AutomateException("Etat dep et dest incompatibles");
@@ -70,12 +101,33 @@ void Automate::appliquerTransition(const Etat2D& dep, Etat2D& dest) const {
     }
 }
 
-Automate::Automate(unsigned int** tab) :regle(tab) {
 
+    /*!
+     * \fn Automate::Automate(unsigned int** tab)
+     * \brief Constructeur de la classe Automate
+     *
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     */
+Automate::Automate(unsigned int** tab) :regle(tab) {
 }
 
+
+    /*!
+     * \fn Automate::~Automate()
+     * \brief Détruit un objet de type Automate
+     *
+     */
 Automate::~Automate(){}
 
+
+    /*!
+     * \fn unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const
+     * \brief Remplissage du tableau des règles pour automate
+     *
+     * \param unsigned int** tab : Tableau contenant les différentes régles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \return unsigned int**
+     */
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>2||regle[2]>2||regle[4]>2||regle[5]>2) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
@@ -89,6 +141,15 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int r
     }
     return tab;
 }
+
+    /*!
+     * \fn unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle) const
+     * \brief Remplissage du tableau des règles pour automate
+     *
+     * \param unsigned int** tab : Tableau contenant les différentes régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \return unsigned int**
+     */
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
     for(unsigned int i=0; i<nbEtats; ++i){
         for(unsigned int j=0; j<=getTailleRegle(); ++j){
@@ -98,19 +159,40 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle
     return tab;
 }
 
+    /*!
+     * \fn Cell1D::Cell1D(const unsigned int regle[])
+     * \brief Constructeur de la classe Cell1D
+     *
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     */
 Cell1D::Cell1D(const unsigned int regle[]) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(),regle)){
-
 }
 
+    /*!
+     * \fn Cell1D::Cell1D(const Automate& a)
+     * \brief Constructeur par recopie de la classe Cell1D
+     *
+     * \param const Automate& a : Objet Automate à recopier
+     */
 Cell1D::Cell1D(const Automate& a) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(), a.getRegle())) {
-
 }
 
+    /*!
+     * \fn Cell1D::~Cell1D()
+     * \brief Destructeur de la classe Cell1D
+     *
+     */
 Cell1D::~Cell1D(){
     for(unsigned int i=0; i<nbEtats; ++i) delete[] regle[i];
     delete[] regle;
 }
 
+    /*!
+     * \fn unsigned int** Cell1D::createTabRegle() const
+     * \brief Crée un tableau de règles vide aux bonnes dimensions
+     *
+     * \return unsigned int**
+     */
 unsigned int** Cell1D::createTabRegle() const {
     unsigned int** tab = new unsigned int* [nbEtats];
     for(unsigned int i=0; i<nbEtats; ++i){
@@ -119,6 +201,14 @@ unsigned int** Cell1D::createTabRegle() const {
     return tab;
 }
 
+    /*!
+     * \fn unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const
+     * \brief Remplissage du tableau des règles pour automate
+     *
+     * \param unsigned int** tab : Tableau contenant les différentes régles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \return unsigned int**
+     */
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>8||regle[2]>8||regle[4]>8||regle[5]>8) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
@@ -133,6 +223,14 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned i
     return tab;
 }
 
+    /*!
+     * \fn unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const
+     * \brief Remplissage du tableau des règles pour automate
+     *
+     * \param unsigned int** tab : Tableau contenant les différentes régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \return unsigned int**
+     */
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
     for(unsigned int i=0; i<nbEtats; ++i){
         for(unsigned int j=0; j<=getTailleRegle(); ++j){
@@ -142,19 +240,40 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** r
     return tab;
 }
 
+    /*!
+     * \fn JeuDeLaVie::JeuDeLaVie(const unsigned int regle[])
+     * \brief Constructeur de la classe Jeu de la Vie
+     *
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     */
 JeuDeLaVie::JeuDeLaVie(const unsigned int regle[]) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(),regle)) {
-
 }
 
+    /*!
+     * \fn JeuDeLaVie::JeuDeLaVie(const Automate& a)
+     * \brief Constructeur par recopie de la classe JeuDeLaVie
+     *
+     * \param const Automate& a : Objet Automate à recopier
+     */
 JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(), a.getRegle())) {
-
 }
 
+    /*!
+     * \fn JeuDeLaVie::~JeuDeLaVie()
+     * \brief Destructeur de la classe JeuDeLaVie
+     *
+     */
 JeuDeLaVie::~JeuDeLaVie(){
     for(unsigned int i=0; i<nbEtats; ++i) delete[] regle[i];
     delete[] regle;
 }
 
+    /*!
+     * \fn unsigned int** JeuDeLaVie::createTabRegle() const
+     * \brief Crée un tableau de règles vide aux bonnes dimensions
+     *
+     * \return unsigned int**
+     */
 unsigned int** JeuDeLaVie::createTabRegle() const {
     unsigned int** tab = new unsigned int* [nbEtats];
     for(unsigned int i=0; i<nbEtats; ++i){
@@ -163,44 +282,106 @@ unsigned int** JeuDeLaVie::createTabRegle() const {
     return tab;
 }
 
+    /*!
+     * \fn Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int regle[]) const
+     * \brief Permet l'instanciation de l'Automate souhaité
+     *
+     * \param string idAutomate : Chaîne de caractères correspondant au type d'automate souhaité
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles de transition
+     *
+     * \return Automate*
+     */
 Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int regle[]) const {
     if(idAutomate== "Cell1D") return (new Cell1D(regle));
     if(idAutomate== "JeuDeLaVie") return (new JeuDeLaVie(regle));
     throw AutomateException("Automate Inexistant");
 }
 
+    /*!
+     * \fn Automate* FabriqueAutomate::createAutomate(const Automate* a) const
+     * \brief Permet l'instanciation de l'Automate souhaité par recopie
+     *
+     * \param const Automate* a : Pointeur vers l'automate qu'on souhaite dupliquer
+     *
+     * \return Automate*
+     */
 Automate* FabriqueAutomate::createAutomate(const Automate* a) const {
     if(!strcmp(typeid(*a).name(),"Cell1D")) return (new Cell1D(*a));
     if(!strcmp(typeid(*a).name(),"JeuDeLaVie")) return (new JeuDeLaVie(*a));
     throw AutomateException("Automate Inexistant");
 }
 
+    /*!
+     * \fn void FabriqueAutomate::deleteAutomate(Automate* a) const
+     * \brief Permet la destruction de l'automate en fonction de son type
+     *
+     * \param Automate* a : Pointeur vers l'Automate que l'on souhaite détruire
+     * \return void
+     */
 void FabriqueAutomate::deleteAutomate(Automate* a) const{
     if(!strcmp(typeid(*a).name(),"Cell1D")) delete dynamic_cast<Cell1D*>(a);
     if(!strcmp(typeid(*a).name(),"JeuDeLaVie")) delete dynamic_cast<JeuDeLaVie*>(a);
     throw AutomateException("AutomateInexistant");
 }
 
+    /*!
+     * \fn unsigned int Cell1D::getNbEtats() const
+     * \brief Permet la récupération de la valeur de l'attribut nbEtats
+     *
+     * \return unsigned int
+     */
 unsigned int Cell1D::getNbEtats() const{
     return nbEtats;
 }
 
+    /*!
+     * \fn unsigned int Cell1D::getTailleRegle() const
+     * \brief Permet la récupération de la taille que devra faire le tableau de régles
+     *
+     * \return unsigned int
+     */
 unsigned int Cell1D::getTailleRegle() const{
     return ((3^nbDim)-1)*10^(nbEtats-1);
 }
 
+    /*!
+     * \fn unsigned int Cell1D::getNbDim() const
+     * \brief Permet la récupération du nombre de dimensions de l'automate
+     *
+     * \param
+     * \return unsigned int
+     */
 unsigned int Cell1D::getNbDim() const{
     return nbDim;
 }
 
+    /*!
+     * \fn unsigned int JeuDeLaVie::getNbEtats() const
+     * \brief Permet la récupération de la valeur de l'attribut nbEtats
+     *
+     * \return unsigned int
+     */
 unsigned int JeuDeLaVie::getNbEtats() const{
     return nbEtats;
 }
 
+    /*!
+     * \fn unsigned int JeuDeLaVie::getTailleRegle() const
+     * \brief Permet la récupération de la taille que devra faire le tableau de régles
+     *
+     * \return unsigned int
+     */
 unsigned int JeuDeLaVie::getTailleRegle() const{
     return ((3^nbDim)-1)*10^(nbEtats-1);
 }
 
+    /*!
+     * \fn unsigned int JeuDeLaVie::getNbDim() const
+     * \brief Permet la récupération du nombre de dimensions de l'automate
+     *
+     * \param
+     * \return unsigned int
+     */
 unsigned int JeuDeLaVie::getNbDim() const{
     return nbDim;
 }
