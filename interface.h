@@ -18,6 +18,7 @@
 class MainWindow : public QWidget {
     Q_OBJECT
 public slots:
+    void changeForm(int index);
     void createGrid();
     void backToHome();
     void setLoadedAutomate();
@@ -25,6 +26,7 @@ public:
     MainWindow();
     ~MainWindow();
 private:
+    int Cellsize;
     QComboBox *typeAutomate, *generation;
     //QFileDialog *loadOtherAutomate;
     QFormLayout *newAutomate;
@@ -32,12 +34,12 @@ private:
     QHBoxLayout *dimensions, *header;
     QHeaderView *VHeader, *HHeader;
     QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo;
-    QPushButton *submit, *backHomeButton, *loadLastAutomate, *loadOtherAutomate, *quit;
+    QPushButton *submit, *backHomeButton, *loadOtherAutomate, *quit;
     QSpinBox *dimensionH, *dimensionL;
     QStackedLayout *disp;
     QTableWidget *grid;
     QTextEdit *rules;
-    QVBoxLayout *loadAutomate, *tools, *bigGridLayout;
+    QVBoxLayout *tools, *bigGridLayout;
     QWidget *home, *gridWidget;
 };
 
