@@ -1,6 +1,6 @@
 /*!
     * \file etat.cpp
-    * \brief Définition des fonctions de l'objet Etat
+    * \brief Définition des fonctions des objets Etat
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
     * \date 28 mai 2018
@@ -22,9 +22,8 @@ using namespace std;
     * \fn Etat1D::Etat1D (unsigned int n,unsigned int* t=0)
     * \brief Constructeur de la classe Etat1D
     *
-    * \param unsigned int n : dimension de la grille
-    * \param unsigned int* t : tableau des valeurs (par défaut =0)
-    * \return
+    * \param unsigned int n : Dimension de la grille
+    * \param unsigned int* t : Tableau des valeurs (par défaut =0)
     *
     */
 Etat1D::Etat1D (unsigned int n,unsigned int* t=0): Etat(n), valeur(new unsigned int[n]){
@@ -41,11 +40,8 @@ Etat1D::Etat1D (unsigned int n,unsigned int* t=0): Etat(n), valeur(new unsigned 
 
 /*!
      * \fn Etat1D::~Etat1D()
-     * \brief Destructeur
+     * \brief Destructeur de la classe Etat1D
      *
-     *
-     *
-     * \return
      */
 Etat1D::~Etat1D(){
     delete[] valeur;
@@ -53,12 +49,12 @@ Etat1D::~Etat1D(){
 
 
 /*!
-     * \fn Etat1D::operator=(const Etat1D& e)
-     * \brief Opérateur affectation
+     * \fn Etat1D& Etat1D::operator=(const Etat1D& e)
+     * \brief Opérateur d'affectation de la classe Etat1D
      *
      *
-     * \param Etat1D& e : objet Etat1D à affecter
-     * \return
+     * \param const Etat1D& e : Objet Etat1D à affecter
+     * \return Etat1D&
      */
 Etat1D& Etat1D::operator=(const Etat1D& e){
     if (getdimN()!=e.getdimN())
@@ -74,13 +70,12 @@ Etat1D& Etat1D::operator=(const Etat1D& e){
     * \fn Etat2D::Etat2D (unsigned int n,unsigned int m,unsigned int** t=0)
     * \brief Constructeur de la classe Etat2D
     *
-    * \param unsigned int n : dimension N de la grille
-    * \param unsigned int m : dimension M de la grille
-    * \param unsigned int** t : tableau des valeurs (par défaut =0)
-    * \return
+    * \param unsigned int n : Dimension N de la grille
+    * \param unsigned int m : Dimension M de la grille
+    * \param unsigned int** t : Tableau des valeurs (par défaut =0)
     *
     */
-Etat2D::Etat2D(unsigned int n,unsigned int m,unsigned int** t):Etat(n),dimM(m),valeur(new unsigned int*[n]){
+Etat2D::Etat2D(unsigned int n,unsigned int m,unsigned int** t=0):Etat(n),dimM(m),valeur(new unsigned int*[n]){
     if (t){
         for (unsigned int i=0;i<(n);i++)
             {
@@ -103,9 +98,6 @@ Etat2D::Etat2D(unsigned int n,unsigned int m,unsigned int** t):Etat(n),dimM(m),v
     * \fn Etat2D::~Etat2D()
     * \brief Destructeur de la classe Etat2D
     *
-    *
-    * \return
-    *
     */
 Etat2D::~Etat2D(){
     for (unsigned int i=0;i<this->getdimN();i++)
@@ -115,7 +107,14 @@ Etat2D::~Etat2D(){
     delete[] valeur;
 }
 
-
+/*!
+     * \fn Etat2D& Etat2D::operator=(const Etat2D& e)
+     * \brief Opérateur d'affectation de la classe Etat2D
+     *
+     *
+     * \param const Etat2D& e : Objet Etat2D à affecter
+     * \return Etat2D&
+     */
 Etat2D& Etat2D::operator=(const Etat2D& e){
     if (dimM!=e.dimM || getdimN()!=e.getdimN())
         throw "erreur : tailles des grilles incompatibles";
@@ -127,22 +126,54 @@ Etat2D& Etat2D::operator=(const Etat2D& e){
     return *this;
 }
 
+
+    /*!
+     * \fn Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int* t) const
+     * \brief Fabrique un état avec deux paramètres, en 1D
+     *
+     * \param unsigned int dimN : Taille pour la première dimension
+     * \param unsigned int* t : Valeurs à placer dans la grille
+     * \return Etat*
+     */
 Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int* t) const {
     if(!dimN) throw EtatException("Incorrect Etat");
     return new Etat1D(dimN,t);
 }
 
+    /*!
+     * \fn Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int dimM, unsigned int** t) const
+     * \brief Fabrique un état avec trois paramètres, en 2D
+     *
+     * \param unsigned int dimN : Taille pour la première dimension
+     * \param unsigned int dimM : Taille pour la deuxième dimension
+     * \param unsigned int** t : Valeurs à placer dans la grille
+     * \return Etat*
+     */
 Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int dimM, unsigned int** t) const {
     if((!dimN)||(!dimM)) throw EtatException("Incorrect Etat");
     return new Etat2D(dimN, dimM, t);
 }
 
+    /*!
+     * \fn Etat* FabriqueEtat::createEtat(Etat* e) const
+     * \brief Fabrique un état par recopie d'un état existant
+     *
+     * \param const Etat& e : Etat existant à dupliquer
+     * \return Etat&
+     */
 Etat* FabriqueEtat::createEtat(Etat* e) const{
     if(!strcmp(typeid(*e).name(),"Etat1D")) return (new Etat1D(*dynamic_cast<Etat1D*>(e)));
     if(!strcmp(typeid(*e).name(),"Etat2D")) return (new Etat2D(*dynamic_cast<Etat2D*>(e)));
     throw EtatException("Etat inexistant");
 }
 
+    /*!
+     * \fn void FabriqueEtat::deleteEtat(Etat* e) const
+     * \brief Détruit un état fourni en paramètre
+     *
+     * \param Etat* e : Etat à supprimer
+     * \return void
+     */
 void FabriqueEtat::deleteEtat(Etat* e) const{
     if(!strcmp(typeid(*e).name(),"Etat1D")) delete dynamic_cast<Etat1D*>(e);
     if(!strcmp(typeid(*e).name(),"Etat2D")) delete dynamic_cast<Etat2D*>(e);

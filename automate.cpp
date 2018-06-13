@@ -1,6 +1,6 @@
 /*!
     * \file automate.cpp
-    * \brief Définition des fonctions de l'objet Automate
+    * \brief Définition des fonctions des objets Automate
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
     * \date 02 juin 2018

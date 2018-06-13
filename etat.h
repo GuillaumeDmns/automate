@@ -43,7 +43,7 @@ public :
      *
      * \details Constructeur de la classe Etat
      *
-     * \param unsigned int n : valeur initiale de la dimension n
+     * \param unsigned int n : Valeur initiale de la dimension n
      *
      */
     Etat(unsigned int n): dimN(n){}
@@ -68,8 +68,8 @@ public :
      *
      * \details Constructeur de la classe Etat1D
      *
-     * \param unsigned int n : valeur initiale de la dimension n
-     * \param unsigned int* t : tableau des valeurs de la grille
+     * \param unsigned int n : Valeur initiale de la dimension n
+     * \param unsigned int* t : Tableau des valeurs de la grille
      */
     Etat1D(unsigned int n,unsigned int* t);
     
@@ -87,7 +87,7 @@ public :
      *
      * \details Constructeur par recopie de la classe Etat1D
      *
-     * \param Etat1D& e : objet Etat1D à recopier
+     * \param Etat1D& e : Ojet Etat1D à recopier
      * 
      */
     Etat1D(Etat1D& e) : Etat(e.getdimN()){
@@ -100,7 +100,7 @@ public :
      *
      * \details Opérateur d'affectation de la classe Etat1D
      *
-     * \param Etat1D& e : objet Etat1D à affecter à l'objet courant
+     * \param Etat1D& e : Objet Etat1D à affecter à l'objet courant
      * 
      */
     Etat1D& operator=(const Etat1D& e);
@@ -110,7 +110,7 @@ public :
      *
      * \details Renvoie la valeur de la case (n)
      *
-     * \param unsigned int n : indice de la case dans le tableau
+     * \param unsigned int n : Indice de la case dans le tableau
      * \return valeur[n]
      */
     unsigned int getValue(unsigned int n) const {return valeur[n];}
@@ -120,8 +120,8 @@ public :
      *
      * \details Affecte une valeur à la case indiquée dans la grille
      *
-     * \param unsigned int n : indice de la case dans le tableau
-     * \param unsigned int v : valeur à affecter à la case
+     * \param unsigned int n : Indice de la case dans le tableau
+     * \param unsigned int v : Valeur à affecter à la case
      */
     void setValue(unsigned int n, unsigned int v) const {valeur[n]=v;}
 
@@ -151,9 +151,9 @@ public :
      *
      * \details Constructeur de la classe Etat2D
      *
-     * \param unsigned int n : valeur initiale de la dimension n
-     * \param unsigned int m : valeur initiale de la dimension m
-     * \param unsigned int** t : tableau des valeurs de la grille
+     * \param unsigned int n : Valeur initiale de la dimension n
+     * \param unsigned int m : Valeur initiale de la dimension m
+     * \param unsigned int** t : Tableau des valeurs de la grille
      */
     Etat2D(unsigned int n,unsigned int m, unsigned int** t);
     
@@ -171,7 +171,7 @@ public :
      *
      * \details Constructeur par recopie de la classe Etat2D
      *
-     * \param Etat2D& e : objet Etat2D à recopier
+     * \param Etat2D& e : Objet Etat2D à recopier
      * 
      */
     Etat2D(Etat2D& e):Etat(e.getdimN()), dimM(e.getdimM()), valeur(new unsigned int*[e.getdimM()]){
@@ -185,7 +185,7 @@ public :
      *
      * \details Opérateur d'affectation de la classe Etat2D
      *
-     * \param Etat2D& e : objet Etat2D à affecter à l'objet courant
+     * \param Etat2D& e : Objet Etat2D à affecter à l'objet courant
      * 
      */
     Etat2D& operator=(const Etat2D& e);
@@ -195,8 +195,8 @@ public :
      *
      * \details Renvoie la valeur de la case (n,m)
      *
-     * \param unsigned int n : abscisse de la case sur la grille
-     * \param unsigned int m : ordonnée de la case sur la grille
+     * \param unsigned int n : Abscisse de la case sur la grille
+     * \param unsigned int m : Ordonnée de la case sur la grille
      * \return valeur[n][m]
      */
     unsigned int getValue(unsigned int n,unsigned int m) const {return valeur[n][m];}
@@ -206,9 +206,9 @@ public :
      *
      * \details Affecte une valeur à la case indiquée dans la grille
      *
-     * \param unsigned int n : abscisse de la case sur la grille
-     * \param unsigned int m : ordonnée de la case sur la grille
-     * \param unsigned int v : valeur à affecter à la case
+     * \param unsigned int n : Abscisse de la case sur la grille
+     * \param unsigned int m : Ordonnée de la case sur la grille
+     * \param unsigned int v : Valeur à affecter à la case
      * \return 
      */
     void setValue(unsigned int n, unsigned int m, unsigned int v) const {valeur[n][m]=v;}
@@ -240,8 +240,8 @@ protected :
      * \brief createEtat
      * \details Fabrique un état avec deux paramètres, en 1D
      *
-     * \param unsigned int dimN : taille pour la première dimension
-     * \param unsigned int* t : valeurs à placer dans la grille
+     * \param unsigned int dimN : Taille pour la première dimension
+     * \param unsigned int* t : Valeurs à placer dans la grille
      * \return Etat*
      */
     Etat* createEtat(unsigned int dimN, unsigned int* t) const;
@@ -250,9 +250,9 @@ protected :
      * \brief createEtat
      * \details Fabrique un état avec trois paramètres, en 2D
      *
-     * \param unsigned int dimN : taille pour la première dimension
-     * \param unsigned int dimM : taille pour la deuxième dimension
-     * \param unsigned int** t : valeurs à placer dans la grille
+     * \param unsigned int dimN : Taille pour la première dimension
+     * \param unsigned int dimM : Taille pour la deuxième dimension
+     * \param unsigned int** t : Valeurs à placer dans la grille
      * \return Etat*
      */
     Etat* createEtat(unsigned int dimN, unsigned int dimM, unsigned int** t) const;
@@ -294,7 +294,7 @@ public :
      * \brief Constructeur
      * \details Constructeur de la classe EtatException
      *
-     * \param string inf : chaîne de caractères portant les informations sur l'exception
+     * \param string inf : Chaîne de caractères portant les informations sur l'exception
      */
     EtatException(std::string inf):info(inf) {};
 

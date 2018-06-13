@@ -1,6 +1,6 @@
 /*!
     * \file simulateur.cpp
-    * \brief Définition des fonctions de l'objet Etat
+    * \brief Définition des fonctions des objets Simulateur
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
     * \date 2 juin 2018
