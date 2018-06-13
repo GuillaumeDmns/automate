@@ -79,7 +79,7 @@ Automate::~Automate(){}
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>2||regle[2]>2||regle[4]>2||regle[5]>2) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
-    for(unsigned int i=0; i<getTailleRegle();++i){
+    for(unsigned int i=0; i<=getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
         if((i/10+i%10)==2) {
@@ -98,11 +98,11 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle
     return tab;
 }
 
-Cell1D::Cell1D(const unsigned int regle[]) :Automate(remplissageRegle(createTabRegle(),regle)){
+Cell1D::Cell1D(const unsigned int regle[]) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(),regle)){
 
 }
 
-Cell1D::Cell1D(const Automate& a) :Automate(remplissageRegle(createTabRegle(), a.getRegle())) {
+Cell1D::Cell1D(const Automate& a) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(), a.getRegle())) {
 
 }
 
@@ -114,7 +114,7 @@ Cell1D::~Cell1D(){
 unsigned int** Cell1D::createTabRegle() const {
     unsigned int** tab = new unsigned int* [nbEtats];
     for(unsigned int i=0; i<nbEtats; ++i){
-        tab[i] = new unsigned int [getTailleRegle()+1];
+        tab[i] = new unsigned int[getTailleRegle()+1];
     }
     return tab;
 }
@@ -122,7 +122,7 @@ unsigned int** Cell1D::createTabRegle() const {
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>8||regle[2]>8||regle[4]>8||regle[5]>8) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
-    for(unsigned int i=0; i<getTailleRegle();++i){
+    for(unsigned int i=0; i<=getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
         if((i/10+i%10)==8) {
@@ -142,11 +142,11 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** r
     return tab;
 }
 
-JeuDeLaVie::JeuDeLaVie(const unsigned int regle[]) :Automate(remplissageRegle(createTabRegle(),regle)) {
+JeuDeLaVie::JeuDeLaVie(const unsigned int regle[]) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(),regle)) {
 
 }
 
-JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(remplissageRegle(createTabRegle(), a.getRegle())) {
+JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(), a.getRegle())) {
 
 }
 
