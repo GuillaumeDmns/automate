@@ -98,11 +98,11 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle
     return tab;
 }
 
-Cell1D::Cell1D(const unsigned int regle[]) :Automate(remplissageRegle(createTabRegle(),regle)){
+Cell1D::Cell1D(const unsigned int regle[]) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(),regle)){
 
 }
 
-Cell1D::Cell1D(const Automate& a) :Automate(remplissageRegle(createTabRegle(), a.getRegle())) {
+Cell1D::Cell1D(const Automate& a) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(), a.getRegle())) {
 
 }
 
@@ -142,11 +142,11 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** r
     return tab;
 }
 
-JeuDeLaVie::JeuDeLaVie(const unsigned int regle[]) :Automate(remplissageRegle(createTabRegle(),regle)) {
+JeuDeLaVie::JeuDeLaVie(const unsigned int regle[]) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(),regle)) {
 
 }
 
-JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(remplissageRegle(createTabRegle(), a.getRegle())) {
+JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(), a.getRegle())) {
 
 }
 
