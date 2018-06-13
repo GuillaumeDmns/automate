@@ -1,6 +1,6 @@
 /*!
     * \file etat.h
-    * \brief Déclaration de l'objet Etat
+    * \brief Déclaration des objets Etat
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
     * \date 28 mai 2018
@@ -19,7 +19,7 @@ using namespace std;
 
 /*!
     * \class Etat
-    * \brief classe mère pour les états
+    * \brief Classe mère pour les états
     * 
     * \details La classe gère les données relatives à la grille d'un automate
     *
@@ -30,11 +30,10 @@ protected :
 public :
     
     /*!
-     * \brief Recupération de la dimension N
+     * \brief Récupération de la dimension N
      *
      * \details Renvoie la dimension n de la grille
      *
-     * \param 
      * \return dimN
      */
     unsigned int getdimN() const {return dimN;}
@@ -54,9 +53,9 @@ public :
 };
 
 
-/*!
+    /*!
     * \class Etat1D
-    * \brief classe pour les états en 1 dimension
+    * \brief Classe pour les états en 1 dimension
     * 
     * \details La classe gère les données relatives à la grille d'un automate en 1 dimension
     *
@@ -97,17 +96,17 @@ public :
     }
     
     /*!
-     * \brief Opérateur affectation
+     * \brief Opérateur d'affectation
      *
      * \details Opérateur d'affectation de la classe Etat1D
      *
-     * \param Etat1D& e : objet Etat1D à affecter
+     * \param Etat1D& e : objet Etat1D à affecter à l'objet courant
      * 
      */
     Etat1D& operator=(const Etat1D& e);
 
     /*!
-     * \brief Recupération de la valeur d'une case de la grille
+     * \brief Récupération de la valeur d'une case de la grille
      *
      * \details Renvoie la valeur de la case (n)
      *
@@ -119,11 +118,10 @@ public :
     /*!
      * \brief Affectation d'une valeur
      *
-     * \details Affecte une valeur à la case indiquée, dans la grille
+     * \details Affecte une valeur à la case indiquée dans la grille
      *
      * \param unsigned int n : indice de la case dans le tableau
      * \param unsigned int v : valeur à affecter à la case
-     * \return
      */
     void setValue(unsigned int n, unsigned int v) const {valeur[n]=v;}
 
@@ -137,7 +135,7 @@ private :
 
 /*!
     * \class Etat2D
-    * \brief classe pour les états en 2 dimensions
+    * \brief Classe pour les états en 2 dimensions
     * 
     * \details La classe gère les données relatives à la grille d'un automate en 2 dimensions
     *
@@ -183,17 +181,17 @@ public :
     }
     
     /*!
-     * \brief Opérateur affectation
+     * \brief Opérateur d'affectation
      *
      * \details Opérateur d'affectation de la classe Etat2D
      *
-     * \param Etat2D& e : objet Etat2D à affecter
+     * \param Etat2D& e : objet Etat2D à affecter à l'objet courant
      * 
      */
     Etat2D& operator=(const Etat2D& e);
     
     /*!
-     * \brief Recupération de la valeur d'une case de la grille
+     * \brief Récupération de la valeur d'une case de la grille
      *
      * \details Renvoie la valeur de la case (n,m)
      *
@@ -206,7 +204,7 @@ public :
     /*!
      * \brief Affectation d'une valeur
      *
-     * \details Affecte une valeur à la case indiquée, dans la grille
+     * \details Affecte une valeur à la case indiquée dans la grille
      *
      * \param unsigned int n : abscisse de la case sur la grille
      * \param unsigned int m : ordonnée de la case sur la grille
@@ -216,11 +214,10 @@ public :
     void setValue(unsigned int n, unsigned int m, unsigned int v) const {valeur[n][m]=v;}
 
     /*!
-     * \brief Recupération de la dimension M
+     * \brief Récupération de la dimension M
      *
      * \details Renvoie la dimension m de la grille
      *
-     * \param
      * \return dimM
      */
     unsigned int getdimM() const {return dimM;}
@@ -231,7 +228,7 @@ public :
 
 /*!
     * \class FabriqueEtat
-    * \brief Classe Fabrique pour les Etats
+    * \brief Classe correspondant à une Factory pour les Etats
     *
     * \details La classe permet l'instanciation de la bonne classe fille d'Etat
     *
@@ -243,8 +240,8 @@ protected :
      * \brief createEtat
      * \details Fabrique un état avec deux paramètres, en 1D
      *
-     * \param unsigned int dimN
-     * \param unsigned int* t
+     * \param unsigned int dimN : taille pour la première dimension
+     * \param unsigned int* t : valeurs à placer dans la grille
      * \return Etat*
      */
     Etat* createEtat(unsigned int dimN, unsigned int* t) const;
@@ -253,9 +250,9 @@ protected :
      * \brief createEtat
      * \details Fabrique un état avec trois paramètres, en 2D
      *
-     * \param unsigned int dimN
-     * \param unsigned int dimM
-     * \param unsigned int** t
+     * \param unsigned int dimN : taille pour la première dimension
+     * \param unsigned int dimM : taille pour la deuxième dimension
+     * \param unsigned int** t : valeurs à placer dans la grille
      * \return Etat*
      */
     Etat* createEtat(unsigned int dimN, unsigned int dimM, unsigned int** t) const;
@@ -265,16 +262,16 @@ protected :
      * \brief createEtat
      * \details Fabrique un état par recopie d'un état existant
      *
-     * \param const Etat& e
+     * \param const Etat& e : Etat existant à dupliquer
      * \return Etat&
      */
     Etat* createEtat(Etat* e) const;
 
     /*!
      * \brief deleteEtat
-     * \details Détruit un état fournit en paramètre
+     * \details Détruit un état fourni en paramètre
      *
-     * \param Etat* e
+     * \param Etat* e : Etat à supprimer
      * \return void
      */
     void deleteEtat(Etat* e) const;
@@ -291,19 +288,18 @@ protected :
     */
 class EtatException {
 private :
-    std::string info; /*!< Information sur l'exception*/
+    std::string info; /*!< Chaîne de caractères contenant les informations sur l'exception*/
 public :
     /*!
-     * \brief EtatException
+     * \brief Constructeur
      * \details Constructeur de la classe EtatException
      *
-     * \param string inf
-     * \return
+     * \param string inf : chaîne de caractères portant les informations sur l'exception
      */
     EtatException(std::string inf):info(inf) {};
 
     /*!
-     * \brief getInfo
+     * \brief Récupération de l'attribut info
      * \details Retourne la chaîne de caractères liée à l'exception déclenchée
      *
      * \return string

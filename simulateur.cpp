@@ -1,3 +1,14 @@
+/*!
+    * \file simulateur.cpp
+    * \brief Définition des fonctions de l'objet Etat
+    * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
+    * \version 0.1
+    * \date 2 juin 2018
+    *
+    * \details Fichier pour définir les fonctions relatives à Simulateur non inline
+    *
+    */
+
 #include "simulateur.h"
 #include <string.h>
 #include <string>

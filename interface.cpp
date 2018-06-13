@@ -5,7 +5,7 @@
     * \version 0.1
     * \date 28 mai 2018
     *
-    * \details Programme pour définir les fonctions et les méthodes relatives à l'interface graphique
+    * \details Programme pour définir les fonctions et les méthodes non inline relatives à l'interface graphique
     *
     */
 

@@ -1,6 +1,6 @@
 /*!
     * \file automate.h
-    * \brief Déclaration de l'objet Automate
+    * \brief Déclaration des objets Automate
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
     * \date 02 juin 2018
@@ -36,8 +36,8 @@ protected :
      *
      * \details Remplissage du tableau des règles pour automate
      *
-     * \param unsigned int** tab
-     * \param unsigned int*[] regle
+     * \param unsigned int** tab :
+     * \param unsigned int*[] regle : régles de transition
      */
     virtual unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const =0;
 
@@ -161,8 +161,9 @@ private :
      *
      * \details Remplissage du tableau des règles pour automate
      *
-     * \param
-     * \return
+     * \param unsigned int** tab : tableau contenant les différentes régles
+     * \param const unsigned int regle[] : tableau contenant les informations pour générer les régles
+     * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const;
     /*!
@@ -170,8 +171,9 @@ private :
      *
      * \details Remplissage du tableau des règles pour automate
      *
-     * \param
-     * \return
+     * \param unsigned int** tab : tableau contenant les différentes régles
+     * \param const unsigned int regle** : tableau contenant les informations pour générer les régles
+     * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) const;
 protected :
@@ -180,8 +182,7 @@ protected :
      *
      * \details Constructeur de la classe Cell1D
      *
-     * \param
-     * \return
+     * \param const unsigned int regle[] : tableau contenant les informations pour générer les régles
      */
     Cell1D(const unsigned int regle[]);
     /*!
@@ -189,51 +190,49 @@ protected :
      *
      * \details Constructeur par recopie de la classe Cell1D
      *
-     * \param const Automate& a
-     * \return
+     * \param const Automate& a : objet Automate à recopier
      */
     Cell1D(const Automate& a);
 public :
     /*!
-     * \brief Destructeur Cell1D
+     * \brief Destructeur
      *
      * \details Destructeur de la classe Cell1D
      *
-     * \param
-     * \return
      */
     ~Cell1D();
+
     /*!
-     * \brief creation tableau de règles
+     * \brief Création du tableau de règles
      *
      * \details Crée un tableau de règles vide aux bonnes dimensions
      *
-     * \param
      * \return unsigned int**
      */
     unsigned int** createTabRegle() const;
+
     /*!
-     * \brief Accesseur nbEtats
+     * \brief Accesseur du nombre d'Etats
      *
-     * \details Retourne l'attribut nbEtats
+     * \details Permet la récupération de la valeur de l'attribut nbEtats
      *
-     * \param
      * \return unsigned int
      */
     unsigned int getNbEtats() const;
+
     /*!
-     * \brief Calcul taille regle
+     * \brief Calcul la taille du tableau de régles
      *
-     * \details Retourne l'attribut nbEtats
+     * \details Permet la récupération de la taille que devra faire le tableau de régles
      *
-     * \param
      * \return unsigned int
      */
     unsigned int getTailleRegle() const;
+
     /*!
-     * \brief Accesseur nbEtats
+     * \brief Accesseur du nombre de dimensions
      *
-     * \details Retourne l'attribut nbEtats
+     * \details Permet la récupération du nombre de dimensions de l'automate
      *
      * \param
      * \return unsigned int
@@ -241,6 +240,7 @@ public :
     unsigned int getNbDim() const;
 };
 
+//A FAIRE POUR DOCU
 /*!
     * \class JeuDeLaVie
     * \brief Classe Jeu de la vie
