@@ -22,7 +22,7 @@ using namespace std;
 
 /*!
     * \class Simulateur
-    * \brief classe définissant les simulateurs
+    * \brief Classe définissant un Simulateur
     *
     * \details La classe gère les données relatives à la création d'un simulateur
     *
@@ -34,11 +34,11 @@ public:
      *
      * \details Constructeur de la classe Simulateur
      *
-     * \param const string typeautomate : choix du type d'automate
-     * \param const unsigned int regles[] : régles choisies pour l'automate
-     * \param const string choixdepart : choix de configuration pour l'état de départ
-     * \param const unsigned int n : dimension n de la grille
-     * \param const unsigned int m : dimension m de la grille
+     * \param string typeautomate : Choix du type d'automate
+     * \param unsigned int regles[] : Régles choisies pour l'automate
+     * \param string choixdepart : Choix de configuration pour l'état de départ
+     * \param unsigned int n : Dimension n de la grille
+     * \param unsigned int m : Dimension m de la grille
      *
      */
     Simulateur(string typeautomate, unsigned int regles[], string choixdepart, unsigned int n, unsigned int m =0);
@@ -46,7 +46,7 @@ public:
     /*!
      * \brief Fonction reset du Simulateur
      *
-     * \details Permet la mise en place d'un nouvel état de départ et le retour à zéro de la simulation
+     * \details Permet la mise en place d'un nouvel état de départ et la remise à zéro de la simulation
      *
      *
      */
@@ -61,7 +61,7 @@ public:
      *
      * \details Permet la mise en place d'un nouvel état de départ
      *
-     * \param Etat& e : état à mettre en état de départ
+     * \param Etat& e : Référence sur l'état à mettre en état de départ
      *
      */
     void setEtat(Etat* e) {
@@ -94,7 +94,7 @@ private:
     Automate* automate; /*!< Automate simulé par le simulateur*/
     Etat* depart; /*!< Etat de départ pour la simulation*/
     Etat* current; /*!< Etat courant de la simulation*/
-    unsigned int numEtat; /*!< rang de l'Etat current dans la simulation*/
+    unsigned int numEtat; /*!< Rang de l'Etat courant dans la simulation*/
 };
 
 
