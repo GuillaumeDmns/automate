@@ -5,7 +5,7 @@
     * \version 0.1
     * \date 28 mai 2018
     *
-    * \details Programme pour déclarer les fonctions et les classes relatives à l'interface graphique
+    * \details Fichier pour déclarer les fonctions et les classes relatives à l'interface graphique
     *
     */
 
@@ -15,7 +15,7 @@
 
 #include <QtWidgets>
 
-class MainWindow: public QWidget {
+class MainWindow : public QWidget {
     Q_OBJECT
 public slots:
     void createGrid();

@@ -299,38 +299,35 @@ public :
      */
     ~JeuDeLaVie();
 
-                    //A FAIRE POUR LA DOCUUUU
+
     /*!
-     * \brief creation tableau de règles
+     * \brief Création du tableau de règles
      *
      * \details Crée un tableau de règles vide aux bonnes dimensions
      *
-     * \param
      * \return unsigned int**
      */
     unsigned int** createTabRegle() const;
     /*!
-     * \brief Accesseur nbEtats
+     * \brief Accesseur du nombre d'Etats
      *
-     * \details Retourne l'attribut nbEtats
+     * \details Permet la récupération de la valeur de l'attribut nbEtats
      *
-     * \param
      * \return unsigned int
      */
     unsigned int getNbEtats() const;
     /*!
-     * \brief Calcul taille regle
+     * \brief Calcul la taille du tableau de régles
      *
-     * \details Retourne l'attribut nbEtats
+     * \details Permet la récupération de la taille que devra faire le tableau de régles
      *
-     * \param
      * \return unsigned int
      */
     unsigned int getTailleRegle() const;
     /*!
-     * \brief Accesseur nbEtats
+     * \brief Accesseur du nombre de dimensions
      *
-     * \details Retourne l'attribut nbEtats
+     * \details Permet la récupération du nombre de dimensions de l'automate
      *
      * \param
      * \return unsigned int
@@ -340,7 +337,7 @@ public :
 
 /*!
     * \class FabriqueAutomate
-    * \brief Classe Fabrique pour les Automates
+    * \brief Classe correspondant à une Factory pour les Automates
     *
     * \details La classe permet l'instanciation de la bonne classe fille d'automate
     *
@@ -353,27 +350,39 @@ protected :
      *
      * \details Calcule l'état suivant d'un état donné
      *
-     * \param const Etat& dep
-     * \param Etat& dest
+     * \param Etat& dep : Référence sur l'état de départ sur lequel appliquer la transition
+     * \param Etat& dest : Référence vers l'état résultant de la transition
+     * \param Automate& a : Référence sur l'automate possédant les régles pour la transition
      * \return void
      */
     void appliquerTransition(Etat& dep, Etat& dest, Automate& a) const;
     /*!
-     * \brief createAutomate
-     * \param const string idAutomate
-     * \param const unsigned int dim
-     * \return Automate1D&
+     * \brief Création d'un Automate
+     *
+     * \details Permet l'instanciation de l'Automate souhaité
+     *
+     * \param string idAutomate : Chaîne de caractères correspondant au type d'automate souhaité
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles de transition
+     *
+     * \return Automate*
      */
     Automate* createAutomate(std::string idAutomate, const unsigned int regle[] =0) const;
     /*!
-     * \brief createAutomate
-     * \param const Automate& a
-     * \return Automate&
+     * \brief Création d'un Automate
+     *
+     * \details Permet l'instanciation de l'Automate souhaité par recopie
+     *
+     * \param const Automate* a : Pointeur vers l'automate qu'on souhaite dupliquer
+     *
+     * \return Automate*
      */
     Automate* createAutomate(const Automate* a) const;
     /*!
-     * \brief deleteAutomate
-     * \param Automate& a
+     * \brief Destruction d'un automate
+     *
+     * \details Permet la destruction de l'automate en fonction de son type
+     *
+     * \param Automate* a : Pointeur vers l'Automate que l'on souhaite détruire
      * \return void
      */
     void deleteAutomate(Automate* a) const;
@@ -382,23 +391,27 @@ protected :
 
 /*!
     * \class AutomateException
-    * \brief Classe d'exception pour les automates
+    * \brief Classe d'Exception pour les automates
     *
-    * \details La classe est retournée en cas d'exception concernant un automate
+    * \details La classe permet de gérer les exceptions relatives aux classes Automates
     *
     */
 class AutomateException {
 private :
-    std::string info; /*! Information sur l'exception*/
+    std::string info; /*! Chaîne de caractères contenant les informations sur l'exception*/
 public :
     /*!
-     * \brief AutomateException
-     * \param const string inf
-     * \return
+     * \brief Constructeur
+     * \details Constructeur de la classe AutomateException
+     *
+     * \param string inf : chaîne de caractères portant les informations sur l'exception
      */
     AutomateException(std::string inf):info(inf) {};
+
     /*!
-     * \brief getInfo
+     * \brief Récupération de l'attribut info
+     * \details Retourne la chaîne de caractères liée à l'exception déclenchée
+     *
      * \return string
      */
     std::string getInfo() const {return info;};
