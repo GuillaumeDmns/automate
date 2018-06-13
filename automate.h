@@ -154,8 +154,8 @@ public :
 class Cell1D : public Automate {
     friend class FabriqueAutomate;
 private :
-    static unsigned int nbDim; /*! nombre de dimensions de l'automate */
-    static unsigned int nbEtats; /*!< Nombre d'états de l'automate*/
+    static unsigned int nbDim; /*! Nombre de dimensions de l'automate */
+    static unsigned int nbEtats; /*!< Nombre d'états acceptés par l'automate*/
     /*!
      * \brief Remplissage des règles
      *
@@ -240,26 +240,27 @@ public :
     unsigned int getNbDim() const;
 };
 
-//A FAIRE POUR DOCU
+
 /*!
     * \class JeuDeLaVie
     * \brief Classe Jeu de la vie
     *
-    * \details La classe gère les données relatives à un automate Jeu de la vie
+    * \details La classe gère les données relatives à un automate Jeu de la Vie
     *
     */
 class JeuDeLaVie : public Automate {
     friend class FabriqueAutomate;
 private :
-    static unsigned int nbDim; /*! nombre de dimensions de l'automate */
-    static unsigned int nbEtats; /*! Taille des regles */
+    static unsigned int nbDim; /*! Nombre de dimensions de l'automate */
+    static unsigned int nbEtats; /*! Nombre d'états acceptés par l'automate */
     /*!
      * \brief Remplissage des règles
      *
      * \details Remplissage du tableau des règles pour automate
      *
-     * \param
-     * \return
+     * \param unsigned int** tab : tableau contenant les différentes régles
+     * \param const unsigned int regle[] : tableau contenant les informations pour générer les régles
+     * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const;
     /*!
@@ -267,39 +268,38 @@ private :
      *
      * \details Remplissage du tableau des règles pour automate
      *
-     * \param
-     * \return
+     * \param unsigned int** tab : tableau contenant les différentes régles
+     * \param const unsigned int regle** : tableau contenant les informations pour générer les régles
+     * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, unsigned int**) const;
 protected :
     /*!
      * \brief Constructeur
      *
-     * \details Constructeur de la classe Cell1D
+     * \details Constructeur de la classe Jeu de la Vie
      *
-     * \param
-     * \return
+     * \param const unsigned int regle[] : tableau contenant les informations pour générer les régles
      */
     JeuDeLaVie(const unsigned int regle[]);
     /*!
      * \brief Constructeur
      *
-     * \details Constructeur par recopie de la classe Cell1D
+     * \details Constructeur par recopie de la classe JeuDeLaVie
      *
-     * \param const Automate& a
-     * \return
+     * \param const Automate& a : Objet Automate à recopier
      */
     JeuDeLaVie(const Automate& a);
 public :
     /*!
-     * \brief Destructeur JeuDeLaVie
+     * \brief Destructeur
      *
      * \details Destructeur de la classe JeuDeLaVie
      *
-     * \param
-     * \return
      */
     ~JeuDeLaVie();
+
+                    //A FAIRE POUR LA DOCUUUU
     /*!
      * \brief creation tableau de règles
      *
