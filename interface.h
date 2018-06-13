@@ -23,16 +23,20 @@ public slots:
     void setLoadedAutomate();
 public:
     MainWindow();
+    ~MainWindow();
 private:
     QComboBox *typeAutomate, *generation;
     //QFileDialog *loadOtherAutomate;
     QFormLayout *newAutomate;
     QGridLayout *display, *mainLayout;
     QHBoxLayout *dimensions, *header;
+    QHeaderView *VHeader, *HHeader;
     QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo;
     QPushButton *submit, *submit2, *loadLastAutomate, *loadOtherAutomate, *quit;
     QSpinBox *dimensionH, *dimensionL;
     QStackedLayout *disp;
+    QTableWidget *infoTbl;
+
     QTextEdit *rules;
     QVBoxLayout *loadAutomate, *tools;
     QWidget *home;

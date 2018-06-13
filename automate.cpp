@@ -114,7 +114,7 @@ Cell1D::~Cell1D(){
 unsigned int** Cell1D::createTabRegle() const {
     unsigned int** tab = new unsigned int* [nbEtats];
     for(unsigned int i=0; i<nbEtats; ++i){
-        tab[i] = new unsigned int [getTailleRegle()+1];
+        tab[i] = new unsigned int[getTailleRegle()+1];
     }
     return tab;
 }

@@ -26,6 +26,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <sstream>
+#include <QTableView>
 #include "interface.h"
 
 
@@ -41,8 +42,17 @@
     */
 
 void MainWindow::createGrid() {
-    disp->setCurrentWidget(submit2);
-
+    disp->setCurrentWidget(infoTbl);
+    infoTbl->setFixedSize(800, 800);
+    infoTbl->setColumnCount(dimensionH->value());
+    infoTbl->setRowCount(dimensionL->value());
+    VHeader = new QHeaderView(Qt::Vertical,infoTbl);
+    HHeader = new QHeaderView(Qt::Horizontal,infoTbl);
+    VHeader->hide();
+    HHeader->hide();
+    infoTbl->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    infoTbl->setHorizontalHeader(HHeader);
+    infoTbl->setVerticalHeader(VHeader);
 }
 
 void MainWindow::backToHome() {
@@ -85,7 +95,6 @@ void MainWindow::setLoadedAutomate() {
 }
 
 MainWindow::MainWindow():QWidget() {
-    //int widthMax(1200), heightMax(800);
     int dimensionMin(10), dimensionMax(100);
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
@@ -151,13 +160,19 @@ MainWindow::MainWindow():QWidget() {
     setLayout(mainLayout);
     setWindowTitle("AUTOCELL");
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
-    submit2 = new QPushButton("PRANK ! CLIQUER POUR REVENIR EN ARRIERE");
-    disp->insertWidget(1, submit2);
+
+    infoTbl = new QTableWidget;
+
+
+    disp->insertWidget(1, infoTbl);
     connect(submit, SIGNAL(clicked()), this, SLOT(createGrid()));
-    connect(submit2, SIGNAL(clicked()), this, SLOT(backToHome()));
+    //connect(grid, SIGNAL(clicked()), this, SLOT(backToHome()));
     connect(loadOtherAutomate, SIGNAL(clicked()), this, SLOT(setLoadedAutomate()));
 }
 
+MainWindow::~MainWindow() {
+
+}
 
 int _interface(int argc, char * argv[]) {
     QApplication app(argc, argv);
@@ -166,7 +181,8 @@ int _interface(int argc, char * argv[]) {
 
 
     MainWindow fenetre;
-    //fenetre.setFixedSize(widthMax, heightMax);
+    int widthMax(800), heightMax(800);
+    fenetre.setFixedSize(widthMax, heightMax);
 
 
 

@@ -83,9 +83,18 @@ public:
     void next();
 
     /*!
-     * \brief Destructeur
+     * \brief Fonction next du Simulateur
      *
-     * \details Destructeur de la classe Simulateur
+     * \details Permet le passage d'un état à son état suivant en fonction des régles de transition
+     *
+     *
+     */
+    Etat* getCurrent() const { return current; }
+
+    /*!
+     * \brief Fonction getCurrent du Simulateur
+     *
+     * \details Permet le renvoie de l'attribut privé current
      *
      */
     ~Simulateur();
