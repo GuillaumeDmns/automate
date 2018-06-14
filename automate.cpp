@@ -134,7 +134,7 @@ Automate::~Automate(){}
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>2||regle[2]>2||regle[4]>2||regle[5]>2) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
-    for(unsigned int i=0; i<=getTailleRegle();++i){
+    for(unsigned int i=0; i<=Cell1D::getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
         if((i/10+i%10)==2) {
@@ -199,7 +199,7 @@ Cell1D::~Cell1D(){
 unsigned int** Cell1D::createTabRegle() const {
     unsigned int** tab = new unsigned int* [nbEtats];
     for(unsigned int i=0; i<nbEtats; ++i){
-        tab[i] = new unsigned int[getTailleRegle()+1];
+        tab[i] = new unsigned int[Cell1D::getTailleRegle()+1];
     }
     return tab;
 }
@@ -295,7 +295,6 @@ unsigned int** JeuDeLaVie::createTabRegle() const {
      * \return Automate*
      */
 Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int regle[]) const {
-    std::cout << idAutomate << std::endl;
     if(idAutomate== "Vie 1D") return (new Cell1D(regle));
     if(idAutomate== "JeuDeLaVie") return (new JeuDeLaVie(regle));
     if(idAutomate== "FeuDeForet") return (new FeuDeForet(regle));
@@ -348,7 +347,6 @@ unsigned int Cell1D::getNbEtats() const{
      * \return unsigned int
      */
 unsigned int Cell1D::getTailleRegle() const{
-    std::cout << pow(2, 3) << std::endl;
     return ((pow(3, nbDim)-1)*pow(10, nbEtats-1));
 }
 
