@@ -28,7 +28,7 @@ public:
     ~MainWindow();
 private:
     Simulateur* simu;
-    int Cellsize;
+    static int Gridsize;
     QComboBox *typeAutomate, *generation;
     //QFileDialog *loadOtherAutomate;
     QFormLayout *newAutomate;

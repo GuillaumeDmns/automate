@@ -30,6 +30,8 @@
 #include "interface.h"
 #include <iostream>
 
+int MainWindow::Gridsize = 300;
+
 /*!
     * \fn int interface(int argc, char * argv[])
     * \brief Programme d'affichage de l'interface
@@ -44,11 +46,11 @@
 void MainWindow::createGrid() {   
     grid->setRowCount(dimensionH->value());
     grid->setColumnCount(dimensionL->value());
-    grid->setFixedSize(dimensionL->value()*Cellsize, dimensionH->value()*Cellsize);
+    grid->setFixedSize(dimensionL->value()*(Gridsize/dimensionL->value()), dimensionH->value()*(Gridsize/dimensionH->value()));
     for(int row=0; row<dimensionH->value(); row++){
-        grid->setRowHeight(row, Cellsize);
+        grid->setRowHeight(row, Gridsize/dimensionH->value());
         for(int col=0; col<dimensionL->value(); col++){
-            grid->setColumnWidth(col,Cellsize);
+            grid->setColumnWidth(col, Gridsize/dimensionL->value());
             grid->setItem(row, col, new QTableWidgetItem(""));
             //std::cout << row << " " << col << " " << grid->item(row, col) << std::endl;
             if ((row+col)%2 == 0) {
@@ -123,7 +125,6 @@ void MainWindow::changeForm(int index) {
 
 MainWindow::MainWindow():QWidget() {
     int dimensionMin(10), dimensionMax(100);
-    Cellsize = 25;
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
 
@@ -143,9 +144,9 @@ MainWindow::MainWindow():QWidget() {
                     dimensionH->setMaximum(dimensionMax);
                     dimensionH->setHidden(true);
                 dimensions = new QHBoxLayout;
-                dimensions->addWidget(dimensionH);
-                dimensions->addWidget(timesDimensions, 0, Qt::AlignCenter);
                 dimensions->addWidget(dimensionL);
+                dimensions->addWidget(timesDimensions, 0, Qt::AlignCenter);
+                dimensions->addWidget(dimensionH);
                 rules = new QTextEdit;
                 generation = new QComboBox;
                 generation->addItem("Grille vide");
@@ -180,7 +181,7 @@ MainWindow::MainWindow():QWidget() {
                 grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 grid->horizontalHeader()->setVisible(false);
                 grid->verticalHeader()->setVisible(false);
-                grid->setFixedSize(dimensionL->value()*Cellsize, dimensionH->value()*Cellsize);
+                //grid->setFixedSize(Gridsize, Gridsize);
                 grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
             bigGridLayout = new QVBoxLayout;
             bigGridLayout->addWidget(grid, 1, Qt::AlignCenter);
