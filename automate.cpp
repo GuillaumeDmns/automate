@@ -20,8 +20,10 @@ using namespace std;
 
 unsigned int Cell1D::nbDim=1;
 unsigned int JeuDeLaVie::nbDim=2;
+unsigned int FeuDeForet::nbDim=2;
 unsigned int Cell1D::nbEtats=2;
 unsigned int JeuDeLaVie::nbEtats=2;
+unsigned int FeuDeForet::nbEtats=4;
 
     /*!
      * \fn void FabriqueAutomate::appliquerTransition(Etat& dep, Etat& dest, Automate& a) const
@@ -294,6 +296,7 @@ unsigned int** JeuDeLaVie::createTabRegle() const {
 Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int regle[]) const {
     if(idAutomate== "Cell1D") return (new Cell1D(regle));
     if(idAutomate== "JeuDeLaVie") return (new JeuDeLaVie(regle));
+    if(idAutomate== "FeuDeForet") return (new FeuDeForet(regle));
     throw AutomateException("Automate Inexistant");
 }
 
@@ -308,6 +311,7 @@ Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigne
 Automate* FabriqueAutomate::createAutomate(const Automate* a) const {
     if(!strcmp(typeid(*a).name(),"Cell1D")) return (new Cell1D(*a));
     if(!strcmp(typeid(*a).name(),"JeuDeLaVie")) return (new JeuDeLaVie(*a));
+    if(!strcmp(typeid(*a).name(),"FeuDeForet")) return (new FeuDeForet(*a));
     throw AutomateException("Automate Inexistant");
 }
 
@@ -321,6 +325,7 @@ Automate* FabriqueAutomate::createAutomate(const Automate* a) const {
 void FabriqueAutomate::deleteAutomate(Automate* a) const{
     if(!strcmp(typeid(*a).name(),"Cell1D")) delete dynamic_cast<Cell1D*>(a);
     if(!strcmp(typeid(*a).name(),"JeuDeLaVie")) delete dynamic_cast<JeuDeLaVie*>(a);
+    if(!strcmp(typeid(*a).name(),"FeuDeForet")) delete dynamic_cast<FeuDeForet*>(a);
     throw AutomateException("AutomateInexistant");
 }
 
@@ -383,5 +388,117 @@ unsigned int JeuDeLaVie::getTailleRegle() const{
      * \return unsigned int
      */
 unsigned int JeuDeLaVie::getNbDim() const{
+    return nbDim;
+}
+
+/*!
+ * \fn unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const
+ * \brief Remplissage du tableau des règles pour automate
+ *
+ * \param unsigned int** tab : Tableau contenant les différentes régles
+ * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+ * \return unsigned int**
+ */
+unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
+if(regle[0]) throw AutomateException("Regle incorrecte");
+    for(unsigned int i=0; i<=getTailleRegle();++i){
+        tab[0][i]=0;
+        tab[1][i]=0;
+        if(((i/1000)+(i/100)%10+(i/10)%10+i%10)==8) {
+            tab[2][i]=3;
+            tab[3][i]=3;
+            if(((i/100)%10>1)||((i/100)>10)) tab[1][i]=2; else tab[1][i]=1;
+        }
+    }
+    return tab;
+}
+
+/*!
+ * \fn unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, unsigned int** regle) const
+ * \brief Remplissage du tableau des règles pour automate
+ *
+ * \param unsigned int** tab : Tableau contenant les différentes régles
+ * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+ * \return unsigned int**
+ */
+unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
+    for(unsigned int i=0; i<nbEtats; ++i){
+        for(unsigned int j=0; j<=getTailleRegle(); ++j){
+            tab[i][j] = regle[i][j];
+        }
+    }
+    return tab;
+}
+
+/*!
+ * \fn FeuDeForet::FeuDeForet(const unsigned int regle[])
+ * \brief Constructeur de la classe Jeu de la Vie
+ *
+ * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+ */
+FeuDeForet::FeuDeForet(const unsigned int regle[]) :Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(),regle)) {
+}
+
+/*!
+ * \fn FeuDeForet::FeuDeForet(const Automate& a)
+ * \brief Constructeur par recopie de la classe FeuDeForet
+ *
+ * \param const Automate& a : Objet Automate à recopier
+ */
+FeuDeForet::FeuDeForet(const Automate& a) :Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(), a.getRegle())) {
+}
+
+/*!
+ * \fn FeuDeForet::~FeuDeForet()
+ * \brief Destructeur de la classe FeuDeForet
+ *
+ */
+FeuDeForet::~FeuDeForet(){
+    for(unsigned int i=0; i<nbEtats; ++i) delete[] regle[i];
+    delete[] regle;
+}
+
+/*!
+ * \fn unsigned int** FeuDeForet::createTabRegle() const
+ * \brief Crée un tableau de règles vide aux bonnes dimensions
+ *
+ * \return unsigned int**
+ */
+unsigned int** FeuDeForet::createTabRegle() const {
+    unsigned int** tab = new unsigned int* [nbEtats];
+    for(unsigned int i=0; i<nbEtats; ++i){
+        tab[i] = new unsigned int [getTailleRegle()+1];
+    }
+    return tab;
+}
+
+/*!
+ * \fn unsigned int FeuDeForet::getNbEtats() const
+ * \brief Permet la récupération de la valeur de l'attribut nbEtats
+ *
+ * \return unsigned int
+ */
+unsigned int FeuDeForet::getNbEtats() const{
+    return nbEtats;
+}
+
+/*!
+ * \fn unsigned int FeuDeForet::getTailleRegle() const
+ * \brief Permet la récupération de la taille que devra faire le tableau de régles
+ *
+ * \return unsigned int
+ */
+unsigned int FeuDeForet::getTailleRegle() const{
+    return ((3^nbDim)-1)*10^(nbEtats-1);
+}
+
+/*!
+ * \fn unsigned int FeuDeForet::getNbDim() const
+ * \brief Permet la récupération du nombre de dimensions de l'automate
+ *
+ * \param
+ * \return unsigned int
+ */
+unsigned int FeuDeForet::getNbDim() const{
     return nbDim;
 }

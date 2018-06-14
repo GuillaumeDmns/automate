@@ -14,6 +14,7 @@
 #define INTERFACE_H
 
 #include <QtWidgets>
+#include "simulateur.h"
 
 class MainWindow : public QWidget {
     Q_OBJECT
@@ -26,6 +27,7 @@ public:
     MainWindow();
     ~MainWindow();
 private:
+    Simulateur* simu;
     int Cellsize;
     QComboBox *typeAutomate, *generation;
     //QFileDialog *loadOtherAutomate;

@@ -110,7 +110,7 @@ public :
      *
      * \return void
      */
-    void appliquerTransition(const Etat1D& dep, Etat1D& dest) const;
+    virtual void appliquerTransition(const Etat1D& dep, Etat1D& dest) const;
 
     /*!
      * \brief Transition d'état
@@ -122,7 +122,7 @@ public :
      *
      * \return void
      */
-    void appliquerTransition(const Etat2D& dep, Etat2D& dest) const;
+    virtual void appliquerTransition(const Etat2D& dep, Etat2D& dest) const;
 
     /*!
      * \brief Création du tableau des règles
@@ -348,6 +348,107 @@ public :
 };
 
 /*!
+    * \class JeuDeLaVie
+    * \brief Classe Jeu de la vie
+    *
+    * \details La classe gère les données relatives à un automate Jeu de la Vie
+    *
+    */
+class FeuDeForet : public Automate {
+    friend class FabriqueAutomate;
+private :
+    static unsigned int nbDim; /*! Nombre de dimensions de l'automate */
+    static unsigned int nbEtats; /*! Nombre d'états acceptés par l'automate */
+
+    /*!
+     * \brief Remplissage des règles
+     *
+     * \details Remplissage du tableau des règles pour automate
+     *
+     * \param unsigned int** tab : Tableau contenant les différentes régles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \return unsigned int**
+     */
+    unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const;
+
+    /*!
+     * \brief Remplissage des règles
+     *
+     * \details Remplissage du tableau des règles pour automate
+     *
+     * \param unsigned int** tab : Tableau contenant les différentes régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \return unsigned int**
+     */
+    unsigned int** remplissageRegle(unsigned int** tab, unsigned int**) const;
+
+protected :
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Feu de Foret
+     *
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     */
+    FeuDeForet(const unsigned int regle[]);
+
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur par recopie de la classe Feu De Foret
+     *
+     * \param const Automate& a : Objet Automate à recopier
+     */
+    FeuDeForet(const Automate& a);
+
+public :
+    /*!
+     * \brief Destructeur
+     *
+     * \details Destructeur de la classe Feu De Foret
+     *
+     */
+    ~FeuDeForet();
+
+    /*!
+     * \brief Création du tableau de règles
+     *
+     * \details Crée un tableau de règles vide aux bonnes dimensions
+     *
+     * \return unsigned int**
+     */
+    unsigned int** createTabRegle() const;
+
+    /*!
+     * \brief Accesseur du nombre d'Etats
+     *
+     * \details Permet la récupération de la valeur de l'attribut nbEtats
+     *
+     * \return unsigned int
+     */
+    unsigned int getNbEtats() const;
+
+    /*!
+     * \brief Calcul la taille du tableau de régles
+     *
+     * \details Permet la récupération de la taille que devra faire le tableau de régles
+     *
+     * \return unsigned int
+     */
+    unsigned int getTailleRegle() const;
+
+    /*!
+     * \brief Accesseur du nombre de dimensions
+     *
+     * \details Permet la récupération du nombre de dimensions de l'automate
+     *
+     * \param
+     * \return unsigned int
+     */
+    unsigned int getNbDim() const;
+};
+
+/*!
     * \class FabriqueAutomate
     * \brief Classe correspondant à une Factory pour les Automates
     *
@@ -380,7 +481,6 @@ protected :
      * \return Automate*
      */
     Automate* createAutomate(std::string idAutomate, const unsigned int regle[] =0) const;
-
 
     /*!
      * \brief Création d'un Automate
