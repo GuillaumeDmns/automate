@@ -12,6 +12,7 @@
 #include <iostream>
 #include <typeinfo>
 #include "string.h"
+#include <math.h>
 #include "automate.h"
 
 using namespace std;
@@ -294,7 +295,8 @@ unsigned int** JeuDeLaVie::createTabRegle() const {
      * \return Automate*
      */
 Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int regle[]) const {
-    if(idAutomate== "Cell1D") return (new Cell1D(regle));
+    std::cout << idAutomate << std::endl;
+    if(idAutomate== "Vie 1D") return (new Cell1D(regle));
     if(idAutomate== "JeuDeLaVie") return (new JeuDeLaVie(regle));
     if(idAutomate== "FeuDeForet") return (new FeuDeForet(regle));
     throw AutomateException("Automate Inexistant");
@@ -346,7 +348,8 @@ unsigned int Cell1D::getNbEtats() const{
      * \return unsigned int
      */
 unsigned int Cell1D::getTailleRegle() const{
-    return ((3^nbDim)-1)*10^(nbEtats-1);
+    std::cout << pow(2, 3) << std::endl;
+    return ((pow(3, nbDim)-1)*pow(10, nbEtats-1));
 }
 
     /*!
@@ -377,7 +380,7 @@ unsigned int JeuDeLaVie::getNbEtats() const{
      * \return unsigned int
      */
 unsigned int JeuDeLaVie::getTailleRegle() const{
-    return ((3^nbDim)-1)*10^(nbEtats-1);
+    return (pow(3, nbDim)-1)*pow(10, nbEtats-1);
 }
 
     /*!
@@ -489,7 +492,7 @@ unsigned int FeuDeForet::getNbEtats() const{
  * \return unsigned int
  */
 unsigned int FeuDeForet::getTailleRegle() const{
-    return ((3^nbDim)-1)*10^(nbEtats-1);
+    return (pow(3, nbDim)-1)*pow(10, nbEtats-1);
 }
 
 /*!
