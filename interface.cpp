@@ -31,6 +31,8 @@
 #include <iostream>
 
 int MainWindow::Gridsize = 300;
+const int dimensionMin=10;
+const int dimensionMax=100;
 
 /*!
     * \fn int interface(int argc, char * argv[])
@@ -115,16 +117,19 @@ void MainWindow::changeForm(int index) {
     case 0:
        timesDimensions->setHidden(true);
        dimensionH->setHidden(true);
+       dimensionH->setMinimum(1);
+       dimensionH->setMaximum(1);
         break;
     default:
         timesDimensions->setHidden(false);
         dimensionH->setHidden(false);
+        dimensionH->setMinimum(dimensionMin);
+        dimensionH->setMaximum(dimensionMax);
         break;
     }
 }
 
 MainWindow::MainWindow():QWidget() {
-    int dimensionMin(10), dimensionMax(100);
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
 
@@ -140,8 +145,8 @@ MainWindow::MainWindow():QWidget() {
                     timesDimensions = new QLabel("x");
                     timesDimensions->setHidden(true);
                     dimensionH = new QSpinBox;
-                    dimensionH->setMinimum(dimensionMin);
-                    dimensionH->setMaximum(dimensionMax);
+                    dimensionH->setMinimum(1);
+                    dimensionH->setMaximum(1);
                     dimensionH->setHidden(true);
                 dimensions = new QHBoxLayout;
                 dimensions->addWidget(dimensionL);
@@ -200,8 +205,6 @@ MainWindow::MainWindow():QWidget() {
     setLayout(mainLayout);
     setWindowTitle("AUTOCELL");
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
-
-
 
     connect(submit, SIGNAL(clicked()), this, SLOT(createGrid()));
     connect(backHomeButton, SIGNAL(clicked()), this, SLOT(backToHome()));
