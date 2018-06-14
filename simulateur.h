@@ -41,7 +41,7 @@ public:
      * \param unsigned int m : Dimension m de la grille
      *
      */
-    Simulateur(string typeautomate, unsigned int regles[], string choixdepart, unsigned int n, unsigned int m =0);
+    Simulateur(string typeautomate, unsigned int regles[], string choixdepart, unsigned int n, unsigned int m =1);
 
     /*!
      * \brief Fonction reset du Simulateur
@@ -54,7 +54,6 @@ public:
             this->current=this->depart;
             this->numEtat=0;
     }
-
 
     /*!
      * \brief Fonction setEtat du Simulateur
@@ -91,6 +90,10 @@ public:
      * \return Etat*
      */
     Etat* getCurrent() const { return current; }
+
+    unsigned int getCurrent(unsigned int n, unsigned int m) const;
+
+    void setCurrent(unsigned int n, unsigned int m =0, unsigned int v=0);
 
     /*!
      * \brief Destructeur

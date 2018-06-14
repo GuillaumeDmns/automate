@@ -180,3 +180,24 @@ void FabriqueEtat::deleteEtat(Etat* e) const{
     throw EtatException("Etat non existant");
 }
 
+void FabriqueEtat::setValue(unsigned int n, unsigned int m, unsigned int v, Etat *e){
+    if(n>=e->getdimN()) throw EtatException("Dimension incorrecte");
+    if(!strcmp(typeid(*e).name(),"Etat1D")){
+        if(m) dynamic_cast<Etat1D*>(e)->setValue(n,v); else throw EtatException("Dimension incorrecte");
+    }
+    if(!strcmp(typeid(*e).name(),"Etat2D")){
+        if(m<dynamic_cast<Etat2D*>(e)->getdimM()) dynamic_cast<Etat2D*>(e)->setValue(n,m,v); else throw EtatException("Dimension incorrecte");
+    }
+    throw EtatException("Etat non existant");
+}
+
+unsigned int FabriqueEtat::getValue(unsigned int n, unsigned int m, Etat *e) const {
+    if(n>=e->getdimN()) throw EtatException("Dimension incorrecte");
+    if(!strcmp(typeid(*e).name(),"Etat1D")){
+        if(m) return dynamic_cast<Etat1D*>(e)->getValue(n); else throw EtatException("Dimension incorrecte");
+    }
+    if(!strcmp(typeid(*e).name(),"Etat2D")){
+        if(m<dynamic_cast<Etat2D*>(e)->getdimM()) return dynamic_cast<Etat2D*>(e)->getValue(n,m); else throw EtatException("Dimension incorrecte");
+    }
+    throw EtatException("Etat non existant");
+}

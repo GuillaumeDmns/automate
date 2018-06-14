@@ -33,7 +33,7 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
     FabriqueEtat fabEtat;
     automate=fabAutomate.createAutomate(typeautomate,regles);
     unsigned int i,j;
-    if (m==0)
+    if (m==1)
     {
         unsigned int* tab=new unsigned int[n];
         if (choixdepart.compare("aleatoire")==0){
@@ -118,4 +118,14 @@ Simulateur::~Simulateur() {
     fabAutomate.deleteAutomate(automate);
     fabEtat.deleteEtat(depart);
     fabEtat.deleteEtat(current);
+}
+
+void Simulateur::setCurrent(unsigned int n, unsigned int m, unsigned int v){
+    FabriqueEtat fabEtat;
+    fabEtat.setValue(n,m,v,getCurrent());
+}
+
+unsigned int Simulateur::getCurrent(unsigned int n, unsigned int m) const {
+    FabriqueEtat fabEtat;
+    return fabEtat.getValue(n,m,getCurrent());
 }

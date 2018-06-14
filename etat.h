@@ -26,7 +26,17 @@ using namespace std;
     */
 class Etat {
 protected :
-        unsigned int dimN; /*!< Dimension 1 de la grille*/
+    unsigned int dimN; /*!< Dimension 1 de la grille*/
+
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Etat
+     *
+     * \param unsigned int n : Valeur initiale de la dimension n
+     *
+     */
+    Etat(unsigned int n): dimN(n){}
 public :
     
     /*!
@@ -37,16 +47,6 @@ public :
      * \return dimN
      */
     unsigned int getdimN() const {return dimN;}
-    
-    /*!
-     * \brief Constructeur
-     *
-     * \details Constructeur de la classe Etat
-     *
-     * \param unsigned int n : Valeur initiale de la dimension n
-     *
-     */
-    Etat(unsigned int n): dimN(n){}
 
 //FONCTION NON DOCUMENTEE
     virtual void fonctionVirtuelle() =0;
@@ -61,7 +61,9 @@ public :
     *
     */
 class Etat1D : public Etat{
-public :
+    friend class FabriqueEtat;
+    friend class Automate;
+protected:
 
     /*!
      * \brief Constructeur
@@ -72,15 +74,6 @@ public :
      * \param unsigned int* t : Tableau des valeurs de la grille
      */
     Etat1D(unsigned int n,unsigned int* t);
-    
-    /*!
-     * \brief Destructeur
-     *
-     * \details Destructeur de la classe Etat1D
-     *
-     * 
-     */
-    ~Etat1D();
     
     /*!
      * \brief Constructeur par recopie
@@ -106,6 +99,26 @@ public :
     Etat1D& operator=(const Etat1D& e);
 
     /*!
+     * \brief Affectation d'une valeur
+     *
+     * \details Affecte une valeur à la case indiquée dans la grille
+     *
+     * \param unsigned int n : Indice de la case dans le tableau
+     * \param unsigned int v : Valeur à affecter à la case
+     */
+    void setValue(unsigned int n, unsigned int v) {valeur[n]=v;}
+
+public:
+    /*!
+     * \brief Destructeur
+     *
+     * \details Destructeur de la classe Etat1D
+     *
+     *
+     */
+    ~Etat1D();
+
+    /*!
      * \brief Récupération de la valeur d'une case de la grille
      *
      * \details Renvoie la valeur de la case (n)
@@ -114,16 +127,6 @@ public :
      * \return valeur[n]
      */
     unsigned int getValue(unsigned int n) const {return valeur[n];}
-
-    /*!
-     * \brief Affectation d'une valeur
-     *
-     * \details Affecte une valeur à la case indiquée dans la grille
-     *
-     * \param unsigned int n : Indice de la case dans le tableau
-     * \param unsigned int v : Valeur à affecter à la case
-     */
-    void setValue(unsigned int n, unsigned int v) const {valeur[n]=v;}
 
 //FONCTION NON DOCUMENTEE
     void fonctionVirtuelle(){};
@@ -141,10 +144,12 @@ private :
     *
     */
 class Etat2D : public Etat{
+    friend class FabriqueEtat;
+    friend class Automate;
 private :
     unsigned int dimM; /*!< Deuxième dimension de la grille*/
     unsigned int** valeur; /*!< Tableau des valeurs de la grille*/
-public :
+protected:
 
     /*!
      * \brief Constructeur
@@ -156,15 +161,6 @@ public :
      * \param unsigned int** t : Tableau des valeurs de la grille
      */
     Etat2D(unsigned int n,unsigned int m, unsigned int** t);
-    
-    /*!
-     * \brief Destructeur
-     *
-     * \details Destructeur de la classe Etat2D
-     *
-     * 
-     */
-    ~Etat2D();
     
     /*!
      * \brief Constructeur par recopie
@@ -189,7 +185,28 @@ public :
      * 
      */
     Etat2D& operator=(const Etat2D& e);
-    
+
+    /*!
+     * \brief Affectation d'une valeur
+     *
+     * \details Affecte une valeur à la case indiquée dans la grille
+     *
+     * \param unsigned int n : Abscisse de la case sur la grille
+     * \param unsigned int m : Ordonnée de la case sur la grille
+     * \param unsigned int v : Valeur à affecter à la case
+     * \return
+     */
+    void setValue(unsigned int n, unsigned int m, unsigned int v) {valeur[n][m]=v;}
+public:
+    /*!
+     * \brief Destructeur
+     *
+     * \details Destructeur de la classe Etat2D
+     *
+     *
+     */
+    ~Etat2D();
+
     /*!
      * \brief Récupération de la valeur d'une case de la grille
      *
@@ -200,18 +217,6 @@ public :
      * \return valeur[n][m]
      */
     unsigned int getValue(unsigned int n,unsigned int m) const {return valeur[n][m];}
-    
-    /*!
-     * \brief Affectation d'une valeur
-     *
-     * \details Affecte une valeur à la case indiquée dans la grille
-     *
-     * \param unsigned int n : Abscisse de la case sur la grille
-     * \param unsigned int m : Ordonnée de la case sur la grille
-     * \param unsigned int v : Valeur à affecter à la case
-     * \return 
-     */
-    void setValue(unsigned int n, unsigned int m, unsigned int v) const {valeur[n][m]=v;}
 
     /*!
      * \brief Récupération de la dimension M
@@ -276,6 +281,9 @@ protected :
      */
     void deleteEtat(Etat* e) const;
 
+    void setValue(unsigned int n, unsigned int m, unsigned int v, Etat* e);
+
+    unsigned int getValue(unsigned int n, unsigned int m, Etat* e) const;
 };
 
 
