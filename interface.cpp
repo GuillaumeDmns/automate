@@ -112,11 +112,11 @@ void MainWindow::changeForm(int index) {
     switch (index) {
     case 0:
        timesDimensions->setHidden(true);
-       dimensionL->setHidden(true);
+       dimensionH->setHidden(true);
         break;
     default:
         timesDimensions->setHidden(false);
-        dimensionL->setHidden(false);
+        dimensionH->setHidden(false);
         break;
     }
 }
