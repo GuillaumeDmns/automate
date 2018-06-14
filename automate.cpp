@@ -215,7 +215,7 @@ unsigned int** Cell1D::createTabRegle() const {
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
     if(regle[0]||regle[3]!=1||regle[1]>8||regle[2]>8||regle[4]>8||regle[5]>8) throw AutomateException("Regle incorrecte");
     if(regle[1]>regle[2]||regle[4]>regle[5]) throw AutomateException("Regle incorrecte");
-    for(unsigned int i=0; i<=getTailleRegle();++i){
+    for(unsigned int i=0; i<=JeuDeLaVie::getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
         if((i/10+i%10)==8) {
@@ -236,7 +236,7 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned i
      */
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
     for(unsigned int i=0; i<nbEtats; ++i){
-        for(unsigned int j=0; j<=getTailleRegle(); ++j){
+        for(unsigned int j=0; j<=JeuDeLaVie::getTailleRegle(); ++j){
             tab[i][j] = regle[i][j];
         }
     }
@@ -280,7 +280,7 @@ JeuDeLaVie::~JeuDeLaVie(){
 unsigned int** JeuDeLaVie::createTabRegle() const {
     unsigned int** tab = new unsigned int* [nbEtats];
     for(unsigned int i=0; i<nbEtats; ++i){
-        tab[i] = new unsigned int [getTailleRegle()+1];
+        tab[i] = new unsigned int [JeuDeLaVie::getTailleRegle()+1];
     }
     return tab;
 }
@@ -296,8 +296,8 @@ unsigned int** JeuDeLaVie::createTabRegle() const {
      */
 Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int regle[]) const {
     if(idAutomate== "Vie 1D") return (new Cell1D(regle));
-    if(idAutomate== "JeuDeLaVie") return (new JeuDeLaVie(regle));
-    if(idAutomate== "FeuDeForet") return (new FeuDeForet(regle));
+    if(idAutomate== "Vie 2D") return (new JeuDeLaVie(regle));
+    if(idAutomate== "Feu de forêt") return (new FeuDeForet(regle));
     throw AutomateException("Automate Inexistant");
 }
 
@@ -468,7 +468,7 @@ FeuDeForet::~FeuDeForet(){
 unsigned int** FeuDeForet::createTabRegle() const {
     unsigned int** tab = new unsigned int* [nbEtats];
     for(unsigned int i=0; i<nbEtats; ++i){
-        tab[i] = new unsigned int [getTailleRegle()+1];
+        tab[i] = new unsigned int [FeuDeForet::getTailleRegle()+1];
     }
     return tab;
 }
