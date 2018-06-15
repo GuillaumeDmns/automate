@@ -76,22 +76,23 @@ Etat1D& Etat1D::operator=(const Etat1D& e){
     *
     */
 Etat2D::Etat2D(unsigned int n,unsigned int m,unsigned int** t=0):Etat(n),dimM(m),valeur(new unsigned int*[n]){
-    if (t){
+    /*if (t){
         for (unsigned int i=0;i<(n);i++)
             {
             valeur[i]=new unsigned int [m];
             for (unsigned int j=0;j<m;j++)
                 valeur[i][j]=0;
             }
+        std::cout << "1er" << std::endl;
     }
-    else {
+    else {*/
         for (unsigned int i=0;i<(n);i++)
             {
             valeur[i]=new unsigned int [m];
             for (unsigned int j=0;j<m;j++)
                 valeur[i][j]=t[i][j];
             }
-    }
+    /*}*/
 }
 
 /*!
