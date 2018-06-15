@@ -92,7 +92,7 @@ void MainWindow::createGrid() {
 }
 
 void MainWindow::backToHome() {
-    delete simu;
+    //delete simu;
     disp->setCurrentWidget(home);
     for(int row=0; row<dimensionH->value(); row++){
         for(int col=0; col<dimensionL->value(); col++){

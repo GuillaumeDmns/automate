@@ -197,7 +197,7 @@ unsigned int FabriqueEtat::getValue(unsigned int n, unsigned int m, Etat *e) con
         if(m==0) return dynamic_cast<Etat1D*>(e)->getValue(n);
         else throw EtatException("Dimension incorrecte");
     }
-    if(!strcmp(typeid(*e).name(),"Etat2D")){
+    if(!strcmp(typeid(*e).name(),"6Etat2D")){
         if(m<dynamic_cast<Etat2D*>(e)->getdimM()) return dynamic_cast<Etat2D*>(e)->getValue(n,m); else throw EtatException("Dimension incorrecte");
     }
     throw EtatException("Etat non existant");

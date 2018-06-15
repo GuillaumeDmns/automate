@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <math.h>
+#include <iostream>
 #include "automate.h"
 
 
@@ -65,8 +66,9 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
         if (choixdepart.compare("Remplissage aléatoire")==0){
             for (i=0;i<n;i++)
                 tab[i] = new unsigned int[m];
-                for (j=0;j<m;j++)
-                    tab[i][j]=rand()%2;
+                for (j=0;j<m;j++) {
+                    tab[i][j]=rand() % 2;
+                }
         }
         else {
             if (choixdepart.compare("Remplissage symétrique")==0){
