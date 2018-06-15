@@ -93,7 +93,7 @@ protected:
      * \param Etat1D& e : Objet Etat1D à affecter à l'objet courant
      * 
      */
-    Etat1D& operator=(const Etat1D& e);
+    void copyEtat(const Etat1D* source);
 
     /*!
      * \brief Affectation d'une valeur
@@ -178,7 +178,7 @@ protected:
      * \param Etat2D& e : Objet Etat2D à affecter à l'objet courant
      * 
      */
-    Etat2D& operator=(const Etat2D& e);
+    void copyEtat(const Etat2D* source);
 
     /*!
      * \brief Affectation d'une valeur
@@ -297,6 +297,8 @@ protected :
      * \return unsigned int
      */
     unsigned int getValue(unsigned int n, unsigned int m, Etat* e) const;
+
+    void copyEtat(Etat* source, Etat* dest) const;
 };
 
 

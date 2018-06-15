@@ -119,7 +119,7 @@ void Simulateur::next(){
     FabriqueAutomate fabAutomate;cout<<2;
     Etat* suivant = fabEtat.createEtat(current);cout<<3;
     fabAutomate.appliquerTransition(*current,*suivant,*automate);cout<<4;
-    *current=*suivant;cout<<5;
+    fabEtat.copyEtat(suivant,current);cout<<5;
     fabEtat.deleteEtat(suivant);cout<<6;
     numEtat++;cout<<7;
 }

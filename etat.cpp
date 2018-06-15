@@ -56,14 +56,13 @@ Etat1D::~Etat1D(){
      * \param const Etat1D& e : Objet Etat1D à affecter
      * \return Etat1D&
      */
-Etat1D& Etat1D::operator=(const Etat1D& e){
-    if (getdimN()!=e.getdimN())
+void Etat1D::copyEtat(const Etat1D* source){
+    if (source->getdimN()!=dimN)
         throw "erreur : taille des grilles incompatibles";
     else {
-    for (unsigned int i=0;i<getdimN();i++)
-                valeur[i]=e.valeur[i];
+    for (unsigned int i=0;i<dimN;++i)
+                valeur[i]=source->getValue(i);
     }
-    return *this;
 }
 
 /*!
@@ -116,15 +115,14 @@ Etat2D::~Etat2D(){
      * \param const Etat2D& e : Objet Etat2D à affecter
      * \return Etat2D&
      */
-Etat2D& Etat2D::operator=(const Etat2D& e){
-    if (dimM!=e.dimM || getdimN()!=e.getdimN())
+void Etat2D::copyEtat(const Etat2D* source){
+    if (source->getdimM()!=dimM || source->getdimN()!=dimN)
         throw "erreur : tailles des grilles incompatibles";
     else {
-    for (unsigned int i=0;i<getdimN();i++)
+    for (unsigned int i=0;i<dimN;i++)
         for (unsigned int j=0;j<dimM;j++)
-                valeur[i][j]=e.valeur[i][j];
+                valeur[i][j]=source->getValue(i,j);
     }
-    return *this;
 }
 
 
@@ -223,5 +221,12 @@ unsigned int FabriqueEtat::getValue(unsigned int n, unsigned int m, Etat *e) con
         if(m<dynamic_cast<Etat2D*>(e)->getdimM()) return dynamic_cast<Etat2D*>(e)->getValue(n,m);
         else throw EtatException("Dimension incorrecte");
     }
+    throw EtatException("Etat non existant");
+}
+
+void FabriqueEtat::copyEtat(Etat* source, Etat* dest) const {
+    if(strcmp(typeid(source).name(),typeid(dest).name())) throw EtatException("Etats incompatibles"); else
+    if(!strcmp(typeid(source).name(),"6Etat1D")) dynamic_cast<Etat1D*>(dest)->copyEtat(dynamic_cast<Etat1D*>(source)); else
+    if(!strcmp(typeid(source).name(),"6Etat2D")) dynamic_cast<Etat2D*>(dest)->copyEtat(dynamic_cast<Etat2D*>(source)); else
     throw EtatException("Etat non existant");
 }
