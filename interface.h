@@ -37,16 +37,15 @@ private:
     //QFileDialog *loadOtherAutomate;
     QFormLayout *newAutomate;
     QGridLayout *display, *mainLayout;
-    QHBoxLayout *dimensions, *header;
+    QHBoxLayout *dimensions, *header, *rulesRenait, *rulesVit;
     QHeaderView *VHeader, *HHeader;
-    QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo, *toolsInfo2, *toolsInfo3, *counter, *counterLabel;
+    QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo, *toolsInfo2, *toolsInfo3, *counter, *counterLabel, *minR, *maxR, *minV, *maxV;
     QPushButton *submit, *backHomeButton, *loadOtherAutomate, *quit, *next, *reset, *save, *stop, *play;
     Simulateur* simu;
-    QSpinBox *dimensionH, *dimensionL;
+    QSpinBox *dimensionH, *dimensionL, *minRenait, *maxRenait, *minVit, *maxVit;
     QStackedLayout *disp;
     static int Gridsize;
     QTableWidget *grid;
-    QTextEdit *rules;
     QVBoxLayout *tools, *bigGridLayout;
     QWidget *home, *gridWidget;
 

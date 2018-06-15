@@ -59,7 +59,13 @@ void MainWindow::resetGrid() {
 }
 
 void MainWindow::createGrid() {
-    unsigned int rule[6] = {0,1,2,1,1,1};
+    unsigned int rule[6];
+    rule[0]=0;
+    rule[1]=minRenait->value();
+    rule[2]=maxRenait->value();
+    rule[3]=1;
+    rule[4]=minVit->value();
+    rule[5]=maxVit->value();
     simu = new Simulateur(typeAutomate->currentText().toStdString(),rule,generation->currentText().toStdString(),dimensionL->value(),dimensionH->value());
     grid->setRowCount(dimensionH->value());
     grid->setColumnCount(dimensionL->value());
@@ -135,7 +141,7 @@ void MainWindow::setLoadedAutomate() {
             ++getParamAutomate;
         }
         loadedFile.close();
-        rules->setText(text);
+        //rules->setText(text);
     }
     else {
         text = "Le fichier n'a pas pu être ouvert !";
@@ -152,6 +158,14 @@ void MainWindow::changeForm(int index) {
        dimensionH->setHidden(true);
        dimensionH->setMinimum(1);
        dimensionH->setMaximum(1);
+       minRenait->setMinimum(0);
+       minRenait->setMaximum(2);
+       maxRenait->setMinimum(0);
+       maxRenait->setMaximum(2);
+       minVit->setMinimum(0);
+       minVit->setMaximum(2);
+       maxVit->setMinimum(0);
+       maxVit->setMaximum(2);
         break;
     case 1:
         toolsInfo->setHidden(true);
@@ -161,6 +175,14 @@ void MainWindow::changeForm(int index) {
         dimensionH->setHidden(false);
         dimensionH->setMinimum(dimensionMin);
         dimensionH->setMaximum(dimensionMax);
+        minRenait->setMinimum(0);
+        minRenait->setMaximum(8);
+        maxRenait->setMinimum(0);
+        maxRenait->setMaximum(8);
+        minVit->setMinimum(0);
+        minVit->setMaximum(8);
+        maxVit->setMinimum(0);
+        maxVit->setMaximum(8);
         break;
     case 2:
         toolsInfo->setHidden(true);
@@ -170,6 +192,14 @@ void MainWindow::changeForm(int index) {
         dimensionH->setHidden(false);
         dimensionH->setMinimum(dimensionMin);
         dimensionH->setMaximum(dimensionMax);
+        minRenait->setMinimum(0);
+        minRenait->setMaximum(8);
+        maxRenait->setMinimum(0);
+        maxRenait->setMaximum(8);
+        minVit->setMinimum(0);
+        minVit->setMaximum(8);
+        maxVit->setMinimum(0);
+        maxVit->setMaximum(8);
         break;
     default:
         break;
@@ -235,7 +265,32 @@ MainWindow::MainWindow():QWidget() {
                 dimensions->addWidget(dimensionL);
                 dimensions->addWidget(timesDimensions, 0, Qt::AlignCenter);
                 dimensions->addWidget(dimensionH);
-                rules = new QTextEdit;
+                    minR = new QLabel("min");
+                    minRenait = new QSpinBox;
+                    minRenait->setMinimum(0);
+                    minRenait->setMaximum(2);
+                    maxR = new QLabel("max");
+                    maxRenait = new QSpinBox;
+                    maxRenait->setMinimum(0);
+                    maxRenait->setMaximum(2);
+                    minV = new QLabel("min");
+                    minVit = new QSpinBox;
+                    minVit->setMinimum(0);
+                    minVit->setMaximum(2);
+                    maxV = new QLabel("max");
+                    maxVit = new QSpinBox;
+                    maxVit->setMinimum(0);
+                    maxVit->setMaximum(2);
+                rulesRenait = new QHBoxLayout;
+                rulesRenait->addWidget(minR);
+                rulesRenait->addWidget(minRenait);
+                rulesRenait->addWidget(maxR);
+                rulesRenait->addWidget(maxRenait);
+                rulesVit = new QHBoxLayout;
+                rulesVit->addWidget(minV);
+                rulesVit->addWidget(minVit);
+                rulesVit->addWidget(maxV);
+                rulesVit->addWidget(maxVit);
                 generation = new QComboBox;
                 generation->addItem("Grille vide");
                 generation->addItem("Remplissage aléatoire");
@@ -243,7 +298,8 @@ MainWindow::MainWindow():QWidget() {
             newAutomate = new QFormLayout;
             newAutomate->addRow("Type d'automate", typeAutomate);
             newAutomate->addRow("Dimensions", dimensions);
-            newAutomate->addRow("Règles", rules);
+            newAutomate->addRow("Nombre de voisins \n pour renaître", rulesRenait);
+            newAutomate->addRow("Nombre de voisins \n pour rester vivant", rulesVit);
             newAutomate->addRow("Génération", generation);
             submit = new QPushButton("Valider");
             backHomeButton = new QPushButton("Retour");
