@@ -98,6 +98,10 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
                     throw "erreur : choix de départ inconnu\n";
             }
         }
+        if (typeautomate.compare("Feu de forêt") == 0) {
+
+            tab[rand()%n][rand()%m] = 2;
+        }
         depart = fabEtat.createEtat(n,m,tab);
         current = fabEtat.createEtat(n,m,tab);
     }
