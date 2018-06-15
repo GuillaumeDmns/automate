@@ -38,13 +38,14 @@ private:
     QHBoxLayout *dimensions, *header;
     QHeaderView *VHeader, *HHeader;
     QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo;
-    QPushButton *submit, *backHomeButton, *loadOtherAutomate, *quit;
+    QPushButton *submit, *backHomeButton, *loadOtherAutomate, *quit, *next, *reset, *save;
     QSpinBox *dimensionH, *dimensionL;
     QStackedLayout *disp;
     QTableWidget *grid;
     QTextEdit *rules;
     QVBoxLayout *tools, *bigGridLayout;
     QWidget *home, *gridWidget;
+    QCheckBox *play;
 };
 
 /*!

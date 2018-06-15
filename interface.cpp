@@ -196,9 +196,17 @@ MainWindow::MainWindow():QWidget() {
             quit = new QPushButton("Quitter");
             loadOtherAutomate = new QPushButton("Charger un autre automate");
             toolsInfo = new QLabel("Qu'est-ce qu'un automate cellulaire ?");
+            next = new QPushButton("Next");
+            reset = new QPushButton("Reset");
+            play = new QCheckBox("Play");
+            save = new QPushButton("Save");
         tools = new QVBoxLayout;
         tools->addWidget(toolsInfo, 0, Qt::AlignCenter);
         tools->addWidget(loadOtherAutomate, 0, Qt::AlignCenter);
+        tools->addWidget(next, 0, Qt::AlignCenter);
+        tools->addWidget(play, 0, Qt::AlignCenter);
+        tools->addWidget(reset, 0, Qt::AlignCenter);
+        tools->addWidget(save, 0, Qt::AlignCenter);
         tools->addWidget(quit, 0, Qt::AlignBottom|Qt::AlignRight);
                 grid = new QTableWidget(dimensionH->value(), dimensionL->value());
                 grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -223,7 +231,7 @@ MainWindow::MainWindow():QWidget() {
     setLayout(mainLayout);
     setWindowTitle("AUTOCELL");
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
-
+    //connect(next, SIGNAL(clicked()), this, SLOT(nextEtat()));
     connect(submit, SIGNAL(clicked()), this, SLOT(createGrid()));
     connect(backHomeButton, SIGNAL(clicked()), this, SLOT(backToHome()));
     connect(loadOtherAutomate, SIGNAL(clicked()), this, SLOT(setLoadedAutomate()));
