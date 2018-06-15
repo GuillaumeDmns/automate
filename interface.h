@@ -24,13 +24,15 @@ public slots:
     void changeForm(int index);
     void createGrid();
     void nextEtat();
+    void playGrid();
     void resetGrid();
     void setLoadedAutomate();
+    void stopGrid();
 public:
     MainWindow();
     ~MainWindow();
 private:
-    QCheckBox *play;
+
     QComboBox *typeAutomate, *generation;
     //QFileDialog *loadOtherAutomate;
     QFormLayout *newAutomate;
@@ -38,7 +40,7 @@ private:
     QHBoxLayout *dimensions, *header;
     QHeaderView *VHeader, *HHeader;
     QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo;
-    QPushButton *submit, *backHomeButton, *loadOtherAutomate, *quit, *next, *reset, *save;
+    QPushButton *submit, *backHomeButton, *loadOtherAutomate, *quit, *next, *reset, *save, *stop, *play;
     Simulateur* simu;
     QSpinBox *dimensionH, *dimensionL;
     QStackedLayout *disp;

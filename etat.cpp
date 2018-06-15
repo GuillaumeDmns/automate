@@ -60,8 +60,11 @@ Etat1D& Etat1D::operator=(const Etat1D& e){
     if (getdimN()!=e.getdimN())
         throw "erreur : taille des grilles incompatibles";
     else {
-    for (unsigned int i=0;i<getdimN();i++)
-                valeur[i]=e.valeur[i];
+        for (unsigned int i=0;i<getdimN();i++) {
+            std::cout << e.valeur[i] << " ";
+            valeur[i]=e.valeur[i];
+            std::cout << valeur[i] << std::endl;
+        }
     }
     return *this;
 }
