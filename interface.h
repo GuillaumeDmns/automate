@@ -45,6 +45,15 @@ private:
     QWidget *home, *gridWidget;
 };
 
+/*!
+    * \brief _interface
+    * \details Programme d'affichage de l'interface
+    *
+    * \param int argc :
+    * \param char* argv[] :
+    *
+    * \return int
+    */
 int _interface(int argc, char* argv[]);
 
 #endif

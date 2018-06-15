@@ -34,16 +34,6 @@ int MainWindow::Gridsize = 400;
 const int dimensionMin=10;
 const int dimensionMax=100;
 
-/*!
-    * \fn int interface(int argc, char * argv[])
-    * \brief Programme d'affichage de l'interface
-    * 
-    * \param int argc :
-    * \param char* argv[] :
-    *
-    * \return app.exec() : execution de l'application de l'interface graphique
-    *
-    */
 
 void MainWindow::createGrid() {
     unsigned int rule[6] = {0,1,2,1,1,1};
@@ -240,6 +230,16 @@ MainWindow::~MainWindow() {
 
 }
 
+/*!
+    * \fn int _interface(int argc, char * argv[])
+    * \brief Programme d'affichage de l'interface
+    *
+    * \param int argc :
+    * \param char* argv[] :
+    *
+    * \return int
+    *
+    */
 int _interface(int argc, char * argv[]) {
     QApplication app(argc, argv);
 
@@ -249,10 +249,6 @@ int _interface(int argc, char * argv[]) {
     MainWindow fenetre;
     int widthMax(800), heightMax(600);
     fenetre.setFixedSize(widthMax, heightMax);
-
-
-
-
 
 
     fenetre.show();
