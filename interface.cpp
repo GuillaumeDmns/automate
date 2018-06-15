@@ -56,7 +56,7 @@ void MainWindow::createGrid() {
         for(int col=0; col<dimensionL->value(); col++){
             grid->setColumnWidth(col, Gridsize/dimensionL->value());
             grid->setItem(row, col, new QTableWidgetItem(""));
-            switch(simu->getCurrent(col, row)){
+            switch(simu->getValueCurrent(col, row)){
             case 0 :
                 grid->item(row, col)->setBackgroundColor("white");
                 grid->item(row, col)->setTextColor("white");

@@ -64,17 +64,18 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
     else {
         unsigned int** tab=new unsigned int*[n];
         if (choixdepart.compare("Remplissage aléatoire")==0){
-            for (i=0;i<n;i++)
+            for (i=0;i<n;++i) {
                 tab[i] = new unsigned int[m];
-                for (j=0;j<m;j++) {
-                    tab[i][j]=rand() % 2;
+                for (j=0;j<m;++j) {
+                    tab[i][j]=rand()%2;
                 }
+            }
         }
         else {
             if (choixdepart.compare("Remplissage symétrique")==0){
-                for (i=0;i<(floor(n/2)+1);i++) {
+                for (i=0;i<(floor(n/2)+1);++i) {
                     tab[i] = new unsigned int[m];
-                    for (j=0;j<m;j++)
+                    for (j=0;j<m;++j)
                     {
                         tab[i][j]=rand()%2;
                         tab[n-1-i][j]=tab[i][j];
@@ -83,9 +84,9 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
             }
             else {
                 if (choixdepart.compare("Grille vide")==0){
-                    for (i=0;i<n;i++) {
+                    for (i=0;i<n;++i) {
                         tab[i] = new unsigned int[m];
-                        for (j=0;j<m;j++)
+                        for (j=0;j<m;++j)
                             tab[i][j]=0;
                     }
 

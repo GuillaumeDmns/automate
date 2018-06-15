@@ -11,6 +11,7 @@
     
 #include "interface.h"
 #include "simulateur.h"
+
 /*!
     * \fn int main (int argc,char * argv[])
     * \brief Entrée du programme
