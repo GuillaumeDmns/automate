@@ -37,8 +37,10 @@ const int dimensionMin=10;
 const int dimensionMax=150;
 
 void MainWindow::changeCell(int row, int colomn) {
-    simu->setValueDepart(colomn, row, (simu->getValueCurrent(colomn, row)+1)%simu->getAutomate()->getNbEtats());
-    afficheGrid();
+    if(!simu->getNumEtat()){
+        simu->setValueDepart(colomn, row, (simu->getValueCurrent(colomn, row)+1)%simu->getAutomate()->getNbEtats());
+        afficheGrid();
+    }
 }
 
 void MainWindow::stopGrid() {
@@ -171,6 +173,8 @@ void MainWindow::changeForm(int index) {
        minVit->setMaximum(2);
        maxVit->setMinimum(0);
        maxVit->setMaximum(2);
+       rulesRenait->setEnabled(false);
+       rulesVit->setEnabled(false);
         break;
     case 1:
         toolsInfo->setHidden(true);
@@ -188,6 +192,8 @@ void MainWindow::changeForm(int index) {
         minVit->setMaximum(8);
         maxVit->setMinimum(0);
         maxVit->setMaximum(8);
+        rulesRenait->setEnabled(false);
+        rulesVit->setEnabled(false);
         break;
     case 2:
         toolsInfo->setHidden(true);
@@ -197,14 +203,8 @@ void MainWindow::changeForm(int index) {
         dimensionH->setHidden(false);
         dimensionH->setMinimum(dimensionMin);
         dimensionH->setMaximum(dimensionMax);
-        minRenait->setMinimum(0);
-        minRenait->setMaximum(8);
-        maxRenait->setMinimum(0);
-        maxRenait->setMaximum(8);
-        minVit->setMinimum(0);
-        minVit->setMaximum(8);
-        maxVit->setMinimum(0);
-        maxVit->setMaximum(8);
+        rulesRenait->setEnabled(false);
+        rulesVit->setEnabled(false);
         break;
     default:
         break;
