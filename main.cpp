@@ -21,7 +21,11 @@
     */
 
 int main(int argc, char * argv[]) {
+    try {
     _interface(argc, argv);
+    }
+    catch (AutomateException::AutomateException a);
+    cout<<"exception : "<<a.getInfo()<<"\n";
     /*unsigned int tab[6] = {0, 3, 5, 1, 3, 5};
     Simulateur simu("Cell1D", tab, "symetrique", 10, 0);
     Etat* e = simu.getCurrent();*/

@@ -91,9 +91,17 @@ public:
      */
     Etat* getCurrent() const { return current; }
 
-    unsigned int getCurrent(unsigned int n, unsigned int m) const;
+   //A QUOI SERT CETTE FONCTION
+    /*!
+     * \brief Fonction getValueCurrent du Simulateur
+     *
+     * \details Récupère une valeur de l'état courant
+     *
+     * \return unsigned int
+     */
+    unsigned int getValueCurrent(unsigned int n, unsigned int m) const;
 
-    void setCurrent(unsigned int n, unsigned int m =0, unsigned int v=0);
+    void setValueCurrent(unsigned int n, unsigned int m =0, unsigned int v=0);
 
     /*!
      * \brief Destructeur
