@@ -402,7 +402,7 @@ unsigned int JeuDeLaVie::getNbDim() const{
  */
 unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
 if(regle[0]) throw AutomateException("Regle incorrecte");
-    for(unsigned int i=0; i<=getTailleRegle();++i){
+    for(unsigned int i=0; i<=FeuDeForet::getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
         if(((i/1000)+(i/100)%10+(i/10)%10+i%10)==8) {
