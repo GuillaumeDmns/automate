@@ -56,7 +56,7 @@ void MainWindow::stopGrid() {
 }
 
 void MainWindow::playGrid() {
-    timer->start(1000);
+    timer->start(50);
     play->setHidden(true);
     stop->setHidden(false);
     next->setDisabled(true);
@@ -169,6 +169,7 @@ void MainWindow::changeForm(int index) {
        timesDimensions->setHidden(true);
        dimensionH->setHidden(true);
        dimensionH->setMinimum(1);
+       dimensionH->setValue(1);
        dimensionH->setMaximum(1);
        minRenait->setMinimum(0);
        minRenait->setMaximum(2);
@@ -182,6 +183,10 @@ void MainWindow::changeForm(int index) {
        maxRenait->setEnabled(true);
        minVit->setEnabled(true);
        maxVit->setEnabled(true);
+       minRenait->setValue(1);
+       maxRenait->setValue(1);
+       minVit->setValue(1);
+       maxVit->setValue(1);
         break;
     case 1:
         toolsInfo->setHidden(true);
@@ -191,6 +196,7 @@ void MainWindow::changeForm(int index) {
         dimensionH->setHidden(false);
         dimensionH->setMinimum(dimensionMin);
         dimensionH->setMaximum(dimensionMax);
+        dimensionH->setValue(25);
         minRenait->setMinimum(0);
         minRenait->setMaximum(8);
         maxRenait->setMinimum(0);
@@ -203,6 +209,10 @@ void MainWindow::changeForm(int index) {
         maxRenait->setEnabled(true);
         minVit->setEnabled(true);
         maxVit->setEnabled(true);
+        maxRenait->setValue(3);
+        maxVit->setValue(3);
+        minRenait->setValue(3);
+        minVit->setValue(2);
         break;
     case 2:
         toolsInfo->setHidden(true);
@@ -212,6 +222,7 @@ void MainWindow::changeForm(int index) {
         dimensionH->setHidden(false);
         dimensionH->setMinimum(dimensionMin);
         dimensionH->setMaximum(dimensionMax);
+        dimensionH->setValue(25);
         minRenait->setEnabled(false);
         maxRenait->setEnabled(false);
         minVit->setEnabled(false);
@@ -279,6 +290,7 @@ MainWindow::MainWindow():QWidget() {
                     dimensionL = new QSpinBox;
                     dimensionL->setMinimum(dimensionMin);
                     dimensionL->setMaximum(dimensionMax);
+                    dimensionL->setValue(25);
                     timesDimensions = new QLabel("x");
                     timesDimensions->setHidden(true);
                     dimensionH = new QSpinBox;
@@ -293,18 +305,22 @@ MainWindow::MainWindow():QWidget() {
                     minRenait = new QSpinBox;
                     minRenait->setMinimum(0);
                     minRenait->setMaximum(2);
+                    minRenait->setValue(1);
                     maxR = new QLabel("max");
                     maxRenait = new QSpinBox;
                     maxRenait->setMinimum(0);
                     maxRenait->setMaximum(2);
+                    maxRenait->setValue(1);
                     minV = new QLabel("min");
                     minVit = new QSpinBox;
                     minVit->setMinimum(0);
                     minVit->setMaximum(2);
+                    minVit->setValue(1);
                     maxV = new QLabel("max");
                     maxVit = new QSpinBox;
                     maxVit->setMinimum(0);
                     maxVit->setMaximum(2);
+                    maxVit->setValue(1);
                 rulesRenait = new QHBoxLayout;
                 rulesRenait->addWidget(minR);
                 rulesRenait->addWidget(minRenait);
