@@ -52,16 +52,18 @@ void MainWindow::stopGrid() {
     play->setHidden(false);
     next->setDisabled(false);
     save->setDisabled(false);
+    reset->setDisabled(false);
     speedtime->setDisabled(false);
     backHomeButton->setDisabled(false);
 }
 
 void MainWindow::playGrid() {
-    timer->start(speedtime->value());
+    timer->start(speedtime->maximum()+speedtime->minimum()-speedtime->value());
     play->setHidden(true);
     stop->setHidden(false);
     next->setDisabled(true);
     save->setDisabled(true);
+    reset->setDisabled(true);
     speedtime->setDisabled(true);
     backHomeButton->setDisabled(true);
 }
