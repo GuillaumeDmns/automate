@@ -114,14 +114,13 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
      * \return void
      */
 void Simulateur::next(){
-    cout<<0;
-    FabriqueEtat fabEtat;cout<<1;
-    FabriqueAutomate fabAutomate;cout<<2;
-    Etat* suivant = fabEtat.createEtat(current);cout<<3;
-    fabAutomate.appliquerTransition(*current,*suivant,*automate);cout<<4;
-    fabEtat.copyEtat(suivant,current);cout<<5;
-    fabEtat.deleteEtat(suivant);cout<<6;
-    numEtat++;cout<<7;
+    FabriqueEtat fabEtat;
+    FabriqueAutomate fabAutomate;
+    Etat* suivant = fabEtat.createEtat(current);
+    fabAutomate.appliquerTransition(*current,*suivant,*automate);
+    fabEtat.copyEtat(suivant,current);
+    fabEtat.deleteEtat(suivant);
+    numEtat++;
 }
 
     /*!

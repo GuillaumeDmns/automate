@@ -149,9 +149,7 @@ void MainWindow::changeForm(int index) {
 }
 
 void MainWindow::nextEtat() {
-    cout<<'a';
     simu->next();
-    cout<<'b';
     afficheGrid();
 }
 
