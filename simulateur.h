@@ -97,10 +97,22 @@ public:
      *
      * \details Récupère une valeur de l'état courant
      *
+     * \param unsigned int n : Abscisse de la case dont on veut la valeur
+     * \param unsigned int m : Ordonnée de la case dont on veut la valeur
      * \return unsigned int
      */
     unsigned int getValueCurrent(unsigned int n, unsigned int m) const;
 
+    /*!
+     * \brief Fonction setValueCurrent du Simulateur
+     *
+     * \details Donne une valeur de l'état courant
+     *
+     * \param unsigned int n : Abscisse de la case dont on veut la valeur
+     * \param unsigned int m : Ordonnée de la case dont on veut la valeur
+     * \param unsigned int v : Valeur à attribuer à la case
+     * \return void
+     */
     void setValueCurrent(unsigned int n, unsigned int m =0, unsigned int v=0);
 
     /*!

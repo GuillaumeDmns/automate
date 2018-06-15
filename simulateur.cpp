@@ -125,12 +125,31 @@ Simulateur::~Simulateur() {
     fabEtat.deleteEtat(current);
 }
 
-void Simulateur::setCurrent(unsigned int n, unsigned int m, unsigned int v){
+    /*!
+     * \fn void Simulateur::setValueCurrent(unsigned int n, unsigned int m, unsigned int v
+     * \brief Donne une valeur de l'état courant
+     *
+     * \param unsigned int n : Abscisse de la case dont on veut la valeur
+     * \param unsigned int m : Ordonnée de la case dont on veut la valeur
+     * \param unsigned int v : Valeur à attribuer à la case
+     * \return void
+     */
+void Simulateur::setValueCurrent(unsigned int n, unsigned int m, unsigned int v){
     FabriqueEtat fabEtat;
     fabEtat.setValue(n,m,v,getCurrent());
 }
 
-unsigned int Simulateur::getCurrent(unsigned int n, unsigned int m) const {
+
+
+    /*!
+     * \fn unsigned int Simulateur::getValueCurrent(unsigned int n, unsigned int m) const
+     * \brief Récupère une valeur de l'état courant
+     *
+     * \param unsigned int n : Abscisse de la case dont on veut la valeur
+     * \param unsigned int m : Ordonnée de la case dont on veut la valeur
+     * \return unsigned int
+     */
+unsigned int Simulateur::getValueCurrent(unsigned int n, unsigned int m) const {
     FabriqueEtat fabEtat;
     return fabEtat.getValue(n,m,getCurrent());
 }
