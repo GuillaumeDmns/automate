@@ -57,28 +57,27 @@ void MainWindow::createGrid() {
             grid->setColumnWidth(col, Gridsize/dimensionL->value());
             grid->setItem(row, col, new QTableWidgetItem(""));
             switch(simu->getCurrent(col, row)){
-            case 0 : {
+            case 0 :
                 grid->item(row, col)->setBackgroundColor("white");
                 grid->item(row, col)->setTextColor("white");
-            }
-            case 1 :{
+                break;
+            case 1 :
                 grid->item(row, col)->setBackgroundColor("green");
                 grid->item(row, col)->setTextColor("green");
-            }
-            case 2 :{
+                break;
+            case 2 :
                 grid->item(row, col)->setBackgroundColor("red");
                 grid->item(row, col)->setTextColor("red");
-            }
-            case 3 :{
+                break;
+            case 3 :
                 grid->item(row, col)->setBackgroundColor("black");
                 grid->item(row, col)->setTextColor("black");
+                break;
+            default :
+                grid->item(row, col)->setBackgroundColor("black");
+                grid->item(row, col)->setTextColor("black");
+                break;
             }
-            default :{
-                grid->item(row, col)->setBackgroundColor("white");
-                grid->item(row, col)->setTextColor("white");
-            }
-            }
-            //std::cout << row << " " << col << " " << grid->item(row, col) << std::endl;
             /* if ((row+col)%2 == 0) {
                 grid->item(row, col)->setBackgroundColor("white");
                 grid->item(row, col)->setTextColor("white");
@@ -93,6 +92,7 @@ void MainWindow::createGrid() {
 }
 
 void MainWindow::backToHome() {
+    delete simu;
     disp->setCurrentWidget(home);
     for(int row=0; row<dimensionH->value(); row++){
         for(int col=0; col<dimensionL->value(); col++){

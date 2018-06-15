@@ -193,9 +193,7 @@ void FabriqueEtat::setValue(unsigned int n, unsigned int m, unsigned int v, Etat
 
 unsigned int FabriqueEtat::getValue(unsigned int n, unsigned int m, Etat *e) const {
     if(n>=e->getdimN()) throw EtatException("Dimension incorrecte");
-    std::cout << typeid(*e).name() << std::endl;
     if(!strcmp(typeid(*e).name(),"6Etat1D")){
-        std::cout << m << std::endl;
         if(m==0) return dynamic_cast<Etat1D*>(e)->getValue(n);
         else throw EtatException("Dimension incorrecte");
     }
