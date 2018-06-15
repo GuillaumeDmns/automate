@@ -83,10 +83,7 @@ protected:
      * \param Etat1D& e : Ojet Etat1D à recopier
      * 
      */
-    Etat1D(Etat1D& e) : Etat(e.getdimN()){
-            for (unsigned int i=0;i<getdimN();i++)
-                    valeur[i]=e.valeur[i];
-    }
+    Etat1D(Etat1D& e) : Etat1D(e.getdimN(), e.valeur){}
     
     /*!
      * \brief Opérateur d'affectation
