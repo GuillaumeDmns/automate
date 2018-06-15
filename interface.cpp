@@ -27,13 +27,28 @@
 #include <QTextStream>
 #include <sstream>
 #include <QTableWidget>
-#include "interface.h"
 #include <iostream>
+#include <unistd.h>
+#include "interface.h"
+
 
 int MainWindow::Gridsize = 400;
 const int dimensionMin=10;
 const int dimensionMax=150;
 
+void MainWindow::stopGrid() {
+    stop->setHidden(true);
+    play->setHidden(false);
+    next->setDisabled(false);
+    save->setDisabled(false);
+}
+
+void MainWindow::playGrid() {
+    play->setHidden(true);
+    stop->setHidden(false);
+    next->setDisabled(true);
+    save->setDisabled(true);
+}
 
 void MainWindow::resetGrid() {
     simu->reset();
@@ -219,8 +234,10 @@ MainWindow::MainWindow():QWidget() {
             next->setHidden(true);
             reset = new QPushButton("Reset");
             reset->setHidden(true);
-            play = new QCheckBox("Play");
+            play = new QPushButton("Play");
             play->setHidden(true);
+            stop = new QPushButton("Stop");
+            stop->setHidden(true);
             save = new QPushButton("Save");
             save->setHidden(true);
         tools = new QVBoxLayout;
@@ -228,6 +245,7 @@ MainWindow::MainWindow():QWidget() {
         tools->addWidget(loadOtherAutomate, 0, Qt::AlignCenter);
         tools->addWidget(next, 0, Qt::AlignCenter);
         tools->addWidget(play, 0, Qt::AlignCenter);
+        tools->addWidget(stop, 0, Qt::AlignCenter);
         tools->addWidget(reset, 0, Qt::AlignCenter);
         tools->addWidget(save, 0, Qt::AlignCenter);
         tools->addWidget(quit, 0, Qt::AlignBottom|Qt::AlignRight);
@@ -260,6 +278,8 @@ MainWindow::MainWindow():QWidget() {
     connect(backHomeButton, SIGNAL(clicked()), this, SLOT(backToHome()));
     connect(loadOtherAutomate, SIGNAL(clicked()), this, SLOT(setLoadedAutomate()));
     connect(typeAutomate, SIGNAL(currentIndexChanged(int)), this, SLOT(changeForm(int)));
+    connect(play, SIGNAL(clicked()), this, SLOT(playGrid()));
+    connect(stop, SIGNAL(clicked()), this, SLOT(stopGrid()));
 }
 
 MainWindow::~MainWindow() {
