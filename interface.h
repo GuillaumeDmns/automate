@@ -21,6 +21,7 @@ class MainWindow : public QWidget {
 public slots:
     void afficheGrid();
     void backToHome();
+    void changeCell(int row, int colomn);
     void changeForm(int index);
     void createGrid();
     void nextEtat();

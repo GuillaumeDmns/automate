@@ -36,6 +36,11 @@ int MainWindow::Gridsize = 400;
 const int dimensionMin=10;
 const int dimensionMax=150;
 
+void MainWindow::changeCell(int row, int colomn) {
+    simu->setValueDepart(colomn, row, (simu->getValueCurrent(colomn, row)+1)%simu->getAutomate()->getNbEtats());
+    afficheGrid();
+}
+
 void MainWindow::stopGrid() {
     stop->setHidden(true);
     play->setHidden(false);
@@ -350,6 +355,7 @@ MainWindow::MainWindow():QWidget() {
                 grid = new QTableWidget(dimensionH->value(), dimensionL->value());
                 grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                grid->setSelectionMode(QAbstractItemView::NoSelection);
                 grid->horizontalHeader()->setVisible(false);
                 grid->verticalHeader()->setVisible(false);
                 grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -378,6 +384,7 @@ MainWindow::MainWindow():QWidget() {
     connect(typeAutomate, SIGNAL(currentIndexChanged(int)), this, SLOT(changeForm(int)));
     connect(play, SIGNAL(clicked()), this, SLOT(playGrid()));
     connect(stop, SIGNAL(clicked()), this, SLOT(stopGrid()));
+    connect(grid, SIGNAL(cellClicked(int,int)), this, SLOT(changeCell(int, int)));
 }
 
 MainWindow::~MainWindow() {
