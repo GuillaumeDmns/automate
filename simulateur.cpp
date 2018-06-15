@@ -78,18 +78,17 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
                     for (j=0;j<(m/2)+1;++j)
                     {
                         tab[i][j]=rand()%2;
-                        std::cout << tab[i][j];
                         tab[i][m-1-j]=tab[i][j];
                     }
-                    std::cout << std::endl;
                 }
             }
             else {
                 if (choixdepart.compare("Grille vide")==0){
                     for (i=0;i<n;++i) {
                         tab[i] = new unsigned int[m];
-                        for (j=0;j<m;++j)
+                        for (j=0;j<m;++j) {
                             tab[i][j]=0;
+                        }
                     }
 
                 }
