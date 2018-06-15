@@ -52,15 +52,17 @@ void MainWindow::stopGrid() {
     play->setHidden(false);
     next->setDisabled(false);
     save->setDisabled(false);
+    speedtime->setDisabled(false);
     backHomeButton->setDisabled(false);
 }
 
 void MainWindow::playGrid() {
-    timer->start(50);
+    timer->start(speedtime->value());
     play->setHidden(true);
     stop->setHidden(false);
     next->setDisabled(true);
     save->setDisabled(true);
+    speedtime->setDisabled(true);
     backHomeButton->setDisabled(true);
 }
 
@@ -102,7 +104,7 @@ void MainWindow::createGrid() {
     play->setHidden(false);
     reset->setHidden(false);
     save->setHidden(false);
-
+    speedtime->setHidden(false);
 
 }
 
@@ -121,6 +123,7 @@ void MainWindow::backToHome() {
     reset->setHidden(true);
     play->setHidden(true);
     save->setHidden(true);
+    speedtime->setHidden(true);
     toolsInfo->setHidden(false); // gérer selon les différents cas !
     loadOtherAutomate->setHidden(false);
 }
@@ -280,7 +283,6 @@ MainWindow::MainWindow():QWidget() {
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
     timer = new QTimer(this);
-
             displayTitle = new QLabel("Créer un automate");
             displayTitle->setFont(subTitle);
             typeAutomate = new QComboBox;
@@ -374,6 +376,11 @@ MainWindow::MainWindow():QWidget() {
             stop->setHidden(true);
             save = new QPushButton("Save");
             save->setHidden(true);
+            speedtime = new QSlider(Qt::Horizontal);
+            speedtime->setMinimum(20);
+            speedtime->setMaximum(2000);
+            speedtime->setValue(500);
+            speedtime->setHidden(true);
         tools = new QVBoxLayout;
         tools->addWidget(counterLabel, 0, Qt::AlignCenter);
         tools->addWidget(counter, 0, Qt::AlignCenter);
@@ -384,6 +391,7 @@ MainWindow::MainWindow():QWidget() {
         tools->addWidget(next, 0, Qt::AlignCenter);
         tools->addWidget(play, 0, Qt::AlignCenter);
         tools->addWidget(stop, 0, Qt::AlignCenter);
+        tools->addWidget(speedtime, 0, Qt::AlignCenter);
         tools->addWidget(reset, 0, Qt::AlignCenter);
         tools->addWidget(save, 0, Qt::AlignCenter);
         tools->addWidget(quit, 0, Qt::AlignBottom|Qt::AlignRight);
