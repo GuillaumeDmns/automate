@@ -311,8 +311,8 @@ Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigne
      */
 Automate* FabriqueAutomate::createAutomate(const Automate* a) const {
     if(!strcmp(typeid(*a).name(),"6Cell1D")) return (new Cell1D(*a));
-    if(!strcmp(typeid(*a).name(),"6JeuDeLaVie")) return (new JeuDeLaVie(*a));
-    if(!strcmp(typeid(*a).name(),"6FeuDeForet")) return (new FeuDeForet(*a));
+    if(!strcmp(typeid(*a).name(),"10JeuDeLaVie")) return (new JeuDeLaVie(*a));
+    if(!strcmp(typeid(*a).name(),"10FeuDeForet")) return (new FeuDeForet(*a));
     throw AutomateException("Automate Inexistant");
 }
 
@@ -324,10 +324,15 @@ Automate* FabriqueAutomate::createAutomate(const Automate* a) const {
      * \return void
      */
 void FabriqueAutomate::deleteAutomate(Automate* a) const{
-    if(!strcmp(typeid(*a).name(),"6Cell1D")) delete dynamic_cast<Cell1D*>(a); else
-    if(!strcmp(typeid(*a).name(),"6JeuDeLaVie")) delete dynamic_cast<JeuDeLaVie*>(a); else
-    if(!strcmp(typeid(*a).name(),"6FeuDeForet")) delete dynamic_cast<FeuDeForet*>(a); else
-    throw AutomateException("AutomateInexistant");
+    cout<<typeid(*a).name();
+    if(!strcmp(typeid(*a).name(),"6Cell1D")) delete dynamic_cast<Cell1D*>(a);
+    else{
+        if(!strcmp(typeid(*a).name(),"10JeuDeLaVie")) delete dynamic_cast<JeuDeLaVie*>(a);
+        else{
+            if(!strcmp(typeid(*a).name(),"10FeuDeForet")) delete dynamic_cast<FeuDeForet*>(a);
+            else throw AutomateException("AutomateInexistant");
+        }
+    }
 }
 
     /*!
