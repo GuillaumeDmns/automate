@@ -65,8 +65,8 @@ void Automate::appliquerTransition(const Etat1D& dep, Etat1D& dest) const {
     unsigned int voisinage=0;
     for(unsigned int i=0; i<dep.getdimN(); ++i){
         voisinage=0;
-        voisinage+=pow(10, dep.getValue((i-1)%dep.getdimN()));
-        voisinage+=pow(10, dep.getValue((i+1)%dep.getdimN()));
+        voisinage+=pow(10, dep.getValue((i-1+dep.getdimN())%dep.getdimN()));
+        voisinage+=pow(10, dep.getValue((i+1+dep.getdimN())%dep.getdimN()));
         if(voisinage>getTailleRegle()) throw AutomateException("Etat avec trop d'etats pour l'Automate");
         v=regle[dep.getValue(i)][voisinage];
         dest.setValue(i,v);
@@ -93,10 +93,10 @@ void Automate::appliquerTransition(const Etat2D& dep, Etat2D& dest) const {
             voisinage=0;
             for(int k=i-1; k<=static_cast<int>(i+1); ++k){
                 for(int l=j-1; l<=static_cast<int>(j+1); ++l){
-                    voisinage+=pow(10, dep.getValue(k%dep.getdimN(),l%dep.getdimM()));
+                    voisinage+=pow(10, dep.getValue((k+dep.getdimN())%dep.getdimN(),(l+dep.getdimM())%dep.getdimM()));
                 }
             }
-            voisinage-=dep.getValue(i,j);
+            voisinage-=pow(10, dep.getValue(i,j));
             if(voisinage>getTailleRegle()) throw AutomateException("Etat avec trop d'etats pour l'Automate");
             v=regle[dep.getValue(i,j)][voisinage];
             dest.setValue(i,j,v);
