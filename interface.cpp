@@ -50,6 +50,12 @@ void MainWindow::createGrid() {
     }
     afficheGrid();
     disp->setCurrentWidget(gridWidget);
+    next->setHidden(false);
+    reset->setHidden(false);
+    play->setHidden(false);
+    save->setHidden(false);
+    toolsInfo->setHidden(true);
+    loadOtherAutomate->setHidden(true);
 }
 
 void MainWindow::backToHome() {
@@ -60,6 +66,12 @@ void MainWindow::backToHome() {
             delete grid->item(row, col);
         }
     }
+    next->setHidden(true);
+    reset->setHidden(true);
+    play->setHidden(true);
+    save->setHidden(true);
+    toolsInfo->setHidden(false);
+    loadOtherAutomate->setHidden(false);
 }
 
 void MainWindow::setLoadedAutomate() {
@@ -196,12 +208,16 @@ MainWindow::MainWindow():QWidget() {
         header = new QHBoxLayout;
         header->addWidget(generalTitle, 1, Qt::AlignCenter);
             quit = new QPushButton("Quitter");
-            loadOtherAutomate = new QPushButton("Charger un autre automate");
+            loadOtherAutomate = new QPushButton("Charger un automate");
             toolsInfo = new QLabel("Qu'est-ce qu'un automate cellulaire ?");
             next = new QPushButton("Next");
+            next->setHidden(true);
             reset = new QPushButton("Reset");
+            reset->setHidden(true);
             play = new QCheckBox("Play");
+            play->setHidden(true);
             save = new QPushButton("Save");
+            save->setHidden(true);
         tools = new QVBoxLayout;
         tools->addWidget(toolsInfo, 0, Qt::AlignCenter);
         tools->addWidget(loadOtherAutomate, 0, Qt::AlignCenter);
