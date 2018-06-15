@@ -46,7 +46,7 @@ void MainWindow::createGrid() {
         for(int col=0; col<dimensionL->value(); col++){
             grid->setColumnWidth(col, Gridsize/dimensionL->value());
             grid->setItem(row, col, new QTableWidgetItem(""));
-            switch(simu->getCurrent(col, row)){
+            switch(simu->getValueCurrent(col, row)){
             case 0 :
                 grid->item(row, col)->setBackgroundColor("white");
                 grid->item(row, col)->setTextColor("white");
@@ -82,7 +82,7 @@ void MainWindow::createGrid() {
 }
 
 void MainWindow::backToHome() {
-    //delete simu;
+    delete simu;
     disp->setCurrentWidget(home);
     for(int row=0; row<dimensionH->value(); row++){
         for(int col=0; col<dimensionL->value(); col++){
