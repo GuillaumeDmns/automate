@@ -361,11 +361,10 @@ MainWindow::MainWindow():QWidget() {
             save = new QPushButton("Save");
             save->setHidden(true);
             speedtime = new QSlider(Qt::Horizontal);
-            speedtime->setMinimum(2000);
-            speedtime->setMaximum(20);
+            speedtime->setMinimum(20);
+            speedtime->setMaximum(2000);
             speedtime->setValue(500);
             speedtime->setHidden(true);
-            speedtime->setDisabled(false);
         tools = new QVBoxLayout;
         tools->addWidget(counterLabel, 0, Qt::AlignCenter);
         tools->addWidget(counter, 0, Qt::AlignCenter);
