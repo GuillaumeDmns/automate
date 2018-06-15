@@ -115,6 +115,7 @@ void Simulateur::next(){
     fabAutomate.appliquerTransition(*current,*suivant,*automate);
     *current=*suivant;
     fabEtat.deleteEtat(suivant);
+    numEtat++;
 }
 
     /*!

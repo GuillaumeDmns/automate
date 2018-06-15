@@ -324,7 +324,6 @@ Automate* FabriqueAutomate::createAutomate(const Automate* a) const {
      * \return void
      */
 void FabriqueAutomate::deleteAutomate(Automate* a) const{
-    cout<<typeid(*a).name();
     if(!strcmp(typeid(*a).name(),"6Cell1D")) delete dynamic_cast<Cell1D*>(a);
     else{
         if(!strcmp(typeid(*a).name(),"10JeuDeLaVie")) delete dynamic_cast<JeuDeLaVie*>(a);

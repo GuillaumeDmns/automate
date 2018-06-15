@@ -68,14 +68,6 @@ void MainWindow::createGrid() {
                 grid->item(row, col)->setTextColor("black");
                 break;
             }
-            /* if ((row+col)%2 == 0) {
-                grid->item(row, col)->setBackgroundColor("white");
-                grid->item(row, col)->setTextColor("white");
-            }
-            else {
-                grid->item(row, col)->setBackgroundColor("black");
-                grid->item(row, col)->setTextColor("black");
-            }*/
         }
     }
     disp->setCurrentWidget(gridWidget);
