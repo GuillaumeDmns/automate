@@ -97,7 +97,7 @@ void MainWindow::backToHome() {
         }
     }
 
-    counterLabel->setHidden(true);
+    counterLabel->setHidden(false);
     counter->setHidden(false);
     next->setHidden(true);
     reset->setHidden(true);
