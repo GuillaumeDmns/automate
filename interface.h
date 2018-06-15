@@ -19,18 +19,18 @@
 class MainWindow : public QWidget {
     Q_OBJECT
 public slots:
+    void afficheGrid();
+    void backToHome();
     void changeForm(int index);
     void createGrid();
-    void backToHome();
-    void setLoadedAutomate();
     void nextEtat();
-    void afficheGrid();
+    void resetGrid();
+    void setLoadedAutomate();
 public:
     MainWindow();
     ~MainWindow();
 private:
-    Simulateur* simu;
-    static int Gridsize;
+    QCheckBox *play;
     QComboBox *typeAutomate, *generation;
     //QFileDialog *loadOtherAutomate;
     QFormLayout *newAutomate;
@@ -39,13 +39,15 @@ private:
     QHeaderView *VHeader, *HHeader;
     QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo;
     QPushButton *submit, *backHomeButton, *loadOtherAutomate, *quit, *next, *reset, *save;
+    Simulateur* simu;
     QSpinBox *dimensionH, *dimensionL;
     QStackedLayout *disp;
+    static int Gridsize;
     QTableWidget *grid;
     QTextEdit *rules;
     QVBoxLayout *tools, *bigGridLayout;
     QWidget *home, *gridWidget;
-    QCheckBox *play;
+
 };
 
 /*!

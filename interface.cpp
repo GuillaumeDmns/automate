@@ -35,6 +35,11 @@ const int dimensionMin=10;
 const int dimensionMax=150;
 
 
+void MainWindow::resetGrid() {
+    simu->reset();
+    afficheGrid();
+}
+
 void MainWindow::createGrid() {
     unsigned int rule[6] = {0,1,2,1,1,1};
     simu = new Simulateur(typeAutomate->currentText().toStdString(),rule,generation->currentText().toStdString(),dimensionL->value(),dimensionH->value());
@@ -251,6 +256,7 @@ MainWindow::MainWindow():QWidget() {
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
     connect(next, SIGNAL(clicked()), this, SLOT(nextEtat()));
     connect(submit, SIGNAL(clicked()), this, SLOT(createGrid()));
+    connect(reset, SIGNAL(clicked()), this, SLOT(resetGrid()));
     connect(backHomeButton, SIGNAL(clicked()), this, SLOT(backToHome()));
     connect(loadOtherAutomate, SIGNAL(clicked()), this, SLOT(setLoadedAutomate()));
     connect(typeAutomate, SIGNAL(currentIndexChanged(int)), this, SLOT(changeForm(int)));

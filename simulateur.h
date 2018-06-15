@@ -51,8 +51,8 @@ public:
      * \return void
      */
     void reset() {
-            this->current=this->depart;
-            this->numEtat=0;
+            *current=*depart;
+            numEtat=0;
     }
 
     /*!
