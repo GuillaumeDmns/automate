@@ -30,6 +30,7 @@
 #include <iostream>
 #include <unistd.h>
 #include "interface.h"
+#include <QTimer>
 
 
 int MainWindow::Gridsize = 400;
@@ -173,6 +174,10 @@ void MainWindow::changeForm(int index) {
        minVit->setMaximum(2);
        maxVit->setMinimum(0);
        maxVit->setMaximum(2);
+       minRenait->setEnabled(true);
+       maxRenait->setEnabled(true);
+       minVit->setEnabled(true);
+       maxVit->setEnabled(true);
         break;
     case 1:
         toolsInfo->setHidden(true);
@@ -190,6 +195,10 @@ void MainWindow::changeForm(int index) {
         minVit->setMaximum(8);
         maxVit->setMinimum(0);
         maxVit->setMaximum(8);
+        minRenait->setEnabled(true);
+        maxRenait->setEnabled(true);
+        minVit->setEnabled(true);
+        maxVit->setEnabled(true);
         break;
     case 2:
         toolsInfo->setHidden(true);
@@ -199,6 +208,10 @@ void MainWindow::changeForm(int index) {
         dimensionH->setHidden(false);
         dimensionH->setMinimum(dimensionMin);
         dimensionH->setMaximum(dimensionMax);
+        minRenait->setEnabled(false);
+        maxRenait->setEnabled(false);
+        minVit->setEnabled(false);
+        maxVit->setEnabled(false);
         break;
     default:
         break;
@@ -209,6 +222,13 @@ void MainWindow::nextEtat() {
     simu->next();
     afficheGrid();
     counter->setText(QString::number(static_cast<int>(simu->getNumEtat())));
+}
+
+void MainWindow::checkRules(){
+    minRenait->setMaximum(maxRenait->value());
+    maxRenait->setMinimum(minRenait->value());
+    minVit->setMaximum(maxVit->value());
+    maxVit->setMinimum(minVit->value());
 }
 
 void MainWindow::afficheGrid() {
@@ -379,6 +399,10 @@ MainWindow::MainWindow():QWidget() {
     connect(play, SIGNAL(clicked()), this, SLOT(playGrid()));
     connect(stop, SIGNAL(clicked()), this, SLOT(stopGrid()));
     connect(grid, SIGNAL(cellClicked(int,int)), this, SLOT(changeCell(int, int)));
+    connect(minRenait, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));
+    connect(maxRenait, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));
+    connect(minVit, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));
+    connect(maxVit, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));
 }
 
 MainWindow::~MainWindow() {

@@ -29,6 +29,7 @@ public slots:
     void resetGrid();
     void setLoadedAutomate();
     void stopGrid();
+    void checkRules();
 public:
     MainWindow();
     ~MainWindow();
