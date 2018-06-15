@@ -29,6 +29,7 @@
 #include <QTableWidget>
 #include <iostream>
 #include <unistd.h>
+#include <QTimer>
 #include "interface.h"
 #include <QTimer>
 
@@ -36,6 +37,7 @@
 int MainWindow::Gridsize = 400;
 const int dimensionMin=10;
 const int dimensionMax=150;
+
 
 void MainWindow::changeCell(int row, int colomn) {
     if(!simu->getNumEtat()){
@@ -45,6 +47,7 @@ void MainWindow::changeCell(int row, int colomn) {
 }
 
 void MainWindow::stopGrid() {
+    timer->stop();
     stop->setHidden(true);
     play->setHidden(false);
     next->setDisabled(false);
@@ -53,6 +56,7 @@ void MainWindow::stopGrid() {
 }
 
 void MainWindow::playGrid() {
+    timer->start(1000);
     play->setHidden(true);
     stop->setHidden(false);
     next->setDisabled(true);
@@ -264,6 +268,7 @@ void MainWindow::afficheGrid() {
 MainWindow::MainWindow():QWidget() {
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
+    timer = new QTimer(this);
 
             displayTitle = new QLabel("Créer un automate");
             displayTitle->setFont(subTitle);
@@ -389,6 +394,8 @@ MainWindow::MainWindow():QWidget() {
     mainLayout->addLayout(tools, 1, 4, 4, 1);
     setLayout(mainLayout);
     setWindowTitle("AUTOCELL");
+
+    /* Tous les connects */
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
     connect(next, SIGNAL(clicked()), this, SLOT(nextEtat()));
     connect(submit, SIGNAL(clicked()), this, SLOT(createGrid()));
@@ -402,7 +409,8 @@ MainWindow::MainWindow():QWidget() {
     connect(minRenait, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));
     connect(maxRenait, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));
     connect(minVit, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));
-    connect(maxVit, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));
+    connect(maxVit, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));  
+    connect(timer, SIGNAL(timeout()), this, SLOT(nextEtat()));
 }
 
 MainWindow::~MainWindow() {

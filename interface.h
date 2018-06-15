@@ -24,6 +24,7 @@ public slots:
     void changeCell(int row, int colomn);
     void changeForm(int index);
     void createGrid();
+    //void nextAuto();
     void nextEtat();
     void playGrid();
     void resetGrid();
@@ -48,6 +49,7 @@ private:
     QStackedLayout *disp;
     static int Gridsize;
     QTableWidget *grid;
+    QTimer *timer;
     QVBoxLayout *tools, *bigGridLayout;
     QWidget *home, *gridWidget;
 
