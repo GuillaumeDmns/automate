@@ -113,6 +113,9 @@ public:
      * \param unsigned int v : Valeur à attribuer à la case
      * \return void
      */
+
+    unsigned int getNumEtat() const { return numEtat; }
+
     void setValueCurrent(unsigned int n, unsigned int m =0, unsigned int v=0);
 
     /*!

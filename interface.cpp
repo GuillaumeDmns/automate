@@ -55,6 +55,7 @@ void MainWindow::playGrid() {
 void MainWindow::resetGrid() {
     simu->reset();
     afficheGrid();
+    counter->setText(QString::number(static_cast<int>(simu->getNumEtat())));
 }
 
 void MainWindow::createGrid() {
@@ -72,12 +73,19 @@ void MainWindow::createGrid() {
     }
     afficheGrid();
     disp->setCurrentWidget(gridWidget);
-    next->setHidden(false);
-    reset->setHidden(false);
-    play->setHidden(false);
-    save->setHidden(false);
+
+    counterLabel->setHidden(false);
+    counter->setHidden(false);
     toolsInfo->setHidden(true);
+    toolsInfo2->setHidden(true);
+    toolsInfo3->setHidden(true);
     loadOtherAutomate->setHidden(true);
+    next->setHidden(false);
+    play->setHidden(false);
+    reset->setHidden(false);
+    save->setHidden(false);
+
+
 }
 
 void MainWindow::backToHome() {
@@ -88,11 +96,14 @@ void MainWindow::backToHome() {
             delete grid->item(row, col);
         }
     }
+
+    counterLabel->setHidden(true);
+    counter->setHidden(false);
     next->setHidden(true);
     reset->setHidden(true);
     play->setHidden(true);
     save->setHidden(true);
-    toolsInfo->setHidden(false);
+    toolsInfo->setHidden(false); // gérer selon les différents cas !
     loadOtherAutomate->setHidden(false);
 }
 
@@ -134,25 +145,41 @@ void MainWindow::setLoadedAutomate() {
 void MainWindow::changeForm(int index) {
     switch (index) {
     case 0:
+       toolsInfo->setHidden(false);
+       toolsInfo2->setHidden(true);
+       toolsInfo3->setHidden(true);
        timesDimensions->setHidden(true);
        dimensionH->setHidden(true);
        dimensionH->setMinimum(1);
        dimensionH->setMaximum(1);
         break;
-    default:
+    case 1:
+        toolsInfo->setHidden(true);
+        toolsInfo2->setHidden(false);
+        toolsInfo3->setHidden(true);
         timesDimensions->setHidden(false);
         dimensionH->setHidden(false);
         dimensionH->setMinimum(dimensionMin);
         dimensionH->setMaximum(dimensionMax);
         break;
+    case 2:
+        toolsInfo->setHidden(true);
+        toolsInfo2->setHidden(true);
+        toolsInfo3->setHidden(false);
+        timesDimensions->setHidden(false);
+        dimensionH->setHidden(false);
+        dimensionH->setMinimum(dimensionMin);
+        dimensionH->setMaximum(dimensionMax);
+        break;
+    default:
+        break;
     }
 }
 
 void MainWindow::nextEtat() {
-    cout<<'a';
     simu->next();
-    cout<<'b';
     afficheGrid();
+    counter->setText(QString::number(static_cast<int>(simu->getNumEtat())));
 }
 
 void MainWindow::afficheGrid() {
@@ -182,6 +209,7 @@ void MainWindow::afficheGrid() {
             }
         }
     }
+    counter->setText(QString::number(static_cast<int>(simu->getNumEtat())));
 }
 
 MainWindow::MainWindow():QWidget() {
@@ -231,7 +259,15 @@ MainWindow::MainWindow():QWidget() {
         header->addWidget(generalTitle, 1, Qt::AlignCenter);
             quit = new QPushButton("Quitter");
             loadOtherAutomate = new QPushButton("Charger un automate");
-            toolsInfo = new QLabel("Qu'est-ce qu'un automate cellulaire ?");
+            counterLabel = new QLabel("Génération ");
+            counterLabel->setHidden(true);
+            counter = new QLabel("0");
+            counter->setHidden(true);
+            toolsInfo = new QLabel("<b>Qu'est-ce que l'automate Cell1D ?</b> <br /> Cet automate permet de simuler un <br /> automate cellulaire en une dimension !");
+            toolsInfo2 = new QLabel("<b>Qu'est-ce que l'automate JeuDeLaVie ?</b> <br /> Cet automate permet de simuler un <br />automate cellulaire en 2 dimensions !");
+            toolsInfo2->setHidden(true);
+            toolsInfo3 = new QLabel("<b>Qu'est-ce que l'automate FeuDeForet ?</b> <br /> Cet Automate rend hommage à la pyromanie de Solène !");
+            toolsInfo3->setHidden(true);
             next = new QPushButton("Next");
             next->setHidden(true);
             reset = new QPushButton("Reset");
@@ -243,7 +279,11 @@ MainWindow::MainWindow():QWidget() {
             save = new QPushButton("Save");
             save->setHidden(true);
         tools = new QVBoxLayout;
+        tools->addWidget(counterLabel, 0, Qt::AlignCenter);
+        tools->addWidget(counter, 0, Qt::AlignCenter);
         tools->addWidget(toolsInfo, 0, Qt::AlignCenter);
+        tools->addWidget(toolsInfo2, 0, Qt::AlignCenter);
+        tools->addWidget(toolsInfo3, 0, Qt::AlignCenter);
         tools->addWidget(loadOtherAutomate, 0, Qt::AlignCenter);
         tools->addWidget(next, 0, Qt::AlignCenter);
         tools->addWidget(play, 0, Qt::AlignCenter);

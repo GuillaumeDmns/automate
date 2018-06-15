@@ -39,7 +39,7 @@ private:
     QGridLayout *display, *mainLayout;
     QHBoxLayout *dimensions, *header;
     QHeaderView *VHeader, *HHeader;
-    QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo;
+    QLabel *displayTitle, *timesDimensions, *generalTitle, *toolsInfo, *toolsInfo2, *toolsInfo3, *counter, *counterLabel;
     QPushButton *submit, *backHomeButton, *loadOtherAutomate, *quit, *next, *reset, *save, *stop, *play;
     Simulateur* simu;
     QSpinBox *dimensionH, *dimensionL;
