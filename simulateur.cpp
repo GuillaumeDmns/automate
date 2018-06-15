@@ -145,9 +145,10 @@ Simulateur::~Simulateur() {
      * \param unsigned int v : Valeur à attribuer à la case
      * \return void
      */
-void Simulateur::setValueCurrent(unsigned int n, unsigned int m, unsigned int v){
+void Simulateur::setValueDepart(unsigned int n, unsigned int m, unsigned int v){
     FabriqueEtat fabEtat;
-    fabEtat.setValue(n,m,v,getCurrent());
+    fabEtat.setValue(n,m,v,depart);
+    reset();
 }
 
 

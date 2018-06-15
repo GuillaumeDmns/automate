@@ -116,8 +116,9 @@ public:
 
     unsigned int getNumEtat() const { return numEtat; }
 
-    void setValueCurrent(unsigned int n, unsigned int m =0, unsigned int v=0);
+    void setValueDepart(unsigned int n, unsigned int m =0, unsigned int v=0);
 
+    Automate* getAutomate() const { return automate; }
     /*!
      * \brief Destructeur
      *
