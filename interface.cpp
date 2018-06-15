@@ -41,6 +41,7 @@ void MainWindow::stopGrid() {
     play->setHidden(false);
     next->setDisabled(false);
     save->setDisabled(false);
+    backHomeButton->setDisabled(false);
 }
 
 void MainWindow::playGrid() {
@@ -48,6 +49,7 @@ void MainWindow::playGrid() {
     stop->setHidden(false);
     next->setDisabled(true);
     save->setDisabled(true);
+    backHomeButton->setDisabled(true);
 }
 
 void MainWindow::resetGrid() {
