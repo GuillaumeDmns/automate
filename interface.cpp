@@ -173,8 +173,6 @@ void MainWindow::changeForm(int index) {
        minVit->setMaximum(2);
        maxVit->setMinimum(0);
        maxVit->setMaximum(2);
-       rulesRenait->setEnabled(false);
-       rulesVit->setEnabled(false);
         break;
     case 1:
         toolsInfo->setHidden(true);
@@ -192,8 +190,6 @@ void MainWindow::changeForm(int index) {
         minVit->setMaximum(8);
         maxVit->setMinimum(0);
         maxVit->setMaximum(8);
-        rulesRenait->setEnabled(false);
-        rulesVit->setEnabled(false);
         break;
     case 2:
         toolsInfo->setHidden(true);
@@ -203,8 +199,6 @@ void MainWindow::changeForm(int index) {
         dimensionH->setHidden(false);
         dimensionH->setMinimum(dimensionMin);
         dimensionH->setMaximum(dimensionMax);
-        rulesRenait->setEnabled(false);
-        rulesVit->setEnabled(false);
         break;
     default:
         break;
