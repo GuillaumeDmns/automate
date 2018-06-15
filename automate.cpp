@@ -408,7 +408,7 @@ if(regle[0]) throw AutomateException("Regle incorrecte");
         if(((i/1000)+(i/100)%10+(i/10)%10+i%10)==8) {
             tab[2][i]=3;
             tab[3][i]=3;
-            if(((i/100)%10>1)||((i/100)>10)) tab[1][i]=2; else tab[1][i]=1;
+            if((i/100)%10>0) tab[1][i]=2; else tab[1][i]=1;
         }
     }
     return tab;
