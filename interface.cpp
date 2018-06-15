@@ -32,7 +32,7 @@
 
 int MainWindow::Gridsize = 400;
 const int dimensionMin=10;
-const int dimensionMax=100;
+const int dimensionMax=150;
 
 
 void MainWindow::createGrid() {
@@ -40,7 +40,7 @@ void MainWindow::createGrid() {
     simu = new Simulateur(typeAutomate->currentText().toStdString(),rule,generation->currentText().toStdString(),dimensionL->value(),dimensionH->value());
     grid->setRowCount(dimensionH->value());
     grid->setColumnCount(dimensionL->value());
-    grid->setFixedSize(dimensionH->value()*(Gridsize/dimensionH->value()), dimensionL->value()*(Gridsize/dimensionL->value()));
+    grid->setFixedSize(dimensionL->value()*(Gridsize/dimensionL->value()), dimensionH->value()*(Gridsize/dimensionH->value()));
     for(int row=0; row<dimensionH->value(); row++){
         grid->setRowHeight(row, Gridsize/dimensionH->value());
         for(int col=0; col<dimensionL->value(); col++){
@@ -205,7 +205,6 @@ MainWindow::MainWindow():QWidget() {
                 grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 grid->horizontalHeader()->setVisible(false);
                 grid->verticalHeader()->setVisible(false);
-                //grid->setFixedSize(Gridsize, Gridsize);
                 grid->setEditTriggers(QAbstractItemView::NoEditTriggers);
             bigGridLayout = new QVBoxLayout;
             bigGridLayout->addWidget(grid, 1, Qt::AlignCenter);
