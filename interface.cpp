@@ -115,7 +115,9 @@ void MainWindow::changeForm(int index) {
 }
 
 void MainWindow::nextEtat() {
+    cout<<'a';
     simu->next();
+    cout<<'b';
     afficheGrid();
 }
 
@@ -231,7 +233,7 @@ MainWindow::MainWindow():QWidget() {
     setLayout(mainLayout);
     setWindowTitle("AUTOCELL");
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
-    //connect(next, SIGNAL(clicked()), this, SLOT(nextEtat()));
+    connect(next, SIGNAL(clicked()), this, SLOT(nextEtat()));
     connect(submit, SIGNAL(clicked()), this, SLOT(createGrid()));
     connect(backHomeButton, SIGNAL(clicked()), this, SLOT(backToHome()));
     connect(loadOtherAutomate, SIGNAL(clicked()), this, SLOT(setLoadedAutomate()));
