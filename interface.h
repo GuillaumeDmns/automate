@@ -23,6 +23,8 @@ public slots:
     void createGrid();
     void backToHome();
     void setLoadedAutomate();
+    void nextEtat();
+    void afficheGrid();
 public:
     MainWindow();
     ~MainWindow();

@@ -46,30 +46,9 @@ void MainWindow::createGrid() {
         for(int col=0; col<dimensionL->value(); col++){
             grid->setColumnWidth(col, Gridsize/dimensionL->value());
             grid->setItem(row, col, new QTableWidgetItem(""));
-            switch(simu->getValueCurrent(col, row)){
-            case 0 :
-                grid->item(row, col)->setBackgroundColor("white");
-                grid->item(row, col)->setTextColor("white");
-                break;
-            case 1 :
-                grid->item(row, col)->setBackgroundColor("green");
-                grid->item(row, col)->setTextColor("green");
-                break;
-            case 2 :
-                grid->item(row, col)->setBackgroundColor("red");
-                grid->item(row, col)->setTextColor("red");
-                break;
-            case 3 :
-                grid->item(row, col)->setBackgroundColor("black");
-                grid->item(row, col)->setTextColor("black");
-                break;
-            default :
-                grid->item(row, col)->setBackgroundColor("black");
-                grid->item(row, col)->setTextColor("black");
-                break;
-            }
         }
     }
+    afficheGrid();
     disp->setCurrentWidget(gridWidget);
 }
 
@@ -132,6 +111,40 @@ void MainWindow::changeForm(int index) {
         dimensionH->setMinimum(dimensionMin);
         dimensionH->setMaximum(dimensionMax);
         break;
+    }
+}
+
+void MainWindow::nextEtat() {
+    simu->next();
+    afficheGrid();
+}
+
+void MainWindow::afficheGrid() {
+    for(int row=0; row<dimensionH->value(); row++){
+        for(int col=0; col<dimensionL->value(); col++){
+            switch(simu->getValueCurrent(col, row)){
+            case 0 :
+                grid->item(row, col)->setBackgroundColor("white");
+                grid->item(row, col)->setTextColor("white");
+                break;
+            case 1 :
+                grid->item(row, col)->setBackgroundColor("green");
+                grid->item(row, col)->setTextColor("green");
+                break;
+            case 2 :
+                grid->item(row, col)->setBackgroundColor("red");
+                grid->item(row, col)->setTextColor("red");
+                break;
+            case 3 :
+                grid->item(row, col)->setBackgroundColor("black");
+                grid->item(row, col)->setTextColor("black");
+                break;
+            default :
+                grid->item(row, col)->setBackgroundColor("black");
+                grid->item(row, col)->setTextColor("black");
+                break;
+            }
+        }
     }
 }
 
