@@ -180,6 +180,16 @@ void FabriqueEtat::deleteEtat(Etat* e) const{
     throw EtatException("Etat non existant");
 }
 
+    /*!
+     * \fn void FabriqueEtat::setValue(unsigned int n, unsigned int m, unsigned int v, Etat *e)
+     * \brief Donne une valeur v à la case (n,m) de l'état e
+     *
+     * \param unsigned int n : Abscisse de la case à affecter
+     * \param unsigned int m : Ordonnée de la case à affecter
+     * \unsigned int v : Valeur à affecter
+     * \param Etat* e : Etat auquel affecter la valeur
+     * \return void
+     */
 void FabriqueEtat::setValue(unsigned int n, unsigned int m, unsigned int v, Etat *e){
     if(n>=e->getdimN()) throw EtatException("Dimension incorrecte");
     if(!strcmp(typeid(*e).name(),"6Etat1D")){
@@ -193,6 +203,15 @@ void FabriqueEtat::setValue(unsigned int n, unsigned int m, unsigned int v, Etat
     throw EtatException("Etat non existant");
 }
 
+    /*!
+     * \fn unsigned int FabriqueEtat::getValue(unsigned int n, unsigned int m, Etat *e) const
+     * \brief Retourne la valeur affectée à une case
+     *
+     * \param unsigned int n : Abscisse de la case à retourner
+     * \param unsigned int m : Ordonnée de la case à retourner
+     * \param Etat* e : Etat dont on veut récupérer une valeur
+     * \return unsigned int
+     */
 unsigned int FabriqueEtat::getValue(unsigned int n, unsigned int m, Etat *e) const {
     if(n>=e->getdimN()) throw EtatException("Dimension incorrecte");
     if(!strcmp(typeid(*e).name(),"6Etat1D")){

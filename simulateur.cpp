@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <math.h>
+#include <iostream>
 #include "automate.h"
 
 
@@ -65,23 +66,29 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
         if (choixdepart.compare("Remplissage aléatoire")==0){
             for (i=0;i<n;i++)
                 tab[i] = new unsigned int[m];
-                for (j=0;j<m;j++)
-                    tab[i][j]=rand()%2;
+                for (j=0;j<m;j++) {
+                    tab[i][j]=rand() % 2;
+                }
         }
         else {
             if (choixdepart.compare("Remplissage symétrique")==0){
-                for (i=0;i<(floor(n/2)+1);i++)
+                for (i=0;i<(floor(n/2)+1);i++) {
+                    tab[i] = new unsigned int[m];
                     for (j=0;j<m;j++)
                     {
                         tab[i][j]=rand()%2;
                         tab[n-1-i][j]=tab[i][j];
                     }
+                }
             }
             else {
                 if (choixdepart.compare("Grille vide")==0){
-                    for (i=0;i<n;i++)
+                    for (i=0;i<n;i++) {
+                        tab[i] = new unsigned int[m];
                         for (j=0;j<m;j++)
                             tab[i][j]=0;
+                    }
+
                 }
                 else
                     throw "erreur : choix de départ inconnu\n";
@@ -120,12 +127,31 @@ Simulateur::~Simulateur() {
     fabEtat.deleteEtat(current);
 }
 
-void Simulateur::setCurrent(unsigned int n, unsigned int m, unsigned int v){
+    /*!
+     * \fn void Simulateur::setValueCurrent(unsigned int n, unsigned int m, unsigned int v
+     * \brief Donne une valeur de l'état courant
+     *
+     * \param unsigned int n : Abscisse de la case dont on veut la valeur
+     * \param unsigned int m : Ordonnée de la case dont on veut la valeur
+     * \param unsigned int v : Valeur à attribuer à la case
+     * \return void
+     */
+void Simulateur::setValueCurrent(unsigned int n, unsigned int m, unsigned int v){
     FabriqueEtat fabEtat;
     fabEtat.setValue(n,m,v,getCurrent());
 }
 
-unsigned int Simulateur::getCurrent(unsigned int n, unsigned int m) const {
+
+
+    /*!
+     * \fn unsigned int Simulateur::getValueCurrent(unsigned int n, unsigned int m) const
+     * \brief Récupère une valeur de l'état courant
+     *
+     * \param unsigned int n : Abscisse de la case dont on veut la valeur
+     * \param unsigned int m : Ordonnée de la case dont on veut la valeur
+     * \return unsigned int
+     */
+unsigned int Simulateur::getValueCurrent(unsigned int n, unsigned int m) const {
     FabriqueEtat fabEtat;
     return fabEtat.getValue(n,m,getCurrent());
 }

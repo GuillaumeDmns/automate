@@ -402,7 +402,7 @@ unsigned int JeuDeLaVie::getNbDim() const{
  */
 unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
 if(regle[0]) throw AutomateException("Regle incorrecte");
-    for(unsigned int i=0; i<=getTailleRegle();++i){
+    for(unsigned int i=0; i<=FeuDeForet::getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
         if(((i/1000)+(i/100)%10+(i/10)%10+i%10)==8) {
@@ -433,25 +433,25 @@ unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, unsigned int** r
 
 /*!
  * \fn FeuDeForet::FeuDeForet(const unsigned int regle[])
- * \brief Constructeur de la classe Jeu de la Vie
+ * \brief Constructeur de la classe Feu De Foret
  *
  * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
  */
-FeuDeForet::FeuDeForet(const unsigned int regle[]) :Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(),regle)) {
+FeuDeForet::FeuDeForet(const unsigned int regle[]) : Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(),regle)) {
 }
 
 /*!
  * \fn FeuDeForet::FeuDeForet(const Automate& a)
- * \brief Constructeur par recopie de la classe FeuDeForet
+ * \brief Constructeur par recopie de la classe Feu De Foret
  *
  * \param const Automate& a : Objet Automate à recopier
  */
-FeuDeForet::FeuDeForet(const Automate& a) :Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(), a.getRegle())) {
+FeuDeForet::FeuDeForet(const Automate& a) : Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(), a.getRegle())) {
 }
 
 /*!
  * \fn FeuDeForet::~FeuDeForet()
- * \brief Destructeur de la classe FeuDeForet
+ * \brief Destructeur de la classe Feu De Foret
  *
  */
 FeuDeForet::~FeuDeForet(){
@@ -497,7 +497,6 @@ unsigned int FeuDeForet::getTailleRegle() const{
  * \fn unsigned int FeuDeForet::getNbDim() const
  * \brief Permet la récupération du nombre de dimensions de l'automate
  *
- * \param
  * \return unsigned int
  */
 unsigned int FeuDeForet::getNbDim() const{

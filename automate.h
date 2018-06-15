@@ -348,10 +348,10 @@ public :
 };
 
 /*!
-    * \class JeuDeLaVie
-    * \brief Classe Jeu de la vie
+    * \class FeuDeForet
+    * \brief Classe Feu De Foret
     *
-    * \details La classe gère les données relatives à un automate Jeu de la Vie
+    * \details La classe gère les données relatives à un automate Feu De Foret
     *
     */
 class FeuDeForet : public Automate {
