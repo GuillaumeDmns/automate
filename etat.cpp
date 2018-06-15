@@ -225,8 +225,13 @@ unsigned int FabriqueEtat::getValue(unsigned int n, unsigned int m, Etat *e) con
 }
 
 void FabriqueEtat::copyEtat(Etat* source, Etat* dest) const {
-    if(strcmp(typeid(source).name(),typeid(dest).name())) throw EtatException("Etats incompatibles"); else
-    if(!strcmp(typeid(source).name(),"6Etat1D")) dynamic_cast<Etat1D*>(dest)->copyEtat(dynamic_cast<Etat1D*>(source)); else
-    if(!strcmp(typeid(source).name(),"6Etat2D")) dynamic_cast<Etat2D*>(dest)->copyEtat(dynamic_cast<Etat2D*>(source)); else
-    throw EtatException("Etat non existant");
+    if(strcmp(typeid(*source).name(),typeid(*dest).name())) throw EtatException("Etats incompatibles");
+    else {
+        if(!strcmp(typeid(*source).name(),"6Etat1D")) dynamic_cast<Etat1D*>(dest)->copyEtat(dynamic_cast<Etat1D*>(source));
+        else {
+            if(!strcmp(typeid(*source).name(),"6Etat2D")) dynamic_cast<Etat2D*>(dest)->copyEtat(dynamic_cast<Etat2D*>(source));
+            else throw EtatException("Etat non existant");
+        }
+    }
+
 }
