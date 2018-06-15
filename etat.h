@@ -281,8 +281,27 @@ protected :
      */
     void deleteEtat(Etat* e) const;
 
+    /*!
+     * \brief setValue
+     * \details Donne une valeur v à la case (n,m) de l'état e
+     *
+     * \param unsigned int n : Abscisse de la case à affecter
+     * \param unsigned int m : Ordonnée de la case à affecter
+     * \unsigned int v : Valeur à affecter
+     * \param Etat* e : Etat auquel affecter la valeur
+     * \return void
+     */
     void setValue(unsigned int n, unsigned int m, unsigned int v, Etat* e);
 
+    /*!
+     * \brief getValue
+     * \details Retourne la valeur affectée à une case
+     *
+     * \param unsigned int n : Abscisse de la case à retourner
+     * \param unsigned int m : Ordonnée de la case à retourner
+     * \param Etat* e : Etat dont on veut récupérer une valeur
+     * \return unsigned int
+     */
     unsigned int getValue(unsigned int n, unsigned int m, Etat* e) const;
 };
 

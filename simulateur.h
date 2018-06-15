@@ -91,7 +91,6 @@ public:
      */
     Etat* getCurrent() const { return current; }
 
-   //A QUOI SERT CETTE FONCTION
     /*!
      * \brief Fonction getValueCurrent du Simulateur
      *
