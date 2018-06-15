@@ -440,7 +440,53 @@ MainWindow::MainWindow():QWidget() {
 }
 
 MainWindow::~MainWindow() {
-
+    delete typeAutomate;
+    delete generation;
+    delete newAutomate;
+    delete display;
+    delete mainLayout;
+    delete dimensions;
+    delete header;
+    delete rulesRenait;
+    delete rulesVit;
+    delete VHeader;
+    delete HHeader;
+    delete displayTitle;
+    delete timesDimensions;
+    delete generalTitle;
+    delete toolsInfo;
+    delete toolsInfo2;
+    delete toolsInfo3;
+    delete counter;
+    delete counterLabel;
+    delete minR;
+    delete maxR;
+    delete minV;
+    delete maxV;
+    delete submit;
+    delete backHomeButton;
+    delete loadOtherAutomate;
+    delete quit;
+    delete next;
+    delete reset;
+    delete save;
+    delete stop;
+    delete play;
+    delete simu;
+    delete dimensionH;
+    delete dimensionL;
+    delete minRenait;
+    delete maxRenait;
+    delete minVit;
+    delete maxVit;
+    delete disp;
+    delete grid;
+    delete timer;
+    delete tools;
+    delete bigGridLayout;
+    delete home;
+    delete gridWidget;
+    delete speedtime;
 }
 
 /*!

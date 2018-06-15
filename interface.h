@@ -36,7 +36,6 @@ public:
 private:
 
     QComboBox *typeAutomate, *generation;
-    //QFileDialog *loadOtherAutomate;
     QFormLayout *newAutomate;
     QGridLayout *display, *mainLayout;
     QHBoxLayout *dimensions, *header, *rulesRenait, *rulesVit;
