@@ -167,10 +167,7 @@ protected:
      * \param Etat2D& e : Objet Etat2D à recopier
      * 
      */
-    Etat2D(Etat2D& e):Etat(e.getdimN()), dimM(e.getdimM()), valeur(new unsigned int*[e.getdimM()]){
-            for (unsigned int i=0;i<dimN;i++)
-                for (unsigned int j=0;j<dimM;j++)
-                    valeur[i][j]=e.valeur[i][j];
+    Etat2D(Etat2D& e):Etat2D(e.getdimN(),e.getdimM(),e.valeur){
     }
     
     /*!
