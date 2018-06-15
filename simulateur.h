@@ -51,7 +51,8 @@ public:
      * \return void
      */
     void reset() {
-            *current=*depart;
+            FabriqueEtat fabEtat;
+            fabEtat.copyEtat(depart,current);
             numEtat=0;
     }
 
