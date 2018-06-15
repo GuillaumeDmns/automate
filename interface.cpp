@@ -30,7 +30,7 @@
 #include "interface.h"
 #include <iostream>
 
-int MainWindow::Gridsize = 300;
+int MainWindow::Gridsize = 400;
 const int dimensionMin=10;
 const int dimensionMax=100;
 
@@ -50,7 +50,7 @@ void MainWindow::createGrid() {
     simu = new Simulateur(typeAutomate->currentText().toStdString(),rule,generation->currentText().toStdString(),dimensionL->value(),dimensionH->value());
     grid->setRowCount(dimensionH->value());
     grid->setColumnCount(dimensionL->value());
-    grid->setFixedSize(dimensionL->value()*(Gridsize/dimensionL->value()), dimensionH->value()*(Gridsize/dimensionH->value()));
+    grid->setFixedSize(dimensionH->value()*(Gridsize/dimensionH->value()), dimensionL->value()*(Gridsize/dimensionL->value()));
     for(int row=0; row<dimensionH->value(); row++){
         grid->setRowHeight(row, Gridsize/dimensionH->value());
         for(int col=0; col<dimensionL->value(); col++){
@@ -247,8 +247,8 @@ int _interface(int argc, char * argv[]) {
 
 
     MainWindow fenetre;
-    int widthMax(800), heightMax(800);
-    //fenetre.setFixedSize(widthMax, heightMax);
+    int widthMax(800), heightMax(600);
+    fenetre.setFixedSize(widthMax, heightMax);
 
 
 

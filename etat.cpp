@@ -162,8 +162,8 @@ Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int dimM, unsigned in
      * \return Etat&
      */
 Etat* FabriqueEtat::createEtat(Etat* e) const{
-    if(!strcmp(typeid(*e).name(),"Etat1D")) return (new Etat1D(*dynamic_cast<Etat1D*>(e)));
-    if(!strcmp(typeid(*e).name(),"Etat2D")) return (new Etat2D(*dynamic_cast<Etat2D*>(e)));
+    if(!strcmp(typeid(*e).name(),"6Etat1D")) return (new Etat1D(*dynamic_cast<Etat1D*>(e)));
+    if(!strcmp(typeid(*e).name(),"6Etat2D")) return (new Etat2D(*dynamic_cast<Etat2D*>(e)));
     throw EtatException("Etat inexistant");
 }
 
@@ -175,18 +175,20 @@ Etat* FabriqueEtat::createEtat(Etat* e) const{
      * \return void
      */
 void FabriqueEtat::deleteEtat(Etat* e) const{
-    if(!strcmp(typeid(*e).name(),"Etat1D")) delete dynamic_cast<Etat1D*>(e);
-    if(!strcmp(typeid(*e).name(),"Etat2D")) delete dynamic_cast<Etat2D*>(e);
+    if(!strcmp(typeid(*e).name(),"6Etat1D")) delete dynamic_cast<Etat1D*>(e); else
+    if(!strcmp(typeid(*e).name(),"6Etat2D")) delete dynamic_cast<Etat2D*>(e); else
     throw EtatException("Etat non existant");
 }
 
 void FabriqueEtat::setValue(unsigned int n, unsigned int m, unsigned int v, Etat *e){
     if(n>=e->getdimN()) throw EtatException("Dimension incorrecte");
-    if(!strcmp(typeid(*e).name(),"Etat1D")){
+    if(!strcmp(typeid(*e).name(),"6Etat1D")){
         if(m==0) dynamic_cast<Etat1D*>(e)->setValue(n,v); else throw EtatException("Dimension incorrecte");
+        return;
     }
-    if(!strcmp(typeid(*e).name(),"Etat2D")){
+    if(!strcmp(typeid(*e).name(),"6Etat2D")){
         if(m<dynamic_cast<Etat2D*>(e)->getdimM()) dynamic_cast<Etat2D*>(e)->setValue(n,m,v); else throw EtatException("Dimension incorrecte");
+        return;
     }
     throw EtatException("Etat non existant");
 }
@@ -197,8 +199,9 @@ unsigned int FabriqueEtat::getValue(unsigned int n, unsigned int m, Etat *e) con
         if(m==0) return dynamic_cast<Etat1D*>(e)->getValue(n);
         else throw EtatException("Dimension incorrecte");
     }
-    if(!strcmp(typeid(*e).name(),"Etat2D")){
-        if(m<dynamic_cast<Etat2D*>(e)->getdimM()) return dynamic_cast<Etat2D*>(e)->getValue(n,m); else throw EtatException("Dimension incorrecte");
+    if(!strcmp(typeid(*e).name(),"6Etat2D")){
+        if(m<dynamic_cast<Etat2D*>(e)->getdimM()) return dynamic_cast<Etat2D*>(e)->getValue(n,m);
+        else throw EtatException("Dimension incorrecte");
     }
     throw EtatException("Etat non existant");
 }

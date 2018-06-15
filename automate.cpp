@@ -37,11 +37,11 @@ unsigned int FeuDeForet::nbEtats=4;
      */
 void FabriqueAutomate::appliquerTransition(Etat& dep, Etat& dest, Automate& a) const {
     if(!strcmp(typeid(dep).name(),typeid(dest).name())) throw AutomateException("Etats incompatibles");
-    if(!strcmp(typeid(dep).name(),"Etat1D")) {
+    if(!strcmp(typeid(dep).name(),"6Etat1D")) {
         a.appliquerTransition(dynamic_cast<Etat1D&>(dep),dynamic_cast<Etat1D&>(dest));
         return;
     }
-    if(!strcmp(typeid(dep).name(),"Etat2D")) {
+    if(!strcmp(typeid(dep).name(),"6Etat2D")) {
         a.appliquerTransition(dynamic_cast<Etat2D&>(dep),dynamic_cast<Etat2D&>(dest));
         return;
     }
@@ -310,9 +310,9 @@ Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigne
      * \return Automate*
      */
 Automate* FabriqueAutomate::createAutomate(const Automate* a) const {
-    if(!strcmp(typeid(*a).name(),"Cell1D")) return (new Cell1D(*a));
-    if(!strcmp(typeid(*a).name(),"JeuDeLaVie")) return (new JeuDeLaVie(*a));
-    if(!strcmp(typeid(*a).name(),"FeuDeForet")) return (new FeuDeForet(*a));
+    if(!strcmp(typeid(*a).name(),"6Cell1D")) return (new Cell1D(*a));
+    if(!strcmp(typeid(*a).name(),"6JeuDeLaVie")) return (new JeuDeLaVie(*a));
+    if(!strcmp(typeid(*a).name(),"6FeuDeForet")) return (new FeuDeForet(*a));
     throw AutomateException("Automate Inexistant");
 }
 
@@ -324,9 +324,9 @@ Automate* FabriqueAutomate::createAutomate(const Automate* a) const {
      * \return void
      */
 void FabriqueAutomate::deleteAutomate(Automate* a) const{
-    if(!strcmp(typeid(*a).name(),"Cell1D")) delete dynamic_cast<Cell1D*>(a);
-    if(!strcmp(typeid(*a).name(),"JeuDeLaVie")) delete dynamic_cast<JeuDeLaVie*>(a);
-    if(!strcmp(typeid(*a).name(),"FeuDeForet")) delete dynamic_cast<FeuDeForet*>(a);
+    if(!strcmp(typeid(*a).name(),"6Cell1D")) delete dynamic_cast<Cell1D*>(a); else
+    if(!strcmp(typeid(*a).name(),"6JeuDeLaVie")) delete dynamic_cast<JeuDeLaVie*>(a); else
+    if(!strcmp(typeid(*a).name(),"6FeuDeForet")) delete dynamic_cast<FeuDeForet*>(a); else
     throw AutomateException("AutomateInexistant");
 }
 
