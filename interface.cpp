@@ -401,6 +401,7 @@ void MainWindow::saveSimu(){
  *
  */
 MainWindow::MainWindow():QWidget() {
+    simu = nullptr;
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
     timer = new QTimer(this);
