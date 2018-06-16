@@ -155,7 +155,7 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int r
      */
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int** regle) const{
     for(unsigned int i=0; i<nbEtats; ++i){
-        for(unsigned int j=0; j<=getTailleRegle(); ++j){
+        for(unsigned int j=0; j<=Cell1D::getTailleRegle(); ++j){
             tab[i][j] = regle[i][j];
         }
     }
