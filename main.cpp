@@ -3,7 +3,7 @@
     * \brief Test des automates
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
-    * \date 28 mai 2018
+    * \date 16 juin 2018
     *
     * \details Programme pour tester les fonctions de l'automate et l'affichage
     *

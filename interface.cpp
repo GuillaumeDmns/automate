@@ -3,7 +3,7 @@
     * \brief Définition des méthodes et fonctions de l'interface
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
-    * \date 28 mai 2018
+    * \date 16 juin 2018
     *
     * \details Programme pour définir les fonctions et les méthodes non inline relatives à l'interface graphique
     *

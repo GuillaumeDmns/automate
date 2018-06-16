@@ -3,7 +3,7 @@
     * \brief Déclaration des objets Automate
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
-    * \date 02 juin 2018
+    * \date 16 juin 2018
     *
     * \details Fichier pour créer les classes et fonctions relatives à Automate
     *

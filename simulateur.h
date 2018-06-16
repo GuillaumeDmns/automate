@@ -3,7 +3,7 @@
     * \brief Déclaration de l'objet Simulateur
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
-    * \date 28 mai 2018
+    * \date 16 juin 2018
     *
     * \details Fichier pour créer les classes et fonctions relatives à Simulateur
     *
