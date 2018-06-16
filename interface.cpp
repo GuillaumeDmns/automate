@@ -220,7 +220,11 @@ void MainWindow::setLoadedAutomate() {
     }
     delete a;
     file.close();
+    dimensionH->setMinimum(dimensionMin);
+    dimensionH->setMaximum(dimensionMax);
     dimensionH->setValue(dimN);
+    dimensionL->setMinimum(dimensionMin);
+    dimensionL->setMaximum(dimensionMax);
     dimensionL->setValue(dimM);
     createGrid();
 }
