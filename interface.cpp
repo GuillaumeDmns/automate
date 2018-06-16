@@ -32,7 +32,7 @@
 #include <QTimer>
 #include "interface.h"
 #include <QTimer>
-
+#include <fstream>
 
 int MainWindow::Gridsize = 400;
 const int dimensionMin=10;
@@ -117,6 +117,7 @@ void MainWindow::backToHome() {
         for(int col=0; col<dimensionL->value(); col++){
             delete grid->item(row, col);
         }
+    simu=nullptr;
     }
 
     counterLabel->setHidden(true);
@@ -131,8 +132,9 @@ void MainWindow::backToHome() {
 }
 
 void MainWindow::setLoadedAutomate() {
-    const QString& PathLoadAutomate = QFileDialog::getOpenFileName(this, "test", QDir::currentPath(), "Texte (*.txt)");
-    //rules->setText(PathLoadAutomate);
+/*
+    QString PathLoadAutomate = QFileDialog::getOpenFileName(this, "Load Simulation",, "Data (*.csv)");
+
     QFile loadedFile(PathLoadAutomate);
     QString text, tempText;
     if (loadedFile.open(QIODevice::ReadOnly|QIODevice::Text)) {
@@ -163,6 +165,7 @@ void MainWindow::setLoadedAutomate() {
     else {
         text = "Le fichier n'a pas pu être ouvert !";
     }
+*/
 }
 
 void MainWindow::changeForm(int index) {
@@ -444,6 +447,7 @@ MainWindow::MainWindow():QWidget() {
 }
 
 MainWindow::~MainWindow() {
+    if(simu!=nullptr) delete simu;
     delete timer;
     delete displayTitle;
     delete typeAutomate;
