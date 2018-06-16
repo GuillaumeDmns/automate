@@ -193,7 +193,8 @@ void Simulateur::save(string filename) const {
         for(unsigned int i=0; i<depart->getdimN(); ++i){
             file << dynamic_cast<Etat1D*>(depart)->getValue(i) <<";";
         }
-        file<<endl<<endl;
+        file<<endl;
+        file<< 0 <<endl;
         for(unsigned int i=0; i<current->getdimN(); ++i){
             file << dynamic_cast<Etat1D*>(current)->getValue(i) <<";";
         }
@@ -205,7 +206,7 @@ void Simulateur::save(string filename) const {
             }
             file<<endl;
         }
-        file<<endl;
+        file<<0<<endl;
         for(unsigned int i=0; i<depart->getdimN(); ++i){
             for(unsigned int j=0; j<dynamic_cast<Etat2D*>(current)->getdimM(); ++j){
                 file << dynamic_cast<Etat2D*>(current)->getValue(i,j) <<";";
