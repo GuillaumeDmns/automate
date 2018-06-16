@@ -17,7 +17,7 @@
 
 using namespace std;
 
-
+//Définition des attributs static
 unsigned int Cell1D::nbDim=1;
 unsigned int JeuDeLaVie::nbDim=2;
 unsigned int FeuDeForet::nbDim=2;

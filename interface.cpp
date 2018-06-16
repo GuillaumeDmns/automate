@@ -34,6 +34,7 @@
 #include <QTimer>
 #include <fstream>
 
+//Definition des attributs static
 int MainWindow::Gridsize = 400;
 const int dimensionMin=10;
 const int dimensionMax=150;
