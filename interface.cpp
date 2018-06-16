@@ -472,7 +472,7 @@ MainWindow::MainWindow():QWidget() {
     /* Tous les connects */
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
     connect(next, SIGNAL(clicked()), this, SLOT(nextEtat()));
-    connect(submit, SIGNAL(clicked()), this, SLOT(createGrid()));
+    connect(submit, SIGNAL(clicked()), this, SLOT(validAuto()));
     connect(reset, SIGNAL(clicked()), this, SLOT(resetGrid()));
     connect(backHomeButton, SIGNAL(clicked()), this, SLOT(backToHome()));
     connect(loadOtherAutomate, SIGNAL(clicked()), this, SLOT(setLoadedAutomate()));
