@@ -428,7 +428,7 @@ if(regle[0]) throw AutomateException("Regle incorrecte");
  */
 unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int** regle) const{
     for(unsigned int i=0; i<nbEtats; ++i){
-        for(unsigned int j=0; j<=getTailleRegle(); ++j){
+        for(unsigned int j=0; j<=FeuDeForet::getTailleRegle(); ++j){
             tab[i][j] = regle[i][j];
         }
     }

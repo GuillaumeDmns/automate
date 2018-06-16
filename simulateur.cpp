@@ -178,8 +178,8 @@ unsigned int Simulateur::getValueCurrent(unsigned int n, unsigned int m) const {
 void Simulateur::save(string filename) const {
     ofstream file;
     file.open(filename);
-    file << numEtat <<endl;
-    file << typeid(*automate).name()<<endl;
+    file << numEtat << endl;
+    file << typeid(*automate).name()<< endl;
     file << automate->getNbEtats() <<";"<<automate->getTailleRegle()<<endl;
     for(unsigned int i=0; i<automate->getNbEtats(); ++i){
         for(unsigned int j=0; j<=automate->getTailleRegle(); ++j){
