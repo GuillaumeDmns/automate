@@ -3,7 +3,7 @@
     * \brief Définition des fonctions des objets Simulateur
     * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
     * \version 0.1
-    * \date 2 juin 2018
+    * \date 16 juin 2018
     *
     * \details Fichier pour définir les fonctions relatives à Simulateur non inline
     *
