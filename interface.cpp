@@ -38,7 +38,14 @@ int MainWindow::Gridsize = 400;
 const int dimensionMin=10;
 const int dimensionMax=150;
 
-
+/*!
+ * \fn void MainWindow::changeCell(int row, int colomn)
+ * \brief Permet de changer d'Automate
+ *
+ * \param int row : Nombre de lignes
+ * \param int colomn : Nombre de colonnes
+ * \return void
+ */
 void MainWindow::changeCell(int row, int colomn) {
     if(!simu->getNumEtat()){
         simu->setValueDepart(colomn, row, (simu->getValueCurrent(colomn, row)+1)%simu->getAutomate()->getNbEtats());
@@ -46,6 +53,12 @@ void MainWindow::changeCell(int row, int colomn) {
     }
 }
 
+/*!
+ * \fn void MainWindow::stopGrid()
+ * \brief Permet d'arrêter la simulation en cours
+ *
+ * \return void
+ */
 void MainWindow::stopGrid() {
     timer->stop();
     stop->setHidden(true);
@@ -57,6 +70,12 @@ void MainWindow::stopGrid() {
     backHomeButton->setDisabled(false);
 }
 
+/*!
+ * \fn void MainWindow::playGrid()
+ * \brief Permet de lancer la simulation de l'automate simulé
+ *
+ * \return void
+ */
 void MainWindow::playGrid() {
     timer->start(speedtime->maximum()+speedtime->minimum()-speedtime->value());
     play->setHidden(true);
@@ -68,12 +87,24 @@ void MainWindow::playGrid() {
     backHomeButton->setDisabled(true);
 }
 
+/*!
+ * \fn void MainWindow::resetGrid()
+ * \brief Permet de revenir dans la situation initiale de la simulation
+ *
+ * \return void
+ */
 void MainWindow::resetGrid() {
     simu->reset();
     afficheGrid();
     counter->setText(QString::number(static_cast<int>(simu->getNumEtat())));
 }
 
+/*!
+ * \fn void MainWindow::createGrid()
+ * \brief Permet la création de la grille
+ *
+ * \return void
+ */
 void MainWindow::createGrid() {
     grid->setRowCount(dimensionH->value());
     grid->setColumnCount(dimensionL->value());
@@ -92,6 +123,12 @@ void MainWindow::createGrid() {
     toolsStacked->setCurrentWidget(toolsWidgetRun);
 }
 
+/*!
+ * \fn void MainWindow::backToHome()
+ * \brief Permet le retour à la page d'Accueil
+ *
+ * \return void
+ */
 void MainWindow::backToHome() {
     delete simu;
     disp->setCurrentWidget(home);
@@ -104,6 +141,12 @@ void MainWindow::backToHome() {
     }
 }
 
+/*!
+ * \fn void MainWindow::setLoadedAutomate()
+ * \brief Permet de charger un automate pré-existant
+ *
+ * \return void
+ */
 void MainWindow::setLoadedAutomate() {
     QString PathLoadAutomate = QFileDialog::getOpenFileName(this, tr("Load Simulation"),"simulation.csv",tr("Data (*.csv)"));
     char delim;
@@ -181,6 +224,12 @@ void MainWindow::setLoadedAutomate() {
     createGrid();
 }
 
+/*!
+ * \fn void MainWindow::validAuto()
+ * \brief Crée l'automate pour la simulation
+ *
+ * \return void
+ */
 void MainWindow::validAuto(){
     unsigned int rule[6];
     rule[0]=0;
@@ -193,6 +242,13 @@ void MainWindow::validAuto(){
     createGrid();
 }
 
+/*!
+ * \fn void MainWindow::changeForm(int index)
+ * \brief Permet de changer l'affichage en fonctions des caractéristiques de l'automate simulé
+ *
+ * \param int index : Choix de l'automate à simuler
+ * \return void
+ */
 void MainWindow::changeForm(int index) {
     switch (index) {
     case 0:
@@ -266,12 +322,24 @@ void MainWindow::changeForm(int index) {
     }
 }
 
+/*!
+ * \fn void MainWindow::nextEtat()
+ * \brief Permet le passage à l'état suivant de l'automate simulé
+ *
+ * \return void
+ */
 void MainWindow::nextEtat() {
     simu->next();
     afficheGrid();
     counter->setText(QString::number(static_cast<int>(simu->getNumEtat())));
 }
 
+/*!
+ * \fn void MainWindow::checkRules()
+ * \brief Récupère les règles pour la simulation
+ *
+ * \return void
+ */
 void MainWindow::checkRules(){
     minRenait->setMaximum(maxRenait->value());
     maxRenait->setMinimum(minRenait->value());
@@ -279,6 +347,12 @@ void MainWindow::checkRules(){
     maxVit->setMinimum(minVit->value());
 }
 
+/*!
+ * \fn void MainWindow::afficheGrid()
+ * \brief Permet l'affichage de la grille
+ *
+ * \return void
+ */
 void MainWindow::afficheGrid() {
     for(int row=0; row<dimensionH->value(); row++){
         for(int col=0; col<dimensionL->value(); col++){
@@ -309,11 +383,22 @@ void MainWindow::afficheGrid() {
     counter->setText(QString::number(static_cast<int>(simu->getNumEtat())));
 }
 
+/*!
+ * \fn void MainWindow::saveSimu()
+ * \brief Permet de sauvegarder la simulation courante
+ *
+ * \return void
+ */
 void MainWindow::saveSimu(){
     QString PathSaveSimu = QFileDialog::getSaveFileName(this, tr("Save Simulation"),"simulation.csv",tr("Data (*.csv)"));
     simu->save(PathSaveSimu.toStdString());
 }
 
+/*!
+ * \fn MainWindow::MainWindow()
+ * \brief Constructeur de la classe MainWindow
+ *
+ */
 MainWindow::MainWindow():QWidget() {
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
@@ -472,6 +557,11 @@ MainWindow::MainWindow():QWidget() {
     connect(save, SIGNAL(clicked()), this, SLOT(saveSimu()));
 }
 
+/*!
+ * \fn MainWindow::~MainWindow()
+ * \brief Destructeur de la classe MainWindow
+ *
+ */
 MainWindow::~MainWindow() {
     if(simu!=nullptr) delete simu;
     delete timer;
