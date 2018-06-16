@@ -409,6 +409,8 @@ if(regle[0]) throw AutomateException("Regle incorrecte");
     for(unsigned int i=0; i<=FeuDeForet::getTailleRegle();++i){
         tab[0][i]=0;
         tab[1][i]=0;
+        tab[2][i]=0;
+        tab[3][i]=0;
         if(((i/1000)+(i/100)%10+(i/10)%10+i%10)==8) {
             tab[2][i]=3;
             tab[3][i]=3;
