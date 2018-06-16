@@ -75,14 +75,6 @@ void MainWindow::resetGrid() {
 }
 
 void MainWindow::createGrid() {
-    unsigned int rule[6];
-    rule[0]=0;
-    rule[1]=minRenait->value();
-    rule[2]=maxRenait->value();
-    rule[3]=1;
-    rule[4]=minVit->value();
-    rule[5]=maxVit->value();
-    simu = new Simulateur(typeAutomate->currentText().toStdString(),rule,generation->currentText().toStdString(),dimensionL->value(),dimensionH->value());
     grid->setRowCount(dimensionH->value());
     grid->setColumnCount(dimensionL->value());
     grid->setFixedSize(dimensionL->value()*(Gridsize/dimensionL->value()), dimensionH->value()*(Gridsize/dimensionH->value()));
@@ -131,40 +123,91 @@ void MainWindow::backToHome() {
 }
 
 void MainWindow::setLoadedAutomate() {
-/*
-    QString PathLoadAutomate = QFileDialog::getOpenFileName(this, "Load Simulation",, "Data (*.csv)");
-
-    QFile loadedFile(PathLoadAutomate);
-    QString text, tempText;
-    if (loadedFile.open(QIODevice::ReadOnly|QIODevice::Text)) {
-        QTextStream flux(&loadedFile);
-        unsigned int getParamAutomate = 0;
-
-        while (!flux.atEnd()) {
-            tempText = flux.readLine();
-            switch (getParamAutomate) {
-            case 0: // type d'automate
-                typeAutomate->setCurrentIndex(tempText.toInt());
-                break;
-            case 1: // hauteur
-                dimensionH->setValue(tempText.toInt());
-                break;
-            case 2: // largeur
-                dimensionL->setValue(tempText.toInt());
-                break;
-            default:
-                text += tempText + '\n';
-                break;
-            }
-            ++getParamAutomate;
+    QString PathLoadAutomate = QFileDialog::getOpenFileName(this, tr("Load Simulation"),"simulation.csv",tr("Data (*.csv)"));
+    char delim;
+    ifstream file;
+    file.open(PathLoadAutomate.toStdString());
+    unsigned int numEtat;
+    file >> numEtat;
+    string idA;
+    file >> idA;
+    unsigned int nbEtats;
+    file >> nbEtats;
+    file >> delim;
+    unsigned int tailleRegle;
+    file >> tailleRegle;
+    unsigned int** a = new unsigned int*[nbEtats];
+    for(unsigned int i=0; i<nbEtats; ++i){
+        a[i]=new unsigned int[tailleRegle+1];
+        for(unsigned int j=0; j<=tailleRegle; ++j){
+            file >> a[i][j];
+            file >> delim;
         }
-        loadedFile.close();
-        //rules->setText(text);
     }
-    else {
-        text = "Le fichier n'a pas pu être ouvert !";
+    string idE;
+    file >> idE;
+    unsigned int dimN, dimM;
+    file >> dimN;
+    file >> dimM;
+    if(dimM){
+        unsigned int** dep = new unsigned int*[dimN];
+        for(unsigned int i=0; i<dimN; ++i){
+            dep[i]=new unsigned int[dimM];
+            for(unsigned int j=0; j<dimM; ++j){
+                file >> dep[i][j];
+                file >> delim;
+            }
+        }
+        file >> delim;
+        unsigned int** cur = new unsigned int*[dimN];
+        for(unsigned int i=0; i<dimN; ++i){
+            cur[i]=new unsigned int[dimM];
+            for(unsigned int j=0; j<dimM; ++j){
+                file >> cur[i][j];
+                file >> delim;
+            }
+        }
+        simu = new Simulateur(idA,const_cast<const unsigned int**>(a),dimN,dimM,numEtat,const_cast<const unsigned int**>(dep),const_cast<const unsigned int**>(cur));
+        for(unsigned int i=0; i<dimN;++i){
+            delete dep[i];
+            delete cur[i];
+        }
+        delete dep;
+        delete cur;
+    }else{
+        dimM++;
+        unsigned int* dep = new unsigned int[dimN];
+        for(unsigned int i=0; i<dimN; ++i){
+            file >> dep[i];
+            file >> delim;
+        }
+        file >> delim;
+        unsigned int* cur = new unsigned int[dimN];
+        for(unsigned int i=0; i<dimN; ++i){
+            file >> cur[i];
+            file >> delim;
+        }
+        simu = new Simulateur(idA,const_cast<const unsigned int**>(a),dimN,numEtat,const_cast<const unsigned int*>(dep),const_cast<const unsigned int*>(cur));
+        delete dep;
+        delete cur;
     }
-*/
+    delete a;
+    file.close();
+    dimensionH->setValue(dimN);
+    dimensionL->setValue(dimM);
+    createGrid();
+}
+
+void MainWindow::validAuto(){
+    unsigned int rule[6];
+    rule[0]=0;
+    rule[1]=minRenait->value();
+    rule[2]=maxRenait->value();
+    rule[3]=1;
+    rule[4]=minVit->value();
+    rule[5]=maxVit->value();
+    simu = new Simulateur(typeAutomate->currentText().toStdString(),rule,generation->currentText().toStdString(),dimensionL->value(),dimensionH->value());
+    createGrid();
 }
 
 void MainWindow::changeForm(int index) {

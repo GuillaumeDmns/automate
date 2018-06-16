@@ -172,6 +172,7 @@ void Simulateur::save(string filename) const {
     file.open(filename);
     file << numEtat <<endl;
     file << typeid(*automate).name()<<endl;
+    file << automate->getNbEtats() <<";"<<automate->getTailleRegle()<<endl;
     for(unsigned int i=0; i<automate->getNbEtats(); ++i){
         for(unsigned int j=0; j<=automate->getTailleRegle(); ++j){
             file << automate->getRegle()[i][j] <<";";

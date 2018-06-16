@@ -31,6 +31,7 @@ public slots:
     void stopGrid();
     void checkRules();
     void saveSimu();
+    void validAuto();
 public:
     MainWindow();
     ~MainWindow();
