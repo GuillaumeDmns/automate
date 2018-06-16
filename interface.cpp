@@ -497,6 +497,7 @@ MainWindow::MainWindow():QWidget() {
             reset = new QPushButton("Reset");
             play = new QPushButton("Play");
             stop = new QPushButton("Stop");
+            stop->setHidden(true);
             save = new QPushButton("Save");
             speedtime = new QSlider(Qt::Horizontal);
             speedtime->setMinimum(20);
