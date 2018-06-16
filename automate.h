@@ -92,7 +92,7 @@ public :
     virtual unsigned int getNbDim() const =0;
 
     /*!
-     * \brief Calcul la taille du tableau de régles
+     * \brief Calcul de la taille du tableau de régles
      *
      * \details Permet la récupération de la taille que devra faire le tableau de régles
      *
@@ -105,7 +105,7 @@ public :
      *
      * \details Calcule l'état suivant d'un état donné
      *
-     * \param Etat1D& dep : Référence sur l'état en 1D de départ sur lequel appliquer la transition
+     * \param const Etat1D& dep : Référence sur l'état en 1D de départ sur lequel appliquer la transition
      * \param Etat1D& dest : Référence vers l'état en 1D résultant de la transition
      *
      * \return void
@@ -117,7 +117,7 @@ public :
      *
      * \details Calcule l'état suivant d'un état donné
      *
-     * \param Etat2D& dep : Référence sur l'état en 2D de départ sur lequel appliquer la transition
+     * \param const Etat2D& dep : Référence sur l'état en 2D de départ sur lequel appliquer la transition
      * \param Etat2D& dest : Référence vers l'état en 2D résultant de la transition
      *
      * \return void
@@ -159,7 +159,7 @@ private :
     /*!
      * \brief Remplissage des règles
      *
-     * \details Remplissage du tableau des règles pour automate
+     * \details Remplissage du tableau des règles pour Cell1D
      *
      * \param unsigned int** tab : Tableau contenant les différentes régles
      * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
@@ -170,7 +170,7 @@ private :
     /*!
      * \brief Remplissage des règles
      *
-     * \details Remplissage du tableau des règles pour automate
+     * \details Remplissage du tableau des règles pour Cell1D
      *
      * \param unsigned int** tab : Tableau contenant les différentes régles
      * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
@@ -197,6 +197,13 @@ protected :
      */
     Cell1D(const Automate& a);
 
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Cell1D
+     *
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     */
     Cell1D(const unsigned int** regle);
 
 public :
@@ -227,7 +234,7 @@ public :
     unsigned int getNbEtats() const;
 
     /*!
-     * \brief Calcul la taille du tableau de régles
+     * \brief Calcul de la taille du tableau de régles
      *
      * \details Permet la récupération de la taille que devra faire le tableau de régles
      *
@@ -238,7 +245,7 @@ public :
     /*!
      * \brief Accesseur du nombre de dimensions
      *
-     * \details Permet la récupération du nombre de dimensions de l'automate
+     * \details Permet la récupération du nombre de dimensions de Cell1D
      *
      * \param
      * \return unsigned int
@@ -263,7 +270,7 @@ private :
     /*!
      * \brief Remplissage des règles
      *
-     * \details Remplissage du tableau des règles pour automate
+     * \details Remplissage du tableau des règles pour JeuDeLaVie
      *
      * \param unsigned int** tab : Tableau contenant les différentes régles
      * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
@@ -274,7 +281,7 @@ private :
     /*!
      * \brief Remplissage des règles
      *
-     * \details Remplissage du tableau des règles pour automate
+     * \details Remplissage du tableau des règles pour JeuDeLaVie
      *
      * \param unsigned int** tab : Tableau contenant les différentes régles
      * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
@@ -301,6 +308,13 @@ protected :
      */
     JeuDeLaVie(const Automate& a);
 
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Jeu de la Vie
+     *
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     */
     JeuDeLaVie(const unsigned int** regle);
 
 public :
@@ -332,7 +346,7 @@ public :
     unsigned int getNbEtats() const;
 
     /*!
-     * \brief Calcul la taille du tableau de régles
+     * \brief Calcul de la taille du tableau de régles
      *
      * \details Permet la récupération de la taille que devra faire le tableau de régles
      *
@@ -343,7 +357,7 @@ public :
     /*!
      * \brief Accesseur du nombre de dimensions
      *
-     * \details Permet la récupération du nombre de dimensions de l'automate
+     * \details Permet la récupération du nombre de dimensions de JeuDeLaVie
      *
      * \param
      * \return unsigned int
@@ -352,7 +366,7 @@ public :
 };
 
 /*!
-    * \class Foret
+    * \class FeuDeForet
     * \brief Classe Feu De Foret
     *
     * \details La classe gère les données relatives à un automate Feu De Foret
@@ -367,7 +381,7 @@ private :
     /*!
      * \brief Remplissage des règles
      *
-     * \details Remplissage du tableau des règles pour automate
+     * \details Remplissage du tableau des règles pour FeuDeForet
      *
      * \param unsigned int** tab : Tableau contenant les différentes régles
      * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
@@ -378,7 +392,7 @@ private :
     /*!
      * \brief Remplissage des règles
      *
-     * \details Remplissage du tableau des règles pour automate
+     * \details Remplissage du tableau des règles pour FeuDeForet
      *
      * \param unsigned int** tab : Tableau contenant les différentes régles
      * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
@@ -405,6 +419,13 @@ protected :
      */
     FeuDeForet(const Automate& a);
 
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Feu de Foret
+     *
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     */
     FeuDeForet(const unsigned int** regle);
 
 public :
@@ -435,7 +456,7 @@ public :
     unsigned int getNbEtats() const;
 
     /*!
-     * \brief Calcul la taille du tableau de régles
+     * \brief Calcul de la taille du tableau de régles
      *
      * \details Permet la récupération de la taille que devra faire le tableau de régles
      *
@@ -499,6 +520,16 @@ protected :
      */
     Automate* createAutomate(const Automate* a) const;
 
+    /*!
+     * \brief Création d'un Automate
+     *
+     * \details Permet l'instanciation de l'Automate souhaité
+     *
+     * \param string idAutomate : Chaîne de caractères correspondant au type d'automate souhaité
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles de transition
+     *
+     * \return Automate*
+     */
     Automate* createAutomate(std::string idAutomate, const unsigned int** regle) const;
 
     /*!

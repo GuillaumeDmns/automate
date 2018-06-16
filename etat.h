@@ -44,12 +44,12 @@ public :
      *
      * \details Renvoie la dimension n de la grille
      *
-     * \return dimN
+     * \return unsigned int
      */
     unsigned int getdimN() const {return dimN;}
 
 //FONCTION NON DOCUMENTEE
-    virtual void fonctionVirtuelle() =0;
+    virtual void fonctionVirtuelle() =0; //Pour rendre la classe Etat Abstraite
 };
 
 
@@ -80,18 +80,18 @@ protected:
      *
      * \details Constructeur par recopie de la classe Etat1D
      *
-     * \param Etat1D& e : Ojet Etat1D à recopier
+     * \param Etat1D& e : Objet Etat1D à recopier
      * 
      */
     Etat1D(Etat1D& e) : Etat1D(e.getdimN(), e.valeur){}
     
     /*!
-     * \brief Opérateur d'affectation
+     * \brief Copie un Etat
      *
-     * \details Opérateur d'affectation de la classe Etat1D
+     * \details Remplace l'état par un état donné en paramètre, de la classe Etat1D
      *
-     * \param Etat1D& e : Objet Etat1D à affecter à l'objet courant
-     * 
+     * \param const Etat1D* source : Objet Etat1D à affecter à l'objet courant
+     * \return void
      */
     void copyEtat(const Etat1D* source);
 
@@ -102,6 +102,7 @@ protected:
      *
      * \param unsigned int n : Indice de la case dans le tableau
      * \param unsigned int v : Valeur à affecter à la case
+     * \return void
      */
     void setValue(unsigned int n, unsigned int v) {valeur[n]=v;}
 
@@ -121,7 +122,7 @@ public:
      * \details Renvoie la valeur de la case (n)
      *
      * \param unsigned int n : Indice de la case dans le tableau
-     * \return valeur[n]
+     * \return unsigned int
      */
     unsigned int getValue(unsigned int n) const {return valeur[n];}
 
@@ -171,12 +172,12 @@ protected:
     }
     
     /*!
-     * \brief Opérateur d'affectation
+     * \brief Copie un Etat
      *
-     * \details Opérateur d'affectation de la classe Etat2D
+     * \details Remplace l'état par un état donné en paramètre, de la classe Etat2D
      *
-     * \param Etat2D& e : Objet Etat2D à affecter à l'objet courant
-     * 
+     * \param const Etat2D* source : Objet Etat2D à affecter à l'objet courant
+     * \return void
      */
     void copyEtat(const Etat2D* source);
 
@@ -188,7 +189,7 @@ protected:
      * \param unsigned int n : Abscisse de la case sur la grille
      * \param unsigned int m : Ordonnée de la case sur la grille
      * \param unsigned int v : Valeur à affecter à la case
-     * \return
+     * \return void
      */
     void setValue(unsigned int n, unsigned int m, unsigned int v) {valeur[n][m]=v;}
 public:
@@ -208,7 +209,7 @@ public:
      *
      * \param unsigned int n : Abscisse de la case sur la grille
      * \param unsigned int m : Ordonnée de la case sur la grille
-     * \return valeur[n][m]
+     * \return unsigned int
      */
     unsigned int getValue(unsigned int n,unsigned int m) const {return valeur[n][m];}
 
@@ -217,7 +218,7 @@ public:
      *
      * \details Renvoie la dimension m de la grille
      *
-     * \return dimM
+     * \return unsigned int
      */
     unsigned int getdimM() const {return dimM;}
 
@@ -236,7 +237,7 @@ class FabriqueEtat {
     friend class Simulateur;
 protected :
     /*!
-     * \brief createEtat
+     * \brief Création d'un état
      * \details Fabrique un état avec deux paramètres, en 1D
      *
      * \param unsigned int dimN : Taille pour la première dimension
@@ -246,7 +247,7 @@ protected :
     Etat* createEtat(unsigned int dimN, const unsigned int* t) const;
 
     /*!
-     * \brief createEtat
+     * \brief Création d'un état
      * \details Fabrique un état avec trois paramètres, en 2D
      *
      * \param unsigned int dimN : Taille pour la première dimension
@@ -256,18 +257,17 @@ protected :
      */
     Etat* createEtat(unsigned int dimN, unsigned int dimM, const unsigned int** t) const;
 
-
     /*!
      * \brief createEtat
      * \details Fabrique un état par recopie d'un état existant
      *
-     * \param const Etat& e : Etat existant à dupliquer
-     * \return Etat&
+     * \param Etat* e : Etat existant à dupliquer
+     * \return Etat*
      */
     Etat* createEtat(Etat* e) const;
 
     /*!
-     * \brief deleteEtat
+     * \brief Destruction d'un état
      * \details Détruit un état fourni en paramètre
      *
      * \param Etat* e : Etat à supprimer
@@ -276,19 +276,19 @@ protected :
     void deleteEtat(Etat* e) const;
 
     /*!
-     * \brief setValue
+     * \brief Attribution de valeur
      * \details Donne une valeur v à la case (n,m) de l'état e
      *
      * \param unsigned int n : Abscisse de la case à affecter
      * \param unsigned int m : Ordonnée de la case à affecter
-     * \unsigned int v : Valeur à affecter
+     * \param unsigned int v : Valeur à affecter
      * \param Etat* e : Etat auquel affecter la valeur
      * \return void
      */
     void setValue(unsigned int n, unsigned int m, unsigned int v, Etat* e);
 
     /*!
-     * \brief getValue
+     * \brief Récupération de valeur
      * \details Retourne la valeur affectée à une case
      *
      * \param unsigned int n : Abscisse de la case à retourner
@@ -298,6 +298,15 @@ protected :
      */
     unsigned int getValue(unsigned int n, unsigned int m, Etat* e) const;
 
+    /*!
+     * \brief Copie un Etat
+     *
+     * \details Remplace l'état par un état donné en paramètre, selon le type d'état
+     *
+     * \param Etat* source : Objet Etat à affecter à l'objet courant
+     * \param Etat* dest : Etat de destination de l'affectation
+     * \return void
+     */
     void copyEtat(Etat* source, Etat* dest) const;
 };
 

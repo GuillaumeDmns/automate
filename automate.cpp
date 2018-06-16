@@ -17,7 +17,6 @@
 
 using namespace std;
 
-//DOCUMENTATION POUR INITIALISATION DES ATTRIBUTS STATIC ????
 
 unsigned int Cell1D::nbDim=1;
 unsigned int JeuDeLaVie::nbDim=2;
@@ -53,7 +52,7 @@ void FabriqueAutomate::appliquerTransition(Etat& dep, Etat& dest, Automate& a) c
      * \fn void Automate::appliquerTransition(const Etat1D& dep, Etat1D& dest) const
      * \brief Calcule l'état suivant d'un état donné
      *
-     * \param Etat1D& dep : Référence sur l'état en 1D de départ sur lequel appliquer la transition
+     * \param const Etat1D& dep : Référence sur l'état en 1D de départ sur lequel appliquer la transition
      * \param Etat1D& dest : Référence vers l'état en 1D résultant de la transition
      *
      * \return void
@@ -78,7 +77,7 @@ void Automate::appliquerTransition(const Etat1D& dep, Etat1D& dest) const {
      * \fn void Automate::appliquerTransition(const Etat2D& dep, Etat2D& dest) const
      * \brief Calcule l'état suivant d'un état donné
      *
-     * \param Etat2D& dep : Référence sur l'état en 2D de départ sur lequel appliquer la transition
+     * \param const Etat2D& dep : Référence sur l'état en 2D de départ sur lequel appliquer la transition
      * \param Etat2D& dest : Référence vers l'état en 2D résultant de la transition
      *
      * \return void
@@ -358,7 +357,6 @@ unsigned int Cell1D::getTailleRegle() const{
      * \fn unsigned int Cell1D::getNbDim() const
      * \brief Permet la récupération du nombre de dimensions de l'automate
      *
-     * \param
      * \return unsigned int
      */
 unsigned int Cell1D::getNbDim() const{
@@ -509,6 +507,15 @@ unsigned int FeuDeForet::getNbDim() const{
     return nbDim;
 }
 
+    /*!
+     * \fn Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int** regle) const
+     * \brief Permet l'instanciation de l'Automate souhaité
+     *
+     * \param string idAutomate : Chaîne de caractères correspondant au type d'automate souhaité
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles de transition
+     *
+     * \return Automate*
+     */
 Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int** regle) const{
     if(!idAutomate.compare("6Cell1D")) return (new Cell1D(regle));
     if(!idAutomate.compare("10JeuDeLaVie")) return (new JeuDeLaVie(regle));
@@ -516,11 +523,29 @@ Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigne
     throw AutomateException("Automate Inexistant");
 }
 
+    /*!
+     * \fn Cell1D::Cell1D(const unsigned int** regle)
+     * \brief Constructeur de la classe Cell1D
+     *
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     */
 Cell1D::Cell1D(const unsigned int** regle) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(), regle)) {
 }
 
+    /*!
+     * \fn JeuDeLaVie::JeuDeLaVie(const unsigned int** regle)
+     * \brief Constructeur de la classe Jeu de la Vie
+     *
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     */
 JeuDeLaVie::JeuDeLaVie(const unsigned int** regle) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(), regle)) {
 }
 
+    /*!
+     * \fn FeuDeForet::FeuDeForet(const unsigned int** regle)
+     * \brief Constructeur de la classe Feu de Foret
+     *
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     */
 FeuDeForet::FeuDeForet(const unsigned int** regle) :Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(), regle)) {
 }
