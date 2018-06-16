@@ -169,11 +169,38 @@ void Simulateur::save(string filename) const {
     file.open(filename);
     file << numEtat <<endl;
     file << typeid(*automate).name()<<endl;
-    file <<"Automate" <<endl;
+    for(unsigned int i=0; i<automate->getNbEtats(); ++i){
+        for(unsigned int j=0; j<=automate->getTailleRegle(); ++j){
+            file << automate->getRegle()[i][j] <<";";
+        }
+        file << endl;
+    }
     file << typeid(*depart).name()<<endl;
-    if(!strcmp(typeid(*depart).name(),"6Etat1D")) file<<depart->getdimN()<<";"<<0<<endl;
-    else file<<depart->getdimN()<<";"<<dynamic_cast<Etat2D*>(depart)->getdimM()<<endl;
-    file << "Depart" <<endl;
-    file << "Current"<<endl;
+    if(!strcmp(typeid(*depart).name(),"6Etat1D")){
+        file<<depart->getdimN()<<";"<<0<<endl;
+        for(unsigned int i=0; i<depart->getdimN(); ++i){
+            file << dynamic_cast<Etat1D*>(depart)->getValue(i) <<";";
+        }
+        file<<endl<<endl;
+        for(unsigned int i=0; i<current->getdimN(); ++i){
+            file << dynamic_cast<Etat1D*>(current)->getValue(i) <<";";
+        }
+    }else{
+        file<<depart->getdimN()<<";"<<dynamic_cast<Etat2D*>(depart)->getdimM()<<endl;
+        for(unsigned int i=0; i<depart->getdimN(); ++i){
+            for(unsigned int j=0; j<dynamic_cast<Etat2D*>(depart)->getdimM(); ++j){
+                file << dynamic_cast<Etat2D*>(depart)->getValue(i,j) <<";";
+            }
+            file<<endl;
+        }
+        file<<endl;
+        for(unsigned int i=0; i<depart->getdimN(); ++i){
+            for(unsigned int j=0; j<dynamic_cast<Etat2D*>(current)->getdimM(); ++j){
+                file << dynamic_cast<Etat2D*>(current)->getValue(i,j) <<";";
+            }
+            file<<endl;
+        }
+    }
+    file<<endl;
     file.close();
 }
