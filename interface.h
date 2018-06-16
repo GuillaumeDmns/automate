@@ -25,7 +25,7 @@
     *
     */
 class MainWindow : public QWidget {
-    Q_OBJECT /*! ATTRIBUT A DECRIRE*/
+    Q_OBJECT
 public slots:
     /*!
      * \brief Fonction afficheGrid de MainWindow
