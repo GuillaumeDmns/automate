@@ -485,10 +485,10 @@ MainWindow::MainWindow():QWidget() {
             loadOtherAutomate = new QPushButton("Charger un automate");
             counterLabel = new QLabel("Génération ");
             counter = new QLabel("0");
-            toolsInfo = new QLabel("<b>Qu'est-ce que l'automate Cell1D ?</b> <br /> Cet automate permet de simuler un <br /> automate cellulaire en une dimension !");
-            toolsInfo2 = new QLabel("<b>Qu'est-ce que l'automate JeuDeLaVie ?</b> <br /> Cet automate permet de simuler un <br />automate cellulaire en 2 dimensions !");
+            toolsInfo = new QLabel("<b>Qu'est-ce que l'automate Cell1D ?</b> <br /> Cet automate permet de simuler un <br /> automate cellulaire en une dimension. <br /> Il s'agit du jeu de la vie sur une ligne.");
+            toolsInfo2 = new QLabel("<b>Qu'est-ce que l'automate JeuDeLaVie ?</b> <br /> Cet automate permet de simuler un <br />automate cellulaire en 2 dimensions ! <br /> Il est également appelé jeu de la vie.");
             toolsInfo2->setHidden(true);
-            toolsInfo3 = new QLabel("<b>Qu'est-ce que l'automate FeuDeForet ?</b> <br /> Cet Automate rend hommage à la pyromanie de Solène !");
+            toolsInfo3 = new QLabel("<b>Qu'est-ce que l'automate FeuDeForet ?</b> <br /> Cet automate a été créé afin d'effectuer une <br /> simulation d'un feu de forêt quelconque !");
             toolsInfo3->setHidden(true);
             next = new QPushButton("Next");
             reset = new QPushButton("Reset");
