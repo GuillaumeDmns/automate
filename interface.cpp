@@ -281,6 +281,10 @@ void MainWindow::afficheGrid() {
     counter->setText(QString::number(static_cast<int>(simu->getNumEtat())));
 }
 
+void MainWindow::saveSimu(){
+    QString PathSaveSimu = QFileDialog::getSaveFileName(this, tr("Save Simulation"),"simulation.csv",tr("Data (*.csv)"));
+}
+
 MainWindow::MainWindow():QWidget() {
     QFont bigTitle("Arial", 30, QFont::Bold);
     QFont subTitle("Arial", 20, QFont::Bold);
@@ -409,12 +413,10 @@ MainWindow::MainWindow():QWidget() {
             bigGridLayout->addWidget(backHomeButton, 1, Qt::AlignCenter);
         gridWidget = new QWidget;
         gridWidget->setLayout(bigGridLayout);
-
+        disp = new QStackedLayout;
+        disp->insertWidget(0, home);
+        disp->insertWidget(1, gridWidget);
     mainLayout = new QGridLayout;
-
-    disp = new QStackedLayout;
-    disp->insertWidget(0, home);
-    disp->insertWidget(1, gridWidget);
     mainLayout->addLayout(disp, 1, 0, 4, 4);
     mainLayout->addLayout(header, 0, 0, 1, 5);
     mainLayout->addLayout(tools, 1, 4, 4, 1);
@@ -437,56 +439,54 @@ MainWindow::MainWindow():QWidget() {
     connect(minVit, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));
     connect(maxVit, SIGNAL(valueChanged(int)), this, SLOT(checkRules()));  
     connect(timer, SIGNAL(timeout()), this, SLOT(nextEtat()));
+    connect(save, SIGNAL(clicked()), this, SLOT(saveSimu()));
 }
 
 MainWindow::~MainWindow() {
+    delete timer;
+    delete displayTitle;
     delete typeAutomate;
-    delete generation;
-    delete newAutomate;
-    delete display;
-    delete mainLayout;
+    delete dimensionL;
+    delete timesDimensions;
+    delete dimensionH;
     delete dimensions;
-    delete header;
+    delete minR;
+    delete minRenait;
+    delete maxR;
+    delete maxRenait;
+    delete minV;
+    delete minVit;
+    delete maxV;
+    delete maxVit;
     delete rulesRenait;
     delete rulesVit;
-    delete VHeader;
-    delete HHeader;
-    delete displayTitle;
-    delete timesDimensions;
+    delete generation;
+    delete newAutomate;
+    delete submit;
+    delete backHomeButton;
+    delete display;
+    delete home;
     delete generalTitle;
+    delete header;
+    delete quit;
+    delete loadOtherAutomate;
+    delete counterLabel;
+    delete counter;
     delete toolsInfo;
     delete toolsInfo2;
     delete toolsInfo3;
-    delete counter;
-    delete counterLabel;
-    delete minR;
-    delete maxR;
-    delete minV;
-    delete maxV;
-    delete submit;
-    delete backHomeButton;
-    delete loadOtherAutomate;
-    delete quit;
     delete next;
     delete reset;
-    delete save;
-    delete stop;
     delete play;
-    delete simu;
-    delete dimensionH;
-    delete dimensionL;
-    delete minRenait;
-    delete maxRenait;
-    delete minVit;
-    delete maxVit;
-    delete disp;
-    delete grid;
-    delete timer;
-    delete tools;
-    delete bigGridLayout;
-    delete home;
-    delete gridWidget;
+    delete stop;
+    delete save;
     delete speedtime;
+    delete tools;
+    delete grid;
+    delete bigGridLayout;
+    delete gridWidget;
+    delete disp;
+    delete mainLayout;
 }
 
 /*!

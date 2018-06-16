@@ -30,6 +30,7 @@ public slots:
     void setLoadedAutomate();
     void stopGrid();
     void checkRules();
+    void saveSimu();
 public:
     MainWindow();
     ~MainWindow();
