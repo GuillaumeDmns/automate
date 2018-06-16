@@ -41,12 +41,42 @@ public:
      * \param string choixdepart : Choix de configuration pour l'état de départ
      * \param unsigned int n : Dimension n de la grille
      * \param unsigned int m : Dimension m de la grille
+     * \param unsigned int age : Valeur de numEtat du simulateur
      *
      */
     Simulateur(string typeautomate, unsigned int regles[], string choixdepart, unsigned int n, unsigned int m =1, unsigned int age =0);
 
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Simulateur
+     *
+     * \param string typeautomate : Choix du type d'automate
+     * \param unsigned int regles** : Régles choisies pour l'automate
+     * \param string choixdepart : Choix de configuration pour l'état de départ
+     * \param unsigned int n : Dimension n de la grille
+     * \param unsigned int age : Valeur de numEtat du simulateur
+     * \param const unsigned int* dep : Etat de départ à donner au Simulateur
+     * \param const unsigned int* cur : Etat courant à donner au Simulateur
+     *
+     */
     Simulateur(string typeautomate, const unsigned int** regles, unsigned int n, unsigned int age, const unsigned int* dep, const unsigned int* cur);
 
+    /*!
+     * \brief Constructeur
+     *
+     * \details Constructeur de la classe Simulateur
+     *
+     * \param string typeautomate : Choix du type d'automate
+     * \param unsigned int regles** : Régles choisies pour l'automate
+     * \param string choixdepart : Choix de configuration pour l'état de départ
+     * \param unsigned int n : Dimension n de la grille
+     * \param unsigned int m : Dimension m de la grille
+     * \param unsigned int age : Valeur de numEtat du simulateur
+     * \param const unsigned int* dep : Etat de départ à donner au Simulateur
+     * \param const unsigned int* cur : Etat courant à donner au Simulateur
+     *
+     */
     Simulateur(string typeautomate, const unsigned int** regles, unsigned int n, unsigned int m, unsigned int age, const unsigned int** dep, const unsigned int** cur);
 
 
@@ -111,21 +141,35 @@ public:
     unsigned int getValueCurrent(unsigned int n, unsigned int m) const;
 
     /*!
-     * \brief Fonction setValueCurrent du Simulateur
+     * \brief Fonction getNumEtat du Simulateur
      *
-     * \details Donne une valeur de l'état courant
+     * \details Donne la valeur de l'attribut numEtat du Simulateur
      *
-     * \param unsigned int n : Abscisse de la case dont on veut la valeur
-     * \param unsigned int m : Ordonnée de la case dont on veut la valeur
+     * \return unsigned int
+     */
+    unsigned int getNumEtat() const { return numEtat; }
+
+    /*!
+     * \brief Fonction setValueDepart du Simulateur
+     *
+     * \details Donne une nouvelle valeur à l'état de départ
+     *
+     * \param unsigned int n : Abscisse de la case
+     * \param unsigned int m : Ordonnée de la case
      * \param unsigned int v : Valeur à attribuer à la case
      * \return void
      */
-
-    unsigned int getNumEtat() const { return numEtat; }
-
     void setValueDepart(unsigned int n, unsigned int m =0, unsigned int v=0);
 
+    /*!
+     * \brief Fonction getAutomate du Simulateur
+     *
+     * \details Donne un pointeur vers l'automate concerné par la simulation
+     *
+     * \return Automate*
+     */
     Automate* getAutomate() const { return automate; }
+
     /*!
      * \brief Destructeur
      *
@@ -134,6 +178,14 @@ public:
      */
     ~Simulateur();
 
+    /*!
+     * \brief Fonction save du Simulateur
+     *
+     * \details Permet de sauvegarder les informations du simulateur
+     *
+     * \param string filename : Nom du fichier dans lequel réaliser la sauvegarde
+     * \return void
+     */
     void save(string filename) const;
 
 private:
