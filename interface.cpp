@@ -222,10 +222,10 @@ void MainWindow::setLoadedAutomate() {
     file.close();
     dimensionH->setMinimum(dimensionMin);
     dimensionH->setMaximum(dimensionMax);
-    dimensionH->setValue(dimN);
+    dimensionH->setValue(dimM);
     dimensionL->setMinimum(dimensionMin);
     dimensionL->setMaximum(dimensionMax);
-    dimensionL->setValue(dimM);
+    dimensionL->setValue(dimN);
     createGrid();
 }
 
