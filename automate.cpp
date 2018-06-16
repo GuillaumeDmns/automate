@@ -153,7 +153,7 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int r
      * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
      * \return unsigned int**
      */
-unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
+unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int** regle) const{
     for(unsigned int i=0; i<nbEtats; ++i){
         for(unsigned int j=0; j<=getTailleRegle(); ++j){
             tab[i][j] = regle[i][j];
@@ -177,7 +177,7 @@ Cell1D::Cell1D(const unsigned int regle[]) :Automate(Cell1D::remplissageRegle(Ce
      *
      * \param const Automate& a : Objet Automate à recopier
      */
-Cell1D::Cell1D(const Automate& a) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(), a.getRegle())) {
+Cell1D::Cell1D(const Automate& a) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(), const_cast<const unsigned int**>(a.getRegle()))) {
 }
 
     /*!
@@ -227,14 +227,14 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned i
 }
 
     /*!
-     * \fn unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const
+     * \fn unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int** regle) const
      * \brief Remplissage du tableau des règles pour automate
      *
      * \param unsigned int** tab : Tableau contenant les différentes régles
      * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
      * \return unsigned int**
      */
-unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
+unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int** regle) const{
     for(unsigned int i=0; i<nbEtats; ++i){
         for(unsigned int j=0; j<=JeuDeLaVie::getTailleRegle(); ++j){
             tab[i][j] = regle[i][j];
@@ -258,7 +258,7 @@ JeuDeLaVie::JeuDeLaVie(const unsigned int regle[]) :Automate(JeuDeLaVie::remplis
      *
      * \param const Automate& a : Objet Automate à recopier
      */
-JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(), a.getRegle())) {
+JeuDeLaVie::JeuDeLaVie(const Automate& a) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(), const_cast<const unsigned int**>(a.getRegle()))) {
 }
 
     /*!
@@ -421,14 +421,14 @@ if(regle[0]) throw AutomateException("Regle incorrecte");
 }
 
 /*!
- * \fn unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, unsigned int** regle) const
+ * \fn unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int** regle) const
  * \brief Remplissage du tableau des règles pour automate
  *
  * \param unsigned int** tab : Tableau contenant les différentes régles
  * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
  * \return unsigned int**
  */
-unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, unsigned int** regle) const{
+unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int** regle) const{
     for(unsigned int i=0; i<nbEtats; ++i){
         for(unsigned int j=0; j<=getTailleRegle(); ++j){
             tab[i][j] = regle[i][j];
@@ -452,7 +452,7 @@ FeuDeForet::FeuDeForet(const unsigned int regle[]) : Automate(FeuDeForet::rempli
  *
  * \param const Automate& a : Objet Automate à recopier
  */
-FeuDeForet::FeuDeForet(const Automate& a) : Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(), a.getRegle())) {
+FeuDeForet::FeuDeForet(const Automate& a) : Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(), const_cast<const unsigned int**>(a.getRegle()))) {
 }
 
 /*!
@@ -507,4 +507,20 @@ unsigned int FeuDeForet::getTailleRegle() const{
  */
 unsigned int FeuDeForet::getNbDim() const{
     return nbDim;
+}
+
+Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int** regle) const{
+    if(idAutomate.compare("6Cell1D")) return (new Cell1D(regle));
+    if(idAutomate.compare("10JeuDeLaVie")) return (new JeuDeLaVie(regle));
+    if(idAutomate.compare("10FeuDeForet")) return (new FeuDeForet(regle));
+    throw AutomateException("Automate Inexistant");
+}
+
+Cell1D::Cell1D(const unsigned int** regle) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(), regle)) {
+}
+
+JeuDeLaVie::JeuDeLaVie(const unsigned int** regle) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(), regle)) {
+}
+
+FeuDeForet::FeuDeForet(const unsigned int** regle) :Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(), regle)) {
 }

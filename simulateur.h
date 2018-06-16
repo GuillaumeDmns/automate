@@ -45,6 +45,11 @@ public:
      */
     Simulateur(string typeautomate, unsigned int regles[], string choixdepart, unsigned int n, unsigned int m =1, unsigned int age =0);
 
+    Simulateur(string typeautomate, const unsigned int** regles, unsigned int n, unsigned int age, const unsigned int* dep, const unsigned int* cur);
+
+    Simulateur(string typeautomate, const unsigned int** regles, unsigned int n, unsigned int m, unsigned int age, const unsigned int** dep, const unsigned int** cur);
+
+
     /*!
      * \brief Fonction reset du Simulateur
      *

@@ -71,9 +71,9 @@ protected:
      * \details Constructeur de la classe Etat1D
      *
      * \param unsigned int n : Valeur initiale de la dimension n
-     * \param unsigned int* t : Tableau des valeurs de la grille
+     * \param const unsigned int* t : Tableau des valeurs de la grille
      */
-    Etat1D(unsigned int n,unsigned int* t);
+    Etat1D(unsigned int n, const unsigned int* t);
     
     /*!
      * \brief Constructeur par recopie
@@ -155,9 +155,9 @@ protected:
      *
      * \param unsigned int n : Valeur initiale de la dimension n
      * \param unsigned int m : Valeur initiale de la dimension m
-     * \param unsigned int** t : Tableau des valeurs de la grille
+     * \param const unsigned int** t : Tableau des valeurs de la grille
      */
-    Etat2D(unsigned int n,unsigned int m, unsigned int** t);
+    Etat2D(unsigned int n,unsigned int m, const unsigned int** t);
     
     /*!
      * \brief Constructeur par recopie
@@ -167,7 +167,7 @@ protected:
      * \param Etat2D& e : Objet Etat2D à recopier
      * 
      */
-    Etat2D(Etat2D& e):Etat2D(e.getdimN(),e.getdimM(),e.valeur){
+    Etat2D(Etat2D& e):Etat2D(e.getdimN(),e.getdimM(),const_cast<const unsigned int**>(e.valeur)){
     }
     
     /*!
@@ -240,10 +240,10 @@ protected :
      * \details Fabrique un état avec deux paramètres, en 1D
      *
      * \param unsigned int dimN : Taille pour la première dimension
-     * \param unsigned int* t : Valeurs à placer dans la grille
+     * \param const unsigned int* t : Valeurs à placer dans la grille
      * \return Etat*
      */
-    Etat* createEtat(unsigned int dimN, unsigned int* t) const;
+    Etat* createEtat(unsigned int dimN, const unsigned int* t) const;
 
     /*!
      * \brief createEtat
@@ -251,10 +251,10 @@ protected :
      *
      * \param unsigned int dimN : Taille pour la première dimension
      * \param unsigned int dimM : Taille pour la deuxième dimension
-     * \param unsigned int** t : Valeurs à placer dans la grille
+     * \param const unsigned int** t : Valeurs à placer dans la grille
      * \return Etat*
      */
-    Etat* createEtat(unsigned int dimN, unsigned int dimM, unsigned int** t) const;
+    Etat* createEtat(unsigned int dimN, unsigned int dimM, const unsigned int** t) const;
 
 
     /*!

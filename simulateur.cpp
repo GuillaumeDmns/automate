@@ -60,6 +60,7 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
         }
         depart = fabEtat.createEtat(n, tab);
         current = fabEtat.createEtat(n, tab);
+        delete tab;
     }
     else {
         unsigned int** tab=new unsigned int*[n];
@@ -102,8 +103,10 @@ Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::str
 
             tab[rand()%n][rand()%m] = 2;
         }
-        depart = fabEtat.createEtat(n,m,tab);
-        current = fabEtat.createEtat(n,m,tab);
+        depart = fabEtat.createEtat(n,m,const_cast<const unsigned int**>(tab));
+        current = fabEtat.createEtat(n,m,const_cast<const unsigned int**>(tab));
+        for(unsigned int i=0; i<n; ++i) delete tab[i];
+        delete tab;
     }
 }
 
@@ -203,4 +206,20 @@ void Simulateur::save(string filename) const {
     }
     file<<endl;
     file.close();
+}
+
+Simulateur::Simulateur(std::string typeautomate, const unsigned int** regles, unsigned int n, unsigned int age, const unsigned int* dep, const unsigned int* cur) : numEtat(age) {
+    FabriqueAutomate fabAutomate;
+    FabriqueEtat fabEtat;
+    automate=fabAutomate.createAutomate(typeautomate,regles);
+    depart = fabEtat.createEtat(n, dep);
+    current = fabEtat.createEtat(n, cur);
+}
+
+Simulateur::Simulateur(std::string typeautomate, const unsigned int** regles, unsigned int n, unsigned int m, unsigned int age, const unsigned int** dep, const unsigned int** cur) : numEtat(age) {
+    FabriqueAutomate fabAutomate;
+    FabriqueEtat fabEtat;
+    automate=fabAutomate.createAutomate(typeautomate,regles);
+    depart = fabEtat.createEtat(n, m, dep);
+    current = fabEtat.createEtat(n, m, cur);
 }

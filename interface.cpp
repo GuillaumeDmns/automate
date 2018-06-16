@@ -107,7 +107,6 @@ void MainWindow::createGrid() {
     reset->setHidden(false);
     save->setHidden(false);
     speedtime->setHidden(false);
-
 }
 
 void MainWindow::backToHome() {

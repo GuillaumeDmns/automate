@@ -51,7 +51,7 @@ protected :
      * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
      * \return unsigned int**
      */
-    virtual unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) const =0;
+    virtual unsigned int** remplissageRegle(unsigned int** tab, const unsigned int** regle) const =0;
 
     /*!
      * \brief Constructeur
@@ -176,7 +176,7 @@ private :
      * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
      * \return unsigned int**
      */
-    unsigned int** remplissageRegle(unsigned int** tab, unsigned int** regle) const;
+    unsigned int** remplissageRegle(unsigned int** tab, const unsigned int** regle) const;
 
 protected :
     /*!
@@ -196,6 +196,8 @@ protected :
      * \param const Automate& a : Objet Automate à recopier
      */
     Cell1D(const Automate& a);
+
+    Cell1D(const unsigned int** regle);
 
 public :
     /*!
@@ -278,7 +280,7 @@ private :
      * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
      * \return unsigned int**
      */
-    unsigned int** remplissageRegle(unsigned int** tab, unsigned int**) const;
+    unsigned int** remplissageRegle(unsigned int** tab, const unsigned int**) const;
 
 protected :
     /*!
@@ -298,6 +300,8 @@ protected :
      * \param const Automate& a : Objet Automate à recopier
      */
     JeuDeLaVie(const Automate& a);
+
+    JeuDeLaVie(const unsigned int** regle);
 
 public :
     /*!
@@ -348,7 +352,7 @@ public :
 };
 
 /*!
-    * \class FeuDeForet
+    * \class Foret
     * \brief Classe Feu De Foret
     *
     * \details La classe gère les données relatives à un automate Feu De Foret
@@ -380,7 +384,7 @@ private :
      * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
      * \return unsigned int**
      */
-    unsigned int** remplissageRegle(unsigned int** tab, unsigned int**) const;
+    unsigned int** remplissageRegle(unsigned int** tab, const unsigned int**) const;
 
 protected :
     /*!
@@ -400,6 +404,8 @@ protected :
      * \param const Automate& a : Objet Automate à recopier
      */
     FeuDeForet(const Automate& a);
+
+    FeuDeForet(const unsigned int** regle);
 
 public :
     /*!
@@ -480,7 +486,7 @@ protected :
      *
      * \return Automate*
      */
-    Automate* createAutomate(std::string idAutomate, const unsigned int regle[] =0) const;
+    Automate* createAutomate(std::string idAutomate, const unsigned int regle[]) const;
 
     /*!
      * \brief Création d'un Automate
@@ -492,6 +498,8 @@ protected :
      * \return Automate*
      */
     Automate* createAutomate(const Automate* a) const;
+
+    Automate* createAutomate(std::string idAutomate, const unsigned int** regle) const;
 
     /*!
      * \brief Destruction d'un automate

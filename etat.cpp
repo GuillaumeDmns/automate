@@ -19,14 +19,14 @@
 using namespace std;
 
 /*!
-    * \fn Etat1D::Etat1D (unsigned int n,unsigned int* t=0)
+    * \fn Etat1D::Etat1D (unsigned int n, const unsigned int* t)
     * \brief Constructeur de la classe Etat1D
     *
     * \param unsigned int n : Dimension de la grille
-    * \param unsigned int* t : Tableau des valeurs (par défaut =0)
+    * \param const unsigned int* t : Tableau des valeurs
     *
     */
-Etat1D::Etat1D (unsigned int n,unsigned int* t=0): Etat(n), valeur(new unsigned int[n]){
+Etat1D::Etat1D (unsigned int n, const unsigned int* t): Etat(n), valeur(new unsigned int[n]){
     if(t)
     {
         for (unsigned int i=0;i<n;i++)
@@ -66,15 +66,15 @@ void Etat1D::copyEtat(const Etat1D* source){
 }
 
 /*!
-    * \fn Etat2D::Etat2D (unsigned int n,unsigned int m,unsigned int** t=0)
+    * \fn Etat2D::Etat2D (unsigned int n,unsigned int m, const unsigned int** t)
     * \brief Constructeur de la classe Etat2D
     *
     * \param unsigned int n : Dimension N de la grille
     * \param unsigned int m : Dimension M de la grille
-    * \param unsigned int** t : Tableau des valeurs (par défaut =0)
+    * \param const unsigned int** t : Tableau des valeurs
     *
     */
-Etat2D::Etat2D(unsigned int n,unsigned int m,unsigned int** t=0):Etat(n),dimM(m),valeur(new unsigned int*[n]){
+Etat2D::Etat2D(unsigned int n,unsigned int m, const unsigned int** t):Etat(n),dimM(m),valeur(new unsigned int*[n]){
     /*if (t){
         for (unsigned int i=0;i<(n);i++)
             {
@@ -127,28 +127,28 @@ void Etat2D::copyEtat(const Etat2D* source){
 
 
     /*!
-     * \fn Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int* t) const
+     * \fn Etat* FabriqueEtat::createEtat(unsigned int dimN, const unsigned int* t) const
      * \brief Fabrique un état avec deux paramètres, en 1D
      *
      * \param unsigned int dimN : Taille pour la première dimension
-     * \param unsigned int* t : Valeurs à placer dans la grille
+     * \param const unsigned int* t : Valeurs à placer dans la grille
      * \return Etat*
      */
-Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int* t) const {
+Etat* FabriqueEtat::createEtat(unsigned int dimN, const unsigned int* t) const {
     if(!dimN) throw EtatException("Incorrect Etat");
     return new Etat1D(dimN,t);
 }
 
     /*!
-     * \fn Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int dimM, unsigned int** t) const
+     * \fn Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int dimM, const unsigned int** t) const
      * \brief Fabrique un état avec trois paramètres, en 2D
      *
      * \param unsigned int dimN : Taille pour la première dimension
      * \param unsigned int dimM : Taille pour la deuxième dimension
-     * \param unsigned int** t : Valeurs à placer dans la grille
+     * \param const unsigned int** t : Valeurs à placer dans la grille
      * \return Etat*
      */
-Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int dimM, unsigned int** t) const {
+Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int dimM, const unsigned int** t) const {
     if((!dimN)||(!dimM)) throw EtatException("Incorrect Etat");
     return new Etat2D(dimN, dimM, t);
 }
