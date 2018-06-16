@@ -109,10 +109,10 @@ void MainWindow::resetGrid() {
 void MainWindow::createGrid() {
     grid->setRowCount(dimensionH->value());
     grid->setColumnCount(dimensionL->value());
-    if (typeAutomate->currentIndex() == 0) grid->setFixedSize(dimensionL->value()*(Gridsize/dimensionL->value()), 25);
+    if(simu->getAutomate()->getNbDim() == 1) grid->setFixedSize(dimensionL->value()*(Gridsize/dimensionL->value()), 25);
     else grid->setFixedSize(dimensionL->value()*(Gridsize/dimensionL->value()), dimensionH->value()*(Gridsize/dimensionH->value()));
     for(int row=0; row<dimensionH->value(); row++){
-        if (typeAutomate->currentIndex() == 0) grid->setRowHeight(row, 25);
+        if (simu->getAutomate()->getNbDim() == 1) grid->setRowHeight(row, 25);
         else grid->setRowHeight(row, Gridsize/dimensionH->value());
         for(int col=0; col<dimensionL->value(); col++){
             grid->setColumnWidth(col, Gridsize/dimensionL->value());
