@@ -87,39 +87,19 @@ void MainWindow::createGrid() {
     }
     afficheGrid();
     disp->setCurrentWidget(gridWidget);
-
-    counterLabel->setHidden(false);
-    counter->setHidden(false);
-    toolsInfo->setHidden(true);
-    toolsInfo2->setHidden(true);
-    toolsInfo3->setHidden(true);
-    loadOtherAutomate->setHidden(true);
-    next->setHidden(false);
-    play->setHidden(false);
-    reset->setHidden(false);
-    save->setHidden(false);
-    speedtime->setHidden(false);
+    toolsStacked->setCurrentWidget(toolsWidgetRun);
 }
 
 void MainWindow::backToHome() {
     delete simu;
     disp->setCurrentWidget(home);
+    toolsStacked->setCurrentWidget(toolsWidgetHome);
     for(int row=0; row<dimensionH->value(); row++){
         for(int col=0; col<dimensionL->value(); col++){
             delete grid->item(row, col);
         }
     simu=nullptr;
     }
-
-    counterLabel->setHidden(true);
-    counter->setHidden(true);
-    next->setHidden(true);
-    reset->setHidden(true);
-    play->setHidden(true);
-    save->setHidden(true);
-    speedtime->setHidden(true);
-    toolsInfo->setHidden(false); // gérer selon les différents cas !
-    loadOtherAutomate->setHidden(false);
 }
 
 void MainWindow::setLoadedAutomate() {
@@ -410,43 +390,36 @@ MainWindow::MainWindow():QWidget() {
             quit = new QPushButton("Quitter");
             loadOtherAutomate = new QPushButton("Charger un automate");
             counterLabel = new QLabel("Génération ");
-            counterLabel->setHidden(true);
             counter = new QLabel("0");
-            counter->setHidden(true);
             toolsInfo = new QLabel("<b>Qu'est-ce que l'automate Cell1D ?</b> <br /> Cet automate permet de simuler un <br /> automate cellulaire en une dimension !");
             toolsInfo2 = new QLabel("<b>Qu'est-ce que l'automate JeuDeLaVie ?</b> <br /> Cet automate permet de simuler un <br />automate cellulaire en 2 dimensions !");
             toolsInfo2->setHidden(true);
             toolsInfo3 = new QLabel("<b>Qu'est-ce que l'automate FeuDeForet ?</b> <br /> Cet Automate rend hommage à la pyromanie de Solène !");
             toolsInfo3->setHidden(true);
             next = new QPushButton("Next");
-            next->setHidden(true);
             reset = new QPushButton("Reset");
-            reset->setHidden(true);
             play = new QPushButton("Play");
-            play->setHidden(true);
             stop = new QPushButton("Stop");
-            stop->setHidden(true);
             save = new QPushButton("Save");
-            save->setHidden(true);
             speedtime = new QSlider(Qt::Horizontal);
             speedtime->setMinimum(20);
             speedtime->setMaximum(2000);
             speedtime->setValue(500);
-            speedtime->setHidden(true);
-        tools = new QVBoxLayout;
-        tools->addWidget(counterLabel, 0, Qt::AlignCenter);
-        tools->addWidget(counter, 0, Qt::AlignCenter);
-        tools->addWidget(toolsInfo, 0, Qt::AlignCenter);
-        tools->addWidget(toolsInfo2, 0, Qt::AlignCenter);
-        tools->addWidget(toolsInfo3, 0, Qt::AlignCenter);
-        tools->addWidget(loadOtherAutomate, 0, Qt::AlignCenter);
-        tools->addWidget(next, 0, Qt::AlignCenter);
-        tools->addWidget(play, 0, Qt::AlignCenter);
-        tools->addWidget(stop, 0, Qt::AlignCenter);
-        tools->addWidget(speedtime, 0, Qt::AlignCenter);
-        tools->addWidget(reset, 0, Qt::AlignCenter);
-        tools->addWidget(save, 0, Qt::AlignCenter);
-        tools->addWidget(quit, 0, Qt::AlignBottom|Qt::AlignRight);
+        toolsHome = new QVBoxLayout;
+        toolsRun = new QVBoxLayout;
+        toolsRun->addWidget(counterLabel, 0, Qt::AlignCenter);
+        toolsRun->addWidget(counter, 0, Qt::AlignCenter);
+        toolsHome->addWidget(toolsInfo, 0, Qt::AlignCenter);
+        toolsHome->addWidget(toolsInfo2, 0, Qt::AlignCenter);
+        toolsHome->addWidget(toolsInfo3, 0, Qt::AlignCenter);
+        toolsHome->addWidget(loadOtherAutomate, 0, Qt::AlignCenter);
+        toolsRun->addWidget(next, 0, Qt::AlignCenter);
+        toolsRun->addWidget(play, 0, Qt::AlignCenter);
+        toolsRun->addWidget(stop, 0, Qt::AlignCenter);
+        toolsRun->addWidget(speedtime, 0, Qt::AlignCenter);
+        toolsRun->addWidget(reset, 0, Qt::AlignCenter);
+        toolsRun->addWidget(save, 0, Qt::AlignCenter);
+        toolsHome->addWidget(quit, 0, Qt::AlignBottom|Qt::AlignRight);
                 grid = new QTableWidget(dimensionH->value(), dimensionL->value());
                 grid->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 grid->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -457,15 +430,23 @@ MainWindow::MainWindow():QWidget() {
             bigGridLayout = new QVBoxLayout;
             bigGridLayout->addWidget(grid, 1, Qt::AlignCenter);
             bigGridLayout->addWidget(backHomeButton, 1, Qt::AlignCenter);
+        toolsWidgetHome = new QWidget;
+        toolsWidgetHome->setLayout(toolsHome);
+        toolsWidgetRun = new QWidget;
+        toolsWidgetRun->setLayout(toolsRun);
         gridWidget = new QWidget;
         gridWidget->setLayout(bigGridLayout);
         disp = new QStackedLayout;
         disp->insertWidget(0, home);
         disp->insertWidget(1, gridWidget);
+        toolsStacked = new QStackedLayout;
+        toolsStacked->insertWidget(0, toolsWidgetHome);
+        toolsStacked->insertWidget(1, toolsWidgetRun);
+
     mainLayout = new QGridLayout;
     mainLayout->addLayout(disp, 1, 0, 4, 4);
     mainLayout->addLayout(header, 0, 0, 1, 5);
-    mainLayout->addLayout(tools, 1, 4, 4, 1);
+    mainLayout->addLayout(toolsStacked, 1, 4, 4, 1);
     setLayout(mainLayout);
     setWindowTitle("AUTOCELL");
 
@@ -528,7 +509,8 @@ MainWindow::~MainWindow() {
     delete stop;
     delete save;
     delete speedtime;
-    delete tools;
+    delete toolsHome;
+    delete toolsRun;
     delete grid;
     delete bigGridLayout;
     delete gridWidget;

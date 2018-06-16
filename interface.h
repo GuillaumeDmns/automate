@@ -46,12 +46,12 @@ private:
     QPushButton *submit, *backHomeButton, *loadOtherAutomate, *quit, *next, *reset, *save, *stop, *play;
     Simulateur* simu;
     QSpinBox *dimensionH, *dimensionL, *minRenait, *maxRenait, *minVit, *maxVit;
-    QStackedLayout *disp;
+    QStackedLayout *disp, *toolsStacked;
     static int Gridsize;
     QTableWidget *grid;
     QTimer *timer;
-    QVBoxLayout *tools, *bigGridLayout;
-    QWidget *home, *gridWidget;
+    QVBoxLayout *toolsHome, *toolsRun, *bigGridLayout;
+    QWidget *home, *gridWidget, *toolsWidgetHome, *toolsWidgetRun;
     QSlider *speedtime;
 
 };
