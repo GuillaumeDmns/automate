@@ -29,7 +29,7 @@
      * \param unsigned int n : dimension n de la grille
      * \param unsigned int m : dimension m de la grille
      */
-Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::string choixdepart, unsigned int n, unsigned int m) : numEtat(0) {
+Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::string choixdepart, unsigned int n, unsigned int m, unsigned int age) : numEtat(age) {
     FabriqueAutomate fabAutomate;
     FabriqueEtat fabEtat;
     automate=fabAutomate.createAutomate(typeautomate,regles);
@@ -151,8 +151,6 @@ void Simulateur::setValueDepart(unsigned int n, unsigned int m, unsigned int v){
     reset();
 }
 
-
-
     /*!
      * \fn unsigned int Simulateur::getValueCurrent(unsigned int n, unsigned int m) const
      * \brief Récupère une valeur de l'état courant
@@ -164,4 +162,18 @@ void Simulateur::setValueDepart(unsigned int n, unsigned int m, unsigned int v){
 unsigned int Simulateur::getValueCurrent(unsigned int n, unsigned int m) const {
     FabriqueEtat fabEtat;
     return fabEtat.getValue(n,m,getCurrent());
+}
+
+void Simulateur::save(string filename) const {
+    ofstream file;
+    file.open(filename);
+    file << numEtat <<endl;
+    file << typeid(*automate).name()<<endl;
+    file <<"Automate" <<endl;
+    file << typeid(*depart).name()<<endl;
+    if(!strcmp(typeid(*depart).name(),"6Etat1D")) file<<depart->getdimN()<<";"<<0<<endl;
+    else file<<depart->getdimN()<<";"<<dynamic_cast<Etat2D*>(depart)->getdimM()<<endl;
+    file << "Depart" <<endl;
+    file << "Current"<<endl;
+    file.close();
 }

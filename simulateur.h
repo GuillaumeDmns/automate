@@ -17,6 +17,8 @@
 #include <string>
 #include "etat.h"
 #include "automate.h"
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -41,7 +43,7 @@ public:
      * \param unsigned int m : Dimension m de la grille
      *
      */
-    Simulateur(string typeautomate, unsigned int regles[], string choixdepart, unsigned int n, unsigned int m =1);
+    Simulateur(string typeautomate, unsigned int regles[], string choixdepart, unsigned int n, unsigned int m =1, unsigned int age =0);
 
     /*!
      * \brief Fonction reset du Simulateur
@@ -126,6 +128,8 @@ public:
      *
      */
     ~Simulateur();
+
+    void save(string filename) const;
 
 private:
     Automate* automate; /*!< Automate simulé par le simulateur*/

@@ -283,6 +283,7 @@ void MainWindow::afficheGrid() {
 
 void MainWindow::saveSimu(){
     QString PathSaveSimu = QFileDialog::getSaveFileName(this, tr("Save Simulation"),"simulation.csv",tr("Data (*.csv)"));
+    simu->save(PathSaveSimu.toStdString());
 }
 
 MainWindow::MainWindow():QWidget() {
