@@ -153,80 +153,83 @@ void MainWindow::setLoadedAutomate() {
     char delim;
     ifstream file;
     file.open(PathLoadAutomate.toStdString());
-    unsigned int numEtat;
-    file >> numEtat;
-    string idA;
-    file >> idA;
-    unsigned int nbEtats;
-    file >> nbEtats;
-    file >> delim;
-    unsigned int tailleRegle;
-    file >> tailleRegle;
-    unsigned int** a = new unsigned int*[nbEtats];
-    for(unsigned int i=0; i<nbEtats; ++i){
-        a[i]=new unsigned int[tailleRegle+1];
-        for(unsigned int j=0; j<=tailleRegle; ++j){
-            file >> a[i][j];
-            file >> delim;
-        }
-    }
-    string idE;
-    file >> idE;
-    unsigned int dimN, dimM;
-    file >> dimN;
-    file >> delim;
-    file >> dimM;
-    if(dimM){
-        unsigned int** dep = new unsigned int*[dimN];
-        for(unsigned int i=0; i<dimN; ++i){
-            dep[i]=new unsigned int[dimM];
-            for(unsigned int j=0; j<dimM; ++j){
-                file >> dep[i][j];
+    if(file.is_open()){
+        unsigned int numEtat;
+        file >> numEtat;
+        string idA;
+        file >> idA;
+        unsigned int nbEtats;
+        file >> nbEtats;
+        file >> delim;
+        unsigned int tailleRegle;
+        file >> tailleRegle;
+        unsigned int** a = new unsigned int*[nbEtats];
+        for(unsigned int i=0; i<nbEtats; ++i){
+            a[i]=new unsigned int[tailleRegle+1];
+            for(unsigned int j=0; j<=tailleRegle; ++j){
+                file >> a[i][j];
                 file >> delim;
             }
         }
+        string idE;
+        file >> idE;
+        unsigned int dimN, dimM;
+        file >> dimN;
         file >> delim;
-        unsigned int** cur = new unsigned int*[dimN];
-        for(unsigned int i=0; i<dimN; ++i){
-            cur[i]=new unsigned int[dimM];
-            for(unsigned int j=0; j<dimM; ++j){
-                file >> cur[i][j];
+        file >> dimM;
+        if(dimM){
+            unsigned int** dep = new unsigned int*[dimN];
+            for(unsigned int i=0; i<dimN; ++i){
+                dep[i]=new unsigned int[dimM];
+                for(unsigned int j=0; j<dimM; ++j){
+                    file >> dep[i][j];
+                    file >> delim;
+                }
+            }
+            file >> delim;
+            unsigned int** cur = new unsigned int*[dimN];
+            for(unsigned int i=0; i<dimN; ++i){
+                cur[i]=new unsigned int[dimM];
+                for(unsigned int j=0; j<dimM; ++j){
+                    file >> cur[i][j];
+                    file >> delim;
+                }
+            }
+            simu = new Simulateur(idA,const_cast<const unsigned int**>(a),dimN,dimM,numEtat,const_cast<const unsigned int**>(dep),const_cast<const unsigned int**>(cur));
+            for(unsigned int i=0; i<dimN;++i){
+                delete dep[i];
+                delete cur[i];
+            }
+            delete dep;
+            delete cur;
+        }else{
+            dimM++;
+            unsigned int* dep = new unsigned int[dimN];
+            for(unsigned int i=0; i<dimN; ++i){
+                file >> dep[i];
                 file >> delim;
             }
-        }
-        simu = new Simulateur(idA,const_cast<const unsigned int**>(a),dimN,dimM,numEtat,const_cast<const unsigned int**>(dep),const_cast<const unsigned int**>(cur));
-        for(unsigned int i=0; i<dimN;++i){
-            delete dep[i];
-            delete cur[i];
-        }
-        delete dep;
-        delete cur;
-    }else{
-        dimM++;
-        unsigned int* dep = new unsigned int[dimN];
-        for(unsigned int i=0; i<dimN; ++i){
-            file >> dep[i];
             file >> delim;
+            unsigned int* cur = new unsigned int[dimN];
+            for(unsigned int i=0; i<dimN; ++i){
+                file >> cur[i];
+                file >> delim;
+            }
+            simu = new Simulateur(idA,const_cast<const unsigned int**>(a),dimN,numEtat,const_cast<const unsigned int*>(dep),const_cast<const unsigned int*>(cur));
+            delete dep;
+            delete cur;
         }
-        file >> delim;
-        unsigned int* cur = new unsigned int[dimN];
-        for(unsigned int i=0; i<dimN; ++i){
-            file >> cur[i];
-            file >> delim;
-        }
-        simu = new Simulateur(idA,const_cast<const unsigned int**>(a),dimN,numEtat,const_cast<const unsigned int*>(dep),const_cast<const unsigned int*>(cur));
-        delete dep;
-        delete cur;
+        delete a;
+
+        dimensionH->setMinimum(dimensionMin);
+        dimensionH->setMaximum(dimensionMax);
+        dimensionH->setValue(dimM);
+        dimensionL->setMinimum(dimensionMin);
+        dimensionL->setMaximum(dimensionMax);
+        dimensionL->setValue(dimN);
+        createGrid();
     }
-    delete a;
     file.close();
-    dimensionH->setMinimum(dimensionMin);
-    dimensionH->setMaximum(dimensionMax);
-    dimensionH->setValue(dimM);
-    dimensionL->setMinimum(dimensionMin);
-    dimensionL->setMaximum(dimensionMax);
-    dimensionL->setValue(dimN);
-    createGrid();
 }
 
 /*!
