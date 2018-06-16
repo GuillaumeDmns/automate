@@ -564,6 +564,7 @@ MainWindow::MainWindow():QWidget() {
  *
  */
 MainWindow::~MainWindow() {
+
     if(simu!=nullptr) delete simu;
     delete timer;
     delete displayTitle;
@@ -609,7 +610,11 @@ MainWindow::~MainWindow() {
     delete bigGridLayout;
     delete gridWidget;
     delete disp;
+    delete toolsWidgetHome;
+    delete toolsWidgetRun;
+    delete toolsStacked;
     delete mainLayout;
+
 }
 
 /*!

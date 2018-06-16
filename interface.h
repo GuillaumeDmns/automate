@@ -216,7 +216,6 @@ private:
     QWidget *toolsWidgetHome; /*! Partie choix de la fenêtre d'Accueil*/
     QWidget *toolsWidgetRun; /*! Partie réglages de la simulation de la fenêtre de simulation*/
     QSlider *speedtime; /*! Barre de réglage de la vitesse*/
-
 };
 
 /*!
