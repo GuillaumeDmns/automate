@@ -49,12 +49,12 @@ Etat1D::~Etat1D(){
 
 
 /*!
-     * \fn Etat1D& Etat1D::operator=(const Etat1D& e)
-     * \brief Opérateur d'affectation de la classe Etat1D
+     * \fn void Etat1D::copyEtat(const Etat1D* source)
+     * \brief Remplace l'état par un état donné en paramètre de la classe Etat1D
      *
      *
-     * \param const Etat1D& e : Objet Etat1D à affecter
-     * \return Etat1D&
+     * \param const Etat1D* source : Objet Etat1D à affecter
+     * \return void
      */
 void Etat1D::copyEtat(const Etat1D* source){
     if (source->getdimN()!=dimN)
@@ -108,13 +108,12 @@ Etat2D::~Etat2D(){
 }
 
 /*!
-     * \fn Etat2D& Etat2D::operator=(const Etat2D& e)
-     * \brief Opérateur d'affectation de la classe Etat2D
-     *
-     *
-     * \param const Etat2D& e : Objet Etat2D à affecter
-     * \return Etat2D&
-     */
+ * \fn void Etat2D::copyEtat(const Etat2D* source)
+ * \brief Remplace l'état par un état donné en paramètre, de la classe Etat2D
+ *
+ * \param const Etat2D* source : Objet Etat2D à affecter à l'objet courant
+ * \return void
+ */
 void Etat2D::copyEtat(const Etat2D* source){
     if (source->getdimM()!=dimM || source->getdimN()!=dimN)
         throw "erreur : tailles des grilles incompatibles";
@@ -157,8 +156,8 @@ Etat* FabriqueEtat::createEtat(unsigned int dimN, unsigned int dimM, const unsig
      * \fn Etat* FabriqueEtat::createEtat(Etat* e) const
      * \brief Fabrique un état par recopie d'un état existant
      *
-     * \param const Etat& e : Etat existant à dupliquer
-     * \return Etat&
+     * \param Etat* e : Etat existant à dupliquer
+     * \return Etat*
      */
 Etat* FabriqueEtat::createEtat(Etat* e) const{
     if(!strcmp(typeid(*e).name(),"6Etat1D")) return (new Etat1D(*dynamic_cast<Etat1D*>(e)));
@@ -224,6 +223,14 @@ unsigned int FabriqueEtat::getValue(unsigned int n, unsigned int m, Etat *e) con
     throw EtatException("Etat non existant");
 }
 
+    /*!
+     * \fn void FabriqueEtat::copyEtat(Etat* source, Etat* dest) const
+     * \brief Remplace l'état par un état donné en paramètre, selon le type d'état
+     *
+     * \param Etat* source : Objet Etat à affecter à l'objet courant
+     * \param Etat* dest : Etat de destination de l'affectation
+     * \return void
+     */
 void FabriqueEtat::copyEtat(Etat* source, Etat* dest) const {
     if(strcmp(typeid(*source).name(),typeid(*dest).name())) throw EtatException("Etats incompatibles");
     else {

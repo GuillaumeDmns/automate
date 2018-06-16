@@ -28,6 +28,7 @@
      * \param string choixdepart : choix de configuration pour l'état de départ
      * \param unsigned int n : dimension n de la grille
      * \param unsigned int m : dimension m de la grille
+     * \param unsigned int age : Valeur de numEtat du simulateur
      */
 Simulateur::Simulateur(std::string typeautomate, unsigned int regles[], std::string choixdepart, unsigned int n, unsigned int m, unsigned int age) : numEtat(age) {
     FabriqueAutomate fabAutomate;
@@ -140,11 +141,11 @@ Simulateur::~Simulateur() {
 }
 
     /*!
-     * \fn void Simulateur::setValueCurrent(unsigned int n, unsigned int m, unsigned int v
-     * \brief Donne une valeur de l'état courant
+     * \fn void Simulateur::setValueDepart(unsigned int n, unsigned int m, unsigned int v)
+     * \brief Donne une nouvelle valeur à l'état de départ
      *
-     * \param unsigned int n : Abscisse de la case dont on veut la valeur
-     * \param unsigned int m : Ordonnée de la case dont on veut la valeur
+     * \param unsigned int n : Abscisse de la case
+     * \param unsigned int m : Ordonnée de la case
      * \param unsigned int v : Valeur à attribuer à la case
      * \return void
      */
@@ -167,11 +168,18 @@ unsigned int Simulateur::getValueCurrent(unsigned int n, unsigned int m) const {
     return fabEtat.getValue(n,m,getCurrent());
 }
 
+    /*!
+     * \fn void Simulateur::save(string filename) const
+     * \brief Permet de sauvegarder les informations du simulateur
+     *
+     * \param string filename : Nom du fichier dans lequel réaliser la sauvegarde
+     * \return void
+     */
 void Simulateur::save(string filename) const {
     ofstream file;
     file.open(filename);
-    file << numEtat <<endl;
-    file << typeid(*automate).name()<<endl;
+    file << numEtat << endl;
+    file << typeid(*automate).name()<< endl;
     file << automate->getNbEtats() <<";"<<automate->getTailleRegle()<<endl;
     for(unsigned int i=0; i<automate->getNbEtats(); ++i){
         for(unsigned int j=0; j<=automate->getTailleRegle(); ++j){
@@ -209,6 +217,19 @@ void Simulateur::save(string filename) const {
     file.close();
 }
 
+    /*!
+     * \fn Simulateur::Simulateur(std::string typeautomate, const unsigned int** regles, unsigned int n, unsigned int age, const unsigned int* dep, const unsigned int* cur)
+     * \brief Constructeur de la classe Simulateur
+     *
+     * \param string typeautomate : Choix du type d'automate
+     * \param unsigned int regles** : Régles choisies pour l'automate
+     * \param string choixdepart : Choix de configuration pour l'état de départ
+     * \param unsigned int n : Dimension n de la grille
+     * \param unsigned int age : Valeur de numEtat du simulateur
+     * \param const unsigned int* dep : Etat de départ à donner au Simulateur
+     * \param const unsigned int* cur : Etat courant à donner au Simulateur
+     *
+     */
 Simulateur::Simulateur(std::string typeautomate, const unsigned int** regles, unsigned int n, unsigned int age, const unsigned int* dep, const unsigned int* cur) : numEtat(age) {
     FabriqueAutomate fabAutomate;
     FabriqueEtat fabEtat;
@@ -217,6 +238,20 @@ Simulateur::Simulateur(std::string typeautomate, const unsigned int** regles, un
     current = fabEtat.createEtat(n, cur);
 }
 
+    /*!
+     * \fn Simulateur::Simulateur(std::string typeautomate, const unsigned int** regles, unsigned int n, unsigned int m, unsigned int age, const unsigned int** dep, const unsigned int** cur)
+     * \brief Constructeur de la classe Simulateur
+     *
+     * \param string typeautomate : Choix du type d'automate
+     * \param unsigned int regles** : Régles choisies pour l'automate
+     * \param string choixdepart : Choix de configuration pour l'état de départ
+     * \param unsigned int n : Dimension n de la grille
+     * \param unsigned int m : Dimension m de la grille
+     * \param unsigned int age : Valeur de numEtat du simulateur
+     * \param const unsigned int* dep : Etat de départ à donner au Simulateur
+     * \param const unsigned int* cur : Etat courant à donner au Simulateur
+     *
+     */
 Simulateur::Simulateur(std::string typeautomate, const unsigned int** regles, unsigned int n, unsigned int m, unsigned int age, const unsigned int** dep, const unsigned int** cur) : numEtat(age) {
     FabriqueAutomate fabAutomate;
     FabriqueEtat fabEtat;

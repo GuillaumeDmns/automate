@@ -17,10 +17,11 @@
     * \brief Entrée du programme
     * 
     *
-    * \return 0 - Arrête normal du programme
+    * \param int argc : Nombre d'arguments donnés en entrée
+    * \param char * argv[] : Arguments données en entrée
     *
+    * \return 0 - Arrête normal du programme
     */
-
 int main(int argc, char * argv[]) {
     _interface(argc, argv);
     return 0;
