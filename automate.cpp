@@ -510,9 +510,9 @@ unsigned int FeuDeForet::getNbDim() const{
 }
 
 Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigned int** regle) const{
-    if(idAutomate.compare("6Cell1D")) return (new Cell1D(regle));
-    if(idAutomate.compare("10JeuDeLaVie")) return (new JeuDeLaVie(regle));
-    if(idAutomate.compare("10FeuDeForet")) return (new FeuDeForet(regle));
+    if(!idAutomate.compare("6Cell1D")) return (new Cell1D(regle));
+    if(!idAutomate.compare("10JeuDeLaVie")) return (new JeuDeLaVie(regle));
+    if(!idAutomate.compare("10FeuDeForet")) return (new FeuDeForet(regle));
     throw AutomateException("Automate Inexistant");
 }
 

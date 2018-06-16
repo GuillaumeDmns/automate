@@ -128,6 +128,7 @@ void MainWindow::setLoadedAutomate() {
     file >> idE;
     unsigned int dimN, dimM;
     file >> dimN;
+    file >> delim;
     file >> dimM;
     if(dimM){
         unsigned int** dep = new unsigned int*[dimN];
