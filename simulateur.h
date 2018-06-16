@@ -37,7 +37,7 @@ public:
      * \details Constructeur de la classe Simulateur
      *
      * \param string typeautomate : Choix du type d'automate
-     * \param unsigned int regles[] : Régles choisies pour l'automate
+     * \param unsigned int regles[] : règles choisies pour l'automate
      * \param string choixdepart : Choix de configuration pour l'état de départ
      * \param unsigned int n : Dimension n de la grille
      * \param unsigned int m : Dimension m de la grille
@@ -52,7 +52,7 @@ public:
      * \details Constructeur de la classe Simulateur
      *
      * \param string typeautomate : Choix du type d'automate
-     * \param unsigned int regles** : Régles choisies pour l'automate
+     * \param unsigned int regles** : règles choisies pour l'automate
      * \param string choixdepart : Choix de configuration pour l'état de départ
      * \param unsigned int n : Dimension n de la grille
      * \param unsigned int age : Valeur de numEtat du simulateur
@@ -68,7 +68,7 @@ public:
      * \details Constructeur de la classe Simulateur
      *
      * \param string typeautomate : Choix du type d'automate
-     * \param unsigned int regles** : Régles choisies pour l'automate
+     * \param unsigned int regles** : règles choisies pour l'automate
      * \param string choixdepart : Choix de configuration pour l'état de départ
      * \param unsigned int n : Dimension n de la grille
      * \param unsigned int m : Dimension m de la grille
@@ -114,7 +114,7 @@ public:
     /*!
      * \brief Fonction next du Simulateur
      *
-     * \details Permet le passage d'un état à son état suivant en fonction des régles de transition
+     * \details Permet le passage d'un état à son état suivant en fonction des règles de transition
      *
      * \return void
      */

@@ -41,10 +41,10 @@ const int dimensionMax=150;
 
 /*!
  * \fn void MainWindow::changeCell(int row, int colomn)
- * \brief Permet de changer d'Automate
+ * \brief Permet de changer la valeur (c'est-à-dire l'état) d'une cellule dont la position est fournie en paramètre
  *
- * \param int row : Nombre de lignes
- * \param int colomn : Nombre de colonnes
+ * \param int row : Numéro de la ligne
+ * \param int colomn : Numéro de la colonne
  * \return void
  */
 void MainWindow::changeCell(int row, int colomn) {
@@ -252,7 +252,7 @@ void MainWindow::validAuto(){
 
 /*!
  * \fn void MainWindow::changeForm(int index)
- * \brief Permet de changer l'affichage en fonctions des caractéristiques de l'automate simulé
+ * \brief Permet de changer l'affichage en fonction des caractéristiques de l'automate simulé
  *
  * \param int index : Choix de l'automate à simuler
  * \return void
@@ -629,22 +629,19 @@ MainWindow::~MainWindow() {
     * \fn int _interface(int argc, char * argv[])
     * \brief Programme d'affichage de l'interface
     *
-    * \param int argc :
-    * \param char* argv[] :
+    * \param int argc : nombre d'arguments, récupéré de la fonction main()
+    * \param char* argv[] : arguments, récupérés de la fonction main()
     *
     * \return int
     *
     */
+
 int _interface(int argc, char * argv[]) {
     QApplication app(argc, argv);
-
-    /* CREATION ET PARAMETRAGE DE LA FENETRE */
-
 
     MainWindow fenetre;
     int widthMax(800), heightMax(600);
     fenetre.setFixedSize(widthMax, heightMax);
-
 
     fenetre.show();
     return app.exec();

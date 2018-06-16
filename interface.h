@@ -164,58 +164,56 @@ public:
     ~MainWindow();
 private:
 
-    QComboBox *typeAutomate; /*! */
-    QComboBox *generation; /*! */
-    QFormLayout *newAutomate; /*! */
-    QGridLayout *display; /*! */
-    QGridLayout *mainLayout; /*! */
-    QHBoxLayout *dimensions; /*! */
-    QHBoxLayout *header; /*! */
-    QHBoxLayout *rulesRenait; /*! */
-    QHBoxLayout *rulesVit; /*! */
-    QHeaderView *VHeader; /*! */
-    QHeaderView *HHeader; /*! */
-    QLabel *displayTitle; /*! */
-    QLabel *timesDimensions; /*! */
-    QLabel *generalTitle; /*! */
-    QLabel *toolsInfo; /*! */
-    QLabel *toolsInfo2; /*! */
-    QLabel *toolsInfo3; /*! */
-    QLabel *counter; /*! */
-    QLabel *counterLabel; /*! */
-    QLabel *minR; /*! */
-    QLabel *maxR; /*! */
-    QLabel *minV; /*! */
-    QLabel *maxV; /*! */
-    QPushButton *submit; /*! Bouton valider*/
-    QPushButton *backHomeButton; /*! Bouton retour*/
-    QPushButton *loadOtherAutomate; /*! Bouton charger un automate*/
-    QPushButton *quit; /*! Bouton quitter*/
-    QPushButton *next; /*! Bouton next*/
-    QPushButton *reset; /*! Bouton reset*/
-    QPushButton *save; /*! Bouton sauvegarder*/
-    QPushButton *stop; /*! Bouton stop*/
-    QPushButton *play; /*! Bouton play*/
-    Simulateur* simu; /*! */
-    QSpinBox *dimensionH; /*! */
-    QSpinBox *dimensionL; /*! */
-    QSpinBox *minRenait; /*! */
-    QSpinBox *maxRenait; /*! */
-    QSpinBox *minVit; /*! */
-    QSpinBox *maxVit; /*! */
-    QStackedLayout *disp; /*! */
-    QStackedLayout *toolsStacked; /*! */
-    static int Gridsize; /*! */
-    QTableWidget *grid; /*! */
-    QTimer *timer; /*! */
-    QVBoxLayout *toolsHome; /*! */
-    QVBoxLayout *toolsRun; /*! */
-    QVBoxLayout *bigGridLayout; /*! */
-    QWidget *home; /*! Partie principale de la fenêtre d'Accueil*/
-    QWidget *gridWidget; /*! Partie grille de la fenêtre de simulation*/
-    QWidget *toolsWidgetHome; /*! Partie choix de la fenêtre d'Accueil*/
-    QWidget *toolsWidgetRun; /*! Partie réglages de la simulation de la fenêtre de simulation*/
-    QSlider *speedtime; /*! Barre de réglage de la vitesse*/
+    QComboBox *typeAutomate; /*! Liste déroulante pour le choix de l'automate */
+    QComboBox *generation; /*! Liste déroulante pour le choix du type de génération de grille  */
+    QFormLayout *newAutomate; /*! Layout contenant le formulaire */
+    QGridLayout *display; /*! Layout unique de home */
+    QGridLayout *mainLayout; /*! Layout principal de l'interface */
+    QHBoxLayout *dimensions; /*! Layout horizontal contenant des widgets de paramétrage des dimensions de la grille*/
+    QHBoxLayout *header; /*! Layout de la banderolle d'affichage du gros titre */
+    QHBoxLayout *rulesRenait; /*! Layout horizontal contenant des widgets de paramétrage pour renaître */
+    QHBoxLayout *rulesVit; /*! Layout horizontal contenant des widgets de paramétrage pour rester en vie */
+    QLabel *displayTitle; /*! Texte créer un automate */
+    QLabel *timesDimensions; /*! Texte "x" entre les deux dimensions dans le formulaire */
+    QLabel *generalTitle; /*! Texte AUTOCELL */
+    QLabel *toolsInfo; /*! Texte présentation Cell1D */
+    QLabel *toolsInfo2; /*! Texte présentation JeuDeLaVie */
+    QLabel *toolsInfo3; /*! Texte présentation FeuDeForet */
+    QLabel *counter; /*! Texte affichant le numéro de la génération */
+    QLabel *counterLabel; /*! Texte affichant "génération" */
+    QLabel *minR; /*! Texte minimum pour renaître */
+    QLabel *maxR; /*! Texte maximum pour renaître */
+    QLabel *minV; /*! Texte minimum pour rester en vie */
+    QLabel *maxV; /*! Texte maximum pour rester en vie */
+    QPushButton *submit; /*! Bouton valider */
+    QPushButton *backHomeButton; /*! Bouton retour */
+    QPushButton *loadOtherAutomate; /*! Bouton charger un automate */
+    QPushButton *quit; /*! Bouton quitter */
+    QPushButton *next; /*! Bouton next */
+    QPushButton *reset; /*! Bouton reset */
+    QPushButton *save; /*! Bouton sauvegarder */
+    QPushButton *stop; /*! Bouton stop */
+    QPushButton *play; /*! Bouton play */
+    Simulateur* simu; /*! Instance de Simulateur */
+    QSpinBox *dimensionH; /*! Zone de saisie de la hauteur de la grille */
+    QSpinBox *dimensionL; /*! Zone de saisie de la largeur de la grille */
+    QSpinBox *minRenait; /*! Zone de saisie du minimum de voisins d'une cellule pour renaître */
+    QSpinBox *maxRenait; /*! Zone de saisie du maximum de voisins d'une cellule pour renaître */
+    QSpinBox *minVit; /*! Zone de saisie du minimum de voisins d'une cellule pour rester en vie */
+    QSpinBox *maxVit; /*! Zone de saisie du maximum de voisins d'une cellule pour rester en vie */
+    QStackedLayout *disp; /*! Layout de l'affichage de la grille ou du formulaire */
+    QStackedLayout *toolsStacked; /*! Layout de l'affichage du chargement d'automate ou des outils de simulation */
+    static int Gridsize; /*! Paraètre de taille de la grille */
+    QTableWidget *grid; /*! Grille */
+    QTimer *timer; /*! Objet de temps pour le timing entre l'affichage de deux états */
+    QVBoxLayout *toolsHome; /*! Layout unique de toolsWidgetHome*/
+    QVBoxLayout *toolsRun; /*! Layaout unique de toolsWidgetRun */
+    QVBoxLayout *bigGridLayout; /*! Layaout unique de gridWidget */
+    QWidget *home; /*! Widget de la partie accueil */
+    QWidget *gridWidget; /*! Widget de la partie grille */
+    QWidget *toolsWidgetHome; /*! Widget de la partie description automate + charger + quitter */
+    QWidget *toolsWidgetRun; /*! Widget de la partie outil lors de la simulation */
+    QSlider *speedtime; /*! Barre de réglage de la vitesse */
 };
 
 /*!

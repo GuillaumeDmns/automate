@@ -75,23 +75,12 @@ void Etat1D::copyEtat(const Etat1D* source){
     *
     */
 Etat2D::Etat2D(unsigned int n,unsigned int m, const unsigned int** t):Etat(n),dimM(m),valeur(new unsigned int*[n]){
-    /*if (t){
-        for (unsigned int i=0;i<(n);i++)
-            {
-            valeur[i]=new unsigned int [m];
-            for (unsigned int j=0;j<m;j++)
-                valeur[i][j]=0;
-            }
-        std::cout << "1er" << std::endl;
-    }
-    else {*/
-        for (unsigned int i=0;i<(n);i++)
-            {
-            valeur[i]=new unsigned int [m];
-            for (unsigned int j=0;j<m;j++)
-                valeur[i][j]=t[i][j];
-            }
-    /*}*/
+    for (unsigned int i=0;i<(n);i++)
+        {
+        valeur[i]=new unsigned int [m];
+        for (unsigned int j=0;j<m;j++)
+            valeur[i][j]=t[i][j];
+        }
 }
 
 /*!
@@ -184,7 +173,7 @@ void FabriqueEtat::deleteEtat(Etat* e) const{
      *
      * \param unsigned int n : Abscisse de la case à affecter
      * \param unsigned int m : Ordonnée de la case à affecter
-     * \unsigned int v : Valeur à affecter
+     * \param unsigned int v : Valeur à affecter
      * \param Etat* e : Etat auquel affecter la valeur
      * \return void
      */

@@ -31,7 +31,7 @@ unsigned int FeuDeForet::nbEtats=4;
      *
      * \param Etat& dep : Référence sur l'état de départ sur lequel appliquer la transition
      * \param Etat& dest : Référence vers l'état résultant de la transition
-     * \param Automate& a : Référence sur l'automate possédant les régles pour la transition
+     * \param Automate& a : Référence sur l'automate possédant les règles pour la transition
      * \return void
      */
 void FabriqueAutomate::appliquerTransition(Etat& dep, Etat& dest, Automate& a) const {
@@ -108,7 +108,7 @@ void Automate::appliquerTransition(const Etat2D& dep, Etat2D& dest) const {
      * \fn Automate::Automate(unsigned int** tab)
      * \brief Constructeur de la classe Automate
      *
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      */
 Automate::Automate(unsigned int** tab) :regle(tab) {
 }
@@ -126,8 +126,8 @@ Automate::~Automate(){}
      * \fn unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const
      * \brief Remplissage du tableau des règles pour automate
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
@@ -148,8 +148,8 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int r
      * \fn unsigned int** Cell1D::remplissageRegle(unsigned int** tab, unsigned int** regle) const
      * \brief Remplissage du tableau des règles pour automate
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
 unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int** regle) const{
@@ -165,7 +165,7 @@ unsigned int** Cell1D::remplissageRegle(unsigned int** tab, const unsigned int**
      * \fn Cell1D::Cell1D(const unsigned int regle[])
      * \brief Constructeur de la classe Cell1D
      *
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      */
 Cell1D::Cell1D(const unsigned int regle[]) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(),regle)){
 }
@@ -207,8 +207,8 @@ unsigned int** Cell1D::createTabRegle() const {
      * \fn unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const
      * \brief Remplissage du tableau des règles pour automate
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
@@ -229,8 +229,8 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned i
      * \fn unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int** regle) const
      * \brief Remplissage du tableau des règles pour automate
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
 unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned int** regle) const{
@@ -246,7 +246,7 @@ unsigned int** JeuDeLaVie::remplissageRegle(unsigned int** tab, const unsigned i
      * \fn JeuDeLaVie::JeuDeLaVie(const unsigned int regle[])
      * \brief Constructeur de la classe Jeu de la Vie
      *
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      */
 JeuDeLaVie::JeuDeLaVie(const unsigned int regle[]) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(),regle)) {
 }
@@ -289,7 +289,7 @@ unsigned int** JeuDeLaVie::createTabRegle() const {
      * \brief Permet l'instanciation de l'Automate souhaité
      *
      * \param string idAutomate : Chaîne de caractères correspondant au type d'automate souhaité
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles de transition
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles de transition
      *
      * \return Automate*
      */
@@ -345,7 +345,7 @@ unsigned int Cell1D::getNbEtats() const{
 
     /*!
      * \fn unsigned int Cell1D::getTailleRegle() const
-     * \brief Permet la récupération de la taille que devra faire le tableau de régles
+     * \brief Permet la récupération de la taille que devra faire le tableau de règles
      *
      * \return unsigned int
      */
@@ -375,7 +375,7 @@ unsigned int JeuDeLaVie::getNbEtats() const{
 
     /*!
      * \fn unsigned int JeuDeLaVie::getTailleRegle() const
-     * \brief Permet la récupération de la taille que devra faire le tableau de régles
+     * \brief Permet la récupération de la taille que devra faire le tableau de règles
      *
      * \return unsigned int
      */
@@ -398,8 +398,8 @@ unsigned int JeuDeLaVie::getNbDim() const{
  * \fn unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const
  * \brief Remplissage du tableau des règles pour automate
  *
- * \param unsigned int** tab : Tableau contenant les différentes régles
- * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+ * \param unsigned int** tab : Tableau contenant les différentes règles
+ * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
  * \return unsigned int**
  */
 unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int regle[]) const{
@@ -422,8 +422,8 @@ if(regle[0]) throw AutomateException("Regle incorrecte");
  * \fn unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int** regle) const
  * \brief Remplissage du tableau des règles pour automate
  *
- * \param unsigned int** tab : Tableau contenant les différentes régles
- * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+ * \param unsigned int** tab : Tableau contenant les différentes règles
+ * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
  * \return unsigned int**
  */
 unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned int** regle) const{
@@ -439,7 +439,7 @@ unsigned int** FeuDeForet::remplissageRegle(unsigned int** tab, const unsigned i
  * \fn FeuDeForet::FeuDeForet(const unsigned int regle[])
  * \brief Constructeur de la classe Feu De Foret
  *
- * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+ * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
  */
 FeuDeForet::FeuDeForet(const unsigned int regle[]) : Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(),regle)) {
 }
@@ -489,7 +489,7 @@ unsigned int FeuDeForet::getNbEtats() const{
 
 /*!
  * \fn unsigned int FeuDeForet::getTailleRegle() const
- * \brief Permet la récupération de la taille que devra faire le tableau de régles
+ * \brief Permet la récupération de la taille que devra faire le tableau de règles
  *
  * \return unsigned int
  */
@@ -512,7 +512,7 @@ unsigned int FeuDeForet::getNbDim() const{
      * \brief Permet l'instanciation de l'Automate souhaité
      *
      * \param string idAutomate : Chaîne de caractères correspondant au type d'automate souhaité
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles de transition
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles de transition
      *
      * \return Automate*
      */
@@ -527,7 +527,7 @@ Automate* FabriqueAutomate::createAutomate(std::string idAutomate, const unsigne
      * \fn Cell1D::Cell1D(const unsigned int** regle)
      * \brief Constructeur de la classe Cell1D
      *
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      */
 Cell1D::Cell1D(const unsigned int** regle) :Automate(Cell1D::remplissageRegle(Cell1D::createTabRegle(), regle)) {
 }
@@ -536,7 +536,7 @@ Cell1D::Cell1D(const unsigned int** regle) :Automate(Cell1D::remplissageRegle(Ce
      * \fn JeuDeLaVie::JeuDeLaVie(const unsigned int** regle)
      * \brief Constructeur de la classe Jeu de la Vie
      *
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      */
 JeuDeLaVie::JeuDeLaVie(const unsigned int** regle) :Automate(JeuDeLaVie::remplissageRegle(JeuDeLaVie::createTabRegle(), regle)) {
 }
@@ -545,7 +545,7 @@ JeuDeLaVie::JeuDeLaVie(const unsigned int** regle) :Automate(JeuDeLaVie::remplis
      * \fn FeuDeForet::FeuDeForet(const unsigned int** regle)
      * \brief Constructeur de la classe Feu de Foret
      *
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      */
 FeuDeForet::FeuDeForet(const unsigned int** regle) :Automate(FeuDeForet::remplissageRegle(FeuDeForet::createTabRegle(), regle)) {
 }

@@ -36,8 +36,8 @@ protected :
      *
      * \details Remplissage du tableau des règles pour automate
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
     virtual unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const =0;
@@ -47,8 +47,8 @@ protected :
      *
      * \details Remplissage du tableau des règles pour automate
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
     virtual unsigned int** remplissageRegle(unsigned int** tab, const unsigned int** regle) const =0;
@@ -58,15 +58,15 @@ protected :
      *
      * \details Constructeur de la classe Automate
      *
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      */
     Automate(unsigned int** regle);
 
 public :
     /*!
-     * \brief Accesseur des régles
+     * \brief Accesseur des règles
      *
-     * \details Permet la récupération des régles
+     * \details Permet la récupération des règles
      *
      * \return unsigned int** regle
      */
@@ -92,9 +92,9 @@ public :
     virtual unsigned int getNbDim() const =0;
 
     /*!
-     * \brief Calcul de la taille du tableau de régles
+     * \brief Calcul de la taille du tableau de règles
      *
-     * \details Permet la récupération de la taille que devra faire le tableau de régles
+     * \details Permet la récupération de la taille que devra faire le tableau de règles
      *
      * \return unsigned int
      */
@@ -161,8 +161,8 @@ private :
      *
      * \details Remplissage du tableau des règles pour Cell1D
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const;
@@ -172,8 +172,8 @@ private :
      *
      * \details Remplissage du tableau des règles pour Cell1D
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, const unsigned int** regle) const;
@@ -184,7 +184,7 @@ protected :
      *
      * \details Constructeur de la classe Cell1D
      *
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      */
     Cell1D(const unsigned int regle[]);
 
@@ -202,7 +202,7 @@ protected :
      *
      * \details Constructeur de la classe Cell1D
      *
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      */
     Cell1D(const unsigned int** regle);
 
@@ -234,9 +234,9 @@ public :
     unsigned int getNbEtats() const;
 
     /*!
-     * \brief Calcul de la taille du tableau de régles
+     * \brief Calcul de la taille du tableau de règles
      *
-     * \details Permet la récupération de la taille que devra faire le tableau de régles
+     * \details Permet la récupération de la taille que devra faire le tableau de règles
      *
      * \return unsigned int
      */
@@ -272,8 +272,8 @@ private :
      *
      * \details Remplissage du tableau des règles pour JeuDeLaVie
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const;
@@ -283,8 +283,8 @@ private :
      *
      * \details Remplissage du tableau des règles pour JeuDeLaVie
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, const unsigned int**) const;
@@ -295,7 +295,7 @@ protected :
      *
      * \details Constructeur de la classe Jeu de la Vie
      *
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      */
     JeuDeLaVie(const unsigned int regle[]);
 
@@ -313,7 +313,7 @@ protected :
      *
      * \details Constructeur de la classe Jeu de la Vie
      *
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      */
     JeuDeLaVie(const unsigned int** regle);
 
@@ -346,9 +346,9 @@ public :
     unsigned int getNbEtats() const;
 
     /*!
-     * \brief Calcul de la taille du tableau de régles
+     * \brief Calcul de la taille du tableau de règles
      *
-     * \details Permet la récupération de la taille que devra faire le tableau de régles
+     * \details Permet la récupération de la taille que devra faire le tableau de règles
      *
      * \return unsigned int
      */
@@ -383,8 +383,8 @@ private :
      *
      * \details Remplissage du tableau des règles pour FeuDeForet
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, const unsigned int regle[]) const;
@@ -394,8 +394,8 @@ private :
      *
      * \details Remplissage du tableau des règles pour FeuDeForet
      *
-     * \param unsigned int** tab : Tableau contenant les différentes régles
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param unsigned int** tab : Tableau contenant les différentes règles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      * \return unsigned int**
      */
     unsigned int** remplissageRegle(unsigned int** tab, const unsigned int**) const;
@@ -406,7 +406,7 @@ protected :
      *
      * \details Constructeur de la classe Feu de Foret
      *
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles
      */
     FeuDeForet(const unsigned int regle[]);
 
@@ -424,7 +424,7 @@ protected :
      *
      * \details Constructeur de la classe Feu de Foret
      *
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles
      */
     FeuDeForet(const unsigned int** regle);
 
@@ -456,9 +456,9 @@ public :
     unsigned int getNbEtats() const;
 
     /*!
-     * \brief Calcul de la taille du tableau de régles
+     * \brief Calcul de la taille du tableau de règles
      *
-     * \details Permet la récupération de la taille que devra faire le tableau de régles
+     * \details Permet la récupération de la taille que devra faire le tableau de règles
      *
      * \return unsigned int
      */
@@ -492,7 +492,7 @@ protected :
      *
      * \param Etat& dep : Référence sur l'état de départ sur lequel appliquer la transition
      * \param Etat& dest : Référence vers l'état résultant de la transition
-     * \param Automate& a : Référence sur l'automate possédant les régles pour la transition
+     * \param Automate& a : Référence sur l'automate possédant les règles pour la transition
      * \return void
      */
     void appliquerTransition(Etat& dep, Etat& dest, Automate& a) const;
@@ -503,7 +503,7 @@ protected :
      * \details Permet l'instanciation de l'Automate souhaité
      *
      * \param string idAutomate : Chaîne de caractères correspondant au type d'automate souhaité
-     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les régles de transition
+     * \param const unsigned int regle[] : Tableau contenant les informations pour générer les règles de transition
      *
      * \return Automate*
      */
@@ -526,7 +526,7 @@ protected :
      * \details Permet l'instanciation de l'Automate souhaité
      *
      * \param string idAutomate : Chaîne de caractères correspondant au type d'automate souhaité
-     * \param const unsigned int regle** : Tableau contenant les informations pour générer les régles de transition
+     * \param const unsigned int regle** : Tableau contenant les informations pour générer les règles de transition
      *
      * \return Automate*
      */
