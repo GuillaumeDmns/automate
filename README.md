@@ -1,46 +1,7 @@
-DOCUMENTATION DOXYGEN
+Instructions de compilation et d’utilisation
+Démarrer Qt Creator, ouvrir le projet nf17-p18-projet.pro afin que tous les fichiers nécessaires soient ajoutés au projet.
+Réaliser un qmake puis une compilation générale.
+Lancer l’application, suivre les conseils d’utilisation de la vidéo de présentation, utiliser le bouton Quitter à la fin de l’utilisation.
+Attention! Seul l’appui sur le bouton Save permet de sauvegarder une simulation, l’appui sur le bouton Retour supprime l’automate.
 
-/*!
-    * \file etat.h
-    * \brief Déclaration de l'objet Etat
-    * \author Guillaume Damiens, Solène Houlliez, Oscar Roisin
-    * \version 0.1
-    * \date 28 mai 2018
-    *
-    * \details Fichier pour créer les classes et fonctions relatives à Etat
-    *
-    */
-
-/*!
-    * \fn Etat1D::Etat1D (unsigned int n,unsigned int* t=0)
-    * \brief Constructeur de la classe Etat1D
-    * 
-    * \param unsigned int n : dimension de la grille
-    * \param unsigned int* t : tableau des valeurs (par défaut =0)
-    * \return 
-    *
-    */
-
-
-/*!
-    * \class Etat
-    * \brief classe mère pour les états
-    * 
-    * \details La classe gére les données relatives à la grille d'un automate
-    *
-    */
-class Etat {
-private :
-        unsigned int dimN; /*!< Dimension 1 de la grille*/
-public :
-    
-    /*!
-     * \brief Recupération de la dimension
-     *
-     * \details Renvoie la dimension n de la grille
-     *
-     * \param 
-     * \return dimN
-     */
-    const unsigned int getdimN() const {return dimN;}
-};
+Remarque : Si vous avez lancé un automate et que vous souhaitez revenir au menu d’accueil, il faudra d’abord cliquer sur Stop avant de pouvoir cliquer sur Retour. 
